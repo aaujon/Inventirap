@@ -1,0 +1,47 @@
+\documentclass[12pt,a4paper,utf8x]{report}
+\input{annexes/packages}
+
+
+\begin{document}
+
+\input{annexes/entete}
+
+\input{annexes/page_garde} 
+
+\setcounter{page}{1} % sets the counter to value 
+\pagestyle{fancy}
+\pagenumbering{Roman}
+\renewcommand{\headrulewidth}{0pt}%-- definit l'epaisseur du trait situe en dessous du haut de page --%
+\lhead{}
+\chead{}
+\rhead{}
+\cfoot{\thepage}%-- c pour center0 --%
+
+\tableofcontents 
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1} % sets the counter to value 
+\pagestyle{fancy}%-- commence la definitions des parametres du haut/pied de page --%
+
+\lhead{Documentation technique}%-- l pour left head pour haut de page --%
+\chead{}%-- c pour center  --%
+\rhead{}%-- r pour right --%
+\renewcommand{\headrulewidth}{0.4pt}%-- definit l'epaisseur du trait situe en dessous du haut de page --%
+
+\renewcommand{\footrulewidth}{0.4pt}%-- definit l'eisseur du trait situeu dessus du pied de page --%
+\lfoot{InventIrap}%-- l pour left foot pour pied de page --%
+\cfoot{le : 28/06/2012}%-- c pour center0 --%
+\rfoot{ page : \thepage/\pageref{LastPage} }%-- r pour right --%
+
+\renewcommand{\newline}{\vrule height 0cm width 0pt}
+
+\listoffigures
+
+\input{texte/classDiagram} 
+
+\input{texte/architectureDiagram} 
+
+\end{document}
+
+

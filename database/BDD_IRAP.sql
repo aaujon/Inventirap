@@ -69,9 +69,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel` (
   `primary_accessory` TINYINT(1) NULL ,
   `primary_material_number` INT NULL ,
   `primary_accessory` INT NULL ,
-  `have_accessory` TINYINT(1) NULL ,
   `accessory` VARCHAR(45) NULL ,
-  `accessory_inventory_number` INT NULL ,
   `sub_category_id` INT NULL ,
   PRIMARY KEY (`id_tech_materiel`) ,
   INDEX `category` (`sub_category_id` ASC) ,
@@ -252,6 +250,39 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_history` (
   CONSTRAINT `fk_tech_materiel_has_history_history1`
     FOREIGN KEY (`history_id_calibration` )
     REFERENCES `mydb`.`history` (`id_calibration` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`special_user`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `mydb`.`special_user` (
+  `id_user` INT NOT NULL AUTO_INCREMENT ,
+  `ldap_id` VARCHAR(45) NULL ,
+  `role` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id_user`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`tech_materiel_has_accessory`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_accessory` (
+  `tech_materiel_id_tech_materiel` INT NOT NULL ,
+  `tech_materiel_id_accessory` INT NOT NULL ,
+  PRIMARY KEY (`tech_materiel_id_tech_materiel`, `tech_materiel_id_accessory`) ,
+  INDEX `fk_tech_materiel_has_tech_materiel_tech_materiel2` (`tech_materiel_id_accessory` ASC) ,
+  INDEX `fk_tech_materiel_has_tech_materiel_tech_materiel1` (`tech_materiel_id_tech_materiel` ASC) ,
+  CONSTRAINT `fk_tech_materiel_has_tech_materiel_tech_materiel1`
+    FOREIGN KEY (`tech_materiel_id_tech_materiel` )
+    REFERENCES `mydb`.`tech_materiel` (`id_tech_materiel` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tech_materiel_has_tech_materiel_tech_materiel2`
+    FOREIGN KEY (`tech_materiel_id_accessory` )
+    REFERENCES `mydb`.`tech_materiel` (`id_tech_materiel` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

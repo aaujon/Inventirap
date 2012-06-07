@@ -7,3 +7,9 @@ Cette section contient les diagrammes d'architecture du projet. Cette section es
 
 \newpage
 \section{Le web service}
+Les deux applications mobiles (Android et iOS) utiliseront la bibliothèque XZing (http://code.google.com/p/zxing/) sous licence Apache 2.0.
+Cette biliothèque permet de décoder un QRCode à partir d'une photo prise depuis un smartphone.
+
+Pour l'interaction entre l'application et les terminaux mobiles, nous utiliserons la fonctionnalité de CakePHP pour créer des webservices capables de gérer un flux de données sous forme XML.
+L'application contiendra donc un controleur qui servira des requêtes demandant des informations sur identifiant de matériel.
+ADD IMAGE HERE

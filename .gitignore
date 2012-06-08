@@ -4,3 +4,4 @@ app/tmp/*
 app/config/database.php
 !empty
 .DS_Store
+*~

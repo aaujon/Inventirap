@@ -1,7 +1,7 @@
 all : images
 	pdflatex doc.tex
 	pdflatex doc.tex
-
+ 
 image :
 	dia -e images/controller.png -s 380x images/sources/controller.dia
 	dia -e images/view.png -s 280x images/sources/view.dia

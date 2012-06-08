@@ -2,12 +2,15 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
+DROP SCHEMA IF EXISTS `mydb` ;
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`admi_material`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`admi_material` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material` (
   `id_adm_material` INT NOT NULL AUTO_INCREMENT ,
   `designation` VARCHAR(30) NULL ,
@@ -27,6 +30,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material` (
   `nom_utilisateur` VARCHAR(45) NULL ,
   `mail_utilisateur` VARCHAR(45) NULL ,
   `date_acquisition` DATE NULL ,
+  `status` ENUM('CREATED', 'VALIDATED', 'DELETED') NULL ,
   PRIMARY KEY (`id_adm_material`) )
 ENGINE = InnoDB;
 
@@ -34,6 +38,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`category`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`category` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`category` (
   `id_category` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NULL ,
@@ -44,6 +50,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`sub_category`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`sub_category` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`sub_category` (
   `id_sub_category` INT NOT NULL AUTO_INCREMENT ,
   `category_id` INT NULL ,
@@ -61,6 +69,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tech_materiel`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`tech_materiel` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel` (
   `id_tech_materiel` INT NOT NULL AUTO_INCREMENT ,
   `model` VARCHAR(45) NULL ,
@@ -71,6 +81,9 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel` (
   `primary_accessory` INT NULL ,
   `accessory` VARCHAR(45) NULL ,
   `sub_category_id` INT NULL ,
+  `name_user` VARCHAR(45) NULL ,
+  `mail_user` VARCHAR(90) NULL ,
+  `status` ENUM('CREATED', 'VALIDATED', 'DELETED') NULL ,
   PRIMARY KEY (`id_tech_materiel`) ,
   INDEX `category` (`sub_category_id` ASC) ,
   CONSTRAINT `category`
@@ -84,6 +97,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`history`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`history` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`history` (
   `id_calibration` INT NOT NULL AUTO_INCREMENT ,
   `type` ENUM('Maintenance', 'Etalonnage', 'Verification') NULL ,
@@ -99,6 +114,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`internal_loan`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`internal_loan` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`internal_loan` (
   `id_internal_loan` INT NOT NULL AUTO_INCREMENT ,
   `loan_date` DATE NULL ,
@@ -112,6 +129,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`external_loan`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`external_loan` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`external_loan` (
   `id_external_loan` INT NOT NULL ,
   `loan_date` DATE NULL ,
@@ -126,6 +145,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`admi_material_has_external_loan`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`admi_material_has_external_loan` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material_has_external_loan` (
   `admi_material_id_adm_material` INT NOT NULL ,
   `external_loan_id_external_loan` INT NOT NULL ,
@@ -148,6 +169,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tech_materiel_has_external_loan`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_external_loan` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_external_loan` (
   `tech_materiel_id_tech_materiel` INT NOT NULL ,
   `external_loan_id_external_loan` INT NOT NULL ,
@@ -170,6 +193,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`admi_material_has_internal_loan`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`admi_material_has_internal_loan` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material_has_internal_loan` (
   `admi_material_id_adm_material` INT NOT NULL ,
   `internal_loan_id_internal_loan` INT NOT NULL ,
@@ -192,6 +217,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tech_materiel_has_internal_loan`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_internal_loan` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_internal_loan` (
   `tech_materiel_id_tech_materiel` INT NOT NULL ,
   `internal_loan_id_internal_loan` INT NOT NULL ,
@@ -214,6 +241,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`admi_material_has_history`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`admi_material_has_history` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material_has_history` (
   `admi_material_id_adm_material` INT NOT NULL ,
   `history_id_calibration` INT NOT NULL ,
@@ -236,6 +265,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tech_materiel_has_history`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_history` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_history` (
   `tech_materiel_id_tech_materiel` INT NOT NULL ,
   `history_id_calibration` INT NOT NULL ,
@@ -258,6 +289,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`special_user`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`special_user` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`special_user` (
   `id_user` INT NOT NULL AUTO_INCREMENT ,
   `ldap_id` VARCHAR(45) NULL ,
@@ -269,6 +302,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`tech_materiel_has_accessory`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_accessory` ;
+
 CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_accessory` (
   `tech_materiel_id_tech_materiel` INT NOT NULL ,
   `tech_materiel_id_accessory` INT NOT NULL ,

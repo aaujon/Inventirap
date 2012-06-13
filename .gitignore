@@ -1,7 +1,10 @@
-tmp/*
-config/database.php
-app/tmp/*
-app/config/database.php
-!empty
+cakephp/app/Config
+cakephp/app/tmp
+cakephp/lib/Cake/Console/Templates/skel/tmp/
+cakephp/plugins
+cakephp/vendors
+cakephp/build
+cakephp/dist
 .DS_Store
-*~
+tags
+cakephp/phpqrcode/cache/

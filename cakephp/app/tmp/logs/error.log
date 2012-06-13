@@ -1,0 +1,40 @@
+2012-05-01 19:59:40 Error: [MissingControllerException] Controller class PostsController could not be found.
+#0 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-01 19:59:43 Error: [MissingControllerException] Controller class PostsController could not be found.
+#0 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-05-01 20:02:33 Error: [MissingActionException] Action PostsController::view() could not be found.
+#0 /var/www/cakephp/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 /var/www/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#2 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-05-01 20:04:55 Error: [MissingViewException] View file "/var/www/cakephp/app/View/Posts/add.ctp" is missing.
+#0 /var/www/cakephp/lib/Cake/View/View.php(460): View->_getViewFileName(NULL)
+#1 /var/www/cakephp/lib/Cake/Controller/Controller.php(959): View->render(NULL, NULL)
+#2 /var/www/cakephp/lib/Cake/Routing/Dispatcher.php(110): Controller->render()
+#3 /var/www/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#4 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-05-06 21:03:47 Error: [MissingTableException] Table posts for model Post was not found in datasource default.
+#0 /var/www/cakephp/lib/Cake/Model/Model.php(3398): Model->setSource('posts')
+#1 /var/www/cakephp/lib/Cake/Model/Model.php(2653): Model->getDataSource()
+#2 /var/www/cakephp/app/Controller/PostsController.php(6): Model->find('all')
+#3 [internal function]: PostsController->index()
+#4 /var/www/cakephp/lib/Cake/Controller/Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#5 /var/www/cakephp/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 /var/www/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#7 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-05-06 21:24:09 Error: [MissingControllerException] Controller class PostController could not be found.
+#0 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-13 19:33:03 Error: [MissingControllerException] Controller class TestQRController could not be found.
+#0 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-13 19:33:52 Error: [MissingControllerException] Controller class TestQRController could not be found.
+#0 /var/www/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-13 20:21:40 Error: [MissingControllerException] Controller class Yo.phpController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

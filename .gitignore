@@ -7,4 +7,4 @@ build
 dist
 .DS_Store
 tags
-phpqrcode/cache/
+phpqrcode/cache/*

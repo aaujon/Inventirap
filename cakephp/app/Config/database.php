@@ -28,7 +28,7 @@
  * You can specify multiple configurations for production, development and testing.
  *
  * datasource => The name of a supported datasource; valid options are as follows:
- *		Database/Postgres 		- MySQL 4 & 5,
+ *		Database/Mysql 		- MySQL 4 & 5,
  *		Database/Sqlite		- SQLite (PHP5 only),
  *		Database/Postgres	- PostgreSQL 7 and higher,
  *		Database/Sqlserver	- Microsoft SQL Server 2005 and higher
@@ -61,23 +61,23 @@ class DATABASE_CONFIG {
 
 	public $default = array(
 		'datasource' => 'Database/Mysql',
-		'persistent' => true,
+		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'root',
-		'database' => 'cakephp',
+		'database' => 'mydb',
 		'prefix' => '',
-		// 'encoding' => 'utf8',
+		//'encoding' => 'utf8',
 	);
 
 	public $test = array(
 		'datasource' => 'Database/Mysql',
-		'persistent' => true,
+		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'root',
-		'database' => 'cakephp_test',
+		'login' => 'user',
+		'password' => 'password',
+		'database' => 'test_database_name',
 		'prefix' => '',
-		// 'encoding' => 'utf8',
+		//'encoding' => 'utf8',
 	);
 }

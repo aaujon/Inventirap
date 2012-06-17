@@ -7,7 +7,11 @@ class CategoryController extends AppController {
     }
 
     public function view() {
-	$this->set('category', $this->Category->find('all'));
+		
+		$this->set('category', $this->Category->find('all', 
+			array(
+				'conditions' => array(
+					'Category.id' => $this->params['pass'][0])) ));
     }
 }
 ?>

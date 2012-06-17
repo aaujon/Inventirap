@@ -80,4 +80,14 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+	
+    
+	public $ldap = array (
+        'host' 			=> '192.168.1.65',
+        'port' 			=> '389',
+        'baseDn' 		=> 'dc=irap,dc=omp,dc=eu',
+        'login' 		=> 'cn=admin,dc=irap,dc=omp,dc=eu',
+        'password' 		=> 'ldap',
+    );
+	
 }

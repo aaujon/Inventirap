@@ -77390,4 +77390,3236 @@ ReflectionMethod::invokeArgs() - [internal], line ??
 Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
 Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
 Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre>2012-06-17 23:57:07: <pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b306e3f-trace').style.display = (document.getElementById('cakeErr4fde52b306e3f-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/frame_1.dat) [<a href='function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrspec.php</b>, line <b>568</b>]<div id="cakeErr4fde52b306e3f-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b306e3f-code').style.display = (document.getElementById('cakeErr4fde52b306e3f-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b306e3f-context').style.display = (document.getElementById('cakeErr4fde52b306e3f-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b306e3f-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$frames[$version]&nbsp;=&nbsp;self::createFrame($version);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial(self::$frames[$version]));</span></code></span></pre><pre id="cakeErr4fde52b306e3f-context" class="cake-context" style="display: none;">$version = (int) 1
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/frame_1.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRspec::newFrame() - APP/Vendor/phpqrcode/qrspec.php, line 568
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 178
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30911b-trace').style.display = (document.getElementById('cakeErr4fde52b30911b-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b30911b-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30911b-code').style.display = (document.getElementById('cakeErr4fde52b30911b-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30911b-context').style.display = (document.getElementById('cakeErr4fde52b30911b-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b30911b-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b30911b-context" class="cake-context" style="display: none;">$maskNo = (int) 0
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_0/mask_21_0.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30a6b5-trace').style.display = (document.getElementById('cakeErr4fde52b30a6b5-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_0/mask_21_0.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b30a6b5-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30a6b5-code').style.display = (document.getElementById('cakeErr4fde52b30a6b5-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30a6b5-context').style.display = (document.getElementById('cakeErr4fde52b30a6b5-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b30a6b5-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b30a6b5-context" class="cake-context" style="display: none;">$maskNo = (int) 0
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_0/mask_21_0.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30d57c-trace').style.display = (document.getElementById('cakeErr4fde52b30d57c-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b30d57c-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30d57c-code').style.display = (document.getElementById('cakeErr4fde52b30d57c-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30d57c-context').style.display = (document.getElementById('cakeErr4fde52b30d57c-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b30d57c-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b30d57c-context" class="cake-context" style="display: none;">$maskNo = (int) 1
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_1/mask_21_1.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30eb3a-trace').style.display = (document.getElementById('cakeErr4fde52b30eb3a-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_1/mask_21_1.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b30eb3a-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30eb3a-code').style.display = (document.getElementById('cakeErr4fde52b30eb3a-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b30eb3a-context').style.display = (document.getElementById('cakeErr4fde52b30eb3a-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b30eb3a-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b30eb3a-context" class="cake-context" style="display: none;">$maskNo = (int) 1
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_1/mask_21_1.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b311808-trace').style.display = (document.getElementById('cakeErr4fde52b311808-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b311808-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b311808-code').style.display = (document.getElementById('cakeErr4fde52b311808-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b311808-context').style.display = (document.getElementById('cakeErr4fde52b311808-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b311808-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b311808-context" class="cake-context" style="display: none;">$maskNo = (int) 2
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_2/mask_21_2.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b312e0e-trace').style.display = (document.getElementById('cakeErr4fde52b312e0e-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_2/mask_21_2.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b312e0e-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b312e0e-code').style.display = (document.getElementById('cakeErr4fde52b312e0e-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b312e0e-context').style.display = (document.getElementById('cakeErr4fde52b312e0e-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b312e0e-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b312e0e-context" class="cake-context" style="display: none;">$maskNo = (int) 2
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_2/mask_21_2.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b315ad2-trace').style.display = (document.getElementById('cakeErr4fde52b315ad2-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b315ad2-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b315ad2-code').style.display = (document.getElementById('cakeErr4fde52b315ad2-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b315ad2-context').style.display = (document.getElementById('cakeErr4fde52b315ad2-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b315ad2-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b315ad2-context" class="cake-context" style="display: none;">$maskNo = (int) 3
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_3/mask_21_3.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31715c-trace').style.display = (document.getElementById('cakeErr4fde52b31715c-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_3/mask_21_3.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b31715c-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31715c-code').style.display = (document.getElementById('cakeErr4fde52b31715c-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31715c-context').style.display = (document.getElementById('cakeErr4fde52b31715c-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b31715c-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b31715c-context" class="cake-context" style="display: none;">$maskNo = (int) 3
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_3/mask_21_3.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b319f4e-trace').style.display = (document.getElementById('cakeErr4fde52b319f4e-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b319f4e-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b319f4e-code').style.display = (document.getElementById('cakeErr4fde52b319f4e-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b319f4e-context').style.display = (document.getElementById('cakeErr4fde52b319f4e-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b319f4e-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b319f4e-context" class="cake-context" style="display: none;">$maskNo = (int) 4
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_4/mask_21_4.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31b5a4-trace').style.display = (document.getElementById('cakeErr4fde52b31b5a4-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_4/mask_21_4.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b31b5a4-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31b5a4-code').style.display = (document.getElementById('cakeErr4fde52b31b5a4-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31b5a4-context').style.display = (document.getElementById('cakeErr4fde52b31b5a4-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b31b5a4-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b31b5a4-context" class="cake-context" style="display: none;">$maskNo = (int) 4
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_4/mask_21_4.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31e423-trace').style.display = (document.getElementById('cakeErr4fde52b31e423-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b31e423-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31e423-code').style.display = (document.getElementById('cakeErr4fde52b31e423-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31e423-context').style.display = (document.getElementById('cakeErr4fde52b31e423-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b31e423-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b31e423-context" class="cake-context" style="display: none;">$maskNo = (int) 5
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_5/mask_21_5.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31f9d4-trace').style.display = (document.getElementById('cakeErr4fde52b31f9d4-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_5/mask_21_5.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b31f9d4-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31f9d4-code').style.display = (document.getElementById('cakeErr4fde52b31f9d4-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b31f9d4-context').style.display = (document.getElementById('cakeErr4fde52b31f9d4-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b31f9d4-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b31f9d4-context" class="cake-context" style="display: none;">$maskNo = (int) 5
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_5/mask_21_5.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b3226c0-trace').style.display = (document.getElementById('cakeErr4fde52b3226c0-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b3226c0-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b3226c0-code').style.display = (document.getElementById('cakeErr4fde52b3226c0-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b3226c0-context').style.display = (document.getElementById('cakeErr4fde52b3226c0-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b3226c0-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b3226c0-context" class="cake-context" style="display: none;">$maskNo = (int) 6
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_6/mask_21_6.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b323c96-trace').style.display = (document.getElementById('cakeErr4fde52b323c96-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_6/mask_21_6.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b323c96-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b323c96-code').style.display = (document.getElementById('cakeErr4fde52b323c96-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b323c96-context').style.display = (document.getElementById('cakeErr4fde52b323c96-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b323c96-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b323c96-context" class="cake-context" style="display: none;">$maskNo = (int) 6
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_6/mask_21_6.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b326a7e-trace').style.display = (document.getElementById('cakeErr4fde52b326a7e-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52b326a7e-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b326a7e-code').style.display = (document.getElementById('cakeErr4fde52b326a7e-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b326a7e-context').style.display = (document.getElementById('cakeErr4fde52b326a7e-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b326a7e-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52b326a7e-context" class="cake-context" style="display: none;">$maskNo = (int) 7
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_7/mask_21_7.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b32807e-trace').style.display = (document.getElementById('cakeErr4fde52b32807e-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_7/mask_21_7.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52b32807e-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b32807e-code').style.display = (document.getElementById('cakeErr4fde52b32807e-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52b32807e-context').style.display = (document.getElementById('cakeErr4fde52b32807e-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52b32807e-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52b32807e-context" class="cake-context" style="display: none;">$maskNo = (int) 7
+$width = (int) 21
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_7/mask_21_7.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre>2012-06-17 23:57:25: <pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c57c5a6-trace').style.display = (document.getElementById('cakeErr4fde52c57c5a6-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/frame_3.dat) [<a href='function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrspec.php</b>, line <b>568</b>]<div id="cakeErr4fde52c57c5a6-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c57c5a6-code').style.display = (document.getElementById('cakeErr4fde52c57c5a6-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c57c5a6-context').style.display = (document.getElementById('cakeErr4fde52c57c5a6-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c57c5a6-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$frames[$version]&nbsp;=&nbsp;self::createFrame($version);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial(self::$frames[$version]));</span></code></span></pre><pre id="cakeErr4fde52c57c5a6-context" class="cake-context" style="display: none;">$version = (int) 3
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/frame_3.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRspec::newFrame() - APP/Vendor/phpqrcode/qrspec.php, line 568
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 178
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c57fc63-trace').style.display = (document.getElementById('cakeErr4fde52c57fc63-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c57fc63-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c57fc63-code').style.display = (document.getElementById('cakeErr4fde52c57fc63-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c57fc63-context').style.display = (document.getElementById('cakeErr4fde52c57fc63-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c57fc63-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c57fc63-context" class="cake-context" style="display: none;">$maskNo = (int) 0
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_0/mask_29_0.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5814d7-trace').style.display = (document.getElementById('cakeErr4fde52c5814d7-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_0/mask_29_0.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c5814d7-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5814d7-code').style.display = (document.getElementById('cakeErr4fde52c5814d7-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5814d7-context').style.display = (document.getElementById('cakeErr4fde52c5814d7-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5814d7-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c5814d7-context" class="cake-context" style="display: none;">$maskNo = (int) 0
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_0/mask_29_0.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5861a1-trace').style.display = (document.getElementById('cakeErr4fde52c5861a1-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c5861a1-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5861a1-code').style.display = (document.getElementById('cakeErr4fde52c5861a1-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5861a1-context').style.display = (document.getElementById('cakeErr4fde52c5861a1-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5861a1-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c5861a1-context" class="cake-context" style="display: none;">$maskNo = (int) 1
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_1/mask_29_1.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c587a1a-trace').style.display = (document.getElementById('cakeErr4fde52c587a1a-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_1/mask_29_1.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c587a1a-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c587a1a-code').style.display = (document.getElementById('cakeErr4fde52c587a1a-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c587a1a-context').style.display = (document.getElementById('cakeErr4fde52c587a1a-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c587a1a-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c587a1a-context" class="cake-context" style="display: none;">$maskNo = (int) 1
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_1/mask_29_1.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c58c335-trace').style.display = (document.getElementById('cakeErr4fde52c58c335-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c58c335-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c58c335-code').style.display = (document.getElementById('cakeErr4fde52c58c335-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c58c335-context').style.display = (document.getElementById('cakeErr4fde52c58c335-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c58c335-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c58c335-context" class="cake-context" style="display: none;">$maskNo = (int) 2
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_2/mask_29_2.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c58de73-trace').style.display = (document.getElementById('cakeErr4fde52c58de73-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_2/mask_29_2.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c58de73-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c58de73-code').style.display = (document.getElementById('cakeErr4fde52c58de73-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c58de73-context').style.display = (document.getElementById('cakeErr4fde52c58de73-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c58de73-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c58de73-context" class="cake-context" style="display: none;">$maskNo = (int) 2
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_2/mask_29_2.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5927de-trace').style.display = (document.getElementById('cakeErr4fde52c5927de-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c5927de-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5927de-code').style.display = (document.getElementById('cakeErr4fde52c5927de-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5927de-context').style.display = (document.getElementById('cakeErr4fde52c5927de-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5927de-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c5927de-context" class="cake-context" style="display: none;">$maskNo = (int) 3
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_3/mask_29_3.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c593fcd-trace').style.display = (document.getElementById('cakeErr4fde52c593fcd-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_3/mask_29_3.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c593fcd-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c593fcd-code').style.display = (document.getElementById('cakeErr4fde52c593fcd-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c593fcd-context').style.display = (document.getElementById('cakeErr4fde52c593fcd-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c593fcd-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c593fcd-context" class="cake-context" style="display: none;">$maskNo = (int) 3
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_3/mask_29_3.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c598b70-trace').style.display = (document.getElementById('cakeErr4fde52c598b70-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c598b70-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c598b70-code').style.display = (document.getElementById('cakeErr4fde52c598b70-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c598b70-context').style.display = (document.getElementById('cakeErr4fde52c598b70-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c598b70-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c598b70-context" class="cake-context" style="display: none;">$maskNo = (int) 4
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_4/mask_29_4.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c59a263-trace').style.display = (document.getElementById('cakeErr4fde52c59a263-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_4/mask_29_4.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c59a263-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c59a263-code').style.display = (document.getElementById('cakeErr4fde52c59a263-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c59a263-context').style.display = (document.getElementById('cakeErr4fde52c59a263-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c59a263-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c59a263-context" class="cake-context" style="display: none;">$maskNo = (int) 4
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_4/mask_29_4.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c59ee46-trace').style.display = (document.getElementById('cakeErr4fde52c59ee46-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c59ee46-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c59ee46-code').style.display = (document.getElementById('cakeErr4fde52c59ee46-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c59ee46-context').style.display = (document.getElementById('cakeErr4fde52c59ee46-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c59ee46-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c59ee46-context" class="cake-context" style="display: none;">$maskNo = (int) 5
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_5/mask_29_5.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a0c58-trace').style.display = (document.getElementById('cakeErr4fde52c5a0c58-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_5/mask_29_5.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c5a0c58-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a0c58-code').style.display = (document.getElementById('cakeErr4fde52c5a0c58-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a0c58-context').style.display = (document.getElementById('cakeErr4fde52c5a0c58-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5a0c58-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c5a0c58-context" class="cake-context" style="display: none;">$maskNo = (int) 5
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_5/mask_29_5.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a58e1-trace').style.display = (document.getElementById('cakeErr4fde52c5a58e1-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c5a58e1-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a58e1-code').style.display = (document.getElementById('cakeErr4fde52c5a58e1-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a58e1-context').style.display = (document.getElementById('cakeErr4fde52c5a58e1-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5a58e1-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c5a58e1-context" class="cake-context" style="display: none;">$maskNo = (int) 6
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_6/mask_29_6.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a706c-trace').style.display = (document.getElementById('cakeErr4fde52c5a706c-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_6/mask_29_6.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c5a706c-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a706c-code').style.display = (document.getElementById('cakeErr4fde52c5a706c-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5a706c-context').style.display = (document.getElementById('cakeErr4fde52c5a706c-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5a706c-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c5a706c-context" class="cake-context" style="display: none;">$maskNo = (int) 6
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_6/mask_29_6.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5abdc0-trace').style.display = (document.getElementById('cakeErr4fde52c5abdc0-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: mkdir() [<a href='http://php.net/function.mkdir'>function.mkdir</a>]: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>154</b>]<div id="cakeErr4fde52c5abdc0-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5abdc0-code').style.display = (document.getElementById('cakeErr4fde52c5abdc0-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5abdc0-context').style.display = (document.getElementById('cakeErr4fde52c5abdc0-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5abdc0-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$bitMask&nbsp;=&nbsp;$this-&gt;generateMaskNo($maskNo,&nbsp;$width,&nbsp;$s,&nbsp;$d);</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code></span></pre><pre id="cakeErr4fde52c5abdc0-context" class="cake-context" style="display: none;">$maskNo = (int) 7
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_7/mask_29_7.dat&#039;</pre><pre class="stack-trace">mkdir - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 154
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
+[main] - APP/webroot/index.php, line 96</pre></div></pre><pre class="cake-error"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5ad85d-trace').style.display = (document.getElementById('cakeErr4fde52c5ad85d-trace').style.display == 'none' ? '' : 'none');"><b>Warning</b> (2)</a>: file_put_contents(/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_7/mask_29_7.dat) [<a href='http://php.net/function.file-put-contents'>function.file-put-contents</a>]: failed to open stream: No such file or directory [<b>APP/Vendor/phpqrcode/qrmask.php</b>, line <b>155</b>]<div id="cakeErr4fde52c5ad85d-trace" class="cake-stack-trace" style="display: none;"><a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5ad85d-code').style.display = (document.getElementById('cakeErr4fde52c5ad85d-code').style.display == 'none' ? '' : 'none')">Code</a> <a href="javascript:void(0);" onclick="document.getElementById('cakeErr4fde52c5ad85d-context').style.display = (document.getElementById('cakeErr4fde52c5ad85d-context').style.display == 'none' ? '' : 'none')">Context</a><pre id="cakeErr4fde52c5ad85d-code" class="cake-code-dump" style="display: none;"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!file_exists(QR_CACHE_DIR.'mask_'.$maskNo))</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkdir(QR_CACHE_DIR.'mask_'.$maskNo);</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_put_contents($fileName,&nbsp;self::serial($bitMask));</span></code></span></pre><pre id="cakeErr4fde52c5ad85d-context" class="cake-context" style="display: none;">$maskNo = (int) 7
+$width = (int) 29
+
+$d = array(
+	(int) 0 =&gt; &#039;&#039;,
+	(int) 1 =&gt; &#039;&#039;,
+	(int) 2 =&gt; &#039;&#039;,
+	(int) 3 =&gt; &#039;&#039;,
+	(int) 4 =&gt; &#039;&#039;,
+	(int) 5 =&gt; &#039;&#039;,
+	(int) 6 =&gt; &#039;&#039;,
+	(int) 7 =&gt; &#039;&#039;,
+	(int) 8 =&gt; &#039;&#039;,
+	(int) 9 =&gt; &#039;&#039;,
+	(int) 10 =&gt; &#039;&#039;,
+	(int) 11 =&gt; &#039;&#039;,
+	(int) 12 =&gt; &#039;&#039;,
+	(int) 13 =&gt; &#039;&#039;,
+	(int) 14 =&gt; &#039;&#039;,
+	(int) 15 =&gt; &#039;&#039;,
+	(int) 16 =&gt; &#039;&#039;,
+	(int) 17 =&gt; &#039;&#039;,
+	(int) 18 =&gt; &#039;&#039;,
+	(int) 19 =&gt; &#039;&#039;,
+	(int) 20 =&gt; &#039;&#039;,
+	(int) 21 =&gt; &#039;&#039;,
+	(int) 22 =&gt; &#039;&#039;,
+	(int) 23 =&gt; &#039;&#039;,
+	(int) 24 =&gt; &#039;&#039;,
+	(int) 25 =&gt; &#039;&#039;,
+	(int) 26 =&gt; &#039;&#039;,
+	(int) 27 =&gt; &#039;&#039;,
+	(int) 28 =&gt; &#039;&#039;
+)
+$maskGenOnly = false
+$b = (int) 0
+$bitMask = array(
+	(int) 0 =&gt; array(
+	),
+	(int) 1 =&gt; array(
+	),
+	(int) 2 =&gt; array(
+	),
+	(int) 3 =&gt; array(
+	),
+	(int) 4 =&gt; array(
+	),
+	(int) 5 =&gt; array(
+	),
+	(int) 6 =&gt; array(
+	),
+	(int) 7 =&gt; array(
+	),
+	(int) 8 =&gt; array(
+	),
+	(int) 9 =&gt; array(
+	),
+	(int) 10 =&gt; array(
+	),
+	(int) 11 =&gt; array(
+	),
+	(int) 12 =&gt; array(
+	),
+	(int) 13 =&gt; array(
+	),
+	(int) 14 =&gt; array(
+	),
+	(int) 15 =&gt; array(
+	),
+	(int) 16 =&gt; array(
+	),
+	(int) 17 =&gt; array(
+	),
+	(int) 18 =&gt; array(
+	),
+	(int) 19 =&gt; array(
+	),
+	(int) 20 =&gt; array(
+	),
+	(int) 21 =&gt; array(
+	),
+	(int) 22 =&gt; array(
+	),
+	(int) 23 =&gt; array(
+	),
+	(int) 24 =&gt; array(
+	),
+	(int) 25 =&gt; array(
+	),
+	(int) 26 =&gt; array(
+	),
+	(int) 27 =&gt; array(
+	),
+	(int) 28 =&gt; array(
+	)
+)
+$fileName = &#039;/var/www/Inventirap/cakephp/app/Vendor/phpqrcode/cache/mask_7/mask_29_7.dat&#039;</pre><pre class="stack-trace">file_put_contents - [internal], line ??
+QRmask::makeMaskNo() - APP/Vendor/phpqrcode/qrmask.php, line 155
+QRmask::mask() - APP/Vendor/phpqrcode/qrmask.php, line 311
+QRcode::encodeMask() - APP/Vendor/phpqrcode/qrencode.php, line 216
+QRcode::encodeInput() - APP/Vendor/phpqrcode/qrencode.php, line 240
+QRcode::encodeString() - APP/Vendor/phpqrcode/qrencode.php, line 279
+QRencode::encode() - APP/Vendor/phpqrcode/qrencode.php, line 467
+QRencode::encodePNG() - APP/Vendor/phpqrcode/qrencode.php, line 485
+QRcode::png() - APP/Vendor/phpqrcode/qrencode.php, line 286
+QrCodesController::index() - APP/Controller/QrCodesController.php, line 15
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE/Cake/Controller/Controller.php, line 485
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 85
 [main] - APP/webroot/index.php, line 96</pre></div></pre>

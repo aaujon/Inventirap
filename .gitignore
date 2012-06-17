@@ -19,3 +19,5 @@ cakephp/.travis.yml
 cakephp/app/tmp/cache/persistent/*
 cakephp/app/tmp/cache/persistent/myapp_cake_core_file_map
 cakephp/app/tmp/
+phpqrcode/errors.txt
+phpqrcode/qrCode.png-errors.txt

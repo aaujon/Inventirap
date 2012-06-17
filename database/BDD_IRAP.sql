@@ -67,7 +67,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel` (
   `model` VARCHAR(45) NULL ,
   `caracteristic` VARCHAR(45) NULL ,
   `serial_number` VARCHAR(45) NULL ,
-  `primary_accessory` TINYINT(1) NULL ,
+--  `primary_accessory` TINYINT(1) NULL ,
   `primary_material_number` INT NULL ,
   `primary_accessory` INT NULL ,
   `accessory` VARCHAR(45) NULL ,

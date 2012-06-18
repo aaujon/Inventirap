@@ -205,3 +205,125 @@
 #1 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(TechMaterialController), Object(CakeRequest), Object(CakeResponse))
 #2 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2012-06-17 00:24:11 Error: [MissingControllerException] Controller class SubCategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:24:26 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:25:06 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:29:19 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:29:29 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:29:34 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:30:33 Error: [MissingTableException] Table categories for model Category was not found in datasource default.
+#0 /var/www/Inventirap/cakephp/lib/Cake/Model/Model.php(3443): Model->setSource('categories')
+#1 /var/www/Inventirap/cakephp/lib/Cake/Model/Model.php(1292): Model->getDataSource()
+#2 /var/www/Inventirap/cakephp/lib/Cake/Controller/Scaffold.php(136): Model->schema()
+#3 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(530): Scaffold->__construct(Object(CategoryController), Object(CakeRequest))
+#4 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(489): Controller->_getScaffold(Object(CakeRequest))
+#5 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(CategoryController), Object(CakeRequest), Object(CakeResponse))
+#7 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-06-17 00:32:35 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:32:41 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:32:45 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:33:59 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:34:27 Error: [MissingControllerException] Controller class TechmaterialController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:34:49 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'SubCategory.tech_material_id' in 'on clause'
+#0 /var/www/Inventirap/cakephp/lib/Cake/Model/Datasource/DboSource.php(437): PDOStatement->execute(Array)
+#1 /var/www/Inventirap/cakephp/lib/Cake/Model/Datasource/DboSource.php(403): DboSource->_execute('SELECT `TechMat...', Array)
+#2 /var/www/Inventirap/cakephp/lib/Cake/Model/Datasource/DboSource.php(647): DboSource->execute('SELECT `TechMat...', Array, Array)
+#3 /var/www/Inventirap/cakephp/lib/Cake/Model/Datasource/DboSource.php(1058): DboSource->fetchAll('SELECT `TechMat...', false)
+#4 /var/www/Inventirap/cakephp/lib/Cake/Model/Model.php(2698): DboSource->read(Object(TechMaterial), Array)
+#5 /var/www/Inventirap/cakephp/lib/Cake/Controller/Component/PaginatorComponent.php(172): Model->find('all', Array)
+#6 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(1084): PaginatorComponent->paginate(NULL, Array, Array)
+#7 /var/www/Inventirap/cakephp/lib/Cake/Controller/Scaffold.php(190): Controller->paginate()
+#8 /var/www/Inventirap/cakephp/lib/Cake/Controller/Scaffold.php(388): Scaffold->_scaffoldIndex(Object(CakeRequest))
+#9 /var/www/Inventirap/cakephp/lib/Cake/Controller/Scaffold.php(151): Scaffold->_scaffold(Object(CakeRequest))
+#10 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(530): Scaffold->__construct(Object(TechMaterialController), Object(CakeRequest))
+#11 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(489): Controller->_getScaffold(Object(CakeRequest))
+#12 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#13 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(TechMaterialController), Object(CakeRequest), Object(CakeResponse))
+#14 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2012-06-17 00:40:57 Error: [MissingControllerException] Controller class SubCategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:43:29 Error: [MissingControllerException] Controller class SubCategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:43:32 Error: [MissingControllerException] Controller class CategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:44:14 Error: [MissingControllerException] Controller class SubCategoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:45:43 Error: [MissingControllerException] Controller class TechMaterialsController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 00:48:49 Error: [MissingTableException] Table catégories for model Category was not found in datasource default.
+#0 /var/www/Inventirap/cakephp/lib/Cake/Model/Model.php(3443): Model->setSource('cat??gories')
+#1 /var/www/Inventirap/cakephp/lib/Cake/Model/Model.php(1292): Model->getDataSource()
+#2 /var/www/Inventirap/cakephp/lib/Cake/Controller/Scaffold.php(136): Model->schema()
+#3 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(530): Scaffold->__construct(Object(CategoriesController), Object(CakeRequest))
+#4 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(489): Controller->_getScaffold(Object(CakeRequest))
+#5 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(CategoriesController), Object(CakeRequest), Object(CakeResponse))
+#7 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-06-17 02:07:01 Error: [MissingControllerException] Controller class CategoryController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 02:07:38 Error: [MissingControllerException] Controller class SpecialusersController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 02:07:43 Error: [MissingControllerException] Controller class SpecialUsersController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 02:09:58 Error: [MissingControllerException] Controller class HistoriesController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 02:13:47 Error: [MissingViewException] View file "/var/www/Inventirap/cakephp/app/View/Pages/add.ctp" is missing.
+#0 /var/www/Inventirap/cakephp/lib/Cake/View/View.php(462): View->_getViewFileName('add')
+#1 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(959): View->render('add', NULL)
+#2 /var/www/Inventirap/cakephp/app/Controller/PagesController.php(80): Controller->render('add')
+#3 [internal function]: PagesController->display('add')
+#4 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(485): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#5 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest), Object(CakeResponse))
+#7 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-06-17 02:19:48 Error: [NotFoundException] Invalid Special User
+#0 /var/www/Inventirap/cakephp/lib/Cake/Controller/Scaffold.php(391): Scaffold->_scaffoldView(Object(CakeRequest))
+#1 /var/www/Inventirap/cakephp/lib/Cake/Controller/Scaffold.php(151): Scaffold->_scaffold(Object(CakeRequest))
+#2 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(530): Scaffold->__construct(Object(SpecialUsersController), Object(CakeRequest))
+#3 /var/www/Inventirap/cakephp/lib/Cake/Controller/Controller.php(489): Controller->_getScaffold(Object(CakeRequest))
+#4 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#5 /var/www/Inventirap/cakephp/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(SpecialUsersController), Object(CakeRequest), Object(CakeResponse))
+#6 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2012-06-17 02:29:59 Error: [MissingControllerException] Controller class AdmiMaterialsController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-06-17 02:32:54 Error: [MissingControllerException] Controller class InternalLoansController could not be found.
+#0 /var/www/Inventirap/cakephp/app/webroot/index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

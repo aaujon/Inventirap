@@ -23,14 +23,14 @@
 
 /** General Style Info **/
 body {
-	background: #003d4c;
+	background: rgb(23,75,140);
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
 	margin: 0;
 }
 a {
-	color: #003d4c;
+	color: rgb(23,69,127);
 	text-decoration: underline;
 	font-weight: bold;
 }
@@ -46,9 +46,7 @@ h1, h2, h3, h4 {
 	margin-bottom:0.5em;
 }
 h1 {
-	background:#fff;
-	color: #003d4c;
-	font-size: 100%;
+	font-size: 200%;
 }
 h2 {
 	background:#fff;
@@ -57,7 +55,7 @@ h2 {
 	font-size: 190%;
 }
 h3 {
-	color: #2c6877;
+	color: rgb(23,69,127);
 	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 165%;
 }
@@ -74,27 +72,29 @@ p {
 
 /** Layout **/
 #container {
+	background: white;
 	text-align: left;
+	margin: auto;
+	width: 1200px;
+	box-shadow: black 0px 0px 25px;
 }
 
 #header{
 	padding: 10px 20px;
+	border-bottom: 1px solid #CCC;
 }
 #header h1 {
-	line-height:20px;
-	background: #003d4c url('../img/cake.icon.png') no-repeat left;
-	color: #fff;
 	padding: 0px 30px;
 }
 #header h1 a {
 	color: #fff;
-	background: #003d4c;
+	background: rgb(23,69,127);
 	font-weight: normal;
 	text-decoration: none;
 }
 #header h1 a:hover {
 	color: #fff;
-	background: #003d4c;
+	background: rgb(23,69,127);
 	text-decoration: underline;
 }
 #content{
@@ -107,7 +107,8 @@ p {
 #footer {
 	clear: both;
 	padding: 6px 10px;
-	text-align: right;
+	text-align: left;
+	border-top: 1px solid #CCC;
 }
 
 /** containers **/

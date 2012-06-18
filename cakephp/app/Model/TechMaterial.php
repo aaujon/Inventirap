@@ -1,8 +1,11 @@
 <?php
 class TechMaterial extends AppModel {
 	public $name = 'TechMaterial';
-	public $displayField = 'name';
+	public $virtualFields = array(
+		'full' => "CONCAT(serial_number, ' - ', model)");
+	public $displayField = 'full';
 	
-	var $belongsTo = 'SubCategory';
+	public $belongsTo = 'SubCategory';
+	public $hasMany = 'TechMaterialHistory';
 }
 ?>

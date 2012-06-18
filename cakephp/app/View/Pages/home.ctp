@@ -1,6 +1,4 @@
-<h2>Inventirap</h2>
-
-<h3>Général</h3>
+<h2>Général</h2>
 <table cellpadding="0" cellspacing="0">
 	<tr><th>Actions</th></tr>
 	<tr><td><?php echo $this->Html->link('Gérer les utilisateurs', array(
@@ -12,7 +10,7 @@
 		'controller' => 'subCategories')); ?></td></tr>
 </table>	
 
-<h3>Matériel technique</h3>
+<h2>Matériel technique</h2>
 <table cellpadding="0" cellspacing="0">
 	<tr><th>Actions</th></tr>
 	<tr><td><?php echo $this->Html->link('Voir la liste', array(
@@ -22,10 +20,10 @@
 	<tr><td><?php echo $this->Html->link('Voir les emprunts externe', array(
 		'controller' => 'externalLoans')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir l\'historique', array(
-		'controller' => 'histories')); ?></td></tr>
+		'controller' => 'techMaterialHistories')); ?></td></tr>
 </table>
 
-<h3>Matériel administratif</h3>
+<h2>Matériel administratif</h2>
 <table cellpadding="0" cellspacing="0">
 	<tr><th>Actions</th></tr>
 	<tr><td><?php echo $this->Html->link('Voir la liste', array(
@@ -35,5 +33,5 @@
 	<tr><td><?php echo $this->Html->link('Voir les emprunts externe', array(
 		'controller' => 'externalLoans')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir l\'historique', array(
-		'controller' => 'histories')); ?></td></tr>
+		'controller' => 'admiMaterialHistories')); ?></td></tr>
 </table>

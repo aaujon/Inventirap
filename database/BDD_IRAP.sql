@@ -7,20 +7,20 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_s
 USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`admi_materials`
+-- Table `mydb`.`administrative_materials`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`admi_materials` ;
+DROP TABLE IF EXISTS `mydb`.`administrative_materials` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`admi_materials` (
-  `id_adm_material` INT NOT NULL AUTO_INCREMENT ,
+CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_materials` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `designation` VARCHAR(30) NULL ,
-  `num_irap` VARCHAR(10) NULL ,
-  `organisme` VARCHAR(20) NULL ,
-  `type_materiel` ENUM('Inv', 'Tech', 'InvTech') NULL ,
+  `irap_number` VARCHAR(10) NULL ,
+  `organism` VARCHAR(20) NULL ,
+  `type` ENUM('Inv', 'Tech', 'InvTech') NULL ,
   `supplier_name` VARCHAR(20) NULL ,
   `price_ht` INT NULL ,
   `eotp` VARCHAR(45) NULL ,
-  `command_num` VARCHAR(45) NULL ,
+  `command_number` VARCHAR(45) NULL ,
   `code_comptable` VARCHAR(45) NULL ,
   `groupe_thematique` VARCHAR(45) NULL ,
   `groupe_metier` VARCHAR(45) NULL ,
@@ -31,7 +31,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`admi_materials` (
   `mail_utilisateur` VARCHAR(45) NULL ,
   `date_acquisition` DATE NULL ,
   `status` ENUM('CREATED', 'VALIDATED', 'DELETED') NULL ,
-  PRIMARY KEY (`id_adm_material`) )
+  PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 
@@ -67,20 +67,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tech_materials`
+-- Table `mydb`.`technical_materials`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`tech_materials` ;
+DROP TABLE IF EXISTS `mydb`.`technical_materials` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materials` (
+CREATE  TABLE IF NOT EXISTS `mydb`.`technical_materials` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `model` VARCHAR(45) NULL ,
   `caracteristic` VARCHAR(45) NULL ,
   `serial_number` VARCHAR(45) NULL ,
-<<<<<<< HEAD
---  `primary_accessory` TINYINT(1) NULL ,
-=======
-  `have_primary_accessory` TINYINT(1) NULL ,
->>>>>>> Database update for CakePHP integration
+  `primary_accessory` TINYINT(1) NULL ,
   `primary_material_number` INT NULL ,
   `primary_accessory` INT NULL ,
   `accessory` VARCHAR(45) NULL ,
@@ -99,229 +95,151 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`history`
+-- Table `mydb`.`technical_materials_histories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`history` ;
+DROP TABLE IF EXISTS `mydb`.`technical_materials_histories` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`history` (
-  `id_calibration` INT NOT NULL AUTO_INCREMENT ,
+CREATE  TABLE IF NOT EXISTS `mydb`.`technical_materials_histories` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `type` ENUM('Maintenance', 'Etalonnage', 'Verification') NULL ,
   `date_last_calibration` DATE NULL ,
   `organism_informations` VARCHAR(100) NULL ,
   `frenquency` INT NULL ,
   `date_next_control` DATE NULL ,
   `comments` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id_calibration`) )
+  `technical_materials_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_technical_materials_histories_technical_materials1` (`technical_materials_id` ASC) ,
+  CONSTRAINT `fk_technical_materials_histories_technical_materials1`
+    FOREIGN KEY (`technical_materials_id` )
+    REFERENCES `mydb`.`technical_materials` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`internal_loan`
+-- Table `mydb`.`technical_materials_internal_loans`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`internal_loan` ;
+DROP TABLE IF EXISTS `mydb`.`technical_materials_internal_loans` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`internal_loan` (
-  `id_internal_loan` INT NOT NULL AUTO_INCREMENT ,
+CREATE  TABLE IF NOT EXISTS `mydb`.`technical_materials_internal_loans` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `loan_date` DATE NULL ,
   `piece` VARCHAR(45) NULL ,
   `responsible` VARCHAR(45) NULL ,
   `loan_return_date` DATE NULL ,
-  PRIMARY KEY (`id_internal_loan`) )
+  `technical_materials_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_technical_materials_internal_loans_technical_materials1` (`technical_materials_id` ASC) ,
+  CONSTRAINT `fk_technical_materials_internal_loans_technical_materials1`
+    FOREIGN KEY (`technical_materials_id` )
+    REFERENCES `mydb`.`technical_materials` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`external_loan`
+-- Table `mydb`.`technical_materials_external_loans`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`external_loan` ;
+DROP TABLE IF EXISTS `mydb`.`technical_materials_external_loans` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`external_loan` (
-  `id_external_loan` INT NOT NULL ,
+CREATE  TABLE IF NOT EXISTS `mydb`.`technical_materials_external_loans` (
+  `id` INT NOT NULL ,
   `loan_date` DATE NULL ,
   `laboratory` VARCHAR(45) NULL ,
   `responsible` VARCHAR(45) NULL ,
   `responsible_number` INT NULL ,
   `loan_return_date` DATE NULL ,
-  PRIMARY KEY (`id_external_loan`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`admi_material_has_external_loan`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`admi_material_has_external_loan` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material_has_external_loan` (
-  `admi_material_id_adm_material` INT NOT NULL ,
-  `external_loan_id_external_loan` INT NOT NULL ,
-  PRIMARY KEY (`admi_material_id_adm_material`, `external_loan_id_external_loan`) ,
-  INDEX `fk_admi_material_has_external_loan_external_loan1` (`external_loan_id_external_loan` ASC) ,
-  INDEX `fk_admi_material_has_external_loan_admi_material1` (`admi_material_id_adm_material` ASC) ,
-  CONSTRAINT `fk_admi_material_has_external_loan_admi_material1`
-    FOREIGN KEY (`admi_material_id_adm_material` )
-    REFERENCES `mydb`.`admi_materials` (`id_adm_material` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_admi_material_has_external_loan_external_loan1`
-    FOREIGN KEY (`external_loan_id_external_loan` )
-    REFERENCES `mydb`.`external_loan` (`id_external_loan` )
+  `technical_materials_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_technical_materials_external_loans_technical_materials1` (`technical_materials_id` ASC) ,
+  CONSTRAINT `fk_technical_materials_external_loans_technical_materials1`
+    FOREIGN KEY (`technical_materials_id` )
+    REFERENCES `mydb`.`technical_materials` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tech_materiel_has_external_loan`
+-- Table `mydb`.`special_users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_external_loan` ;
+DROP TABLE IF EXISTS `mydb`.`special_users` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_external_loan` (
-  `tech_materiel_id_tech_materiel` INT NOT NULL ,
-  `external_loan_id_external_loan` INT NOT NULL ,
-  PRIMARY KEY (`tech_materiel_id_tech_materiel`, `external_loan_id_external_loan`) ,
-  INDEX `fk_tech_materiel_has_external_loan_external_loan1` (`external_loan_id_external_loan` ASC) ,
-  INDEX `fk_tech_materiel_has_external_loan_tech_materiel1` (`tech_materiel_id_tech_materiel` ASC) ,
-  CONSTRAINT `fk_tech_materiel_has_external_loan_tech_materiel1`
-    FOREIGN KEY (`tech_materiel_id_tech_materiel` )
-    REFERENCES `mydb`.`tech_materials` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tech_materiel_has_external_loan_external_loan1`
-    FOREIGN KEY (`external_loan_id_external_loan` )
-    REFERENCES `mydb`.`external_loan` (`id_external_loan` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`admi_material_has_internal_loan`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`admi_material_has_internal_loan` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material_has_internal_loan` (
-  `admi_material_id_adm_material` INT NOT NULL ,
-  `internal_loan_id_internal_loan` INT NOT NULL ,
-  PRIMARY KEY (`admi_material_id_adm_material`, `internal_loan_id_internal_loan`) ,
-  INDEX `fk_admi_material_has_internal_loan_internal_loan1` (`internal_loan_id_internal_loan` ASC) ,
-  INDEX `fk_admi_material_has_internal_loan_admi_material1` (`admi_material_id_adm_material` ASC) ,
-  CONSTRAINT `fk_admi_material_has_internal_loan_admi_material1`
-    FOREIGN KEY (`admi_material_id_adm_material` )
-    REFERENCES `mydb`.`admi_materials` (`id_adm_material` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_admi_material_has_internal_loan_internal_loan1`
-    FOREIGN KEY (`internal_loan_id_internal_loan` )
-    REFERENCES `mydb`.`internal_loan` (`id_internal_loan` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`tech_materiel_has_internal_loan`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_internal_loan` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_internal_loan` (
-  `tech_materiel_id_tech_materiel` INT NOT NULL ,
-  `internal_loan_id_internal_loan` INT NOT NULL ,
-  PRIMARY KEY (`tech_materiel_id_tech_materiel`, `internal_loan_id_internal_loan`) ,
-  INDEX `fk_tech_materiel_has_internal_loan_internal_loan1` (`internal_loan_id_internal_loan` ASC) ,
-  INDEX `fk_tech_materiel_has_internal_loan_tech_materiel1` (`tech_materiel_id_tech_materiel` ASC) ,
-  CONSTRAINT `fk_tech_materiel_has_internal_loan_tech_materiel1`
-    FOREIGN KEY (`tech_materiel_id_tech_materiel` )
-    REFERENCES `mydb`.`tech_materials` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tech_materiel_has_internal_loan_internal_loan1`
-    FOREIGN KEY (`internal_loan_id_internal_loan` )
-    REFERENCES `mydb`.`internal_loan` (`id_internal_loan` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`admi_material_has_history`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`admi_material_has_history` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`admi_material_has_history` (
-  `admi_material_id_adm_material` INT NOT NULL ,
-  `history_id_calibration` INT NOT NULL ,
-  PRIMARY KEY (`admi_material_id_adm_material`, `history_id_calibration`) ,
-  INDEX `fk_admi_material_has_history_history1` (`history_id_calibration` ASC) ,
-  INDEX `fk_admi_material_has_history_admi_material1` (`admi_material_id_adm_material` ASC) ,
-  CONSTRAINT `fk_admi_material_has_history_admi_material1`
-    FOREIGN KEY (`admi_material_id_adm_material` )
-    REFERENCES `mydb`.`admi_materials` (`id_adm_material` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_admi_material_has_history_history1`
-    FOREIGN KEY (`history_id_calibration` )
-    REFERENCES `mydb`.`history` (`id_calibration` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`tech_materiel_has_history`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_history` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_history` (
-  `tech_materiel_id_tech_materiel` INT NOT NULL ,
-  `history_id_calibration` INT NOT NULL ,
-  PRIMARY KEY (`tech_materiel_id_tech_materiel`, `history_id_calibration`) ,
-  INDEX `fk_tech_materiel_has_history_history1` (`history_id_calibration` ASC) ,
-  INDEX `fk_tech_materiel_has_history_tech_materiel1` (`tech_materiel_id_tech_materiel` ASC) ,
-  CONSTRAINT `fk_tech_materiel_has_history_tech_materiel1`
-    FOREIGN KEY (`tech_materiel_id_tech_materiel` )
-    REFERENCES `mydb`.`tech_materials` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tech_materiel_has_history_history1`
-    FOREIGN KEY (`history_id_calibration` )
-    REFERENCES `mydb`.`history` (`id_calibration` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`special_user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`special_user` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`special_user` (
-  `id_user` INT NOT NULL AUTO_INCREMENT ,
-  `ldap_id` VARCHAR(45) NULL ,
+CREATE  TABLE IF NOT EXISTS `mydb`.`special_users` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `ldap` VARCHAR(45) NULL ,
   `role` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id_user`) )
+  PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tech_materiel_has_accessory`
+-- Table `mydb`.`administrative_material_histories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`tech_materiel_has_accessory` ;
+DROP TABLE IF EXISTS `mydb`.`administrative_material_histories` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`tech_materiel_has_accessory` (
-  `tech_materiel_id_tech_materiel` INT NOT NULL ,
-  `tech_materiel_id_accessory` INT NOT NULL ,
-  PRIMARY KEY (`tech_materiel_id_tech_materiel`, `tech_materiel_id_accessory`) ,
-  INDEX `fk_tech_materiel_has_tech_materiel_tech_materiel2` (`tech_materiel_id_accessory` ASC) ,
-  INDEX `fk_tech_materiel_has_tech_materiel_tech_materiel1` (`tech_materiel_id_tech_materiel` ASC) ,
-  CONSTRAINT `fk_tech_materiel_has_tech_materiel_tech_materiel1`
-    FOREIGN KEY (`tech_materiel_id_tech_materiel` )
-    REFERENCES `mydb`.`tech_materials` (`id` )
+CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_material_histories` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `type` ENUM('Maintenance', 'Etalonnage', 'Verification') NULL ,
+  `date_last_calibration` DATE NULL ,
+  `organism_informations` VARCHAR(100) NULL ,
+  `frenquency` INT NULL ,
+  `date_next_control` DATE NULL ,
+  `comments` VARCHAR(45) NULL ,
+  `admi_materials_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_admi_material_histories_admi_materials1` (`admi_materials_id` ASC) ,
+  CONSTRAINT `fk_admi_material_histories_admi_materials1`
+    FOREIGN KEY (`admi_materials_id` )
+    REFERENCES `mydb`.`administrative_materials` (`id` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tech_materiel_has_tech_materiel_tech_materiel2`
-    FOREIGN KEY (`tech_materiel_id_accessory` )
-    REFERENCES `mydb`.`tech_materials` (`id` )
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`administrative_materials_internal_loans`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`administrative_materials_internal_loans` ;
+
+CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_materials_internal_loans` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `loan_date` DATE NULL ,
+  `piece` VARCHAR(45) NULL ,
+  `responsible` VARCHAR(45) NULL ,
+  `loan_return_date` DATE NULL ,
+  `admi_materials_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_technical_materials_internal_loans_copy1_admi_materials1` (`admi_materials_id` ASC) ,
+  CONSTRAINT `fk_technical_materials_internal_loans_copy1_admi_materials1`
+    FOREIGN KEY (`admi_materials_id` )
+    REFERENCES `mydb`.`administrative_materials` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`administrative_materials_external_loans`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`administrative_materials_external_loans` ;
+
+CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_materials_external_loans` (
+  `id` INT NOT NULL ,
+  `loan_date` DATE NULL ,
+  `laboratory` VARCHAR(45) NULL ,
+  `responsible` VARCHAR(45) NULL ,
+  `responsible_number` INT NULL ,
+  `loan_return_date` DATE NULL ,
+  `admi_materials_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_technical_materials_external_loans_copy1_admi_materials1` (`admi_materials_id` ASC) ,
+  CONSTRAINT `fk_technical_materials_external_loans_copy1_admi_materials1`
+    FOREIGN KEY (`admi_materials_id` )
+    REFERENCES `mydb`.`administrative_materials` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

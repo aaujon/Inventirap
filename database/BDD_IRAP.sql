@@ -77,6 +77,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`technical_materials` (
   `sub_category_id` INT NULL ,
   `caracteristic` VARCHAR(45) NULL ,
   `serial_number` VARCHAR(45) NULL ,
+  `maintenance_frenquency` INT NULL ,
   `primary_accessory` TINYINT(1) NULL ,
   `primary_material_number` INT NULL ,
   `accessory` VARCHAR(45) NULL ,
@@ -104,7 +105,6 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`technical_material_histories` (
   `type` ENUM('Maintenance', 'Etalonnage', 'Verification') NULL ,
   `date_last_calibration` DATE NULL ,
   `organism_informations` VARCHAR(100) NULL ,
-  `frenquency` INT NULL ,
   `date_next_control` DATE NULL ,
   `comments` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
@@ -407,8 +407,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`technical_materials` (`id`, `model`, `sub_category_id`, `caracteristic`, `serial_number`, `primary_accessory`, `primary_material_number`, `accessory`, `name_user`, `mail_user`, `status`) VALUES (1, 'Souris', 1, 'Sans fil', 'SOU44IR', NULL, NULL, NULL, 'Pierrick', 'pierrick@100pui.com', 'CREATED');
-INSERT INTO `mydb`.`technical_materials` (`id`, `model`, `sub_category_id`, `caracteristic`, `serial_number`, `primary_accessory`, `primary_material_number`, `accessory`, `name_user`, `mail_user`, `status`) VALUES (2, 'Clavier', 2, 'Filaire', 'CLA305UR', NULL, NULL, NULL, 'Arnaud', 'arnaud@100pui.com', 'CREATED');
-INSERT INTO `mydb`.`technical_materials` (`id`, `model`, `sub_category_id`, `caracteristic`, `serial_number`, `primary_accessory`, `primary_material_number`, `accessory`, `name_user`, `mail_user`, `status`) VALUES (3, 'Ecran', 8, '19 pouces', 'ECR194PO', NULL, NULL, NULL, 'Stephane', 'steph@100pui.com', 'CREATED');
+INSERT INTO `mydb`.`technical_materials` (`id`, `model`, `sub_category_id`, `caracteristic`, `serial_number`, `maintenance_frenquency`, `primary_accessory`, `primary_material_number`, `accessory`, `name_user`, `mail_user`, `status`) VALUES (1, 'Souris', 1, 'Sans fil', 'SOU44IR', NULL, NULL, NULL, NULL, 'Pierrick', 'pierrick@100pui.com', 'CREATED');
+INSERT INTO `mydb`.`technical_materials` (`id`, `model`, `sub_category_id`, `caracteristic`, `serial_number`, `maintenance_frenquency`, `primary_accessory`, `primary_material_number`, `accessory`, `name_user`, `mail_user`, `status`) VALUES (2, 'Clavier', 2, 'Filaire', 'CLA305UR', NULL, NULL, NULL, NULL, 'Arnaud', 'arnaud@100pui.com', 'CREATED');
+INSERT INTO `mydb`.`technical_materials` (`id`, `model`, `sub_category_id`, `caracteristic`, `serial_number`, `maintenance_frenquency`, `primary_accessory`, `primary_material_number`, `accessory`, `name_user`, `mail_user`, `status`) VALUES (3, 'Ecran', 8, '19 pouces', 'ECR194PO', NULL, NULL, NULL, NULL, 'Stephane', 'steph@100pui.com', 'CREATED');
 
 COMMIT;

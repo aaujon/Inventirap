@@ -452,7 +452,7 @@ p.error,
 	background-image: linear-gradient(top, #ee5f5b, #c43c35);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
-.success {
+.success, .message {
 	clear: both;
 	color: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.5);

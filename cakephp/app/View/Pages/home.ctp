@@ -14,24 +14,24 @@
 <table cellpadding="0" cellspacing="0">
 	<tr><th>Actions</th></tr>
 	<tr><td><?php echo $this->Html->link('Voir la liste', array(
-		'controller' => 'techMaterials')); ?></td></tr>
+		'controller' => 'technicalMaterials')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir les emprunts interne', array(
-		'controller' => 'internalLoans')); ?></td></tr>
+		'controller' => 'technicalMaterialInternalLoans')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir les emprunts externe', array(
-		'controller' => 'externalLoans')); ?></td></tr>
+		'controller' => 'technicalMaterialExternalLoans')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir l\'historique', array(
-		'controller' => 'techMaterialHistories')); ?></td></tr>
+		'controller' => 'technicalMaterialHistories')); ?></td></tr>
 </table>
 
 <h2>Matériel administratif</h2>
 <table cellpadding="0" cellspacing="0">
 	<tr><th>Actions</th></tr>
 	<tr><td><?php echo $this->Html->link('Voir la liste', array(
-		'controller' => 'admiMaterials')); ?></td></tr>
+		'controller' => 'administrativeMaterials')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir les emprunts interne', array(
-		'controller' => 'internalLoans')); ?></td></tr>
+		'controller' => 'administrativeMaterialInternalLoans')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir les emprunts externe', array(
-		'controller' => 'externalLoans')); ?></td></tr>
+		'controller' => 'administrativeMaterialExternalLoans')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir l\'historique', array(
-		'controller' => 'admiMaterialHistories')); ?></td></tr>
+		'controller' => 'administrativeMaterialHistories')); ?></td></tr>
 </table>

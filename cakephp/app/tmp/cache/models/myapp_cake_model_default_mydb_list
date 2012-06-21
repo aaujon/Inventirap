@@ -1,2 +1,2 @@
-1340050648
-a:14:{i:0;s:31:"admi_material_has_external_loan";i:1;s:31:"admi_material_has_internal_loan";i:2;s:23:"admi_material_histories";i:3;s:14:"admi_materials";i:4;s:10:"categories";i:5;s:14:"external_loans";i:6;s:14:"internal_loans";i:7;s:13:"special_users";i:8;s:14:"sub_categories";i:9;s:23:"tech_material_histories";i:10;s:14:"tech_materials";i:11;s:27:"tech_materiel_has_accessory";i:12;s:31:"tech_materiel_has_external_loan";i:13;s:31:"tech_materiel_has_internal_loan";}
+1340239265
+a:11:{i:0;s:38:"administrative_material_external_loans";i:1;s:33:"administrative_material_histories";i:2;s:38:"administrative_material_internal_loans";i:3;s:24:"administrative_materials";i:4;s:10:"categories";i:5;s:13:"special_users";i:6;s:14:"sub_categories";i:7;s:33:"technical_material_external_loans";i:8;s:28:"technical_material_histories";i:9;s:33:"technical_material_internal_loans";i:10;s:19:"technical_materials";}

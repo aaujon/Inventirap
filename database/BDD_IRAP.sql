@@ -7,35 +7,6 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_s
 USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`administrative_materials`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`administrative_materials` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_materials` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `designation` VARCHAR(30) NULL ,
-  `irap_number` VARCHAR(10) NULL ,
-  `organism` VARCHAR(20) NULL ,
-  `type` ENUM('Inv', 'Tech', 'InvTech') NULL ,
-  `supplier_name` VARCHAR(20) NULL ,
-  `price_ht` INT NULL ,
-  `eotp` VARCHAR(45) NULL ,
-  `command_number` VARCHAR(45) NULL ,
-  `code_comptable` VARCHAR(45) NULL ,
-  `groupe_thematique` VARCHAR(45) NULL ,
-  `groupe_metier` VARCHAR(45) NULL ,
-  `exp_proj_service` VARCHAR(45) NULL ,
-  `ref_existante` VARCHAR(45) NULL ,
-  `lieu_stockage` VARCHAR(45) NULL ,
-  `nom_utilisateur` VARCHAR(45) NULL ,
-  `mail_utilisateur` VARCHAR(45) NULL ,
-  `date_acquisition` DATE NULL ,
-  `status` ENUM('CREATED', 'VALIDATED', 'DELETED') NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`categories`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`categories` ;
@@ -61,6 +32,42 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`sub_categories` (
   CONSTRAINT `category_id`
     FOREIGN KEY (`category_id` )
     REFERENCES `mydb`.`categories` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`administrative_materials`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`administrative_materials` ;
+
+CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_materials` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `designation` VARCHAR(30) NULL ,
+  `irap_number` VARCHAR(10) NULL ,
+  `sub_categories_id` INT NOT NULL ,
+  `organism` VARCHAR(20) NULL ,
+  `type` ENUM('Inv', 'Tech', 'InvTech') NULL ,
+  `supplier_name` VARCHAR(20) NULL ,
+  `price_ht` INT NULL ,
+  `eotp` VARCHAR(45) NULL ,
+  `command_number` VARCHAR(45) NULL ,
+  `code_comptable` VARCHAR(45) NULL ,
+  `groupe_thematique` VARCHAR(45) NULL ,
+  `groupe_metier` VARCHAR(45) NULL ,
+  `exp_proj_service` VARCHAR(45) NULL ,
+  `ref_existante` VARCHAR(45) NULL ,
+  `lieu_stockage` VARCHAR(45) NULL ,
+  `nom_utilisateur` VARCHAR(45) NULL ,
+  `mail_utilisateur` VARCHAR(45) NULL ,
+  `date_acquisition` DATE NULL ,
+  `status` ENUM('CREATED', 'VALIDATED', 'DELETED') NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_administrative_materials_sub_categories1` (`sub_categories_id` ASC) ,
+  CONSTRAINT `fk_administrative_materials_sub_categories1`
+    FOREIGN KEY (`sub_categories_id` )
+    REFERENCES `mydb`.`sub_categories` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

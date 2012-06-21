@@ -4,6 +4,8 @@ class SubCategory extends AppModel {
 	public $displayField = 'name';
 
 	var $belongsTo = 'Category';
-	var $hasMany = 'TechnicalMaterial';
+	var $hasMany = array(
+		'TechnicalMaterial',
+		'AdministrativeMaterial');
 }
 ?>

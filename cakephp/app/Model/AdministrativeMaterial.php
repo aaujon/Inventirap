@@ -5,6 +5,7 @@ class AdministrativeMaterial extends AppModel {
 		'full' => "CONCAT(irap_number, ' - ', designation)");
 	public $displayField = 'full';
 	
+	public $belongsTo = 'SubCategory';
 	public $hasMany = array(
 		'AdministrativeMaterialHistory',
 		'AdministrativeMaterialInternalLoan',

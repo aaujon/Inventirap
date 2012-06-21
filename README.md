@@ -49,7 +49,12 @@ How to install
 
    The application uses the ldap module written in php. You can install this module by installing the package php-ldap.i686. This package contains all what the application needs. 
 
-5/ Have fun :
+5/ .htaccess configuration
+-
+   
+   Take care about the htaccess configurations. Cakeph needs the apache module to read and re-write urls. If it does not have the right to do it, cakephp will not work. So you have to right configure your virtual hosts and the .htaccess file in the root of the project.
+
+6/ Have fun :
 -
 
    You can go to these url 

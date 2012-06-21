@@ -46,7 +46,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_materials` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `designation` VARCHAR(30) NULL ,
   `irap_number` VARCHAR(10) NULL ,
-  `sub_categories_id` INT NOT NULL ,
+  `sub_category_id` INT NOT NULL ,
   `organism` VARCHAR(20) NULL ,
   `type` ENUM('Inv', 'Tech', 'InvTech') NULL ,
   `supplier_name` VARCHAR(20) NULL ,
@@ -64,9 +64,9 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`administrative_materials` (
   `date_acquisition` DATE NULL ,
   `status` ENUM('CREATED', 'VALIDATED', 'DELETED') NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_administrative_materials_sub_categories1` (`sub_categories_id` ASC) ,
+  INDEX `fk_administrative_materials_sub_categories1` (`sub_category_id` ASC) ,
   CONSTRAINT `fk_administrative_materials_sub_categories1`
-    FOREIGN KEY (`sub_categories_id` )
+    FOREIGN KEY (`sub_category_id` )
     REFERENCES `mydb`.`sub_categories` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

@@ -181,6 +181,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`special_users` (
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
+INSERT INTO `special_users` VALUES (5,'hrobert','The white wizard'),(6,'dturner','apprentice'),(7,'gsky','wizard'),(9,'Test','apprentice'),(10,'Pierrick','The white wizard');
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`administrative_material_histories`

@@ -33,27 +33,69 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-		
-
 	public $components = array(
         'Session',
         'LdapAuth' => array(
-            'loginRedirect' => array('controller' => 'SpecialUsers', 'action' => 'test'),
+            'loginRedirect' => array('controller' => 'SpecialUsers', 'action' => 'login'),
             'logoutRedirect' => array('controller' => 'SpecialUsers', 'action' => 'logout'),
-			'loginAction' => array('controller' => 'SpecialUsers', 'action' => 'login'),
-	        )
-    );
-    
-	public function beforeFilter() {
-		// The empty function means the user have to be authenticate before all actions
-		$this->LdapAuth->allow('login', 'logout');
-		
-		$userName = $this->Session->read('LdapUser');
+			'loginAction' => array('controller' => 'SpecialUsers', 'action' => 'login')
+//			'authError' => 'Did you really think you are allowed to see that?',
+	)
+	);
 
-	 	if(isset($userName))
-	 	{
-			$this->LdapAuth->allow('test');
-			$this->LdapAuth->allow('index');
-	 	}
+	public function beforeFilter() {
+		$ldapUserName = $this->Session->read('LdapUserName');
+		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+
+		if(isset($ldapUserName))
+		{
+			if($ldapUserAuthenticationLevel == 1) {
+				$this->LdapAuth->allow('login', 'logout', 'loged');
+			} elseif ($ldapUserAuthenticationLevel == 2) {
+				$this->LdapAuth->allow('login', 'logout', 'loged', 'index', 'add');
+			}  elseif ($ldapUserAuthenticationLevel == 3) {
+				$this->LdapAuth->allow('*');
+			} else {
+				$this->LdapAuth->deny();
+				$this->LdapAuth->allow('login', 'logout', 'loged');
+			}
+		}
+		else {
+			$this->LdapAuth->deny();
+			$this->LdapAuth->allow('login', 'logout', 'loged');
+		}
+	}
+
+	public function logout() {
+		$this->Session->delete('LdapUserName');
+		$this->Session->delete('LdapUserAuthenticationLevel');
+		$this->Session->destroy();
+
+		$this->LdapAuth->deny();
+		$this->LdapAuth->allow('login', 'logout', 'loged');
+	}
+
+	public function login() {
+
+		if ($this->request->is('post')) {
+
+				// The user exists into the ldap server
+				if($this->LdapAuth->connection($this->request))
+				{
+					// Save his name into a session variable
+					$this->Session->write('LdapUserName', $this->LdapAuth->getLogin($this->request));
+        			
+					// Get the user into the database
+					$users = $this->SpecialUser->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request)))); 
+						
+					if(count($users) == 1){
+						// Save his authentication level into a session variable 
+						$this->Session->write('LdapUserAuthenticationLevel', $this->SpecialUser->getAuthenticationLevelFromRole($users[0]['SpecialUser']['role']));
+					}
+				$this->redirect('loged');
+			} else {
+				$this->Session->setFlash(__('Invalid login, try again'));
+			}
+		}
 	}
 }

@@ -86,9 +86,7 @@ class DATABASE_CONFIG {
         'host'		 			=> '192.168.1.65',
         'port'					=> '389',
 		'authenticationType'	=> 'uid',
-        'baseDn'				=> 'dc=irap,dc=omp,dc=eu',
-        'login'					=> 'cn=admin,dc=irap,dc=omp,dc=eu',
-        'password'				=> 'ldap',
+        'baseDn'				=> 'dc=irap,dc=omp,dc=eu'
     );
 	
 }

@@ -8,6 +8,6 @@
 	    echo $this->Form->create('SpecialUsers', array('action' => 'login'));
 	    echo $this->Form->input('ldap');
 	    echo $this->Form->end('Login');
-
+	    
 	
 ?>

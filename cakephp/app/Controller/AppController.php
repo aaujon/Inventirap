@@ -32,5 +32,28 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	
+
+		
+
+	public $components = array(
+        'Session',
+        'LdapAuth' => array(
+            'loginRedirect' => array('controller' => 'SpecialUsers', 'action' => 'test'),
+            'logoutRedirect' => array('controller' => 'SpecialUsers', 'action' => 'logout'),
+			'loginAction' => array('controller' => 'SpecialUsers', 'action' => 'login'),
+	        )
+    );
+    
+	public function beforeFilter() {
+		// The empty function means the user have to be authenticate before all actions
+		$this->LdapAuth->allow('login', 'logout');
+		
+		$userName = $this->Session->read('LdapUser');
+
+	 	if(isset($userName))
+	 	{
+			$this->LdapAuth->allow('test');
+			$this->LdapAuth->allow('index');
+	 	}
+	}
 }

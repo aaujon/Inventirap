@@ -68,7 +68,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 			__d('cake', 'Suppr.'),
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 			null,
-			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['model'].' ?'
+			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
 		);
 		echo '</td><td class="actions" style="text-align: right;">';
 		if (${$singularVar}[$modelClass]['status'] == 'CREATED') {

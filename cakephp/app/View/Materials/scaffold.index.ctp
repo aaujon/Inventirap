@@ -18,7 +18,7 @@
  
 function filter($field) {
 	$whatToShow = array(
-		'model',
+		'designation',
 		'sub_category_id',
 		'user_name',
 		'status'

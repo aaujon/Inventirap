@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
@@ -21,8 +22,9 @@ import org.xml.sax.SAXException;
 import android.content.Context;
 
 public class WebServicesTools {
+	public static Document document;
 
-	public static String getXML(Context context, String url) {
+	public static String getXML(Context context, String url, int content) {
 		String line = null;
 		
 		DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -44,8 +46,7 @@ public class WebServicesTools {
 		return line;
 	}
 	
-	public static Document XMLFromString(String xml) {
-		Document doc = null;
+	public static boolean XMLFromString(String xml) {
 		
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
@@ -53,11 +54,11 @@ public class WebServicesTools {
 			
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(xml));
-			doc = db.parse(is);
+			document = db.parse(is);
 		} catch (Exception e) {
-			return null;
+			return false;
 		}
-
-		return doc;
+		
+		return true;
 	}
 }

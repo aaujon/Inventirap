@@ -3,7 +3,6 @@ package fr.upsilon.inventirap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -67,19 +66,32 @@ public class MainActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	
         if (requestCode == QRCODE_RESULT) {
-            if (resultCode == RESULT_OK) {
-                String contents = intent.getStringExtra("SCAN_RESULT");
-                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+     //       if (resultCode == RESULT_OK) {
+        		String contents = "123";
+               // String contents = intent.getStringExtra("SCAN_RESULT");
+//                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 Log.d(this.getClass().getName(), "content : " + contents);
                 
-                Intent resultIntent = new Intent(context, DisplayResultActivity.class);
-                startActivity(resultIntent);
+                int value = 0;
+                try {
+                	Integer.parseInt(contents);
+                } catch (NumberFormatException e) {
+                	// error while decoding
+                	Toast t = Toast.makeText(context, R.string.bad_decode, Toast.LENGTH_LONG);
+                	t.show();
+                	return;
+                }
+
+                
+                Intent requestIntent = new Intent(context, RequestActivity.class);
+                requestIntent.putExtra(getString(R.string.DECODED_VALUE), value);
+                startActivity(requestIntent);
                 
                 // Handle successful scan
             } else if (resultCode == RESULT_CANCELED) {
                 Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
                 toast.show();
             }
-        }
+     //   }
     }
 }

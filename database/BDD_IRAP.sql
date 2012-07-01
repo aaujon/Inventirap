@@ -103,7 +103,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`special_users` (
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
-INSERT INTO `special_users` VALUES (5,'hrobert','The white wizard'),(6,'dturner','apprentice'),(7,'gsky','wizard'),(9,'Test','apprentice'),(10,'Pierrick','The white wizard');
+INSERT INTO `special_users` VALUES (5,'hrobert','Super Administrator'),(6,'dturner','Apprentice'),(7,'gsky','Administrator'),(9,'Test','Apprentice'),(10,'Pierrick','Super Administrator');
 
 
 -- -----------------------------------------------------

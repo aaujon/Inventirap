@@ -31,18 +31,26 @@ App::uses('Controller', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
+/*
+ * This Controller is the main controller all authentications which are defined here are inherit into all others sub controllers 
+ */
 class AppController extends Controller {
 
+	/*
+	 * This component is the app/Controller/Component/LdapAuthComponent.php
+	 */
 	public $components = array(
         'Session',
         'LdapAuth' => array(
             'loginRedirect' => array('controller' => 'SpecialUsers', 'action' => 'login'),
             'logoutRedirect' => array('controller' => 'SpecialUsers', 'action' => 'logout'),
 			'loginAction' => array('controller' => 'SpecialUsers', 'action' => 'login')
-//			'authError' => 'Did you really think you are allowed to see that?',
 	)
 	);
 
+	/*
+	 * This method is called before each action to check if the user is allwed to execute the action
+	 */
 	public function beforeFilter() {
 		$ldapUserName = $this->Session->read('LdapUserName');
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');

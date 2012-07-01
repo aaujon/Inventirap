@@ -7,7 +7,7 @@ class SpecialUser extends AppModel {
 	var $ldap;
 	var $role;
 
-	private $acceptedRole = array ('apprentice', 'wizard', 'The white wizard');
+	private $acceptedRole = array ('Apprentice', 'Administrator', 'Super Administrator');
 
 	var $_schema = array(
         'ldap'		=>array('type'=>'string', 'length'=>45),
@@ -20,11 +20,11 @@ class SpecialUser extends AppModel {
 	
 	public function getAuthenticationLevelFromRole($role)
 	{
-		if(strcmp($role, 'apprentice') == 0) {
+		if(strcmp($role, 'Apprentice') == 0) {
 			return 1;
-		} elseif (strcmp($role, 'wizard') == 0) {
+		} elseif (strcmp($role, 'Administrator') == 0) {
 			return 2;
-		} elseif (strcmp($role, 'The white wizard') == 0) {
+		} elseif (strcmp($role, 'Super Administrator') == 0) {
 			return 3;
 		} else {
 			return 0;
@@ -40,7 +40,7 @@ class SpecialUser extends AppModel {
                 ),
        	'role' => array(
                 'rule' => array('customValidation'),
-                'message' => 'Le champ role doit être une de ces trois valeurs : {"apprentice", "wizard", "The white wizard"}'
+                'message' => 'Le champ role doit être une de ces trois valeurs : {"Apprentice", "Administrator", "Super Administrator"}'
                 )
                 );
 

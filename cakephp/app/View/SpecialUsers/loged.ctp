@@ -1,4 +1,4 @@
-<h1> Vous venez de vous authentifier </h1>
+<h1> Authentication status </h1>
 
 <?php
 

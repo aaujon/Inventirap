@@ -60,7 +60,7 @@ class AppController extends Controller {
 			if($ldapUserAuthenticationLevel == 1) {
 				$this->LdapAuth->allow('login', 'logout', 'loged', 'index');
 			} elseif ($ldapUserAuthenticationLevel == 2) {
-				$this->LdapAuth->allow('login', 'logout', 'loged', 'index', 'add');
+				$this->LdapAuth->allow('login', 'logout', 'loged', 'index', 'view', 'add');
 			}  elseif ($ldapUserAuthenticationLevel == 3) {
 				$this->LdapAuth->allow('*');
 			} else {

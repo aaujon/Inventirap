@@ -1,5 +1,11 @@
 <?php
 class Material extends AppModel {
+	
+	/*
+	 * The attribute to manage the web service 
+	 */
+	public $actsAs = array('webservice'); 
+	
 	public $name = 'Material';
 	//public $virtualFields = array(
 	//	'full' => "CONCAT(serial_number, ' - ', model)");

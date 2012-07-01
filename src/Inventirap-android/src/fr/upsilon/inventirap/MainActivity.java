@@ -3,6 +3,9 @@ package fr.upsilon.inventirap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,14 +28,21 @@ public class MainActivity extends Activity {
         
         context = this;
         
-        // TODO check ZXing presence
-        
         scanButton = (Button) findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				Log.d("", "click on scan");
-				// start ZXing CR Code decoder
+				//check ZXing presence
+				try {
+					PackageManager pm = getPackageManager();
+					pm.getPackageInfo("com.google.zxing.client.android", 0);
+				} catch (NameNotFoundException e) {
+					Toast t = Toast.makeText(context, R.string.zxing_not_found, Toast.LENGTH_LONG);
+					t.show();
+					return;
+				}
+
+				// start ZXing QR Code decoder
 		        Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 		        intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
 		        startActivityForResult(intent, QRCODE_RESULT);

@@ -6,5 +6,6 @@
     <string name="params">Parameters</string>
     <string name="serverAddr">Server ip</string>
     <string name="request">request in progress</string>
+    <string name="zxing_not_found">ZXing application not found, please install it</string>
 
 </resources>

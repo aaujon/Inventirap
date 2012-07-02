@@ -36,6 +36,11 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+	private $authLevelZero = array('login', 'logout', 'loged', 'display');
+	private $authLevelOne = array('login', 'logout', 'loged', 'display', 'index');
+	private $authLevelTwo = array('login', 'logout', 'loged', 'display', 'index', 'view', 'add');
+	private $authLevelThree = array('*');
+	
 	/*
 	 * This component is the app/Controller/Component/LdapAuthComponent.php
 	 */
@@ -58,19 +63,19 @@ class AppController extends Controller {
 		if(isset($ldapUserName))
 		{
 			if($ldapUserAuthenticationLevel == 1) {
-				$this->LdapAuth->allow('login', 'logout', 'loged', 'index');
+				$this->LdapAuth->allow($this->authLevelOne);
 			} elseif ($ldapUserAuthenticationLevel == 2) {
-				$this->LdapAuth->allow('login', 'logout', 'loged', 'index', 'view', 'add');
+				$this->LdapAuth->allow($this->authLevelTwo);
 			}  elseif ($ldapUserAuthenticationLevel == 3) {
-				$this->LdapAuth->allow('*');
+				$this->LdapAuth->allow($this->authLevelThree);
 			} else {
 				$this->LdapAuth->deny();
-				$this->LdapAuth->allow('login', 'logout', 'loged');
+				$this->LdapAuth->allow($this->authLevelZero);
 			}
 		}
 		else {
 			$this->LdapAuth->deny();
-			$this->LdapAuth->allow('login', 'logout', 'loged');
+			$this->LdapAuth->allow($this->authLevelZero);
 		}
 	}
 

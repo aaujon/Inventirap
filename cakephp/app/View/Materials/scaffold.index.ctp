@@ -19,8 +19,8 @@
 function filter($field) {
 	$whatToShow = array(
 		'designation',
+		'irap_number',
 		'sub_category_id',
-		'user_name',
 		'storage_place'
 	);
 	foreach($whatToShow as $value) {
@@ -57,7 +57,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 			}
 			if ($isKey !== true) {
 				if ($_field == 'storage_place')
-					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "-" . h(${$singularVar}[$modelClass]['storage_description']) . "</td>";
+					echo "<td>" . h(${$singularVar}[$modelClass]['full_storage']) . "</td>";
 				else	
 					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}	

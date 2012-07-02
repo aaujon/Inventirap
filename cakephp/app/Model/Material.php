@@ -7,6 +7,8 @@ class Material extends AppModel {
 	public $actsAs = array('webservice'); 
 	
 	public $name = 'Material';
+	var $virtualFields = array(
+		'full_storage' => 'CONCAT(storage_place, "-", storage_description)');
 	//public $virtualFields = array(
 	//	'full' => "CONCAT(serial_number, ' - ', model)");
 	public $displayField = 'designation';

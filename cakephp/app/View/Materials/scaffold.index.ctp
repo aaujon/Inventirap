@@ -101,18 +101,7 @@ endforeach;
 <div class="actions">
 	<h3><?php echo __d('cake', 'Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__d('cake', 'Nouv. %s', $singularHumanName), array('action' => 'add')); ?></li>
-<?php
-		$done = array();
-		foreach ($associations as $_type => $_data) {
-			foreach ($_data as $_alias => $_details) {
-				if ($_details['controller'] != $this->name && !in_array($_details['controller'], $done)) {
-					echo "<li>" . $this->Html->link(__d('cake', 'Liste %s', Inflector::humanize($_details['controller'])), array('controller' => $_details['controller'], 'action' => 'index')) . "</li>";
-					echo "<li>" . $this->Html->link(__d('cake', 'Nouv. %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add')) . "</li>";
-					$done[] = $_details['controller'];
-				}
-			}
-		}
-?>
+		<li><?php echo $this->Html->link('Menu principal', '/'); ?></li>
+		<li><?php echo $this->Html->link(__d('cake', 'Nouveau %s', $singularHumanName), array('action' => 'add')); ?></li>
 	</ul>
 </div>

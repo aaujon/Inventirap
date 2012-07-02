@@ -69,6 +69,11 @@ How to install
 
 There is a ldif file into the database folder with some users. There are also some users into the bdd to test the authentication level.
 
+There are three users into the database : 
+   - hrobert with "Super Administrator" level
+   - gsky with "Administrator" level
+   - dtruner with "Apprentice" level
+   
 6/ Have fun : 
 -
 

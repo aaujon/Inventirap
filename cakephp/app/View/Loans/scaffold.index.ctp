@@ -18,9 +18,10 @@
  
 function filter($field) {
 	$whatToShow = array(
-		'designation',
-		'sub_category_id',
-		'user_name'
+		'material_id',
+		'loan_date',
+		'loan_return_date',
+		'is_internal'
 	);
 	foreach($whatToShow as $value) {
 		if ($value == $field)
@@ -36,14 +37,14 @@ function filter($field) {
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
 	<th><?php echo $this->Paginator->sort($_field);?></th>
 <?php } endforeach;?>
-	<th style="text-align: center;">Actions</th>
-	<th style="text-align: center;">Status</th>
+	<th></th>
+	<th></th>
 </tr>
 <?php
 $i = 0;
 foreach (${$pluralVar} as ${$singularVar}):
 	echo "<tr>";
-			foreach ($scaffoldFields as $_field) { if (filter($_field)) {
+		foreach ($scaffoldFields as $_field) { if (filter($_field)) {
 			$isKey = false;
 			if (!empty($associations['belongsTo'])) {
 				foreach ($associations['belongsTo'] as $_alias => $_details) {

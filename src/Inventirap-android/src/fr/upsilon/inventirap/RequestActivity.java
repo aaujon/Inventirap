@@ -54,6 +54,8 @@ public class RequestActivity extends Activity {
                 Intent intent = new Intent(context, DisplayResultActivity.class);
                 startActivity(intent);
                 
+                finish();
+                
             }
         };
         Thread thread =  new Thread(null, runnable, "InventirapServerRequest");

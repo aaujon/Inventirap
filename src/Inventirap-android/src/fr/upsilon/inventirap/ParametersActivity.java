@@ -50,6 +50,8 @@ public class ParametersActivity extends Activity {
             editor.putString(getResources().getString(R.string.SERVER_IP), server_ip);
             editor.commit();
             
+            finish();
+            
         }
         return super.onKeyDown(keyCode, event);
     }

@@ -11,7 +11,7 @@ class Material extends AppModel {
 	//	'full' => "CONCAT(serial_number, ' - ', model)");
 	public $displayField = 'designation';
 	
-	public $belongsTo = array('SubCategory', 'MaterialType');
+	public $belongsTo = array('SubCategory', 'ThematicGroup', 'WorkGroup');
 	//public $hasMany = array(
 	//	'History',
 	//	'Loan',

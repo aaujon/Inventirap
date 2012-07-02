@@ -38,11 +38,23 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`material_types`
+-- Table `mydb`.`thematic_group`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`material_types` ;
+DROP TABLE IF EXISTS `mydb`.`thematic_group` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`material_types` (
+CREATE  TABLE IF NOT EXISTS `mydb`.`thematic_group` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`work_group`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`work_group` ;
+
+CREATE  TABLE IF NOT EXISTS `mydb`.`work_group` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
@@ -57,35 +69,43 @@ DROP TABLE IF EXISTS `mydb`.`materials` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`materials` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `designation` VARCHAR(30) NULL ,
-  `material_type_id` INT NOT NULL ,
   `sub_category_id` INT NOT NULL ,
   `irap_number` VARCHAR(10) NULL ,
+  `description` VARCHAR(100) NULL ,
   `organism` VARCHAR(20) NULL ,
+  `isAdministrative` TINYINT(1) NULL ,
+  `isTechnical` TINYINT(1) NULL ,
+  `status` VARCHAR(15) NULL DEFAULT 'CREATED' ,
   `supplier_name` VARCHAR(20) NULL ,
   `price_ht` INT NULL ,
   `eotp` VARCHAR(45) NULL ,
   `command_number` VARCHAR(45) NULL ,
   `accountable_code` VARCHAR(45) NULL ,
-  `groupe_thematique` VARCHAR(45) NULL ,
-  `groupe_metier` VARCHAR(45) NULL ,
-  `exp_proj_service` VARCHAR(45) NULL ,
+  `serial_number` VARCHAR(45) NULL ,
+  `thematic_group_id` INT NOT NULL ,
+  `work_group_id` INT NOT NULL ,
   `ref_existante` VARCHAR(45) NULL ,
   `storage_place` VARCHAR(45) NULL ,
   `user_name` VARCHAR(45) NULL ,
   `user_mail` VARCHAR(45) NULL ,
   `acquisition_date` DATE NULL ,
-  `status` VARCHAR(15) NULL DEFAULT 'CREATED' ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_administrative_materials_sub_categories1` (`sub_category_id` ASC) ,
-  INDEX `fk_administrative_materials_material_type1` (`material_type_id` ASC) ,
+  INDEX `fk_materials_thematic_group1` (`thematic_group_id` ASC) ,
+  INDEX `fk_materials_work_group1` (`work_group_id` ASC) ,
   CONSTRAINT `fk_administrative_materials_sub_categories1`
     FOREIGN KEY (`sub_category_id` )
     REFERENCES `mydb`.`sub_categories` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_administrative_materials_material_type1`
-    FOREIGN KEY (`material_type_id` )
-    REFERENCES `mydb`.`material_types` (`id` )
+  CONSTRAINT `fk_materials_thematic_group1`
+    FOREIGN KEY (`thematic_group_id` )
+    REFERENCES `mydb`.`thematic_group` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_materials_work_group1`
+    FOREIGN KEY (`work_group_id` )
+    REFERENCES `mydb`.`work_group` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -102,8 +122,6 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`special_users` (
   `role` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
-
-INSERT INTO `special_users` VALUES (5,'hrobert','Super Administrator'),(6,'dturner','Apprentice'),(7,'gsky','Administrator');
 
 
 -- -----------------------------------------------------
@@ -312,11 +330,30 @@ INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (96, 41
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`material_types`
+-- Data for table `mydb`.`thematic_group`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`material_types` (`id`, `name`) VALUES (1, 'Administratif');
-INSERT INTO `mydb`.`material_types` (`id`, `name`) VALUES (2, 'Technique');
+INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (1, 'GPPS');
+INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (2, 'PSE');
+INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (3, 'MICMAC');
+INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (4, 'GAHEC');
+INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (5, 'SISU');
+INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (6, 'SG');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `mydb`.`work_group`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mydb`;
+INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (1, 'N/A');
+INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (2, 'GEDI');
+INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (3, 'GT2I');
+INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (4, 'GI');
+INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (5, 'GACL');
+INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (6, 'GGPAQ');
+INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (7, 'GM');
 
 COMMIT;

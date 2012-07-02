@@ -15,6 +15,8 @@
 	<tr><th>Actions</th></tr>
 	<tr><td><?php echo $this->Html->link('Voir la liste', array(
 		'controller' => 'materials')); ?></td></tr>
+		<tr><td><?php echo $this->Html->link('Recherche', array(
+		'controller' => 'materials', 'action' => 'search')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir les emprunts', array(
 		'controller' => 'loans')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Voir l\'historique', array(

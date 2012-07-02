@@ -86,6 +86,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materials` (
   `work_group_id` INT NOT NULL ,
   `ref_existante` VARCHAR(45) NULL ,
   `storage_place` VARCHAR(45) NULL ,
+  `storage_description` VARCHAR(45) NULL ,
   `user_name` VARCHAR(45) NULL ,
   `user_mail` VARCHAR(45) NULL ,
   `acquisition_date` DATE NULL ,

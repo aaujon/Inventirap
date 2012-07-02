@@ -20,7 +20,8 @@ function filter($field) {
 	$whatToShow = array(
 		'designation',
 		'sub_category_id',
-		'user_name'
+		'user_name',
+		'storage_place'
 	);
 	foreach($whatToShow as $value) {
 		if ($value == $field)
@@ -55,7 +56,10 @@ foreach (${$pluralVar} as ${$singularVar}):
 				}
 			}
 			if ($isKey !== true) {
-				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+				if ($_field == 'storage_place')
+					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "-" . h(${$singularVar}[$modelClass]['storage_description']) . "</td>";
+				else	
+					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}	
 		}}
 		

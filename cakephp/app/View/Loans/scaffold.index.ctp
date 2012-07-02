@@ -37,8 +37,7 @@ function filter($field) {
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
 	<th><?php echo $this->Paginator->sort($_field);?></th>
 <?php } endforeach;?>
-	<th></th>
-	<th></th>
+	<th style="text-align: center;">Actions</th>
 </tr>
 <?php
 $i = 0;
@@ -68,16 +67,8 @@ foreach (${$pluralVar} as ${$singularVar}):
 			__d('cake', 'Suppr.'),
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 			null,
-			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
+			__d('cake', 'Êtes-vous sur de supprimer la location').' '.${$singularVar}[$modelClass]['id'].' ?'
 		);
-		echo '</td><td class="actions" style="text-align: right;">';
-		if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
-			echo $this->Html->link(__d('cake', 'Valider'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'VALIDATED'));
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'ARCHIVED'));
-		}
-		if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'ARCHIVED'));
-		}
 		echo '</td>';
 	echo '</tr>';
 

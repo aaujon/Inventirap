@@ -22,10 +22,6 @@ class LdapAuthComponent extends AuthComponent {
 
 	}
 
-	public function getAuthenticationLevel($request) {
-		return '3';
-	}
-
 	public function getLogin($request) {
 		return $this->request->data['SpecialUsers']['ldap'];
 	}

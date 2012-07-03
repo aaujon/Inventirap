@@ -39,7 +39,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<?php echo $this->Html->image('logo_inventirap.jpg', array('alt' => 'Logo Inventirap', 'border' => '0', 'height' => '100px')); ?>
+			<?php echo $this->Html->image('logo_inventirap.jpg', array(
+				'alt' => 'Logo Inventirap', 
+				'border' => '0', 
+				'height' => '100px',
+				'url' => '/')); ?>
 		</div>
 		<div id="content">
 

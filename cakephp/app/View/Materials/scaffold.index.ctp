@@ -19,9 +19,9 @@
 function filter($field) {
 	$whatToShow = array(
 		'designation',
+		'irap_number',
 		'sub_category_id',
-		'user_name',
-		'status'
+		'storage_place'
 	);
 	foreach($whatToShow as $value) {
 		if ($value == $field)
@@ -37,14 +37,14 @@ function filter($field) {
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
 	<th><?php echo $this->Paginator->sort($_field);?></th>
 <?php } endforeach;?>
-	<th></th>
-	<th></th>
+	<th style="text-align: center;">Actions</th>
+	<th style="text-align: center;">Status</th>
 </tr>
 <?php
 $i = 0;
 foreach (${$pluralVar} as ${$singularVar}):
 	echo "<tr>";
-		foreach ($scaffoldFields as $_field) { if (filter($_field)) {
+			foreach ($scaffoldFields as $_field) { if (filter($_field)) {
 			$isKey = false;
 			if (!empty($associations['belongsTo'])) {
 				foreach ($associations['belongsTo'] as $_alias => $_details) {
@@ -56,7 +56,10 @@ foreach (${$pluralVar} as ${$singularVar}):
 				}
 			}
 			if ($isKey !== true) {
-				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+				if ($_field == 'storage_place')
+					echo "<td>" . h(${$singularVar}[$modelClass]['full_storage']) . "</td>";
+				else	
+					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}	
 		}}
 		
@@ -68,7 +71,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 			__d('cake', 'Suppr.'),
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 			null,
-			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['model'].' ?'
+			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
 		);
 		echo '</td><td class="actions" style="text-align: right;">';
 		if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
@@ -99,20 +102,8 @@ endforeach;
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __d('cake', 'Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__d('cake', 'Nouv. %s', $singularHumanName), array('action' => 'add')); ?></li>
-<?php
-		$done = array();
-		foreach ($associations as $_type => $_data) {
-			foreach ($_data as $_alias => $_details) {
-				if ($_details['controller'] != $this->name && !in_array($_details['controller'], $done)) {
-					echo "<li>" . $this->Html->link(__d('cake', 'Liste %s', Inflector::humanize($_details['controller'])), array('controller' => $_details['controller'], 'action' => 'index')) . "</li>";
-					echo "<li>" . $this->Html->link(__d('cake', 'Nouv. %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add')) . "</li>";
-					$done[] = $_details['controller'];
-				}
-			}
-		}
-?>
-	</ul>
+	<?php 
+		echo $this->element('menu');
+		echo $this->element('tools_view');
+	?>
 </div>

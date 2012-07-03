@@ -10,13 +10,9 @@ class LdapConnection extends AppModel {
 	private $host;
 	private $port;
 	private $baseDn;
-	private $login;
-	private $password;
+	private $authenticationType;
 
-	private $ldapConnection;
-
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
 	}
 
@@ -28,14 +24,12 @@ class LdapConnection extends AppModel {
 		if(!empty($ldapServerConfiguration['ldap']['host'])
 		&& !empty($ldapServerConfiguration['ldap']['port'])
 		&& !empty($ldapServerConfiguration['ldap']['baseDn'])
-		&& !empty($ldapServerConfiguration['ldap']['login'])
-		&& !empty($ldapServerConfiguration['ldap']['password']))
+		&& !empty($ldapServerConfiguration['ldap']['authenticationType']))
 		{
 			$this->host =  $ldapServerConfiguration['ldap']['host'];
 			$this->port =  $ldapServerConfiguration['ldap']['port'];
 			$this->baseDn =  $ldapServerConfiguration['ldap']['baseDn'];
-			$this->login =  $ldapServerConfiguration['ldap']['login'];
-			$this->password =  $ldapServerConfiguration['ldap']['password'];
+			$this->authenticationType =  $ldapServerConfiguration['ldap']['authenticationType'];
 			return true;
 		}
 
@@ -44,78 +38,34 @@ class LdapConnection extends AppModel {
 				<li>host = ' . @$ldapServerConfiguration['ldap']['host'] . '</li>
 				<li>port = ' . @$ldapServerConfiguration['ldap']['port'] . '</li>
 				<li>baseDn = ' . @$ldapServerConfiguration['ldap']['baseDn'] . '</li>
-				<li>login = ' . @$ldapServerConfiguration['ldap']['login'] . '</li>
-				<li>password = ' . @$ldapServerConfiguration['ldap']['password'] . '</li>
+				<li>authenticationType = ' . @$ldapServerConfiguration['ldap']['authenticationType'] . '</li>
 			</ul>'
 			);
 	}
 
-	private function connect() {
-
+	public function ldapAuthentication($login)
+	{
 		try {
 
-			if(empty($this->ldapConnection) && $this->checkConfiguration())
+			if($this->checkConfiguration())
 			{
-				$this->ldapConnection = ldap_connect($this->host, $this->port);
-				ldap_set_option($this->ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
-				if(!@ldap_bind($this->ldapConnection, $this->login, $this->password)) {
-					throw new Exception ('The connection to the ldap server is imposible : <br />
-						<ul>
-							<li>login = ' . $this->login . '</li>
-							<li>password = ' . $this->password . '</li>
-						</ul>' 
-					
-						);
-				}
-					
+				$ldapConnection = ldap_connect($this->host, $this->port);
+				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
+				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=' . $login);
+				
+				$res = ldap_get_entries($ldapConnection, $results);
+	
+				return $res['count'] == 1;
+				
 			}
 		}
 		catch(Exception $e)
 		{
 			throw  $e;
 		}
-	}
-
-	private function findAll($attribute = 'cn', $value = '*')
-	{
-		$this->connect();
-		$result = ldap_search($this->ldapConnection, $this->baseDn, $attribute . '=' . $value);
-
-		if ($result)
-		{
-			ldap_sort($this->ldapConnection, $result, $attribute);
-
-			$res = ldap_get_entries($this->ldapConnection, $result);
 		
-			return $res;
-		}
+		return false;
 	}
 
-	public function auth($user, $password)
-	{
-		$result = $this->findAll('cn', $user);
-
-		if(@$result[0])
-		{
-			$founddCn = @$result[0]['cn'][0];
-			$foundPass = @$result[0]['userpassword'][0];
-			$foundMail = @$result[0]['mail'][0];
-
-			if(!strcmp($founddCn, $user) && !strcmp($foundPass, $password))
-			{
-				$foundedUser = new LdapUser($founddCn, $foundPass, $foundMail); 
-				
-				return $foundedUser;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		else
-		{
-			return false;
-		}
-	}
 }
 ?>

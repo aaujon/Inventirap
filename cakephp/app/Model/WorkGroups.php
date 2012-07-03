@@ -1,6 +1,6 @@
 <?php
-class MaterialType extends AppModel {
-	public $name = 'MaterialType';
+class WorkGroup extends AppModel {
+	public $name = 'WorkGroup';
 	public $displayField = 'name';
 
 	var $hasMany = 'Material';

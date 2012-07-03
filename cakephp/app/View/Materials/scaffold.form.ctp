@@ -11,7 +11,7 @@
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.Détail.Scaffolds
+ * @package       Cake.View.Scaffolds
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -19,8 +19,11 @@
 <div class="<?php echo $pluralVar;?> form">
 <?php
 	echo $this->Form->create();
-	echo $this->Form->inputs($scaffoldFields, array('created', 'modified', 'updated', 'status'));
-	echo $this->Form->end(__d('cake', 'Valider'));
+	echo $this->Form->inputs($scaffoldFields, array('created', 'modified', 'updated', 'status', 'storage_place', 'storage_description', 'irap_number'));
+	echo $this->Form->input('storage_place', array('options' => array(
+		'B'=>'Belin', 'R'=>'Roche', 'T'=>'Tarbes', 'C'=>'CNES', 'A'=>'Autre')));
+	echo $this->Form->input('storage_description');
+	echo $this->Form->end(__d('cake', 'Submit'));
 ?>
 </div>
 <div class="actions">
@@ -28,20 +31,20 @@
 	<ul>
 <?php if ($this->request->action != 'add'): ?>
 		<li><?php echo $this->Form->postLink(
-			__d('cake', 'Suppr.'),
+			__d('cake', 'Delete'),
 			array('action' => 'delete', $this->Form->value($modelClass . '.' . $primaryKey)),
 			null,
-			__d('cake', 'Êtes-vous sur de supprimer %s ?', $this->Form->value($modelClass . '.' . $primaryKey)));
+			__d('cake', 'Are you sure you want to delete # %s?', $this->Form->value($modelClass . '.' . $primaryKey)));
 		?></li>
 <?php endif;?>
-		<li><?php echo $this->Html->link(__d('cake', 'Liste') . ' ' . $pluralHumanName, array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__d('cake', 'List') . ' ' . $pluralHumanName, array('action' => 'index'));?></li>
 <?php
 		$done = array();
 		foreach ($associations as $_type => $_data) {
 			foreach ($_data as $_alias => $_details) {
 				if ($_details['controller'] != $this->name && !in_array($_details['controller'], $done)) {
-					echo "\t\t<li>" . $this->Html->link(__d('cake', 'Liste %s', Inflector::humanize($_details['controller'])), array('controller' => $_details['controller'], 'action' => 'index')) . "</li>\n";
-					echo "\t\t<li>" . $this->Html->link(__d('cake', 'Nouv. %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add')) . "</li>\n";
+					echo "\t\t<li>" . $this->Html->link(__d('cake', 'List %s', Inflector::humanize($_details['controller'])), array('controller' => $_details['controller'], 'action' => 'index')) . "</li>\n";
+					echo "\t\t<li>" . $this->Html->link(__d('cake', 'New %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add')) . "</li>\n";
 					$done[] = $_details['controller'];
 				}
 			}

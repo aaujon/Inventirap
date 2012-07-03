@@ -11,15 +11,23 @@
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.Détail.Scaffolds
+ * @package       Cake.View.Scaffolds
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
 <div class="<?php echo $pluralVar;?> view">
-<h2><?php echo __d('cake', 'Détail %s', $singularHumanName); ?></h2>
-	<dl>
+<h2><?php echo __d('cake', 'View %s', $singularHumanName); ?></h2>
+
 <?php
+	//Affichage de facon TRES CRADE du QR code du matériel
+	echo '<img src="/Inventirap/cakephp/qr_codes/qrCode/'.${$singularVar}[$modelClass]['id'].'" alt="QRcode"/>';
+?>	
+
+	<dl>
+	
+<?php
+
 $i = 0;
 foreach ($scaffoldFields as $_field) {
 	$isKey = false;
@@ -38,16 +46,6 @@ foreach ($scaffoldFields as $_field) {
 		echo "\t\t<dd>" . h(${$singularVar}[$modelClass][$_field]) . "&nbsp;</dd>\n";
 	}
 }
-/*
-	echo "\t\t<dt>Changer status</dt>\n";
-	echo "\t\t<dd>";
-		if (h(${$singularVar}[$modelClass][$_field]) != 'CREATED')
-			echo $this->Html->link(__d('cake', 'CREATED'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'CREATED'))." ";
-		if (h(${$singularVar}[$modelClass][$_field]) != 'VALIDATED')
-			echo $this->Html->link(__d('cake', 'VALIDATED'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'VALIDATED'))." ";
-		if (h(${$singularVar}[$modelClass][$_field]) != 'DELETED')
-			echo $this->Html->link(__d('cake', 'DELETED'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'DELETED'));
-	echo "&nbsp;</dd>\n";*/
 ?>
 	</dl>
 </div>
@@ -55,17 +53,17 @@ foreach ($scaffoldFields as $_field) {
 	<h3><?php echo __d('cake', 'Actions'); ?></h3>
 	<ul>
 <?php
-	echo "\t\t<li>" . $this->Html->link(__d('cake', 'Éditer %s', $singularHumanName),   array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey])) . " </li>\n";
+	echo "\t\t<li>" . $this->Html->link(__d('cake', 'Edit %s', $singularHumanName),   array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey])) . " </li>\n";
 	echo "\t\t<li>" . $this->Form->postLink(__d('cake', 'Delete %s', $singularHumanName), array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]), null, __d('cake', 'Are you sure you want to delete').' #' . ${$singularVar}[$modelClass][$primaryKey] . '?') . " </li>\n";
-	echo "\t\t<li>" . $this->Html->link(__d('cake', 'Liste %s', $pluralHumanName), array('action' => 'index')) . " </li>\n";
-	echo "\t\t<li>" . $this->Html->link(__d('cake', 'Nouv. %s', $singularHumanName), array('action' => 'add')) . " </li>\n";
+	echo "\t\t<li>" . $this->Html->link(__d('cake', 'List %s', $pluralHumanName), array('action' => 'index')) . " </li>\n";
+	echo "\t\t<li>" . $this->Html->link(__d('cake', 'New %s', $singularHumanName), array('action' => 'add')) . " </li>\n";
 
 	$done = array();
 	foreach ($associations as $_type => $_data) {
 		foreach ($_data as $_alias => $_details) {
 			if ($_details['controller'] != $this->name && !in_array($_details['controller'], $done)) {
-				echo "\t\t<li>" . $this->Html->link(__d('cake', 'Liste %s', Inflector::humanize($_details['controller'])), array('controller' => $_details['controller'], 'action' => 'index')) . "</li>\n";
-				echo "\t\t<li>" . $this->Html->link(__d('cake', 'Nouv. %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add')) . "</li>\n";
+				echo "\t\t<li>" . $this->Html->link(__d('cake', 'List %s', Inflector::humanize($_details['controller'])), array('controller' => $_details['controller'], 'action' => 'index')) . "</li>\n";
+				echo "\t\t<li>" . $this->Html->link(__d('cake', 'New %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add')) . "</li>\n";
 				$done[] = $_details['controller'];
 			}
 		}
@@ -92,7 +90,7 @@ foreach ($associations['hasOne'] as $_alias => $_details): ?>
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__d('cake', 'Éditer %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'edit', ${$singularVar}[$_alias][$_details['primaryKey']]))."</li>\n";?>
+			<li><?php echo $this->Html->link(__d('cake', 'Edit %s', Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'edit', ${$singularVar}[$_alias][$_details['primaryKey']]))."</li>\n";?>
 		</ul>
 	</div>
 </div>
@@ -138,9 +136,9 @@ $otherSingularVar = Inflector::variable($_alias);
 			}
 
 			echo "\t\t\t<td class=\"actions\">\n";
-			echo "\t\t\t\t" . $this->Html->link(__d('cake', 'Détail'), array('controller' => $_details['controller'], 'action' => 'view', ${$otherSingularVar}[$_details['primaryKey']])). "\n";
-			echo "\t\t\t\t" . $this->Html->link(__d('cake', 'Éditer'), array('controller' => $_details['controller'], 'action' => 'edit', ${$otherSingularVar}[$_details['primaryKey']])). "\n";
-			echo "\t\t\t\t" . $this->Form->postLink(__d('cake', 'Delete'), array('controller' => $_details['controller'], 'action' => 'delete', ${$otherSingularVar}[$_details['primaryKey']]), null, __d('cake', 'Êtes-vous sur de supprimer', true).' #' . ${$otherSingularVar}[$_details['primaryKey']] . ' ?'). "\n";
+			echo "\t\t\t\t" . $this->Html->link(__d('cake', 'View'), array('controller' => $_details['controller'], 'action' => 'view', ${$otherSingularVar}[$_details['primaryKey']])). "\n";
+			echo "\t\t\t\t" . $this->Html->link(__d('cake', 'Edit'), array('controller' => $_details['controller'], 'action' => 'edit', ${$otherSingularVar}[$_details['primaryKey']])). "\n";
+			echo "\t\t\t\t" . $this->Form->postLink(__d('cake', 'Delete'), array('controller' => $_details['controller'], 'action' => 'delete', ${$otherSingularVar}[$_details['primaryKey']]), null, __d('cake', 'Are you sure you want to delete', true).' #' . ${$otherSingularVar}[$_details['primaryKey']] . '?'). "\n";
 			echo "\t\t\t</td>\n";
 		echo "\t\t</tr>\n";
 		endforeach;
@@ -149,7 +147,7 @@ $otherSingularVar = Inflector::variable($_alias);
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__d('cake', "Nouv. %s", Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__d('cake', "New %s", Inflector::humanize(Inflector::underscore($_alias))), array('controller' => $_details['controller'], 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

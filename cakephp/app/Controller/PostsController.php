@@ -46,5 +46,26 @@ class PostsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 	}
+
+	public function isAuthorized($user) {
+		
+		debug($this); die;
+		
+		// All registered users can add posts
+		if ($this->action === 'add') {
+			return true;
+		}
+
+		// The owner of a post can edit and delete it
+		if (in_array($this->action, array('edit', 'delete'))) {
+			$postId = $this->request->params['pass'][0];
+//			if ($this->Post->isOwnedBy($postId, $user['id'])) {
+				return true;
+//			}
+		}
+
+		return parent::isAuthorized($user);
+	}
+
 }
 ?>

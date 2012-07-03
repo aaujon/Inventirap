@@ -1,0 +1,24 @@
+INSTALLATION WITH ECLIPSE
+
+File/Import…
+
+Select Git/Projects from Git
+
+Select Repository Source : URI
+
+Select Git Repository :
+URI: git://github.com/aaujon/Inventirap.git
+(Host: github.com)
+(Repository path: /aaujon/Inventirap.git)
+(Protocol: git)
+
+Branch Selection: master
+
+Local Destination: /Users/pallier/git/Inventirap (proposé par défaut)
+(with Initial branch = master)
+
+Select a wizard to use for importing projects : Import as general projects
+
+Project name : Inventirap 
+(projet qui sera placé dans mon workspace Eclipse qui est en fait var/www/html/ pour que je puisse le voir directement depuis Xampp)
+

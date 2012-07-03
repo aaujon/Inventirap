@@ -2,18 +2,8 @@
 
 class SpecialUser extends AppModel {
 
-//	var $name = 'special_users';
+	private $acceptedRole = array ('Apprentice', 'Responsible', 'Administrator', 'Super Administrator');
 
-//	var $ldap;
-//	var $role;
-
-	private $acceptedRole = array ('Apprentice', 'Administrator', 'Super Administrator');
-//
-//	var $_schema = array(
-//        'ldap'		=>array('type'=>'string', 'length'=>45),
-//		'role'		=>array('type'=>'string', 'length'=>45)
-//	);
-//
 	public function customValidation($data) {
 		return in_array(current($data), $this->acceptedRole);
 	}
@@ -42,7 +32,7 @@ class SpecialUser extends AppModel {
                 'rule' => array('customValidation'),
                 'message' => 'Le champ role doit être une de ces trois valeurs : {"Apprentice", "Administrator", "Super Administrator"}'
                 )
-                );
+              	);
 
 
 }

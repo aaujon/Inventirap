@@ -89,9 +89,8 @@ endforeach;
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __d('cake', 'Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link('Menu principal', '/'); ?></li>
-		<li><?php echo $this->Html->link(__d('cake', 'Nouveau %s', $singularHumanName), array('action' => 'add')); ?></li>
-	</ul>
+	<?php 
+		echo $this->element('menu');
+		echo $this->element('tools_view');
+	?>
 </div>

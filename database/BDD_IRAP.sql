@@ -38,11 +38,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`thematic_group`
+-- Table `mydb`.`thematic_groups`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`thematic_group` ;
+DROP TABLE IF EXISTS `mydb`.`thematic_groups` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`thematic_group` (
+CREATE  TABLE IF NOT EXISTS `mydb`.`thematic_groups` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
@@ -50,11 +50,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`work_group`
+-- Table `mydb`.`work_groups`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`work_group` ;
+DROP TABLE IF EXISTS `mydb`.`work_groups` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`work_group` (
+CREATE  TABLE IF NOT EXISTS `mydb`.`work_groups` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
@@ -86,6 +86,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materials` (
   `work_group_id` INT NOT NULL ,
   `ref_existante` VARCHAR(45) NULL ,
   `storage_place` VARCHAR(45) NULL ,
+  `storage_description` VARCHAR(45) NULL ,
   `user_name` VARCHAR(45) NULL ,
   `user_mail` VARCHAR(45) NULL ,
   `acquisition_date` DATE NULL ,
@@ -100,12 +101,12 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materials` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_materials_thematic_group1`
     FOREIGN KEY (`thematic_group_id` )
-    REFERENCES `mydb`.`thematic_group` (`id` )
+    REFERENCES `mydb`.`thematic_groups` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_materials_work_group1`
     FOREIGN KEY (`work_group_id` )
-    REFERENCES `mydb`.`work_group` (`id` )
+    REFERENCES `mydb`.`work_groups` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -133,9 +134,10 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`histories` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `material_id` INT NOT NULL ,
   `date_last_calibration` DATE NULL ,
+  `date_next_control` DATE NULL ,
+  `intervention_type` VARCHAR(45) NULL ,
   `organism_informations` VARCHAR(100) NULL ,
   `frenquency` INT NULL ,
-  `date_next_control` DATE NULL ,
   `comments` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_admi_material_histories_admi_materials1` (`material_id` ASC) ,
@@ -330,30 +332,30 @@ INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (96, 41
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`thematic_group`
+-- Data for table `mydb`.`thematic_groups`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (1, 'GPPS');
-INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (2, 'PSE');
-INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (3, 'MICMAC');
-INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (4, 'GAHEC');
-INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (5, 'SISU');
-INSERT INTO `mydb`.`thematic_group` (`id`, `name`) VALUES (6, 'SG');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `name`) VALUES (1, 'GPPS');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `name`) VALUES (2, 'PSE');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `name`) VALUES (3, 'MICMAC');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `name`) VALUES (4, 'GAHEC');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `name`) VALUES (5, 'SISU');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `name`) VALUES (6, 'SG');
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`work_group`
+-- Data for table `mydb`.`work_groups`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (1, 'N/A');
-INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (2, 'GEDI');
-INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (3, 'GT2I');
-INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (4, 'GI');
-INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (5, 'GACL');
-INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (6, 'GGPAQ');
-INSERT INTO `mydb`.`work_group` (`id`, `name`) VALUES (7, 'GM');
+INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (1, 'N/A');
+INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (2, 'GEDI');
+INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (3, 'GT2I');
+INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (4, 'GI');
+INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (5, 'GACL');
+INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (6, 'GGPAQ');
+INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (7, 'GM');
 
 COMMIT;

@@ -85,7 +85,7 @@ class DATABASE_CONFIG {
 	public $ldap = array (
         'host'		 			=> '192.168.1.65',
         'port'					=> '389',
-		'authenticationType'	=> 'uid',
+		'authenticationType'	=> 'cn',
         'baseDn'				=> 'dc=irap,dc=omp,dc=eu'
     );
 	

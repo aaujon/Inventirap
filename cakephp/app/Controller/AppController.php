@@ -36,10 +36,10 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-	private $authLevelZero = array('login', 'logout', 'loged', 'display');
-	private $authLevelOne = array('login', 'logout', 'loged', 'display', 'index');
-	private $authLevelTwo = array('login', 'logout', 'loged', 'display', 'index', 'view', 'add');
-	private $authLevelThree = array('*');
+	public $authLevelZero = array('login', 'logout', 'loged', 'display');
+	public $authLevelOne = array('login', 'logout', 'loged', 'display', 'index');
+	public $authLevelTwo = array('login', 'logout', 'loged', 'display', 'index', 'view', 'add');
+	public $authLevelThree = array('*');
 	
 	/*
 	 * This component is the app/Controller/Component/LdapAuthComponent.php

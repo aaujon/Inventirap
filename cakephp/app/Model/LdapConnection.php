@@ -42,6 +42,30 @@ class LdapConnection extends AppModel {
 			</ul>'
 			);
 	}
+	
+	public function getAllLdapUsers()
+	{
+		try {
+
+			if($this->checkConfiguration())
+			{
+				$ldapConnection = ldap_connect($this->host, $this->port);
+				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
+				$results = ldap_search($ldapConnection, $this->baseDn, 'uid=*');
+				
+				$res = ldap_get_entries($ldapConnection, $results);
+	
+				return $res;
+				
+			}
+		}
+		catch(Exception $e)
+		{
+			throw  $e;
+		}
+		
+		return false;
+	}
 
 	public function ldapAuthentication($login)
 	{

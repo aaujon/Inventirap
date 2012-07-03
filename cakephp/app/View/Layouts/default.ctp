@@ -44,6 +44,18 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				'border' => '0', 
 				'height' => '100px',
 				'url' => '/')); ?>
+			<div style="float: right; color: black; padding-top: 30px;">
+				<?php 
+					//if (isset(logged)) {
+					//	echo 'Bienvenu '.$nomDuLoginLDAP.'<br/>';
+					//	echo $this->Html->link('Se déconnecter', '/'); 
+					//}
+					//else {
+						echo 'Bienvenu invité<br/>';
+						echo $this->Html->link('Se connecter', '/'); 
+					//}
+				?>
+			</div>
 		</div>
 		<div id="content">
 
@@ -53,7 +65,3 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		</div>
 		<div id="footer">
 			<?php echo $this->Html->image('logo_irap.jpg', array('alt' => 'Logo IRAP', 'border' => '0', 'height' => '50px')); ?>
-		</div>
-	</div>
-</body>
-</html>

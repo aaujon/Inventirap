@@ -85,7 +85,7 @@ class AppController extends Controller {
 		$this->Session->destroy();
 
 		$this->LdapAuth->deny();
-		$this->LdapAuth->allow('login', 'logout', 'loged');
+		$this->LdapAuth->allow('login', 'logout', 'logged');
 	}
 
 	public function login() {
@@ -105,7 +105,7 @@ class AppController extends Controller {
 						// Save his authentication level into a session variable 
 						$this->Session->write('LdapUserAuthenticationLevel', $this->SpecialUser->getAuthenticationLevelFromRole($users[0]['SpecialUser']['role']));
 					}
-				$this->redirect('loged');
+				$this->redirect('logged');
 			} else {
 				$this->Session->setFlash(__('Invalid login, try again'));
 			}

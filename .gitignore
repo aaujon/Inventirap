@@ -45,3 +45,11 @@ Thumbs.db
 /app/tmp/tests/*
 !/app/tmp/tests/
 !/app/tmp/tests/empty
+
+#ignore Android files
+/src/Inventirap-android/bin/
+/src/Inventirap-android/gen/
+
+#Ignore error.txt file
+/app/Vendor/phpqrcode/errors.txt
+!/app/Vendor/phpqrcode/errors.txt

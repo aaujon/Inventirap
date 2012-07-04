@@ -57,7 +57,10 @@ How to install
 6/ Temporary files
 -
 
-   CakePHH needs to write into the temporary folder. So, you have to set the write access of the folder : Inventirap/cakephp/app/tmp/
+   CakePHP needs to write into the temporary folder. So, you have to set the write access of the folder : Inventirap/cakephp/app/tmp/
+	`chmod -R 777 Inventirap/cakephp/app/tmp/`
+   PHPQRCode also needs write access for the file : error.txt
+	`chmod +x Inventirap/cakephp/app/Vendors/phpqrcode/error.txt`
 
 7/ Authentication 
 -
@@ -69,6 +72,11 @@ How to install
 
 There is a ldif file into the database folder with some users. There are also some users into the bdd to test the authentication level.
 
+There are three users into the database : 
+   - hrobert with "Super Administrator" level
+   - gsky with "Administrator" level
+   - dtruner with "Apprentice" level
+   
 6/ Have fun : 
 -
 

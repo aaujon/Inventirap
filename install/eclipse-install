@@ -1,0 +1,30 @@
+INSTALLATION WITH ECLIPSE
+
+
+Remarque : Le workspace Eclipse peut être n'importe où, ça n'a pas d'importance
+(ex : /Users/Etienne/eclipse_workspace/)
+
+File/Import…
+
+Select Git/Projects from Git
+
+Select Repository Source : URI
+
+Select Git Repository :
+URI: git://github.com/aaujon/Inventirap.git
+(Host: github.com)
+(Repository path: /aaujon/Inventirap.git)
+(Protocol: git)
+
+Branch Selection: master
+
+Local Destination: Attention, c'est ici que c'est important de ne pas se tromper
+Il ne faut pas prendre le repertoire proposé par défaut (/Users/pallier/git/Inventirap)
+Mais il faut selectionner le repertoire qui se trouve dans le dossier htdocs de Apache
+Donc, selectionner …/htdocs/Inventirap/ (qui est un nouveau repertoire)
+(with Initial branch = master)
+
+Select a wizard to use for importing projects : Import as general projects
+
+Project name : Inventirap 
+(projet qui sera placé "virtuellement" dans mon workspace Eclipse MAIS qui pointe en réalité vers le repertoire physique .../htdocs/Inventirap/ ce qui est pratique pour que je puisse le voir directement avec Apache via mon navigateur : http://localhost/Inventirap/)

@@ -9,10 +9,10 @@ class LdapAuthComponent extends AuthComponent {
 		try {
 			$connection = ClassRegistry::init('LdapConnection');
 
-			$login =  $this->getLogin($request);
-
+			$login = $this->getLogin($request);
+			$password = $this->getPassword($request); 
 			
-			return $connection->ldapAuthentication($login);
+			return $connection->ldapAuthentication($login, $password);
 			
 		}
 		catch(Exception $e)
@@ -22,11 +22,11 @@ class LdapAuthComponent extends AuthComponent {
 
 	}
 
-	public function getAuthenticationLevel($request) {
-		return '3';
+	public function getPassword($request) {
+		return $this->request->data['SpecialUser']['password'];
 	}
-
+	
 	public function getLogin($request) {
-		return $this->request->data['SpecialUsers']['ldap'];
+		return $this->request->data['SpecialUser']['ldap'];
 	}
 }

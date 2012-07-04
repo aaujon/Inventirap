@@ -2,18 +2,10 @@
 
 class SpecialUser extends AppModel {
 
-	var $name = 'SpecialUser';
-
-	var $ldap;
-	var $role;
-
 	private $acceptedRole = array ('Apprentice', 'Responsible', 'Administrator', 'Super Administrator');
 
-	var $_schema = array(
-        'ldap'		=> array('type' => 'string', 'length' => 45),
-		'role'		=> array('type' => 'string', 'length' => 45)
-	);
-
+	var $password;
+	
 	public function customValidation($data) {
 		return in_array(current($data), $this->acceptedRole);
 	}
@@ -36,6 +28,12 @@ class SpecialUser extends AppModel {
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'Le champ ldap doit être rempli.'
+                )
+                ),
+		'password' => array(
+            'required' => array(
+                'rule' => array('notEmpty'),
+                'message' => 'Le champ mot de passe doit être rempli.'
                 )
                 ),
        	'role' => array(

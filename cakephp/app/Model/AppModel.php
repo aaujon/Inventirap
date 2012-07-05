@@ -35,6 +35,6 @@ class AppModel extends Model {
 	function check_string($check) {
 		$value = array_shift($check);
 		
-		return preg_match('/[a-zA-Z0-9éèàâêôîôû]/', $value);
+		return preg_match('/^[a-zA-Z0-9éèàâêôîôû_-]*$/', $value);
 	}
 }

@@ -297,6 +297,9 @@ form .input {
 form .input:hover {
 	background: rgb(242,242,242);	
 }
+form .error:hover {
+	background: #FFDACC;	
+}
 form .required {
 	font-weight: bold;
 }
@@ -409,7 +412,7 @@ form .error-message {
 .message {
 	clear: both;
 	color: #fff;
-	font-size: 140%;
+	font-size: 100%;
 	font-weight: bold;
 	margin: 0 0 1em 0;
 	padding: 5px;
@@ -463,17 +466,11 @@ p.error,
 }
 .success, .message {
 	clear: both;
-	color: #fff;
-	border: 1px solid rgba(0, 0, 0, 0.5);
-	background: #3B8230;
-	background-repeat: repeat-x;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
-	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -ms-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -o-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: linear-gradient(top, #76BF6B, #3B8230);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+	color: black;
+	font-weight: normal;
+	border: 1px solid rgb(255, 171, 0);
+	background: rgb(253, 255, 158);
+	text-shadow: none;
 }
 p.error {
 	font-family: Monaco, Consolas, Courier, monospace;

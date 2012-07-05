@@ -8,7 +8,7 @@
 <h3 style="cursor: pointer; text-decoration: underline;" onclick="hide_show('informations');">
 	Informations
 </h3>
-<div id="informations" style="border: 1px solid #CCC; margin-bottom: 20px; padding: 10px;">
+<div id="informations" style="margin-bottom: 20px;">
 <table>
 	<tr><th style="width: 250px;"></th><th></th></tr>
 <?php

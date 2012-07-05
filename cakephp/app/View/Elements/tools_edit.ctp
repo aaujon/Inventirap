@@ -5,6 +5,6 @@
 			__d('cake', 'Suppr. ce '.$singularHumanName),
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 			null,
-			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
+			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['id'].' ?'
 		); ?></li>
 </ul>

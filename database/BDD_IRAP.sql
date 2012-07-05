@@ -77,7 +77,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materials` (
   `isTechnical` TINYINT(1) NULL ,
   `status` VARCHAR(15) NULL DEFAULT 'CREATED' ,
   `supplier_name` VARCHAR(20) NULL ,
-  `price_ht` INT NULL ,
+  `price_ht` FLOAT UNSIGNED NULL ,
   `eotp` VARCHAR(45) NULL ,
   `command_number` VARCHAR(45) NULL ,
   `accountable_code` VARCHAR(45) NULL ,

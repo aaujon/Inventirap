@@ -291,6 +291,11 @@ form div {
 }
 form .input {
 	color: #444;
+	padding: 5px;
+	margin-bottom: 3px;
+}
+form .input:hover {
+	background: rgb(242,242,242);	
 }
 form .required {
 	font-weight: bold;
@@ -300,22 +305,26 @@ form .required label:after {
 	content: '*';
 	display:inline;
 }
+form .checkbox {
+	height: 25px;
+}
 form div.submit {
 	border: 0;
 	clear: both;
 	margin-top: 10px;
 }
 label {
-	display: block;
-	font-size: 110%;
-	margin-bottom:3px;
+	float: left;
+	width: 200px;
+	font-size: 100%;
+	line-height: 25px;
 }
 input, textarea {
 	clear: both;
-	font-size: 140%;
+	font-size: 100%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
-	width:98%;
+	padding: 3px;
+	width: 300px;
 }
 select {
 	clear: both;
@@ -332,8 +341,8 @@ option {
 input[type=checkbox] {
 	clear: left;
 	float: left;
-	margin: 0px 6px 7px 2px;
-	width: auto;
+	margin: 10px 6px 7px 2px;
+	width: 15px;
 }
 div.checkbox label {
 	display: inline;

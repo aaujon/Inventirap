@@ -31,7 +31,7 @@ function filter($field) {
 }
 ?>
 <div class="<?php echo $pluralVar;?> index">
-<h2><?php echo $pluralHumanName;?></h2>
+<h2>Liste des matériels</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>

@@ -70,7 +70,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materials` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `designation` VARCHAR(30) NULL ,
   `sub_category_id` INT NOT NULL ,
-  `irap_number` VARCHAR(10) NULL ,
+  `irap_number` VARCHAR(12) NULL ,
   `description` VARCHAR(100) NULL ,
   `organism` VARCHAR(20) NULL ,
   `isAdministrative` TINYINT(1) NULL ,
@@ -357,5 +357,15 @@ INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (4, 'GI');
 INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (5, 'GACL');
 INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (6, 'GGPAQ');
 INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (7, 'GM');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `mydb`.`materials`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mydb`;
+INSERT INTO `mydb`.`materials` (`id`, `designation`, `sub_category_id`, `irap_number`, `description`, `organism`, `isAdministrative`, `isTechnical`, `status`, `supplier_name`, `price_ht`, `eotp`, `command_number`, `accountable_code`, `serial_number`, `thematic_group_id`, `work_group_id`, `ref_existante`, `storage_place`, `storage_description`, `user_name`, `user_mail`, `acquisition_date`) VALUES (NULL, 'Macbook air', 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 'Stephane', 'steph@ne.fr', '2012-07-04');
+INSERT INTO `mydb`.`materials` (`id`, `designation`, `sub_category_id`, `irap_number`, `description`, `organism`, `isAdministrative`, `isTechnical`, `status`, `supplier_name`, `price_ht`, `eotp`, `command_number`, `accountable_code`, `serial_number`, `thematic_group_id`, `work_group_id`, `ref_existante`, `storage_place`, `storage_description`, `user_name`, `user_mail`, `acquisition_date`) VALUES (NULL, 'Macbook retina', 5, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 'Pierrick', 'pierr@rick.com', '2012-07-04');
 
 COMMIT;

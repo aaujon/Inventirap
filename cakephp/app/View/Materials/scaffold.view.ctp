@@ -1,13 +1,11 @@
-
+<?php echo $this->Html->script('script'); ?>
 <div class="<?php echo $pluralVar;?> view">
 <h2><?php 
 	echo ${$singularVar}[$modelClass]['designation'];
-	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['irap_number'].'IRAP-12-0001)</span>';
+	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['irap_number'].')</span>';
 ?></h2>
-<?php echo $this->Html->script('script'); ?>
-<h3 style="cursor: pointer; text-decoration: underline;" onclick="hide_show('informations');">
-	Informations
-</h3>
+
+<h3 style="cursor: pointer; text-decoration: underline;" onclick="hide_show('informations');">Informations</h3>
 <div id="informations" style="margin-bottom: 20px;">
 <table>
 	<tr><th style="width: 250px;"></th><th></th></tr>
@@ -67,10 +65,7 @@ TODO
 TODO
 </div>
 
-<?php
-	//Affichage de facon TRES CRADE du QR code du matériel
-	//echo '<img src="/Inventirap/cakephp/qr_codes/qrCode/'.${$singularVar}[$modelClass]['id'].'"/>';
-?>
+
 </div>
 <div class="actions">
 	<?php 

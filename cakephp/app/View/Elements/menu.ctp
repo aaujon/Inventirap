@@ -2,11 +2,11 @@
 <ul>
 	<li><?php echo $this->Html->link('Accueil', '/'); ?></li>
 	<li><?php echo $this->Html->link('Liste des matériels', array(
-	'controller' => 'materials')); ?></li>
+	'controller' => 'materials', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Liste des suivis', array(
-	'controller' => 'histories')); ?></li>
+	'controller' => 'histories', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Liste des emprunts', array(
-	'controller' => 'loans')); ?></li>
+	'controller' => 'loans', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Recherche', array(
 	'controller' => 'materials', 'action' => 'search')); ?></li>
 	<li><?php echo $this->Html->link('Outils', array(

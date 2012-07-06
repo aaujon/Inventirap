@@ -1,5 +1,5 @@
 <?php
-class SubCategoriesController extends AppController {
+class SousCategoriesController extends AppController {
     public $scaffold;
 }
 ?>

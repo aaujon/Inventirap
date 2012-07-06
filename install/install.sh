@@ -14,6 +14,11 @@ echo "Mise à jour des droits des dossiers..."
 #chmod -R 777 cakephp/app/tmp/
 #chmod 777 cakephp/app/Vendor/phpqrcode/errors.txt
 
+# Set database ip
+echo "Database ip"
+read bddIp
+sed "s/192.168.1.70/$bddIp/" /var/www/Inventirap/cakephp/app/Config/database.php
+
 #Mettre à jour la bdd
 echo "Mise à jour de la BDD..."
 mysql -u root -p < /var/www/Inventirap/database/BDD_IRAP.sql
@@ -22,3 +27,13 @@ mysql -u root -p < /var/www/Inventirap/database/BDD_IRAP.sql
 echo "Super Administrateur ?"
 read superAdmin
 mysql -u root -p -D mydb -e "INSERT INTO special_users (id, ldap, role) VALUES ('', '$superAdmin', 'Super Administrator');"
+
+# Set LDAP address
+echo "LDAP Address"
+read ldapIp
+sed "s/192.168.1.65/$ldapIp/" /var/www/Inventirap/cakephp/app/Config/database.php
+
+# Set LDAP port
+echo "LDAP port"
+read ldapPort
+sed "s/389/$ldapPort/" /var/www/Inventirap/cakephp/app/Config/database.php

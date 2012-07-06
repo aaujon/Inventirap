@@ -75,11 +75,11 @@ foreach (${$pluralVar} as ${$singularVar}):
 		);
 		echo '</td><td class="actions" style="text-align: right;">';
 		if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
-			echo $this->Html->link(__d('cake', 'Valider'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'VALIDATED'));
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'ARCHIVED'));
+			echo $this->Html->link(__d('cake', 'Valider'), array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
+			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
 		}
 		if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'changeStatus', ${$singularVar}[$modelClass][$primaryKey], 'ARCHIVED'));
+			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
 		}
 		echo '</td>';
 	echo '</tr>';

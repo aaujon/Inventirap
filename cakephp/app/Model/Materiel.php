@@ -2,14 +2,11 @@
 class Materiel extends AppModel {
 	public $name = 'Materiel';
 	
-	var $virtualFields = array(
-		'full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
+	var $virtualFields = array('full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
 	public $displayField = 'designation';
 	
-	public $belongsTo = array('SousCategory', 'ThematicGroup', 'WorkGroup');
-	public $hasMany = array(
-		'Suivi',
-		'Emprunt');
+	public $belongsTo = array('Category', 'SousCategory', 'ThematicGroup', 'WorkGroup');
+	public $hasMany = array('Suivi', 'Emprunt');
 			
 	var $validate = array(
 		'designation' => array(        
@@ -21,6 +18,18 @@ class Materiel extends AppModel {
 				'rule' => 'check_string',              
 				'message' => 'Le champ doit être valide.'        
 			),      
+		),
+		'category_id' => array(        
+			'required' => array(            
+				'rule' => 'notEmpty',              
+				'message' => 'Le champ doit être rempli.'         
+			)      
+		),
+		'sous_category_id' => array(        
+			'required' => array(            
+				'rule' => 'notEmpty',              
+				'message' => 'Le champ doit être rempli.'         
+			)      
 		),
 		'description' => array(    
 			'valid' => array(            

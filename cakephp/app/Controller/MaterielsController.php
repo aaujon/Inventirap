@@ -1,8 +1,9 @@
 <?php
-
 class MaterielsController extends AppController {
 	
 	public $scaffold;
+	
+	public $helpers = array('Js');
 	
 	/*
 	 * This method is called before each action to check if the user is allwed to execute the action
@@ -25,12 +26,6 @@ class MaterielsController extends AppController {
 				$this->LdapAuth->allow('statusArchived');
 			}
 		}
-	
-	// public function changeStatus($id, $new_status) {
-	//	if($new_status == 'CREATED' || $new_status == 'ARCHIVED' || $new_status == 'VALIDATED') {
-	//		$this->Material->id = $id;
-        //  $this->Material->saveField('status', $new_status);	
-	// }
 
 	public function statusToBeArchived($id) {
                 $this->Material->id = $id;

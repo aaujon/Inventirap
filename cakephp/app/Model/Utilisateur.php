@@ -1,6 +1,10 @@
 <?php
 
-class SpecialUser extends AppModel {
+class Utilisateur extends AppModel {
+	var $name = 'Utilisateur';
+
+	var $ldap;
+	var $role;
 
 	private $acceptedRoles = array ('Apprenti', 'Responsable', 'Administrateur', 'Super Administrateur');
 

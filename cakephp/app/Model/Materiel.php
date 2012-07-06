@@ -1,15 +1,15 @@
 <?php
-class Material extends AppModel {
-	public $name = 'Material';
+class Materiel extends AppModel {
+	public $name = 'Materiel';
 	
 	var $virtualFields = array(
-		'full_storage' => 'CONCAT(storage_place, "-", storage_description)');
+		'full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
 	public $displayField = 'designation';
 	
-	public $belongsTo = array('SubCategory', 'ThematicGroup', 'WorkGroup');
+	public $belongsTo = array('SousCategory', 'ThematicGroup', 'WorkGroup');
 	public $hasMany = array(
-		'History',
-		'Loan');
+		'Suivi',
+		'Emprunt');
 			
 	var $validate = array(
 		'designation' => array(        
@@ -29,14 +29,14 @@ class Material extends AppModel {
 				'message' => 'Le champ doit être valide.'        
 			),      
 		),
-		'organism' => array(    
+		'organisme' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
 				'message' => 'Le champ doit être valide.'        
 			),      
 		),
-		'supplier_name' => array(    
+		'fournisseur' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
@@ -44,7 +44,7 @@ class Material extends AppModel {
 			),      
 		),
 
-		'price_ht' => array(    
+		'prix_ht' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
@@ -60,7 +60,7 @@ class Material extends AppModel {
 			),      
 		),
 
-		'command_number' => array(    
+		'numero_commande' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
@@ -68,14 +68,14 @@ class Material extends AppModel {
 			),      
 		),
 
-		'accountable_code' => array(    
+		'code_comptable' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
 				'message' => 'Le champ doit être valide.'        
 			),      
 		),
-		'serial_number' => array(    
+		'numero_serie' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
@@ -91,7 +91,7 @@ class Material extends AppModel {
 			),      
 		),
 
-		'user_name' => array(    
+		'nom_responsable' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
@@ -99,14 +99,14 @@ class Material extends AppModel {
 			),      
 		),
 
-		'user_mail' => array(    
+		'email_responsable' => array(    
 			'valid' => array(            
 				'rule' => 'email',
 				'allowEmpty' => true,              
 				'message' => 'Merci de soumettre une adresse email valide.'        
 			),      
 		),
-		'storage_description' => array(    
+		'lieu_detail' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              

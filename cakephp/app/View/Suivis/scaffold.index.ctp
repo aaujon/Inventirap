@@ -18,10 +18,10 @@
  
 function filter($field) {
 	$whatToShow = array(
-		'material_id',
-		'loan_date',
-		'loan_return_date',
-		'is_internal'
+		'materiel_id',
+		'date_controle',
+		'date_prochain_controle',
+		'type_intervention'
 	);
 	foreach($whatToShow as $value) {
 		if ($value == $field)
@@ -31,13 +31,13 @@ function filter($field) {
 }
 ?>
 <div class="<?php echo $pluralVar;?> index">
-<h2><?php echo $pluralHumanName;?></h2>
+<h2>Liste des suivis</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
 	<th><?php echo $this->Paginator->sort($_field);?></th>
 <?php } endforeach;?>
-	<th style="text-align: center;">Actions</th>
+	<th></th>
 </tr>
 <?php
 $i = 0;
@@ -67,7 +67,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 			__d('cake', 'Suppr.'),
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 			null,
-			__d('cake', 'Êtes-vous sur de supprimer la location').' '.${$singularVar}[$modelClass]['id'].' ?'
+			__d('cake', 'Êtes-vous sur de supprimer l\'historique').' '.${$singularVar}[$modelClass]['id'].' ?'
 		);
 		echo '</td>';
 	echo '</tr>';

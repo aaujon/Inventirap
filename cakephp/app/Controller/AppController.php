@@ -48,9 +48,9 @@ class AppController extends Controller {
 	public $components = array(
         'Session',
         'LdapAuth' => array(
-            'loginRedirect' => array('controller' => 'SpecialUsers', 'action' => 'login'),
-            'logoutRedirect' => array('controller' => 'SpecialUsers', 'action' => 'logout'),
-			'loginAction' => array('controller' => 'SpecialUsers', 'action' => 'login')
+            'loginRedirect' => array('controller' => 'Utilisateurs', 'action' => 'login'),
+            'logoutRedirect' => array('controller' => 'Utilisateurs', 'action' => 'logout'),
+			'loginAction' => array('controller' => 'Utilisateurs', 'action' => 'login')
 	)
 	);
 

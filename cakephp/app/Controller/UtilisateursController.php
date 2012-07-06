@@ -1,10 +1,10 @@
 <?php
 
-class SpecialUsersController extends AppController {
+class UtilisateursController extends AppController {
 
 	var $scaffold;
-	
-/*
+
+	/*
 	 * This method is called before each action to check if the user is allwed to execute the action
 	 */
 	public function beforeFilter() {
@@ -41,7 +41,6 @@ class SpecialUsersController extends AppController {
 	public function login() {
 
 		if ($this->request->is('post')) {
-
 				// The user exists into the ldap server
 				if($this->LdapAuth->connection($this->request))
 				{
@@ -49,11 +48,13 @@ class SpecialUsersController extends AppController {
 					$this->Session->write('LdapUserName', $this->LdapAuth->getLogin($this->request));
         			
 					// Get the user into the database
-					$users = $this->SpecialUser->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request)))); 
+					$users = $this->Utilisateurs->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request)))); 
 						
 					if(count($users) == 1){
 						// Save his authentication level into a session variable 
-						$this->Session->write('LdapUserAuthenticationLevel', $this->SpecialUser->getAuthenticationLevelFromRole($users[0]['SpecialUser']['role']));
+						$this->Session->write('LdapUserAuthenticationLevel', $this->
+						
+						er->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
 					}
 				$this->redirect('logged');
 			} else {

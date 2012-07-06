@@ -1,12 +1,12 @@
 <?php
 class ThematicGroup extends AppModel {
 	public $name = 'ThematicGroup';
-	public $displayField = 'name';
+	public $displayField = 'nom';
 
-	var $hasMany = 'Material';
+	var $hasMany = 'Materiel';
 	
 	var $validate = array(
-		'name' => array(        
+		'nom' => array(        
 			'required' => array(            
 				'rule' => 'notEmpty',              
 				'message' => 'Le champ doit être rempli.'         

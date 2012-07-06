@@ -1,8 +1,8 @@
 <?php
-class Loan extends AppModel {
-	public $name = 'Loan';
+class Emprunt extends AppModel {
+	public $name = 'Emprunt';
 	
-	public $belongsTo = array('Material');
+	public $belongsTo = array('Materiel');
 	
 			
 	var $validate = array(
@@ -13,14 +13,14 @@ class Loan extends AppModel {
 				'message' => 'Le champ doit être valide.'        
 			),      
 		),
-		'responsible' => array(    
+		'responsable' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
 				'message' => 'Le champ doit être valide.'        
 			),      
 		),
-		'laboratory' => array(    
+		'laboratoire' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              

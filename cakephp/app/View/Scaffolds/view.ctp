@@ -17,7 +17,7 @@
  */
 ?>
 <div class="<?php echo $pluralVar;?> view">
-<h2><?php echo __d('cake', 'View %s', $singularHumanName); ?></h2>
+<h2><?php echo __d('cake', 'Détail %s', strtolower($singularHumanName)); ?></h2>
 	<dl style="margin-bottom: 30px;">
 <?php
 $i = 0;

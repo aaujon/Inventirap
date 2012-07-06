@@ -1,5 +1,5 @@
 <div class="index">
-	<h2>Recherche matériel</h2>
+	<h2>Recherche de matériel</h2>
 	<?php include 'search.include.ctp'; ?>
 </div>
 <div class="actions">

@@ -1,0 +1,25 @@
+<div class="<?php echo $pluralVar;?> form">
+<?php
+	if ($this->params['action'] == 'add')
+		echo '<h2>Ajouter '.strtolower($singularHumanName).'</h2>';
+	else 
+		echo '<h2>Éditer '.strtolower($singularHumanName).'</h2>';
+
+	echo $this->Form->create();
+
+	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné'));
+	echo $this->Form->input('date_controle', array('label' => 'Date du contrôle'));
+	echo $this->Form->input('date_prochain_controle', array('label' => 'Date du prochain contrôle'));
+	echo $this->Form->input('type_intervention', array('label' => 'Type d\'intervention'));
+	echo $this->Form->input('organisme', array('label' => 'Organisme'));
+	echo $this->Form->input('frequence', array('label' => 'Fréquence (en année)'));
+	echo $this->Form->input('commentaire', array('label' => 'Commentaire'));	
+	echo $this->Form->end(__d('cake', 'Valider'));
+?>
+</div>
+<div class="actions">
+	<?php 
+		echo $this->element('menu');
+		echo $this->element('tools_form');
+	?>
+</div>

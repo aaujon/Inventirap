@@ -19,6 +19,10 @@
 	else
 		$type = 'Aucun'; 
 
+	$categorie = $this->Html->link(${$singularVar}['Category']['nom'], array(
+				'controller' => 'categories',
+				'action' => 'view',
+				${$singularVar}['Category']['id']));
 	$sousCategorie = $this->Html->link(${$singularVar}['SousCategory']['nom'], array(
 				'controller' => 'sous_categories',
 				'action' => 'view',
@@ -34,7 +38,7 @@
 
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
 	displayElement('Type du matériel', $type);
-	displayElement('Catégorie', $sousCategorie);
+	displayElement('Catégorie', $categorie);
 	displayElement('Sous catégorie', $sousCategorie);
 	displayElement('Groupe thématique', $groupeThematique);
 	displayElement('Groupe de travail', $groupeTravail);

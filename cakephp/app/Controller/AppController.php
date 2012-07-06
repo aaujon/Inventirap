@@ -32,9 +32,15 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 /*
- * This Controller is the main controller all authentications which are defined here are inherit into all others sub controllers 
+ * This Controller is the main controller all authentications which are defined here are inherit into all others sub controllers
  */
 class AppController extends Controller {
+
+	public $authLevelUnauthorized = array('login'); // auth level 0
+	public $authLevelApprentice = array('login', 'logout', 'logged', 'display', 'index', 'view'); // auth level 1
+	public $authLevelResponsible = array('login', 'logout', 'logged', 'display', 'index', 'view'); // auth level 2
+	public $authLevelAdministrator = array('login', 'logout', 'logged', 'display', 'index', 'view'); // auth level 3
+	public $authLevelSuperAdministrator = array('*'); // auth level 4
 
 	/*
 	 * This component is the app/Controller/Component/LdapAuthComponent.php
@@ -42,9 +48,9 @@ class AppController extends Controller {
 	public $components = array(
         'Session',
         'LdapAuth' => array(
-            'loginRedirect' => array('controller' => 'SpecialUsers', 'action' => 'login'),
-            'logoutRedirect' => array('controller' => 'SpecialUsers', 'action' => 'logout'),
-			'loginAction' => array('controller' => 'SpecialUsers', 'action' => 'login')
+            'loginRedirect' => array('controller' => 'Utilisateurs', 'action' => 'login'),
+            'logoutRedirect' => array('controller' => 'Utilisateurs', 'action' => 'logout'),
+			'loginAction' => array('controller' => 'Utilisateurs', 'action' => 'login')
 	)
 	);
 
@@ -55,54 +61,27 @@ class AppController extends Controller {
 		$ldapUserName = $this->Session->read('LdapUserName');
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 
+		$res = $ldapUserName . ' - ' . $ldapUserAuthenticationLevel;
+		
+		$this->LdapAuth->deny();
 		if(isset($ldapUserName))
 		{
-			if($ldapUserAuthenticationLevel == 1) {
-				$this->LdapAuth->allow('login', 'logout', 'loged', 'index');
-			} elseif ($ldapUserAuthenticationLevel == 2) {
-				$this->LdapAuth->allow('login', 'logout', 'loged', 'index', 'view', 'add');
-			}  elseif ($ldapUserAuthenticationLevel == 3) {
-				$this->LdapAuth->allow('*');
-			} else {
-				$this->LdapAuth->deny();
-				$this->LdapAuth->allow('login', 'logout', 'loged');
-			}
-		}
-		else {
-			$this->LdapAuth->deny();
-			$this->LdapAuth->allow('login', 'logout', 'loged');
-		}
-	}
 
-	public function logout() {
-		$this->Session->delete('LdapUserName');
-		$this->Session->delete('LdapUserAuthenticationLevel');
-		$this->Session->destroy();
-
-		$this->LdapAuth->deny();
-		$this->LdapAuth->allow('login', 'logout', 'loged');
-	}
-
-	public function login() {
-
-		if ($this->request->is('post')) {
-
-				// The user exists into the ldap server
-				if($this->LdapAuth->connection($this->request))
-				{
-					// Save his name into a session variable
-					$this->Session->write('LdapUserName', $this->LdapAuth->getLogin($this->request));
-        			
-					// Get the user into the database
-					$users = $this->SpecialUser->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request)))); 
-						
-					if(count($users) == 1){
-						// Save his authentication level into a session variable 
-						$this->Session->write('LdapUserAuthenticationLevel', $this->SpecialUser->getAuthenticationLevelFromRole($users[0]['SpecialUser']['role']));
-					}
-				$this->redirect('loged');
-			} else {
-				$this->Session->setFlash(__('Invalid login, try again'));
+			switch ($ldapUserAuthenticationLevel) {
+				case 0:
+					$this->LdapAuth->allow($this->authLevelUnauthorized);
+					break;
+				case 1:
+					$this->LdapAuth->allow($this->authLevelApprentice);
+					break;
+				case 2:
+					$this->LdapAuth->allow($this->authLevelResponsible);
+				case 3:
+					$this->LdapAuth->allow($this->authLevelAdministrator);
+					break;
+				case 4:
+					$this->LdapAuth->allow($this->authLevelSuperAdministrator);
+					break;
 			}
 		}
 	}

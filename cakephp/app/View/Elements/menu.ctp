@@ -2,13 +2,13 @@
 <ul>
 	<li><?php echo $this->Html->link('Accueil', '/'); ?></li>
 	<li><?php echo $this->Html->link('Liste des matériels', array(
-	'controller' => 'materials')); ?></li>
+	'controller' => 'materiels', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Liste des suivis', array(
-	'controller' => 'histories')); ?></li>
+	'controller' => 'suivis', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Liste des emprunts', array(
-	'controller' => 'loans')); ?></li>
+	'controller' => 'emprunts', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Recherche', array(
-	'controller' => 'materials', 'action' => 'search')); ?></li>
+	'controller' => 'materiels', 'action' => 'search')); ?></li>
 	<li><?php echo $this->Html->link('Outils', array(
 	'controller' => 'pages', 'action' => 'tools')); ?></li>
 </ul>

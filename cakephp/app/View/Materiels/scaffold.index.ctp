@@ -3,7 +3,7 @@ function filter($field) {
 	$whatToShow = array(
 		'designation',
 		'numero_irap',
-		'sous_category_id'
+		'category_id'
 	);
 	foreach($whatToShow as $value) {
 		if ($value == $field)

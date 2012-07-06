@@ -1,1 +1,6 @@
-<h1> The logout page </h1>
+<div class="index">
+	<h2>Deconnexion réussie</h2>
+</div>
+<div class="actions">
+<?php echo $this->element('menu'); ?>
+</div>

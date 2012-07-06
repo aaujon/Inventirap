@@ -27,7 +27,9 @@ $cakeDescription = __d('cake_dev', 'Inventirap - Inventaire administratif et tec
 				'height' => '100px',
 				'url' => '/')); ?>
 			<div style="float: right; color: black; padding-top: 30px;">
-				<?php 
+			
+				<?php
+					$userName = $this->Session->read('LdapUserName');
 					if (isset($userName)) {
 						echo 'Bienvenue '.$userName.'<br/>';
 						echo $this->Html->link('Se déconnecter', array('controller' => 'Utilisateurs', 'action' => 'logout')); 

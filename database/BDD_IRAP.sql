@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `mydb`.`sub_categories` ;
 
 CREATE  TABLE IF NOT EXISTS `mydb`.`sub_categories` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `category_id` INT NULL ,
   `name` VARCHAR(45) NULL ,
+  `category_id` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `category_id` (`category_id` ASC) ,
   CONSTRAINT `category_id`
@@ -70,14 +70,14 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materials` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `designation` VARCHAR(30) NULL ,
   `sub_category_id` INT NOT NULL ,
-  `irap_number` VARCHAR(10) NULL ,
+  `irap_number` VARCHAR(12) NULL ,
   `description` VARCHAR(100) NULL ,
   `organism` VARCHAR(20) NULL ,
   `isAdministrative` TINYINT(1) NULL ,
   `isTechnical` TINYINT(1) NULL ,
   `status` VARCHAR(15) NULL DEFAULT 'CREATED' ,
   `supplier_name` VARCHAR(20) NULL ,
-  `price_ht` INT NULL ,
+  `price_ht` FLOAT UNSIGNED NULL ,
   `eotp` VARCHAR(45) NULL ,
   `command_number` VARCHAR(45) NULL ,
   `accountable_code` VARCHAR(45) NULL ,
@@ -135,10 +135,10 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`histories` (
   `material_id` INT NOT NULL ,
   `date_last_calibration` DATE NULL ,
   `date_next_control` DATE NULL ,
-  `intervention_type` VARCHAR(45) NULL ,
-  `organism_informations` VARCHAR(100) NULL ,
-  `frenquency` INT NULL ,
-  `comments` VARCHAR(45) NULL ,
+  `intervention_type` VARCHAR(50) NULL ,
+  `organism_informations` VARCHAR(50) NULL ,
+  `frequency_year` INT NULL ,
+  `comments` VARCHAR(100) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_admi_material_histories_admi_materials1` (`material_id` ASC) ,
   CONSTRAINT `fk_admi_material_histories_admi_materials1`
@@ -158,11 +158,11 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`loans` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `material_id` INT NOT NULL ,
   `loan_date` DATE NULL ,
-  `piece` VARCHAR(45) NULL ,
-  `responsible` VARCHAR(45) NULL ,
   `loan_return_date` DATE NULL ,
+  `piece` VARCHAR(45) NULL ,
   `is_internal` TINYINT(1) NULL ,
   `laboratory` VARCHAR(45) NULL ,
+  `responsible` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_technical_materials_internal_loans_copy1_admi_materials1` (`material_id` ASC) ,
   CONSTRAINT `fk_technical_materials_internal_loans_copy1_admi_materials1`
@@ -232,102 +232,102 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (1, 1, 'RUI');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (2, 1, 'RUI + LC');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (3, 1, 'Précision');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (4, 2, 'Analogique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (5, 2, 'Numérique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (6, 2, 'Combiscope');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (7, 3, 'Voltmètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (8, 3, 'Ampèremètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (9, 3, 'Ohmmètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (10, 3, 'Impédencemètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (11, 3, 'Capacimètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (12, 3, 'Inductancemètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (13, 3, 'Wattmètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (14, 4, 'Pulse/Fréquences');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (15, 4, 'Polyvalent');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (16, 4, 'Arbitraire');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (17, 4, 'Bruit');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (18, 4, 'Référence U I');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (19, 5, 'Haute tension');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (20, 5, 'Alternatif');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (21, 5, 'VHF');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (22, 6, 'Tension');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (23, 6, 'Courant');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (24, 7, 'Synthétiseur');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (25, 7, 'Générateur');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (26, 7, 'Testeur de cable');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (27, 7, 'TOSmètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (28, 8, 'Gaussmetre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (29, 9, 'Spectre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (30, 9, 'Logique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (31, 9, 'Réseau');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (32, 10, 'Active');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (33, 10, 'Tension');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (34, 10, 'Différentielle');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (35, 10, 'Courant');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (36, 11, 'UV');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (37, 12, 'Composant');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (38, 12, 'FPGA');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (39, 12, 'Mémoire');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (40, 13, 'Mécanique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (41, 13, 'Analogique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (42, 13, 'Numérique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (43, 14, 'Tri Dim');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (44, 14, 'Colonne');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (45, 14, 'Comparateur');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (46, 14, 'Cales etalon');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (47, 14, 'Pied à coulisse');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (48, 15, 'Inclinomètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (49, 15, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (50, 16, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (51, 17, 'Clé dynamomètrique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (52, 17, 'Tournevis dynamomètrique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (53, 18, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (54, 19, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (55, 20, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (56, 21, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (57, 22, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (58, 23, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (59, 24, 'Chronomètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (60, 24, 'Compteur');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (61, 24, 'Fréquencemètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (62, 25, 'Diode a bruit');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (63, 25, 'Pont RLC');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (64, 26, 'Pression atmosphérique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (65, 26, 'Détendeur manomètre');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (66, 26, 'Vide primaire 10 2Pa < P < 10 5Pa');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (67, 26, 'Vide moyen 10 –1Pa < P < 10 2Pa');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (68, 26, 'Vide poussé 10 –5Pa < P < 10 – 1Pa');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (69, 26, 'Ultravide P < 10 –5Pa');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (70, 27, 'Température de surface');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (71, 27, 'Température d\'air / ambiante');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (72, 27, 'Thermocouple');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (73, 28, 'Compteur de particules');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (74, 28, 'Lampe UV');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (75, 29, 'Enregistreur');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (76, 29, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (77, 30, 'Débit volumique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (78, 30, 'Débit massique');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (79, 31, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (80, 32, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (81, 33, 'Tension');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (82, 33, 'Courant');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (83, 33, 'Tension + courant');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (84, 33, 'Puissance');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (85, 33, 'Haute Tension');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (86, 33, 'Onduleur');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (87, 33, 'Batterie');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (88, 33, 'Sondes');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (89, 34, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (90, 35, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (91, 36, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (92, 37, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (93, 38, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (94, 39, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (95, 40, 'Defaut');
-INSERT INTO `mydb`.`sub_categories` (`id`, `category_id`, `name`) VALUES (96, 41, 'Defaut');
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (1, 'RUI', 1);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (2, 'RUI + LC', 1);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (3, 'Précision', 1);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (4, 'Analogique', 2);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (5, 'Numérique', 2);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (6, 'Combiscope', 2);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (7, 'Voltmètre', 3);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (8, 'Ampèremètre', 3);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (9, 'Ohmmètre', 3);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (10, 'Impédencemètre', 3);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (11, 'Capacimètre', 3);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (12, 'Inductancemètre', 3);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (13, 'Wattmètre', 3);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (14, 'Pulse/Fréquences', 4);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (15, 'Polyvalent', 4);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (16, 'Arbitraire', 4);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (17, 'Bruit', 4);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (18, 'Référence U I', 4);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (19, 'Haute tension', 5);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (20, 'Alternatif', 5);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (21, 'VHF', 5);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (22, 'Tension', 6);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (23, 'Courant', 6);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (24, 'Synthétiseur', 7);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (25, 'Générateur', 7);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (26, 'Testeur de cable', 7);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (27, 'TOSmètre', 7);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (28, 'Gaussmetre', 8);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (29, 'Spectre', 9);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (30, 'Logique', 9);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (31, 'Réseau', 9);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (32, 'Active', 10);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (33, 'Tension', 10);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (34, 'Différentielle', 10);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (35, 'Courant', 10);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (36, 'UV', 11);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (37, 'Composant', 12);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (38, 'FPGA', 12);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (39, 'Mémoire', 12);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (40, 'Mécanique', 13);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (41, 'Analogique', 13);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (42, 'Numérique', 13);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (43, 'Tri Dim', 14);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (44, 'Colonne', 14);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (45, 'Comparateur', 14);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (46, 'Cales etalon', 14);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (47, 'Pied à coulisse', 14);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (48, 'Inclinomètre', 15);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (49, 'Defaut', 15);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (50, 'Defaut', 16);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (51, 'Clé dynamomètrique', 17);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (52, 'Tournevis dynamomètrique', 17);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (53, 'Defaut', 18);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (54, 'Defaut', 19);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (55, 'Defaut', 20);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (56, 'Defaut', 21);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (57, 'Defaut', 22);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (58, 'Defaut', 23);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (59, 'Chronomètre', 24);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (60, 'Compteur', 24);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (61, 'Fréquencemètre', 24);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (62, 'Diode a bruit', 25);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (63, 'Pont RLC', 25);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (64, 'Pression atmosphérique', 26);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (65, 'Détendeur manomètre', 26);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (66, 'Vide primaire 10 2Pa < P < 10 5Pa', 26);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (67, 'Vide moyen 10 –1Pa < P < 10 2Pa', 26);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (68, 'Vide poussé 10 –5Pa < P < 10 – 1Pa', 26);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (69, 'Ultravide P < 10 –5Pa', 26);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (70, 'Température de surface', 27);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (71, 'Température d\'air / ambiante', 27);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (72, 'Thermocouple', 27);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (73, 'Compteur de particules', 28);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (74, 'Lampe UV', 28);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (75, 'Enregistreur', 29);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (76, 'Defaut', 29);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (77, 'Débit volumique', 30);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (78, 'Débit massique', 30);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (79, 'Defaut', 31);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (80, 'Defaut', 32);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (81, 'Tension', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (82, 'Courant', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (83, 'Tension + courant', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (84, 'Puissance', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (85, 'Haute Tension', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (86, 'Onduleur', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (87, 'Batterie', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (88, 'Sondes', 33);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (89, 'Defaut', 34);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (90, 'Defaut', 35);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (91, 'Defaut', 36);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (92, 'Defaut', 37);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (93, 'Defaut', 38);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (94, 'Defaut', 39);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (95, 'Defaut', 40);
+INSERT INTO `mydb`.`sub_categories` (`id`, `name`, `category_id`) VALUES (96, 'Defaut', 41);
 
 COMMIT;
 
@@ -357,5 +357,15 @@ INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (4, 'GI');
 INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (5, 'GACL');
 INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (6, 'GGPAQ');
 INSERT INTO `mydb`.`work_groups` (`id`, `name`) VALUES (7, 'GM');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `mydb`.`materials`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mydb`;
+INSERT INTO `mydb`.`materials` (`id`, `designation`, `sub_category_id`, `irap_number`, `description`, `organism`, `isAdministrative`, `isTechnical`, `status`, `supplier_name`, `price_ht`, `eotp`, `command_number`, `accountable_code`, `serial_number`, `thematic_group_id`, `work_group_id`, `ref_existante`, `storage_place`, `storage_description`, `user_name`, `user_mail`, `acquisition_date`) VALUES (NULL, 'Macbook air', 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 'Stephane', 'steph@ne.fr', '2012-07-04');
+INSERT INTO `mydb`.`materials` (`id`, `designation`, `sub_category_id`, `irap_number`, `description`, `organism`, `isAdministrative`, `isTechnical`, `status`, `supplier_name`, `price_ht`, `eotp`, `command_number`, `accountable_code`, `serial_number`, `thematic_group_id`, `work_group_id`, `ref_existante`, `storage_place`, `storage_description`, `user_name`, `user_mail`, `acquisition_date`) VALUES (NULL, 'Macbook retina', 5, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 'Pierrick', 'pierr@rick.com', '2012-07-04');
 
 COMMIT;

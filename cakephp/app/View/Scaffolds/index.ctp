@@ -25,7 +25,7 @@ function filter($field) {
 }
 ?>
 <div class="<?php echo $pluralVar;?> index">
-<h2><?php echo $pluralHumanName;?></h2>
+<h2>Liste <?php echo $pluralHumanName;?></h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
@@ -49,12 +49,11 @@ foreach (${$pluralVar} as ${$singularVar}):
 				}
 			}
 			if ($isKey !== true) {
-				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+				echo "<td>" . $this->Html->link(h(${$singularVar}[$modelClass][$_field]), array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey])) . "</td>";
 			}
 		}}
 
 		echo '<td class="actions">';
-		echo $this->Html->link(__d('cake', 'Détail'), array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]));
 		echo $this->Html->link(__d('cake', 'Éditer'), array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]));
 		echo $this->Form->postLink(
 			__d('cake', 'Suppr.'),
@@ -76,15 +75,15 @@ endforeach;
 	?></p>
 	<div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __d('cake', 'Précedent'), array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->prev('< ' . __d('cake', ''), array(), null, array('class' => 'prev disabled'));
 		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__d('cake', 'Suivant') .' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->next(__d('cake', '') .' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
 </div>
 <div class="actions">
-	<?php echo $this->element('menu') ?>
-	
-	<h3>Outils</h3>
-	<li><?php echo $this->Html->link(__d('cake', 'Nouveau %s', $singularHumanName), array('action' => 'add')); ?></li>
+	<?php 
+		echo $this->element('menu');
+		echo $this->element('tools_view');
+	?>
 </div>

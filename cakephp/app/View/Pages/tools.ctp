@@ -9,6 +9,10 @@
 		'controller' => 'categories')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Gérer les sous-catégories', array(
 		'controller' => 'subCategories')); ?></td></tr>
+	<tr><td><?php echo $this->Html->link('Gérer les groupes thématiques', array(
+		'controller' => 'thematic_groups')); ?></td></tr>
+	<tr><td><?php echo $this->Html->link('Gérer les groupes de travail', array(
+		'controller' => 'work_groups')); ?></td></tr>
 </table>	
 
 </div>

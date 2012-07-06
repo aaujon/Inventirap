@@ -33,6 +33,28 @@ class Utilisateur extends AppModel {
 			return 0;
 		}
 	}
+	
+	public function getRoleFromAuthenticationLevel($ldapUserAuthenticationLevel = 0)
+	{
+				switch ($ldapUserAuthenticationLevel) {
+				case 1:
+					return 'Apprenti';
+					break;
+				case 2:
+					return 'Responsable';
+					break;
+				case 3:
+					return 'Administrateur';
+					break;
+				case 4:
+					return 'Super Administrateur';
+					break;
+				default :
+					return 'Non authorisé';
+					break;
+			}
+	}
+	
 
 	var $validate = array(
         'ldap' => array(

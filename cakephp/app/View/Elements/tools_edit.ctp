@@ -1,11 +1,14 @@
 <h3 style="padding-top: 10px; margin-top: 20px; border-top: 1px solid #CCC;"><?php echo $pluralHumanName;?></h3>
 <ul>
-	<li><?php echo $this->Html->link('Retour à la liste', array('action' => 'index')); ?></li>
-	<li><?php echo $this->Html->link('Éditer ce '.strtolower($singularHumanName), array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey])); ?></li>
+	<li><?php 
+		echo $this->Html->link('<i class="icon-arrow-left"></i> Retour à la liste', 
+			array('action' => 'index'), array('escape' => false)); 
+	?></li>
+	<li><?php echo $this->Html->link('<i class="icon-pencil"></i> Éditer ce '.strtolower($singularHumanName), array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('escape' => false)); ?></li>
 	<li><?php echo $this->Form->postLink(
-			__d('cake', 'Suppr. ce '.strtolower($singularHumanName)),
+			'<i class="icon-trash"></i> Suppr. ce '.strtolower($singularHumanName),
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
-			null,
+			array('escape' => false),
 			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass][$primaryKey].' ?'
 		); ?></li>
 </ul>

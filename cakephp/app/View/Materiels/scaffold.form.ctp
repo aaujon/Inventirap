@@ -1,12 +1,12 @@
 <div class="<?php echo $pluralVar;?> form">
 <?php
 	if ($this->params['action'] == 'add')
-		echo '<h2>Ajouter un '.strtolower($singularHumanName).'</h2>';
+		echo '<h2><i class="icon-plus"></i> Ajouter un '.strtolower($singularHumanName).'</h2>';
 	else 
-		echo '<h2>Éditer un '.strtolower($singularHumanName).'</h2>';
+		echo '<h2><i class="icon-edit"></i> Éditer un '.strtolower($singularHumanName).'</h2>';
 	
 	echo $this->Form->create();
-	echo $this->Form->input('designation');
+	echo $this->Form->input('designation', array('label' => 'Désignation'));
 	if ($this->params['action'] == 'add') {
 		echo $this->Form->input('category_id', 
 			array('label' => 'Catégorie', 'empty' => 'Choisir une catégorie', 'selected' => '', 'style' => 'width: 200px'));

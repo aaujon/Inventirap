@@ -1,24 +1,17 @@
 <?php
-function filter($field) {
-	$whatToShow = array(
-		'designation',
-		'numero_irap',
-		'category_id'
-	);
-	foreach($whatToShow as $value) {
-		if ($value == $field)
-			return true;
-	}
-	return false;
-}
+$toShow = array(
+	'designation' => 'Désignation',
+	'numero_irap' => 'Numéro IRAP',
+	'category_id' => 'Catégorie'
+);
 ?>
 <div class="<?php echo $pluralVar;?> index">
-<h2>Liste des matériels</h2>
+<h2><i class="icon-list"></i> Liste des matériels</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
-<?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
-	<th><?php echo $this->Paginator->sort($_field);?></th>
-<?php } endforeach;?>
+<?php foreach ($toShow as $_field => $label): ?>
+	<th><?php echo $this->Paginator->sort($label);?></th>
+<?php endforeach;?>
 	<th style="text-align: center;">Actions</th>
 	<th style="text-align: center;">Status</th>
 </tr>
@@ -26,7 +19,7 @@ function filter($field) {
 $i = 0;
 foreach (${$pluralVar} as ${$singularVar}):
 	echo "<tr>";
-			foreach ($scaffoldFields as $_field) { if (filter($_field)) {
+			foreach ($toShow as $_field => $label) { 
 			$isKey = false;
 			if (!empty($associations['belongsTo'])) {
 				foreach ($associations['belongsTo'] as $_alias => $_details) {
@@ -43,16 +36,17 @@ foreach (${$pluralVar} as ${$singularVar}):
 				else	
 					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}	
-		}}
+		}
 		
 
 		echo '<td class="actions">';
-		echo $this->Html->link(__d('cake', 'Détail'), array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]));
-		echo $this->Html->link(__d('cake', 'Éditer'), array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]));
-		echo $this->Form->postLink(
-			__d('cake', 'Suppr.'),
+		echo $this->Html->link('<i class="icon-search"></i>', 
+			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+		echo $this->Html->link('<i class="icon-pencil"></i>', 
+			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+		echo $this->Form->postLink('<i class="icon-trash"></i>',
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
-			null,
+			array('style' => 'margin: 0 2px', 'escape' => false),
 			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
 		);
 		echo '</td><td class="actions" style="text-align: right;">';

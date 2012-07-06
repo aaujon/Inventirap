@@ -1,9 +1,9 @@
 <div class="<?php echo $pluralVar;?> form">
 <?php
 	if ($this->params['action'] == 'add')
-		echo '<h2>Ajouter un emprunt</h2>';
+		echo '<h2><i class="icon-plus"></i> Ajouter un emprunt</h2>';
 	else 
-		echo '<h2>Éditer un emprunt</h2>';
+		echo '<h2><i class="icon-edit"></i> Éditer un emprunt</h2>';
 
 	echo $this->Form->create();
 

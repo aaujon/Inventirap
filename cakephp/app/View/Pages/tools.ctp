@@ -1,5 +1,5 @@
 <div class="index">
-<h2>Outils</h2>
+<h2><i class="icon-wrench"></i> Outils</h2>
 <table cellpadding="0" cellspacing="0">
 	<tr><th>Actions</th></tr>
 	<tr><td><?php echo $this->Html->link('Gérer les utilisateurs', array(

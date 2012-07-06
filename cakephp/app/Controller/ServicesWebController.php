@@ -12,7 +12,7 @@ class ServicesWebController extends AppController {
 	}
 	
 	public function materiel($id = null) {
-		$mat = ClassRegistry::init('Material');
+		$mat = ClassRegistry::init('Materiel');
 		
 		$mat->id = $id;
 		

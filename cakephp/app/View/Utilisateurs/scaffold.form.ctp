@@ -9,7 +9,7 @@
 	echo $this->Form->create();
 	
 	$connection = ClassRegistry::init('LdapConnection');
-	$specialUsers = ClassRegistry::init('SpecialUser');
+	$utilisateurs = ClassRegistry::init('Utilisateur');
 	
 	$ldapUsers = array();
 	
@@ -22,7 +22,7 @@
 	}
 	
 	$inputRoles = array();
-	foreach($specialUsers->getAcceptedRoles() as $role)
+	foreach($utilisateurs->getAcceptedRoles() as $role)
 	{
 		$inputRoles[$role] = $role;
 	} 

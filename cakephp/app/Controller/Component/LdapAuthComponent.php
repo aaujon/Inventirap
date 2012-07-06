@@ -23,10 +23,10 @@ class LdapAuthComponent extends AuthComponent {
 	}
 
 	public function getPassword($request) {
-		return $this->request->data['SpecialUser']['password'];
+		return $this->request->data['Utilisateur']['password'];
 	}
 	
 	public function getLogin($request) {
-		return $this->request->data['SpecialUser']['ldap'];
+		return $this->request->data['Utilisateur']['ldap'];
 	}
 }

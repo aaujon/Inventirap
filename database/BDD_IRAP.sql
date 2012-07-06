@@ -124,10 +124,10 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
-INSERT INTO special_users (ldap, role) VALUES ("Cedric", "Super Administrateur");
-INSERT INTO special_users (ldap, role) VALUES ("Daniel", "Administrateur");
-INSERT INTO special_users (ldap, role) VALUES ("Gin", "Responsable");
-INSERT INTO special_users (ldap, role) VALUES ("Henri", "Apprenti");
+INSERT INTO utilisateurs (ldap, role) VALUES ("Cedric", "Super Administrateur");
+INSERT INTO utilisateurs (ldap, role) VALUES ("Daniel", "Administrateur");
+INSERT INTO utilisateurs (ldap, role) VALUES ("Gin", "Responsable");
+INSERT INTO utilisateurs (ldap, role) VALUES ("Henri", "Apprenti");
 
 -- -----------------------------------------------------
 -- Table `mydb`.`suivis`

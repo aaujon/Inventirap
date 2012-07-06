@@ -48,13 +48,11 @@ class UtilisateursController extends AppController {
 					$this->Session->write('LdapUserName', $this->LdapAuth->getLogin($this->request));
         			
 					// Get the user into the database
-					$users = $this->Utilisateurs->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request)))); 
+					$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request)))); 
 						
 					if(count($users) == 1){
 						// Save his authentication level into a session variable 
-						$this->Session->write('LdapUserAuthenticationLevel', $this->
-						
-						er->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
+						$this->Session->write('LdapUserAuthenticationLevel', $this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
 					}
 				$this->redirect('logged');
 			} else {

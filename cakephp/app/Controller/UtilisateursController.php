@@ -12,6 +12,7 @@ class UtilisateursController extends AppController {
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 
 		$this->LdapAuth->deny();
+		$this->LdapAuth->allow('login', 'logout', 'logged');
 		if(isset($ldapUserName))
 		{
 			if ($ldapUserAuthenticationLevel == 4) {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF0B5B3015A78FFA00263815 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */; };
+		AF0B5B3315A796C200263815 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B5B3215A796C200263815 /* Settings.m */; };
 		AF9BE9D315A21D7800F6F024 /* InformationViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9BE9D215A21D7800F6F024 /* InformationViewController_iPad.xib */; };
 		AF9BE9EB15A22DC200F6F024 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9EA15A22DC200F6F024 /* Product.m */; };
 		AF9BE9F215A22E0800F6F024 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9F115A22E0800F6F024 /* Property.m */; };
@@ -72,6 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
+		AF0B5B3115A796C200263815 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		AF0B5B3215A796C200263815 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		AF9BE9D215A21D7800F6F024 /* InformationViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationViewController_iPad.xib; sourceTree = "<group>"; };
 		AF9BE9E915A22DC200F6F024 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		AF9BE9EA15A22DC200F6F024 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
@@ -151,6 +156,8 @@
 				AF9BE9EA15A22DC200F6F024 /* Product.m */,
 				AF9BE9F015A22E0800F6F024 /* Property.h */,
 				AF9BE9F115A22E0800F6F024 /* Property.m */,
+				AF0B5B3115A796C200263815 /* Settings.h */,
+				AF0B5B3215A796C200263815 /* Settings.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 		AFE5E7EF15A073B200E32EE8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */,
 				AFE5E7F015A073B200E32EE8 /* Inventirap-Info.plist */,
 				AFE5E7F115A073B200E32EE8 /* InfoPlist.strings */,
 				AFE5E7F415A073B200E32EE8 /* main.m */,
@@ -382,6 +390,7 @@
 				AFE5CEBB15A7814D000CEAB7 /* second@2x.png in Resources */,
 				AFE5CEBE15A783A2000CEAB7 /* first.png in Resources */,
 				AFE5CEBF15A783A2000CEAB7 /* first@2x.png in Resources */,
+				AF0B5B3015A78FFA00263815 /* DefaultSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +410,7 @@
 				AFD1682C15A3607E0017418B /* XMLParser.m in Sources */,
 				AFD1683015A389CA0017418B /* CustomCell.m in Sources */,
 				AFE5CEB615A7804C000CEAB7 /* SettingsViewController.m in Sources */,
+				AF0B5B3315A796C200263815 /* Settings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "Settings.h"
 
 @interface SettingsViewController ()
 
@@ -28,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
 }
 
 - (void)viewDidUnload
@@ -43,7 +46,12 @@
 
 - (IBAction)resetButton:(id)sender
 {
-    [webServiceUrlTextField setText:@"http://myserver.com/webservice"];
+    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"DefaultSettings" ofType:@"plist"];
+    NSMutableDictionary *savedSettings = [[NSMutableDictionary alloc] initWithContentsOfFile: bundle];
+    
+    [[Settings sharedSettings] changeWebServiceUrl:[savedSettings objectForKey:@"WebServiceURL"]];
+    
+    [webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
 }
 
 - (IBAction)backgroundTouch:(id)sender {
@@ -52,13 +60,12 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSLog(@"Au revoir");
     [textField resignFirstResponder];
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSLog(@"Bonjour");
+    [[Settings sharedSettings] changeWebServiceUrl:textField.text];
 }
 @end

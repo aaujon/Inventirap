@@ -36,6 +36,11 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+	public $authLevelZero = array('login', 'logout', 'loged', 'display');
+	public $authLevelOne = array('login', 'logout', 'loged', 'display', 'index');
+	public $authLevelTwo = array('login', 'logout', 'loged', 'display', 'index', 'view', 'add');
+	public $authLevelThree = array('*');
+	
 	/*
 	 * This component is the app/Controller/Component/LdapAuthComponent.php
 	 */
@@ -58,52 +63,19 @@ class AppController extends Controller {
 		if(isset($ldapUserName))
 		{
 			if($ldapUserAuthenticationLevel == 1) {
-				$this->LdapAuth->allow('login', 'logout', 'loged', 'index');
+				$this->LdapAuth->allow($this->authLevelOne);
 			} elseif ($ldapUserAuthenticationLevel == 2) {
-				$this->LdapAuth->allow('login', 'logout', 'loged', 'index', 'view', 'add');
+				$this->LdapAuth->allow($this->authLevelTwo);
 			}  elseif ($ldapUserAuthenticationLevel == 3) {
-				$this->LdapAuth->allow('*');
+				$this->LdapAuth->allow($this->authLevelThree);
 			} else {
 				$this->LdapAuth->deny();
-				$this->LdapAuth->allow('login', 'logout', 'loged');
+				$this->LdapAuth->allow($this->authLevelZero);
 			}
 		}
 		else {
 			$this->LdapAuth->deny();
-			$this->LdapAuth->allow('login', 'logout', 'loged');
-		}
-	}
-
-	public function logout() {
-		$this->Session->delete('LdapUserName');
-		$this->Session->delete('LdapUserAuthenticationLevel');
-		$this->Session->destroy();
-
-		$this->LdapAuth->deny();
-		$this->LdapAuth->allow('login', 'logout', 'loged');
-	}
-
-	public function login() {
-
-		if ($this->request->is('post')) {
-
-				// The user exists into the ldap server
-				if($this->LdapAuth->connection($this->request))
-				{
-					// Save his name into a session variable
-					$this->Session->write('LdapUserName', $this->LdapAuth->getLogin($this->request));
-        			
-					// Get the user into the database
-					$users = $this->SpecialUser->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request)))); 
-						
-					if(count($users) == 1){
-						// Save his authentication level into a session variable 
-						$this->Session->write('LdapUserAuthenticationLevel', $this->SpecialUser->getAuthenticationLevelFromRole($users[0]['SpecialUser']['role']));
-					}
-				$this->redirect('loged');
-			} else {
-				$this->Session->setFlash(__('Invalid login, try again'));
-			}
+			$this->LdapAuth->allow($this->authLevelZero);
 		}
 	}
 }

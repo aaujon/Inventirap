@@ -7,7 +7,20 @@
 		echo '<h2>Éditer un utilisateur</h2>';
 
 	echo $this->Form->create();
-	echo $this->Form->input('ldap');
+	
+	$connection = ClassRegistry::init('LdapConnection');
+	
+	$ldapUsers = array();
+	
+	foreach($connection->getAllLdapUsers() as $userInformations)
+	{
+		if(!empty($userInformations['uid'][0]))
+		{
+			$ldapUsers[$userInformations['uid'][0]] = $userInformations['uid'][0];
+		}
+	}
+	
+	echo $this->Form->input('ldap', array('options' => $ldapUsers));
 	echo $this->Form->input('role', array('options' => array(
 		'Apprentice'=>'Apprentice',
 		'Responsible'=>'Responsible',

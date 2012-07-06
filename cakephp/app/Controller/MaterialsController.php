@@ -8,14 +8,30 @@ class MaterialsController extends AppController {
 		$this->LdapAuth->allow('*');
 	}
 	
-	public function changeStatus($id, $new_status) {
-		if($new_status == 'CREATED' || $new_status == 'ARCHIVED' || $new_status == 'VALIDATED') {
-			$this->Material->id = $id;
-            $this->Material->saveField('status', $new_status);	
-		}
+	// public function changeStatus($id, $new_status) {
+	//	if($new_status == 'CREATED' || $new_status == 'ARCHIVED' || $new_status == 'VALIDATED') {
+	//		$this->Material->id = $id;
+        //  $this->Material->saveField('status', $new_status);	
+	// }
+
+	public function statusToBeArchived($id) {
+                $this->Material->id = $id;
+                $this->Material->saveField('status', 'TOBEARCHIVED');
+		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+        }
+
+	public function statusArchived($id) {
+                $this->Material->id = $id;
+                $this->Material->saveField('status', 'ARCHIVED');
+		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+        }
+
+	public function statusValidated($id) {
+		$this->Material->id = $id;
+		$this->Material->saveField('status', 'VALIDATED');
 		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
 	}
-	
+
 	public function search() { }
 	
 	public function find() {

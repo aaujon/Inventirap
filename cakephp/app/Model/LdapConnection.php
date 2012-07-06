@@ -42,8 +42,8 @@ class LdapConnection extends AppModel {
 			</ul>'
 			);
 	}
-
-	public function ldapAuthentication($login)
+	
+	public function getAllLdapUsers()
 	{
 		try {
 
@@ -51,17 +51,41 @@ class LdapConnection extends AppModel {
 			{
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
-				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=' . $login);
+				$results = ldap_search($ldapConnection, $this->baseDn, 'uid=*');
 				
 				$res = ldap_get_entries($ldapConnection, $results);
 	
-				return $res['count'] == 1;
+				return $res;
 				
 			}
 		}
 		catch(Exception $e)
 		{
 			throw  $e;
+		}
+		
+		return false;
+	}
+
+	public function ldapAuthentication($login, $password)
+	{
+		try {
+
+			if($this->checkConfiguration())
+			{
+				$ldapConnection = ldap_connect($this->host, $this->port);
+				
+//				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
+//				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=' . $login);
+//				$res = ldap_get_entries($ldapConnection, $results);
+//				return $res['count'] == 1;
+				
+				return ldap_bind($ldapConnection, $this->authenticationType . '=' . $login . ',' . $this->baseDn, $password);
+			}
+		}
+		catch(Exception $e)
+		{
+			// throw  $e;
 		}
 		
 		return false;

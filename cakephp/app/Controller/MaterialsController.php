@@ -4,12 +4,8 @@ class MaterialsController extends AppController {
 	
 	public $scaffold;
 	
-	public function changeStatus($id, $new_status) {
-		if($new_status == 'CREATED' || $new_status == 'ARCHIVED' || $new_status == 'VALIDATED') {
-			$this->Material->id = $id;
-            $this->Material->saveField('status', $new_status);	
-		}
-		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+	public function beforeFilter() {
+		$this->LdapAuth->allow('*');
 	}
 
 //	/*
@@ -38,6 +34,30 @@ class MaterialsController extends AppController {
 //		}
 //	}
 	
+	// public function changeStatus($id, $new_status) {
+	//	if($new_status == 'CREATED' || $new_status == 'ARCHIVED' || $new_status == 'VALIDATED') {
+	//		$this->Material->id = $id;
+        //  $this->Material->saveField('status', $new_status);	
+	// }
+
+	public function statusToBeArchived($id) {
+                $this->Material->id = $id;
+                $this->Material->saveField('status', 'TOBEARCHIVED');
+		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+        }
+
+	public function statusArchived($id) {
+                $this->Material->id = $id;
+                $this->Material->saveField('status', 'ARCHIVED');
+		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+        }
+
+	public function statusValidated($id) {
+		$this->Material->id = $id;
+		$this->Material->saveField('status', 'VALIDATED');
+		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+	}
+
 	public function search() { }
 	
 	public function find() {
@@ -47,5 +67,10 @@ class MaterialsController extends AppController {
 			)))
 		);
 	}
+	
+//	public function webservice() {
+//		$this->set('materials', $this->Material->find('all'));
+////		$this->set(compact($this->Material->find('all'), 'id'));
+//	}
 }
 ?>

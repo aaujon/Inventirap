@@ -1,12 +1,12 @@
 <?php
 class Category extends AppModel {
 	public $name = 'Category';
-	public $displayField = 'name';
+	public $displayField = 'nom';
 	
-	var $hasMany = 'SubCategory';
+	var $hasMany = 'SousCategory';
 
 	var $validate = array(
-		'name' => array(        
+		'nom' => array(        
 			'required' => array(            
 				'rule' => 'notEmpty',              
 				'message' => 'Le champ doit être rempli.'         

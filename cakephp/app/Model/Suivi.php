@@ -1,25 +1,25 @@
 <?php
-class History extends AppModel {
-	public $name = 'History';
+class Suivi extends AppModel {
+	public $name = 'Suivi';
 	
-	public $belongsTo = 'Material';
+	public $belongsTo = 'Materiel';
 			
 	var $validate = array(
-		'intervention_type' => array(    
+		'type_intervention' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,         
 				'message' => 'Le champ doit être valide.'        
 			),      
 		),
-		'organism_informations' => array(    
+		'organisme' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              
 				'message' => 'Le champ doit être valide.'        
 			),      
 		),
-		'comments' => array(    
+		'commentaire' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              

@@ -2,7 +2,7 @@
 <div class="<?php echo $pluralVar;?> view">
 <h2><?php 
 	echo ${$singularVar}[$modelClass]['designation'];
-	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['irap_number'].')</span>';
+	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
 ?></h2>
 
 <h3 style="cursor: pointer; text-decoration: underline;" onclick="hide_show('informations');">Informations</h3>
@@ -10,24 +10,24 @@
 <table>
 	<tr><th style="width: 250px;"></th><th></th></tr>
 <?php
-	if(${$singularVar}[$modelClass]['isAdministrative'] && ${$singularVar}[$modelClass]['isTechnical'])
+	if(${$singularVar}[$modelClass]['materiel_administratif'] && ${$singularVar}[$modelClass]['materiel_technique'])
 		$type = 'Administratif et technique';
-	else if (${$singularVar}[$modelClass]['isAdministrative'])
+	else if (${$singularVar}[$modelClass]['materiel_administratif'])
 		$type = 'Administratif';
-	else if (${$singularVar}[$modelClass]['isTechnical'])
+	else if (${$singularVar}[$modelClass]['materiel_technique'])
 		$type = 'Technique';
 	else
 		$type = 'Aucun'; 
 
-	$sousCategorie = $this->Html->link(${$singularVar}['SubCategory']['name'], array(
-				'controller' => 'sub_categories',
+	$sousCategorie = $this->Html->link(${$singularVar}['SousCategory']['nom'], array(
+				'controller' => 'sous_categories',
 				'action' => 'view',
-				${$singularVar}['SubCategory']['id']));
-	$groupeThematique = $this->Html->link(${$singularVar}['ThematicGroup']['name'], array(
+				${$singularVar}['SousCategory']['id']));
+	$groupeThematique = $this->Html->link(${$singularVar}['ThematicGroup']['nom'], array(
 				'controller' => 'thematic_groups',
 				'action' => 'view',
 				${$singularVar}['ThematicGroup']['id']));
-	$groupeTravail = $this->Html->link(${$singularVar}['WorkGroup']['name'], array(
+	$groupeTravail = $this->Html->link(${$singularVar}['WorkGroup']['nom'], array(
 				'controller' => 'work_groups',
 				'action' => 'view',
 				${$singularVar}['WorkGroup']['id']));
@@ -38,17 +38,17 @@
 	displayElement('Sous catégorie', $sousCategorie);
 	displayElement('Groupe thématique', $groupeThematique);
 	displayElement('Groupe de travail', $groupeTravail);
-	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['acquisition_date']);
-	displayElement('Organisme', ${$singularVar}[$modelClass]['organism']);
+	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
+	displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
 	displayElement('Status', ${$singularVar}[$modelClass]['status']);
-	displayElement('Fournisseur', ${$singularVar}[$modelClass]['supplier_name']);
-	displayElement('Prix (HT)', ${$singularVar}[$modelClass]['price_ht'].'€');
+	displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
+	displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
 	displayElement('EOTP', ${$singularVar}[$modelClass]['eotp']);
-	displayElement('N° commande', ${$singularVar}[$modelClass]['command_number']);
-	displayElement('Code comptable', ${$singularVar}[$modelClass]['accountable_code']);
-	displayElement('N° de série', ${$singularVar}[$modelClass]['serial_number']);
+	displayElement('N° commande', ${$singularVar}[$modelClass]['numero_commande']);
+	displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
+	displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);
 	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['full_storage']);
-	displayElement('Responsable', $this->Html->link(${$singularVar}[$modelClass]['user_name'], 'mailto:'.${$singularVar}[$modelClass]['user_mail']));
+	displayElement('Responsable', $this->Html->link(${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
 ?>
 </table>
 </div>

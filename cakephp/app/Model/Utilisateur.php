@@ -1,8 +1,8 @@
 <?php
 
-class SpecialUser extends AppModel {
+class Utilisateur extends AppModel {
 
-	var $name = 'SpecialUser';
+	var $name = 'Utilisateur';
 
 	var $ldap;
 	var $role;

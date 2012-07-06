@@ -4,16 +4,33 @@ class MaterialsController extends AppController {
 	
 	public $scaffold;
 	
+	/*
+	 * This method is called before each action to check if the user is allwed to execute the action
+	 */
 	public function beforeFilter() {
-		$this->LdapAuth->allow('*');
-	}
-
+		
+		parent::beforeFilter();
+		
+		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+		
+			if($ldapUserAuthenticationLevel == 1 || $ldapUserAuthenticationLevel == 2) {
+				$this->LdapAuth->allow('add', 'statusToBeArchived');
+			}
+			
+			if($ldapUserAuthenticationLevel == 2 || $ldapUserAuthenticationLevel == 3) {
+				$this->LdapAuth->allow('statusValidated');
+			}
+			
+			if($ldapUserAuthenticationLevel == 3) {
+				$this->LdapAuth->allow('statusArchived');
+			}
+		}
+	
 //	/*
 //	 * This method is called before each action to check if the user is allwed to execute the action
 //	 */
 //	public function beforeFilter() {
 //		$ldapUserName = $this->Session->read('LdapUserName');
-//		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 //
 //		if(isset($ldapUserName))
 //		{

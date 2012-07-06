@@ -32,18 +32,18 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 /*
- * This Controller is the main controller all authentications which are defined here are inherit into all others sub controllers 
+ * This Controller is the main controller all authentications which are defined here are inherit into all others sub controllers
  */
 class AppController extends Controller {
 
-	// 	'statusValidated', 'statusArchived', 'statusToBeArchived', 'statusToBeValidated'	
-	
+	// 	'statusValidated', 'statusArchived', 'statusToBeArchived', 'statusToBeValidated'
+
 	public $authLevelUnauthorized = array('login');
 	public $authLevelApprentice = array('login', 'logout', 'logged', 'display', 'index');
 	public $authLevelResponsible = array('login', 'logout', 'logged', 'display', 'index', 'view', 'add');
 	public $authLevelAdministrator = array('*');
 	public $authLevelSuperAdministrator = array('*');
-	
+
 	/*
 	 * This component is the app/Controller/Component/LdapAuthComponent.php
 	 */
@@ -63,22 +63,28 @@ class AppController extends Controller {
 		$ldapUserName = $this->Session->read('LdapUserName');
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 
+		$res = $ldapUserName . ' - ' . $ldapUserAuthenticationLevel;
+		
+		$this->LdapAuth->deny();
 		if(isset($ldapUserName))
 		{
-			if($ldapUserAuthenticationLevel == 1) {
-				$this->LdapAuth->allow($this->authLevelOne);
-			} elseif ($ldapUserAuthenticationLevel == 2) {
-				$this->LdapAuth->allow($this->authLevelTwo);
-			}  elseif ($ldapUserAuthenticationLevel == 3) {
-				$this->LdapAuth->allow($this->authLevelThree);
-			} else {
-				$this->LdapAuth->deny();
-				$this->LdapAuth->allow($this->authLevelZero);
+
+			switch ($ldapUserAuthenticationLevel) {
+				case 0:
+					$this->LdapAuth->allow($this->authLevelUnauthorized);
+					break;
+				case 1:
+					$this->LdapAuth->allow($this->authLevelApprentice);
+					break;
+				case 2:
+					$this->LdapAuth->allow($this->authLevelResponsible);
+				case 3:
+					$this->LdapAuth->allow($this->authLevelAdministrator);
+					break;
+				case 4:
+					$this->LdapAuth->allow($this->authLevelSuperAdministrator);
+					break;
 			}
-		}
-		else {
-			$this->LdapAuth->deny();
-			$this->LdapAuth->allow($this->authLevelZero);
 		}
 	}
 }

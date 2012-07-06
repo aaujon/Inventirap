@@ -9,23 +9,26 @@
 	echo $this->Form->create();
 	
 	$connection = ClassRegistry::init('LdapConnection');
+	$specialUsers = ClassRegistry::init('SpecialUser');
 	
 	$ldapUsers = array();
 	
 	foreach($connection->getAllLdapUsers() as $userInformations)
 	{
-		if(!empty($userInformations['uid'][0]))
+		if(!empty($userInformations[$connection->getAuthenticationType()][0]))
 		{
-			$ldapUsers[$userInformations['uid'][0]] = $userInformations['uid'][0];
+			$ldapUsers[$userInformations[$connection->getAuthenticationType()][0]] = $userInformations[$connection->getAuthenticationType()][0];
 		}
 	}
 	
+	$inputRoles = array();
+	foreach($specialUsers->getAcceptedRoles() as $role)
+	{
+		$inputRoles[$role] = $role;
+	} 
+	
 	echo $this->Form->input('ldap', array('options' => $ldapUsers));
-	echo $this->Form->input('role', array('options' => array(
-		'Apprentice'=>'Apprentice',
-		'Responsible'=>'Responsible',
-		'Administrator'=>'Administrator',
-		'Super Administrator'=>'Super Administrator')));
+	echo $this->Form->input('role', array('options' => $inputRoles));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>

@@ -51,7 +51,7 @@ class LdapConnection extends AppModel {
 			{
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
-				$results = ldap_search($ldapConnection, $this->baseDn, 'uid=*');
+				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=*');
 				
 				$res = ldap_get_entries($ldapConnection, $results);
 	
@@ -67,6 +67,11 @@ class LdapConnection extends AppModel {
 		return false;
 	}
 
+	public function getAuthenticationType()
+	{
+		return $this->authenticationType;
+	}
+	
 	public function ldapAuthentication($login, $password)
 	{
 		try {
@@ -74,11 +79,6 @@ class LdapConnection extends AppModel {
 			if($this->checkConfiguration())
 			{
 				$ldapConnection = ldap_connect($this->host, $this->port);
-				
-//				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
-//				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=' . $login);
-//				$res = ldap_get_entries($ldapConnection, $results);
-//				return $res['count'] == 1;
 				
 				return ldap_bind($ldapConnection, $this->authenticationType . '=' . $login . ',' . $this->baseDn, $password);
 			}

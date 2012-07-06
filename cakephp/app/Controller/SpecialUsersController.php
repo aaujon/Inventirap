@@ -11,18 +11,17 @@ class SpecialUsersController extends AppController {
 		$ldapUserName = $this->Session->read('LdapUserName');
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 
+		$this->LdapAuth->deny();
 		if(isset($ldapUserName))
 		{
-			if ($ldapUserAuthenticationLevel == 3) {
-				$this->LdapAuth->allow($this->authLevelThree);
+			if ($ldapUserAuthenticationLevel == 4) {
+				$this->LdapAuth->allow($this->authLevelSuperAdministrator);
 			} else {
-				$this->LdapAuth->deny();
-				$this->LdapAuth->allow($this->authLevelZero);
+				$this->LdapAuth->allow($this->authLevelUnauthorized);
 			}
 		}
 		else {
-			$this->LdapAuth->deny();
-			$this->LdapAuth->allow($this->authLevelZero);
+			$this->LdapAuth->allow($this->authLevelUnauthorized);
 		}
 	}
 
@@ -36,7 +35,7 @@ class SpecialUsersController extends AppController {
 		$this->Session->destroy();
 
 		$this->LdapAuth->deny();
-		$this->LdapAuth->allow('login', 'logout', 'logged');
+		$this->LdapAuth->allow($this->authLevelUnauthorized);
 	}
 
 	public function login() {

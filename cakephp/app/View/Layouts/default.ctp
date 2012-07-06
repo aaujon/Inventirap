@@ -28,14 +28,14 @@ $cakeDescription = __d('cake_dev', 'Inventirap - Inventaire administratif et tec
 				'url' => '/')); ?>
 			<div style="float: right; color: black; padding-top: 30px;">
 				<?php 
-					//if (isset(logged)) {
-					//	echo 'Bienvenue '.$nomDuLoginLDAP.'<br/>';
-					//	echo $this->Html->link('Se déconnecter', '/'); 
-					//}
-					//else {
+					if (isset($userName)) {
+						echo 'Bienvenue '.$userName.'<br/>';
+						echo $this->Html->link('Se déconnecter', array('controller' => 'Utilisateurs', 'action' => 'logout')); 
+					}
+					else {
 						echo 'Bienvenue invité<br/>';
-						echo $this->Html->link('Se connecter', '/'); 
-					//}
+						echo $this->Html->link('Se connecter', array('controller' => 'Utilisateurs', 'action' => 'login')); 
+					}
 				?>
 			</div>
 		</div>

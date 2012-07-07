@@ -1,4 +1,7 @@
-<?php echo $this->Html->script('script'); ?>
+<?php 
+	$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+	echo $this->Html->script('script'); 
+?>
 <div class="<?php echo $pluralVar;?> view">
 <h2><?php 
 	echo ${$singularVar}[$modelClass]['designation'];
@@ -39,6 +42,23 @@
 				'action' => 'view',
 				${$singularVar}['WorkGroup']['id']));
 
+	$statut = ${$singularVar}[$modelClass]['status'].'<span class="actions">';
+	if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
+		if (($ldapUserAuthenticationLevel >= 2) && ($ldapUserAuthenticationLevel != 4))
+			$statut .= ' '.$this->Html->link('Valider', 
+				array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
+		if (($ldapUserAuthenticationLevel >= 1) && ($ldapUserAuthenticationLevel != 4))
+			$statut .= ' '.$this->Html->link('Archiver', 
+				array('action' => 'statusToBeArchived', ${$singularVar}[$modelClass][$primaryKey]));
+	}
+	if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
+		if ($ldapUserAuthenticationLevel == 3)
+			$statut .= ' '.$this->Html->link('Archiver', 
+				array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
+	}
+	$statut .= '</span>';
+
+
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
 	displayElement('Type du matériel', $type);
 	displayElement('Catégorie', $categorie);
@@ -47,7 +67,7 @@
 	displayElement('Groupe de travail', $groupeTravail);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
-	displayElement('Status', ${$singularVar}[$modelClass]['status']);
+	displayElement('Statut', $statut);
 	displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
 	displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
 	displayElement('EOTP', ${$singularVar}[$modelClass]['eotp']);

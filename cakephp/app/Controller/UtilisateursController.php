@@ -44,11 +44,16 @@ class UtilisateursController extends AppController {
 			{
 				// Save his name into a session variable
 				$this->Session->write('LdapUserName', $this->LdapAuth->getLogin($this->request));
-				 
+				
 				// Get the user into the database
 				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request))));
 
 				if(count($users) == 1){
+					
+					$connection = ClassRegistry::init('LdapConnection');
+					$attributes = $connection->getUserAttributes($this->LdapAuth->getLogin($this->request));
+					$this->Session->write('LdapUserMail', $attributes[0]['mail'][0]);
+					
 					// Save his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', $this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
 				}

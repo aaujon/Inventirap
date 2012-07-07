@@ -30,6 +30,7 @@ class UtilisateursController extends AppController {
 	public function logout() {
 		$this->Session->delete('LdapUserName');
 		$this->Session->delete('LdapUserAuthenticationLevel');
+		$this->Session->delete('LdapUserMail');
 		$this->Session->destroy();
 
 		$this->LdapAuth->deny();
@@ -53,6 +54,11 @@ class UtilisateursController extends AppController {
 					$connection = ClassRegistry::init('LdapConnection');
 					$attributes = $connection->getUserAttributes($this->LdapAuth->getLogin($this->request));
 					$this->Session->write('LdapUserMail', $attributes[0]['mail'][0]);
+					
+					/*
+					 * Testing instruction !
+					 */
+					$this->Session->setFlash('Your email is : ' . $this->Session->read('LdapUserMail'));
 					
 					// Save his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', $this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));

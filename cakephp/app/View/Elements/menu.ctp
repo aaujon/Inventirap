@@ -7,6 +7,8 @@
 	'controller' => 'suivis', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Liste des emprunts', array(
 	'controller' => 'emprunts', 'action' => 'index')); ?></li>
+	<li><?php echo $this->Html->link('Liste des utilisateurs', array(
+	'controller' => 'utilisateurs', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Recherche', array(
 	'controller' => 'materiels', 'action' => 'search')); ?></li>
 	<li><?php echo $this->Html->link('Outils', array(

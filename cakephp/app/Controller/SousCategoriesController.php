@@ -2,6 +2,16 @@
 class SousCategoriesController extends AppController {
     public $scaffold;
     
+    public function beforeFilter() {
+
+		parent::beforeFilter();
+
+		/*
+		 * Waiting for instructions
+		 */
+		$this->LdapAuth->allow('*');
+    }
+    
     public function getByCategory() {
 		$category_id = $this->request->data['Materiel']['category_id'];
 		$subcategories = $this->SousCategory->find('list', array(

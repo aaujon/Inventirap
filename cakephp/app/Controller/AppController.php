@@ -36,11 +36,7 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-	public $authLevelUnauthorized = array('login'); // auth level 0
-	public $authLevelApprentice = array('login', 'logout', 'logged', 'display', 'index', 'view'); // auth level 1
-	public $authLevelResponsible = array('login', 'logout', 'logged', 'display', 'index', 'view'); // auth level 2
-	public $authLevelAdministrator = array('login', 'logout', 'logged', 'display', 'index', 'view'); // auth level 3
-	public $authLevelSuperAdministrator = array('*'); // auth level 4
+	public static $authLevelUnauthorized = array('login', 'logout', 'logged', 'display'); // auth level 0
 
 	/*
 	 * This component is the app/Controller/Component/LdapAuthComponent.php
@@ -58,31 +54,12 @@ class AppController extends Controller {
 	 * This method is called before each action to check if the user is allwed to execute the action
 	 */
 	public function beforeFilter() {
-		$ldapUserName = $this->Session->read('LdapUserName');
-		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
-
-		$res = $ldapUserName . ' - ' . $ldapUserAuthenticationLevel;
-		
 		$this->LdapAuth->deny();
-		if(isset($ldapUserName))
-		{
-
-			switch ($ldapUserAuthenticationLevel) {
-				case 0:
-					$this->LdapAuth->allow($this->authLevelUnauthorized);
-					break;
-				case 1:
-					$this->LdapAuth->allow($this->authLevelApprentice);
-					break;
-				case 2:
-					$this->LdapAuth->allow($this->authLevelResponsible);
-				case 3:
-					$this->LdapAuth->allow($this->authLevelAdministrator);
-					break;
-				case 4:
-					$this->LdapAuth->allow($this->authLevelSuperAdministrator);
-					break;
-			}
+		$this->LdapAuth->allow($this->authLevelUnauthorized);
+		
+		$userName = $this->Session->read('LdapUserName');
+		if (isset($userName)) {
+			$this->LdapAuth->allow('display', 'index', 'view');
 		}
 	}
 }

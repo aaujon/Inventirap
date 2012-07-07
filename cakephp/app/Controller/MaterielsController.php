@@ -13,17 +13,19 @@ class MaterielsController extends AppController {
 
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 
-		if($ldapUserAuthenticationLevel == 1 || $ldapUserAuthenticationLevel == 2) {
-			$this->LdapAuth->allow('add', 'statusToBeArchived');
+		switch ($ldapUserAuthenticationLevel) {
+			case 3:
+				$this->Session->setFlash('level 3');
+				$this->LdapAuth->allow('statusArchived');
+			case 2:
+				$this->Session->setFlash('level 2');
+				$this->LdapAuth->allow('statusValidated');
+			case 1:
+				$this->Session->setFlash('level 1');
+				$this->LdapAuth->allow('add', 'statusToBeArchived');
+				break;
 		}
 			
-		if($ldapUserAuthenticationLevel == 2 || $ldapUserAuthenticationLevel == 3) {
-			$this->LdapAuth->allow('statusValidated');
-		}
-			
-		if($ldapUserAuthenticationLevel == 3) {
-			$this->LdapAuth->allow('statusArchived');
-		}
 	}
 
 	public function statusToBeArchived($id) {

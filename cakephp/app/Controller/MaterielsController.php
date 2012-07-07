@@ -3,7 +3,6 @@ class MaterielsController extends AppController {
 
 	public $scaffold;
 	public $helpers = array('Js');
-	public $components = array('QrCode');
 
 	/*
 	 * This method is called before each action to check if the user is allwed to execute the action

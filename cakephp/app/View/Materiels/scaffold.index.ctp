@@ -12,10 +12,10 @@
 <h2><i class="icon-list"></i> Liste des matériels</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
-<?php foreach ($toShow as $_field => $label): ?>
-	<th><?php echo $this->Paginator->sort($_field, $label);?></th>
-<?php endforeach;?>
-	<th style="text-align: center;">Actions</th>
+	<?php foreach ($toShow as $_field => $label): ?>
+	<th><?php echo $this->Paginator->sort($_field, $label); ?></th>
+	<?php endforeach;?>
+	<th style="width:90px;"></th>
 </tr>
 <?php
 $i = 0;

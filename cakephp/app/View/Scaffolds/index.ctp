@@ -15,7 +15,7 @@ function filter($field) {
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
 	<th><?php echo $this->Paginator->sort($_field);?></th>
 <?php } endforeach;?>
-	<th style="text-align: center;"><?php echo __d('cake', 'Actions');?></th>
+	<th style="width:90px;"></th>
 </tr>
 <?php
 $i = 0;

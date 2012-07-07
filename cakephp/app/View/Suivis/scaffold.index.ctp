@@ -13,7 +13,7 @@ $toShow = array(
 <?php foreach ($toShow as $_field => $label): ?>
 	<th><?php echo $this->Paginator->sort($_field, $label);?></th>
 <?php endforeach;?>
-	<th></th>
+	<th style="width:90px;"></th>
 </tr>
 <?php
 $i = 0;

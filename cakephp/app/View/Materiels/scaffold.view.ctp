@@ -8,9 +8,9 @@
 	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
 ?></h2>
 
-<h3 id="t_informations">
+<h3 id="t_informations" style="cursor: pointer;">
 	<i class="icon-chevron-down" style="font-size: 14px;" id="i_informations"></i> 
-	<span style="cursor: pointer; text-decoration: underline;">Informations</span>
+	<span style="text-decoration: underline;">Informations</span>
 </h3>
 <div id="informations" style="margin-bottom: 20px;">
 <table>
@@ -81,14 +81,15 @@
 </div>
 
 
-<h3 id="t_suivis">
+<h3 id="t_suivis" style="cursor: pointer;">
 	<i class="icon-chevron-up" style="font-size: 14px;" id="i_suivis"></i> 
-	<span style="cursor: pointer; text-decoration: underline;">Suivi(s) du matériel</span>
+	<span style="text-decoration: underline;">Suivi(s) du matériel (<?php echo sizeof(${$singularVar}['Suivi']); ?>)</span>
 </h3>
 <div id="suivis" style="margin-bottom: 20px; display: none;">
+	<?php if (sizeof(${$singularVar}['Suivi']) == 0) { echo 'Aucun suivi pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 
-			<th>Organisme</th><th>Date du contrôle</th><th>Date prochain contrôle</th><th>Type d'intervention</th><th>Détail</th>
+			<th>Organisme</th><th>Date du contrôle</th><th>Date prochain contrôle</th><th>Type d'intervention</th><th style="width:50px;">Détail</th>
 		</tr> 
 		
 		<?php foreach (${$singularVar}['Suivi'] as $suivi): ?> 
@@ -103,19 +104,21 @@
 		</tr> 
 		<?php endforeach; ?> 
 	</table> 
+	<?php } ?>
 </div>
 
 
 
 
-<h3 id="t_emprunts">
+<h3 id="t_emprunts" style="cursor: pointer;">
 	<i class="icon-chevron-up" style="font-size: 14px;" id="i_emprunts"></i> 
-	<span style="cursor: pointer; text-decoration: underline;">Emprunt(s) du matériel</span>
+	<span style="text-decoration: underline;">Emprunt(s) du matériel (<?php echo sizeof(${$singularVar}['Emprunt']); ?>)</span>
 </h3>
 <div id="emprunts" style="display: none;">
+	<?php if (sizeof(${$singularVar}['Emprunt']) == 0) { echo 'Aucun emprunt pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 
-			<th>Responsable</th><th>Date de l'emprunt</th><th>Date de retour</th><th>Détail</th>
+			<th>Responsable</th><th>Date de l'emprunt</th><th>Date de retour</th><th style="width:50px;">Détail</th>
 		</tr> 
 		
 		<?php foreach (${$singularVar}['Emprunt'] as $emprunt): ?> 
@@ -129,6 +132,7 @@
 		</tr> 
 		<?php endforeach; ?> 
 	</table>
+	<?php } ?>
 </div>
 
 

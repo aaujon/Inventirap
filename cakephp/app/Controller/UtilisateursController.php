@@ -9,9 +9,14 @@ class UtilisateursController extends AppController {
 	 */
 	public function beforeFilter() {
 
-		$this->LdapAuth->deny();
+		/*
+		 * The parent filter allows index and view
+		 * For the Users, there is only the SuperAdministrators who can do it
+		 */
 		
+		$this->LdapAuth->deny();
 		$this->LdapAuth->allow($this->authLevelUnauthorized);
+
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 		if ($ldapUserAuthenticationLevel == 4) {
 			$this->LdapAuth->allow('display', 'index', 'view', 'add', 'edit', 'delete');

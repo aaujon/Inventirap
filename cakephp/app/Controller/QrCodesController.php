@@ -5,6 +5,14 @@ class QrCodesController extends AppController {
 	var $helpers = array('Html', 'Form');
 	var $name = 'QrCodes';
 
+	public function beforeFilter() {
+		
+		/*
+		 * The QrCode is a tool, everybody can access to its functions
+		 */
+		$this->LdapAuth->allow('*');
+    }
+	
 	public function index() {
 		$message = $this->Session->read('qrCodeMessage');
 

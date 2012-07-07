@@ -10,7 +10,7 @@ $toShow = array(
 <table cellpadding="0" cellspacing="0">
 <tr>
 <?php foreach ($toShow as $_field => $label): ?>
-	<th><?php echo $this->Paginator->sort($label);?></th>
+	<th><?php echo $this->Paginator->sort($_field, $label);?></th>
 <?php endforeach;?>
 	<th style="text-align: center;">Actions</th>
 	<th style="text-align: center;">Status</th>
@@ -41,21 +41,24 @@ foreach (${$pluralVar} as ${$singularVar}):
 
 		echo '<td class="actions">';
 		echo $this->Html->link('<i class="icon-search"></i>', 
-			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Détails', 'style' => 'margin: 0 2px', 'escape' => false));
 		echo $this->Html->link('<i class="icon-pencil"></i>', 
-			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Éditer', 'style' => 'margin: 0 2px', 'escape' => false));
 		echo $this->Form->postLink('<i class="icon-trash"></i>',
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
-			array('style' => 'margin: 0 2px', 'escape' => false),
+			array('title' => 'Supprimer', 'style' => 'margin: 0 2px', 'escape' => false),
 			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
 		);
 		echo '</td><td class="actions" style="text-align: right;">';
 		if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
-			echo $this->Html->link(__d('cake', 'Valider'), array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
+			// echo $this->Html->link(__d('cake', 'Valider'), array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
+			// echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
+			echo $this->Html->link('Valider', array('controller' => 'Materiels', 'action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
+			echo $this->Html->link('Archiver', array('controller' => 'Materiels', 'action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
 		}
 		if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
+			// echo $this->Html->link('Archiver', array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
+			echo $this->Html->link('Archiver', array('controller' => 'Materiels', 'action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
 		}
 		echo '</td>';
 	echo '</tr>';

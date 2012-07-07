@@ -5,7 +5,10 @@
 	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
 ?></h2>
 
-<h3 style="cursor: pointer; text-decoration: underline;" onclick="hide_show('informations');">Informations</h3>
+<h3 id="t_informations">
+	<i class="icon-chevron-down" style="font-size: 14px;" id="i_informations"></i> 
+	<span style="cursor: pointer; text-decoration: underline;">Informations</span>
+</h3>
 <div id="informations" style="margin-bottom: 20px;">
 <table>
 	<tr><th style="width: 250px;"></th><th></th></tr>
@@ -58,15 +61,54 @@
 </div>
 
 
-<h3 style="cursor: pointer; text-decoration: underline;" onclick="hide_show('suivis');">Suivis</h3>
-<div id="suivis" style="border: 1px solid #CCC; margin-bottom: 20px; padding: 10px; display: none;">
-TODO
+<h3 id="t_suivis">
+	<i class="icon-chevron-up" style="font-size: 14px;" id="i_suivis"></i> 
+	<span style="cursor: pointer; text-decoration: underline;">Suivi(s) du matériel</span>
+</h3>
+<div id="suivis" style="margin-bottom: 20px; display: none;">
+	<table> 
+		<tr> 
+			<th>Organisme</th><th>Date du contrôle</th><th>Date prochain contrôle</th><th>Type d'intervention</th><th>Détail</th>
+		</tr> 
+		
+		<?php foreach (${$singularVar}['Suivi'] as $suivi): ?> 
+		<tr>
+			<td><?php echo $suivi['organisme']; ?></td>
+			<td><?php echo $suivi['date_controle']; ?></td> 
+			<td><?php echo $suivi['date_prochain_controle']; ?></td>
+			<td><?php echo $suivi['type_intervention']; ?></td>
+			<td class="actions"><?php echo $this->Html->link('<i class="icon-search"></i>', 
+				array('controller' => 'suivis', 'action' => 'view', $suivi['id']), 
+				array('escape' => false, 'style' => 'margin:0')); ?></td> 
+		</tr> 
+		<?php endforeach; ?> 
+	</table> 
 </div>
 
 
-<h3 style="cursor: pointer; text-decoration: underline;" onclick="hide_show('emprunts');">Emprunts</h3>
-<div id="emprunts" style="border: 1px solid #CCC; margin-bottom: 20px; padding: 10px; display: none;">
-TODO
+
+
+<h3 id="t_emprunts">
+	<i class="icon-chevron-up" style="font-size: 14px;" id="i_emprunts"></i> 
+	<span style="cursor: pointer; text-decoration: underline;">Emprunt(s) du matériel</span>
+</h3>
+<div id="emprunts" style="display: none;">
+	<table> 
+		<tr> 
+			<th>Responsable</th><th>Date de l'emprunt</th><th>Date de retour</th><th>Détail</th>
+		</tr> 
+		
+		<?php foreach (${$singularVar}['Emprunt'] as $emprunt): ?> 
+		<tr>
+			<td><?php echo $emprunt['responsable']; ?></td> 
+			<td><?php echo $emprunt['date_emprunt']; ?></td>
+			<td><?php echo $emprunt['date_retour_emprunt']; ?></td>
+			<td class="actions"><?php echo $this->Html->link('<i class="icon-search"></i>', 
+				array('controller' => 'emprunts', 'action' => 'view', $emprunt['id']), 
+				array('escape' => false, 'style' => 'margin:0')); ?></td> 
+		</tr> 
+		<?php endforeach; ?> 
+	</table>
 </div>
 
 

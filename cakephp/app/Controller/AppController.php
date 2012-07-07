@@ -54,12 +54,15 @@ class AppController extends Controller {
 	 * This method is called before each action to check if the user is allwed to execute the action
 	 */
 	public function beforeFilter() {
+		
 		$this->LdapAuth->deny();
-		$this->LdapAuth->allow($this->authLevelUnauthorized);
 		
 		$userName = $this->Session->read('LdapUserName');
 		if (isset($userName)) {
-			$this->LdapAuth->allow('display', 'index', 'view');
+			$this->LdapAuth->allow('*');
+		}
+		else {
+			$this->LdapAuth->allow($this->authLevelUnauthorized);
 		}
 	}
 }

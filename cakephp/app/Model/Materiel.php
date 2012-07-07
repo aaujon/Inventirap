@@ -123,5 +123,15 @@ class Materiel extends AppModel {
 			),      
 		)
 	);
+	
+	function beforeSave() {
+		//Générateur de numéro IRAP
+		if (empty($this->data['Materiel']['numero_irap'])) {
+			$year = substr($this->data['Materiel']['date_acquisition'], 0, 4);
+			$this->data['Materiel']['numero_irap'] = $this->requestAction(
+				array('controller' => 'materiels', 'action' => 'getIrapNumber', $year));
+		}
+		return true;
+	}
 }
 ?>

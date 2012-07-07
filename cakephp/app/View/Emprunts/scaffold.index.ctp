@@ -1,31 +1,24 @@
 <?php
-function filter($field) {
-	$whatToShow = array(
-		'materiel_id',
-		'date_emprunt',
-		'date_retour_emprunt'
-	);
-	foreach($whatToShow as $value) {
-		if ($value == $field)
-			return true;
-	}
-	return false;
-}
+$toShow = array(
+	'materiel_id' => 'Matériel',
+	'date_emprunt' => 'Date de l\'emprunt',
+	'date_retour_emprunt' => 'Date de retour'
+);
 ?>
 <div class="<?php echo $pluralVar;?> index">
 <h2><i class="icon-list"></i> Liste des emprunts</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
-<?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
-	<th><?php echo $this->Paginator->sort($_field);?></th>
-<?php } endforeach;?>
+<?php foreach ($toShow as $_field => $label): ?>
+	<th><?php echo $this->Paginator->sort($_field, $label);?></th>
+<?php endforeach;?>
 	<th style="text-align: center;">Actions</th>
 </tr>
 <?php
 $i = 0;
 foreach (${$pluralVar} as ${$singularVar}):
 	echo "<tr>";
-		foreach ($scaffoldFields as $_field) { if (filter($_field)) {
+		foreach ($toShow as $_field => $label) {
 			$isKey = false;
 			if (!empty($associations['belongsTo'])) {
 				foreach ($associations['belongsTo'] as $_alias => $_details) {
@@ -39,7 +32,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 			if ($isKey !== true) {
 				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}	
-		}}
+		}
 		
 
 		echo '<td class="actions">';

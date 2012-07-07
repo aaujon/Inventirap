@@ -13,7 +13,9 @@ $cakeDescription = __d('cake_dev', 'Inventirap - Inventaire administratif et tec
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('font-awesome');
-
+		
+		echo $this->Html->script('jquery.min'); 
+		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -28,7 +30,6 @@ $cakeDescription = __d('cake_dev', 'Inventirap - Inventaire administratif et tec
 				'height' => '100px',
 				'url' => '/')); ?>
 			<div style="float: right; color: black; padding-top: 30px;">
-			
 				<?php
 					$userName = $this->Session->read('LdapUserName');
 					if (isset($userName)) {

@@ -372,8 +372,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`, `date_acquisition`) VALUES (NULL, 'Macbook air', 1, 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 'Stephane', 'steph@ne.fr', '2012-07-04');
-INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`, `date_acquisition`) VALUES (NULL, 'Macbook retina', 1, 3, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 'Pierrick', 'pierr@rick.com', '2012-07-04');
+INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`, `date_acquisition`) VALUES (1, 'Macbook air', 1, 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 'Stephane', 'steph@ne.fr', '2012-07-04');
+INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`, `date_acquisition`) VALUES (2, 'Macbook retina', 1, 3, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 'Pierrick', 'pierr@rick.com', '2012-07-04');
 
 COMMIT;
 
@@ -386,5 +386,26 @@ INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Cedric',
 INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
 INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Gin', 'Responsable');
 INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Henri', NULL);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `mydb`.`suivis`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mydb`;
+INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 1, '2012-03-03', '2012-03-03', 'Maintenance', 'IRAP', 3, 'Super cooolos');
+INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 2, '2012-03-03', '2012-03-03', 'Calibration', 'IRAP', 1, 'Ca sert pas à grand chose');
+INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 2, '2012-03-03', '2012-03-03', 'Maintenance', 'IRAP', 10, 'Pas souvent lui la maintenance');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `mydb`.`emprunts`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mydb`;
+INSERT INTO `mydb`.`emprunts` (`id`, `materiel_id`, `date_emprunt`, `date_retour_emprunt`, `piece`, `emprunt_interne`, `laboratoire`, `responsable`) VALUES (NULL, 1, '2011-01-01', '2013-01-01', 'Souris', 0, 'IRAP', 'Dark Vador');
+INSERT INTO `mydb`.`emprunts` (`id`, `materiel_id`, `date_emprunt`, `date_retour_emprunt`, `piece`, `emprunt_interne`, `laboratoire`, `responsable`) VALUES (NULL, 1, '2010-04-05', '2010-12-12', 'Clavier', 1, 'IRAP', 'Woody Allen');
 
 COMMIT;

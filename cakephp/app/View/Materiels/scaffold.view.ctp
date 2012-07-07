@@ -1,13 +1,16 @@
-<?php echo $this->Html->script('script'); ?>
+<?php 
+	$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+	echo $this->Html->script('script'); 
+?>
 <div class="<?php echo $pluralVar;?> view">
 <h2><?php 
 	echo ${$singularVar}[$modelClass]['designation'];
 	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
 ?></h2>
 
-<h3 id="t_informations">
+<h3 id="t_informations" style="cursor: pointer;">
 	<i class="icon-chevron-down" style="font-size: 14px;" id="i_informations"></i> 
-	<span style="cursor: pointer; text-decoration: underline;">Informations</span>
+	<span style="text-decoration: underline;">Informations</span>
 </h3>
 <div id="informations" style="margin-bottom: 20px;">
 <table>
@@ -39,6 +42,23 @@
 				'action' => 'view',
 				${$singularVar}['WorkGroup']['id']));
 
+	$statut = ${$singularVar}[$modelClass]['status'].'<span class="actions">';
+	if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
+		if (($ldapUserAuthenticationLevel >= 2) && ($ldapUserAuthenticationLevel != 4))
+			$statut .= ' '.$this->Html->link('Valider', 
+				array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
+		if (($ldapUserAuthenticationLevel >= 1) && ($ldapUserAuthenticationLevel != 4))
+			$statut .= ' '.$this->Html->link('Archiver', 
+				array('action' => 'statusToBeArchived', ${$singularVar}[$modelClass][$primaryKey]));
+	}
+	if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
+		if ($ldapUserAuthenticationLevel == 3)
+			$statut .= ' '.$this->Html->link('Archiver', 
+				array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
+	}
+	$statut .= '</span>';
+
+
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
 	displayElement('Type du matériel', $type);
 	displayElement('Catégorie', $categorie);
@@ -47,7 +67,7 @@
 	displayElement('Groupe de travail', $groupeTravail);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
-	displayElement('Status', ${$singularVar}[$modelClass]['status']);
+	displayElement('Statut', $statut);
 	displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
 	displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
 	displayElement('EOTP', ${$singularVar}[$modelClass]['eotp']);
@@ -61,14 +81,15 @@
 </div>
 
 
-<h3 id="t_suivis">
+<h3 id="t_suivis" style="cursor: pointer;">
 	<i class="icon-chevron-up" style="font-size: 14px;" id="i_suivis"></i> 
-	<span style="cursor: pointer; text-decoration: underline;">Suivi(s) du matériel</span>
+	<span style="text-decoration: underline;">Suivi(s) du matériel (<?php echo sizeof(${$singularVar}['Suivi']); ?>)</span>
 </h3>
 <div id="suivis" style="margin-bottom: 20px; display: none;">
+	<?php if (sizeof(${$singularVar}['Suivi']) == 0) { echo 'Aucun suivi pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 
-			<th>Organisme</th><th>Date du contrôle</th><th>Date prochain contrôle</th><th>Type d'intervention</th><th>Détail</th>
+			<th>Organisme</th><th>Date du contrôle</th><th>Date prochain contrôle</th><th>Type d'intervention</th><th style="width:50px;">Détail</th>
 		</tr> 
 		
 		<?php foreach (${$singularVar}['Suivi'] as $suivi): ?> 
@@ -83,19 +104,21 @@
 		</tr> 
 		<?php endforeach; ?> 
 	</table> 
+	<?php } ?>
 </div>
 
 
 
 
-<h3 id="t_emprunts">
+<h3 id="t_emprunts" style="cursor: pointer;">
 	<i class="icon-chevron-up" style="font-size: 14px;" id="i_emprunts"></i> 
-	<span style="cursor: pointer; text-decoration: underline;">Emprunt(s) du matériel</span>
+	<span style="text-decoration: underline;">Emprunt(s) du matériel (<?php echo sizeof(${$singularVar}['Emprunt']); ?>)</span>
 </h3>
 <div id="emprunts" style="display: none;">
+	<?php if (sizeof(${$singularVar}['Emprunt']) == 0) { echo 'Aucun emprunt pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 
-			<th>Responsable</th><th>Date de l'emprunt</th><th>Date de retour</th><th>Détail</th>
+			<th>Responsable</th><th>Date de l'emprunt</th><th>Date de retour</th><th style="width:50px;">Détail</th>
 		</tr> 
 		
 		<?php foreach (${$singularVar}['Emprunt'] as $emprunt): ?> 
@@ -109,6 +132,7 @@
 		</tr> 
 		<?php endforeach; ?> 
 	</table>
+	<?php } ?>
 </div>
 
 

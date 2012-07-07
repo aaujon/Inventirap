@@ -1,19 +1,21 @@
 <?php
-$toShow = array(
-	'designation' => 'Désignation',
-	'numero_irap' => 'Numéro IRAP',
-	'category_id' => 'Catégorie'
-);
+	$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+
+	$toShow = array(
+		'designation' => 'Désignation',
+		'numero_irap' => 'Numéro IRAP',
+		'category_id' => 'Catégorie',
+		'status' => 'Statut'
+	);
 ?>
 <div class="<?php echo $pluralVar;?> index">
 <h2><i class="icon-list"></i> Liste des matériels</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
-<?php foreach ($toShow as $_field => $label): ?>
-	<th><?php echo $this->Paginator->sort($_field, $label);?></th>
-<?php endforeach;?>
-	<th style="text-align: center;">Actions</th>
-	<th style="text-align: center;">Status</th>
+	<?php foreach ($toShow as $_field => $label): ?>
+	<th><?php echo $this->Paginator->sort($_field, $label); ?></th>
+	<?php endforeach;?>
+	<th style="width:90px;"></th>
 </tr>
 <?php
 $i = 0;
@@ -44,35 +46,13 @@ foreach (${$pluralVar} as ${$singularVar}):
 			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Détails', 'style' => 'margin: 0 2px', 'escape' => false));
 		echo $this->Html->link('<i class="icon-pencil"></i>', 
 			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Éditer', 'style' => 'margin: 0 2px', 'escape' => false));
-		
-	    $ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 	    if ($ldapUserAuthenticationLevel > 1) {
 			echo $this->Form->postLink('<i class="icon-trash"></i>',
 				array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 				array('title' => 'Supprimer', 'style' => 'margin: 0 2px', 'escape' => false),
 				__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
 			);
-		}	
-		
-		echo '</td><td class="actions" style="text-align: right;">';
-		/*
-		 * I think i's possible to improve the UI with the right access.
-		 * It have to be validate by the client...
-		 */
-		if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
-			if (($ldapUserAuthenticationLevel >= 2) && ($ldapUserAuthenticationLevel != 4)) {
-				echo $this->Html->link(__d('cake', 'Valider'), array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
-			}
-			if (($ldapUserAuthenticationLevel >= 1) && ($ldapUserAuthenticationLevel != 4)) {
-				echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusToBeArchived', ${$singularVar}[$modelClass][$primaryKey]));
-			}
 		}
-		if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
-			if ($ldapUserAuthenticationLevel == 3) {
-				echo $this->Html->link('Archiver', array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
-			}
-		}
-		
 		echo '</td>';
 	echo '</tr>';
 

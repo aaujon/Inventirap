@@ -2,7 +2,8 @@
 $toShow = array(
 	'materiel_id' => 'Matériel',
 	'date_emprunt' => 'Date de l\'emprunt',
-	'date_retour_emprunt' => 'Date de retour'
+	'date_retour_emprunt' => 'Date de retour',
+	'responsable' => 'Responsable'
 );
 ?>
 <div class="<?php echo $pluralVar;?> index">
@@ -12,7 +13,7 @@ $toShow = array(
 <?php foreach ($toShow as $_field => $label): ?>
 	<th><?php echo $this->Paginator->sort($_field, $label);?></th>
 <?php endforeach;?>
-	<th style="text-align: center;">Actions</th>
+	<th style="width:90px;"></th>
 </tr>
 <?php
 $i = 0;

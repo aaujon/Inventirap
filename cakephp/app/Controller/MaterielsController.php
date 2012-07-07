@@ -4,11 +4,7 @@ class MaterielsController extends AppController {
 	public $scaffold;
 	public $helpers = array('Js');
 
-	/*
-	 * This method is called before each action to check if the user is allwed to execute the action
-	 */
 	public function beforeFilter() {
-
 		$this->LdapAuth->deny();
 		$this->LdapAuth->allow($this->authLevelUnauthorized);
 
@@ -21,19 +17,16 @@ class MaterielsController extends AppController {
 	private function checkAuthentication($action = 'null') {
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 
-		if ((strcmp($action, 'statusToBeArchived') == 0) && (($ldapUserAuthenticationLevel >= 1) && ($ldapUserAuthenticationLevel != 4))) {
+		if ((strcmp($action, 'statusToBeArchived') == 0) && (($ldapUserAuthenticationLevel >= 1) && ($ldapUserAuthenticationLevel != 4)))
 			return true;
-		}
 
-		if ((strcmp($action, 'statusValidated') == 0) && (($ldapUserAuthenticationLevel >= 2) && ($ldapUserAuthenticationLevel != 4))) {
+		if ((strcmp($action, 'statusValidated') == 0) && (($ldapUserAuthenticationLevel >= 2) && ($ldapUserAuthenticationLevel != 4)))
 			return true;
-		}
 
-		if ((strcmp($action, 'statusArchived') == 0) && ($ldapUserAuthenticationLevel == 3)) {
+		if ((strcmp($action, 'statusArchived') == 0) && ($ldapUserAuthenticationLevel == 3))
 			return true;
-		}
 
-		$this->Session->setFlash("Vous n'etes pas authorisé à effectuer cette action");
+		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');
 		$this->redirect(array('controller' => 'Materiels', 'action'=> 'index'));
 	}
 

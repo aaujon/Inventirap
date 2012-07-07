@@ -34,10 +34,11 @@
 	echo $this->Form->input('thematic_group_id', array('label' => 'Groupe thématique', 'style' => 'width: 100px'));
 	echo $this->Form->input('work_group_id', array('label' => 'Groupe de travail', 'style' => 'width: 100px'));
 	echo $this->Form->input('ref_existante', array('label' => 'Référence existante'));
-	echo $this->Form->input('nom_responsable', array('label' => 'Nom du responsable'));
-	echo $this->Form->input('email_responsable', array('label' => 'Email du responsable'));
+	if ($this->params['action'] == 'add') {
+		echo $this->Form->input('nom_responsable', array('label' => 'Nom du responsable', 'value' => $this->Session->read('LdapUserName'), 'disabled' => 'disabled'));
+		echo $this->Form->input('email_responsable', array('label' => 'Email du responsable', 'value' => $this->Session->read('LdapUserMail'), 'disabled' => 'disabled'));
+	}
 	echo $this->Form->hidden('numero_irap');
-	// echo $this->Form->end(__d('cake', 'Valider'));
 	echo $this->Form->end('Valider');
 ?>
 </div>

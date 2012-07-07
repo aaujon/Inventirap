@@ -12,6 +12,7 @@ $cakeDescription = __d('cake_dev', 'Inventirap - Inventaire administratif et tec
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('font-awesome');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

@@ -10,8 +10,8 @@
 	<li><?php echo $this->Html->link('<i class="icon-list"></i> Liste des emprunts', 
 		array('controller' => 'emprunts', 'action' => 'index'),
 		array('escape' => false)); ?></li>
-	<li><?php echo $this->Html->link('<i class="icon-search"></i> Recherche', array(
-	'controller' => 'materiels', 'action' => 'search'),
+	<li><?php echo $this->Html->link('<i class="icon-filter"></i> Recherche', array(
+	'controller' => 'materiels', 'action' => 'find'),
 		array('escape' => false)); ?></li>
 	<li><?php echo $this->Html->link('<i class="icon-wrench"></i> Outils', array(
 	'controller' => 'pages', 'action' => 'tools'),

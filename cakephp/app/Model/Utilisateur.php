@@ -2,6 +2,7 @@
 
 class Utilisateur extends AppModel {
 	var $name = 'Utilisateur';
+	var $displayField = 'ldap';
 
 	private $acceptedRoles = array ('Apprenti', 'Responsable', 'Administrateur', 'Super Administrateur');
 	

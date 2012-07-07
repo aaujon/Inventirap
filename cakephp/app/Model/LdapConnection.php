@@ -51,11 +51,6 @@ class LdapConnection extends AppModel {
 				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=*');
 				$res = ldap_get_entries($ldapConnection, $results);
 				
-				//Suppression de "l'utilisateur" 'users' qui n'en est pas un !
-				foreach ($res as $i => $value)
-					if($value['cn'][0] == 'users')
-					    unset($res[$i]);
-				    
 				return $res;
 			}
 		}

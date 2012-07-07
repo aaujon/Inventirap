@@ -77,6 +77,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   `materiel_administratif` TINYINT(1) NULL ,
   `materiel_technique` TINYINT(1) NULL ,
   `status` VARCHAR(15) NULL DEFAULT 'CREATED' ,
+  `date_acquisition` DATE NULL ,
   `fournisseur` VARCHAR(20) NULL ,
   `prix_ht` FLOAT UNSIGNED NULL ,
   `eotp` VARCHAR(45) NULL ,
@@ -90,7 +91,6 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   `lieu_detail` VARCHAR(45) NULL ,
   `nom_responsable` VARCHAR(45) NULL ,
   `email_responsable` VARCHAR(45) NULL ,
-  `date_acquisition` DATE NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_administrative_materials_sub_categories1` (`sous_category_id` ASC) ,
   INDEX `fk_materials_thematic_group1` (`thematic_group_id` ASC) ,
@@ -372,8 +372,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`, `date_acquisition`) VALUES (1, 'Macbook air', 1, 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 'Stephane', 'steph@ne.fr', '2012-07-04');
-INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`, `date_acquisition`) VALUES (2, 'Macbook retina', 1, 3, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 'Pierrick', 'pierr@rick.com', '2012-07-04');
+INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `date_acquisition`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`) VALUES (1, 'Macbook air', 1, 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', '2012-07-04', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 'Cedric', 'Cedric.Hillembrand@irap.omp.eu');
+INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `date_acquisition`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`) VALUES (2, 'Macbook retina', 1, 3, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', '2012-07-04', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 'Cedric', 'Cedric.Hillembrand@irap.omp.eu');
 
 COMMIT;
 

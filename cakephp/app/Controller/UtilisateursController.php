@@ -31,6 +31,11 @@ class UtilisateursController extends AppController {
 		$this->Session->delete('LdapUserName');
 		$this->Session->delete('LdapUserAuthenticationLevel');
 		$this->Session->delete('LdapUserMail');
+		
+		$fileName = $_SESSION['Config']['userAgent'];
+		@unlink('/var/www/Inventirap/cakephp/app/tmp/qrcodes/' . $fileName . '.png');
+		
+		
 		$this->Session->destroy();
 
 		$this->LdapAuth->deny();

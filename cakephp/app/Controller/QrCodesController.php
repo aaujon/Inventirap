@@ -5,14 +5,6 @@ class QrCodesController extends AppController {
 	var $helpers = array('Html', 'Form');
 	var $name = 'QrCodes';
 
-	public function beforeFilter() {
-		
-		/*
-		 * The QrCode is a tool, everybody can access to its functions
-		 */
-		$this->LdapAuth->allow('*');
-    }
-	
 	public function index() {
 		$message = $this->Session->read('qrCodeMessage');
 
@@ -20,7 +12,7 @@ class QrCodesController extends AppController {
 		{
 			App::import('Vendor', 'phpqrcode/qrlib');
 
-			QRcode::png($this->Session->read('qrCodeMessage'));
+			QRcode::png($message);
 
 			$this->Session->delete('qrCodeMessage');
 		}
@@ -33,9 +25,16 @@ class QrCodesController extends AppController {
 			$this->redirect('index');
 		}
 	}
-	public function qrCode($message) {
-		App::import('Vendor', 'phpqrcode/qrlib');
-		QRcode::png($message);
-		$this->Session->delete();
+
+	public function creer($message) {
+
+		$userName = $this->Session->read('LdapUserName');
+		if (isset($userName)) {
+			App::import('Vendor', 'phpqrcode/qrlib');
+
+			$fileName = $_SESSION['Config']['userAgent'];
+
+			QRcode::png($message, '/var/www/Inventirap/cakephp/app/tmp/qrcodes/' . $fileName . '.png');
+		}
 	}
 }

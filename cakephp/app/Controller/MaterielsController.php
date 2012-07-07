@@ -13,8 +13,10 @@ class MaterielsController extends AppController {
 		$this->LdapAuth->allow($this->authLevelUnauthorized);
 
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
-		if (isset($ldapUserAuthenticationLevel)) {
+		if (($ldapUserAuthenticationLevel > 1) && ($ldapUserAuthenticationLevel <= 4)) {
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search', 'delete');
+		} elseif ($ldapUserAuthenticationLevel == 1) {
+			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search');
 		}
 	}
 

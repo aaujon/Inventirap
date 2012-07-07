@@ -9,8 +9,9 @@ class UtilisateursController extends AppController {
 	 */
 	public function beforeFilter() {
 
-		parent::beforeFilter();
+		$this->LdapAuth->deny();
 		
+		$this->LdapAuth->allow($this->authLevelUnauthorized);
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 		if ($ldapUserAuthenticationLevel == 4) {
 			$this->LdapAuth->allow('display', 'index', 'view', 'add', 'edit', 'delete');
@@ -42,8 +43,6 @@ class UtilisateursController extends AppController {
 				// Get the user into the database
 				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request))));
 
-				$this->Session->setFlash('user = ' . $this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
-					
 				if(count($users) == 1){
 					// Save his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', $this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));

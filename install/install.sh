@@ -37,3 +37,9 @@ sed "s/192.168.1.65/$ldapIp/" /var/www/Inventirap/cakephp/app/Config/database.ph
 echo "LDAP port"
 read ldapPort
 sed "s/389/$ldapPort/" /var/www/Inventirap/cakephp/app/Config/database.php
+
+# Ajouter les droits en ecriture pour la creation des qrcodes
+chmod -R 777 /var/www/Inventirap/cakephp/app/Vendor/phpqrcode/test-errors.txt
+chmod -R 777 /var/www/Inventirap/cakephp/app/Vendor/phpqrcode/errors.txt
+mkdir /var/www/Inventirap/cakephp/app/tmp/qrcodes
+chmod -R 777 /var/www/Inventirap/cakephp/app/tmp/qrcodes/

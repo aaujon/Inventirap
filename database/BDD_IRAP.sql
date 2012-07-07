@@ -385,7 +385,7 @@ USE `mydb`;
 INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Cedric', 'Super Administrateur');
 INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
 INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Gin', 'Responsable');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Henri', NULL);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Henri', 'Apprenti');
 
 COMMIT;
 

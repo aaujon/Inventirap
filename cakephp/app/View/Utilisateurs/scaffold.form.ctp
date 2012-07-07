@@ -6,29 +6,29 @@
 	else 
 		echo '<h2>Éditer un utilisateur</h2>';
 
-	echo $this->Form->create();
-	
 	$connection = ClassRegistry::init('LdapConnection');
 	$utilisateurs = ClassRegistry::init('Utilisateur');
 	
 	$ldapUsers = array();
 	
 	foreach($connection->getAllLdapUsers() as $userInformations)
-	{
 		if(!empty($userInformations[$connection->getAuthenticationType()][0]))
-		{
-			$ldapUsers[$userInformations[$connection->getAuthenticationType()][0]] = $userInformations[$connection->getAuthenticationType()][0];
-		}
-	}
+			$ldapUsers[$userInformations[$connection->getAuthenticationType()][0]] 
+				= $userInformations[$connection->getAuthenticationType()][0];
 	
 	$inputRoles = array();
 	foreach($utilisateurs->getAcceptedRoles() as $role)
-	{
 		$inputRoles[$role] = $role;
-	} 
 	
-	echo $this->Form->input('ldap', array('options' => $ldapUsers));
-	echo $this->Form->input('role', array('options' => $inputRoles));
+	echo $this->Form->create();
+	if ($this->params['action'] == 'add')
+		echo $this->Form->input('ldap', 
+			array('options' => $ldapUsers, 'empty' => 'Choisir un utilisateur', 'selected' => ''));
+	else 
+		echo $this->Form->input('ldap', 
+			array('options' => $ldapUsers, 'empty' => 'Choisir un utilisateur', 'disabled' => true));
+	echo $this->Form->input('role', 
+		array('options' => $inputRoles));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>

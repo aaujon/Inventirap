@@ -45,24 +45,23 @@ class LdapConnection extends AppModel {
 	
 	public function getAllLdapUsers() {
 		try {
-
-			if($this->checkConfiguration())
-			{
+			if($this->checkConfiguration()) {
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
 				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=*');
-				
 				$res = ldap_get_entries($ldapConnection, $results);
-	
-				return $res;
 				
+				//Suppression de "l'utilisateur" 'users' qui n'en est pas un !
+				foreach ($res as $i => $value)
+					if($value['cn'][0] == 'users')
+					    unset($res[$i]);
+				    
+				return $res;
 			}
 		}
-		catch(Exception $e)
-		{
+		catch(Exception $e) {
 			throw  $e;
 		}
-		
 		return false;
 	}
 	
@@ -74,7 +73,6 @@ class LdapConnection extends AppModel {
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
 				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=' . $userName);
-				
 				$res = ldap_get_entries($ldapConnection, $results);
 	
 				return $res;

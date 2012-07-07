@@ -69,8 +69,10 @@
 	displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
 	displayElement('Statut', $statut);
 	displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
-	displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
-	displayElement('EOTP', ${$singularVar}[$modelClass]['eotp']);
+	if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
+		displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
+		displayElement('EOTP', ${$singularVar}[$modelClass]['eotp']);
+	}
 	displayElement('N° commande', ${$singularVar}[$modelClass]['numero_commande']);
 	displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
 	displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);

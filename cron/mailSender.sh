@@ -47,5 +47,15 @@ while IFS= read -r line; do
     echo "C'est aujourd'hui que vous devez effectuer la maintenant du materiel : $designation. Email = $email";
 done < $file;
 
+echo "SELECT email_responsable, designation FROM materiels WHERE UNIX_TIMESTAMP(date_acquisition) - UNIX_TIMESTAMP(NOW()) >= 157680000;" | mysql -u `echo $userBddName` --password=`echo $userBddPassword` `echo $bddName` | sed -e '1d' > `echo $file`;
+
+while IFS= read -r line; do
+    email=`echo $line | cut -d' ' -f1`;
+    designation=`echo $line | sed -e "s/$email//"` ;
+
+    echo "Il y a plus de cinq ans que le materiel $designation est entré dans l'inventaire. Voulez-vous le concerver ? Email = $email";
+done < $file;
+
+
 # clean te directory
 rm $file;

@@ -11,8 +11,8 @@
     	array('label' => 'Catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_categories, 'style' => 'width: 200px')); 
     echo $this->Form->input('s_sous_category_id', 
     	array('label' => 'Sous catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_sous_categories, 'style' => 'width: 200px')); 
-    echo $this->Form->input('s_nom_responsable', 
-    	array('label' => 'Utilisateur responsable', 'empty' => 'Tous', $selected, 'options' => $s_nom_responsable, 'style' => 'width: 200px')); 
+    echo $this->Form->input('s_utilisateur_id', 
+    	array('label' => 'Utilisateur responsable', 'empty' => 'Tous', $selected, 'options' => $s_utilisateurs, 'style' => 'width: 200px')); 
     echo $this->Form->input('s_status', array(
     	'label' => 'Statut', 'empty' => 'Tous', $selected, 
     	'options' => array('CREATED' => 'Créé', 'VALIDATED' => 'Validé', 'TOBEARCHIVED' => 'À archiver', 'ARCHIVED' => 'Archivé'), 

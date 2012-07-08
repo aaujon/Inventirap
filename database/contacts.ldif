@@ -95,6 +95,22 @@ uid: jtoto
 uidnumber: 1004
 userpassword: ldap
 
+# Entry 7: cn=Externe,ou=users,dc=irap,dc=omp,dc=eu
+dn: cn=Externe,ou=users,dc=irap,dc=omp,dc=eu
+cn: Externe
+gidnumber: 500
+givenname: Externe
+homedirectory: /home/users/others
+loginshell: /bin/sh
+mail: Externe@irap.fr
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+sn: Externe
+uid: EExterne
+uidnumber: 1005
+userpassword: ldap
+
 # Entry 7: cn=users,ou=users,dc=irap,dc=omp,dc=eu
 dn: cn=users,ou=users,dc=irap,dc=omp,dc=eu
 cn: users

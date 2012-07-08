@@ -28,9 +28,9 @@
 				<table cellpadding="0" cellspacing="0" style="width: 400px;">
 					<tr><th>Actions</th></tr>
 					<tr><td><?php echo $this->Html->link('Voir les matériels à valider', array(
-						'controller' => 'categories')); ?></td></tr>
+						'controller' => 'materiels', 'action' => 'find', 'toValidate')); ?></td></tr>
 					<tr><td><?php echo $this->Html->link('Voir les matériels à sortir de l\'inventaire', array(
-						'controller' => 'sous_categories')); ?></td></tr>
+						'controller' => 'materiels', 'action' => 'find', 'toBeArchived')); ?></td></tr>
 				</table>	
 				<?php
 			}

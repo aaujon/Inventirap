@@ -26,7 +26,7 @@
 				<th>Catégorie</th>
 				<th>Statut</th>
 				<th>Responsable</th>
-				<th></th>
+				<th style="width:50px;">Détail</th>
 			</tr> 
 			
 			<?php foreach ($results as $material): ?> 
@@ -36,7 +36,11 @@
 				<td><?php echo $this->Html->link($material['Category']['nom'], array('controller' => 'categories', 'action' => 'view', $material['Category']['id']));?></td>
 				<td><?php echo $material['Materiel']['status']; ?></td>
 				<td><?php echo $material['Materiel']['nom_responsable']; ?></td>
-				<td></td>
+				<td class="actions"><?php 
+					echo $this->Html->link('<i class="icon-search"></i>', 
+						array('controller' => 'materiels', 'action' => 'view', $material['Materiel']['id']), 
+						array('escape' => false, 'style' => 'margin:0')); ?>
+				</td>
 			</tr> 
 			<?php endforeach; ?> 
 		</table> 

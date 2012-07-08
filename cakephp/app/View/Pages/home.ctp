@@ -13,14 +13,8 @@
 		else {
 			//Utilisateur connecté
 			echo '<p>Vous êtes connecté avec l\'utilisateur <b>' . $userName . '</b> ';
-				echo 'et avec le niveau d\'autentification <b>';
-				switch ($userAuth) {
-					case 1: echo 'Apprenti'; break;	
-					case 2: echo 'Responsable'; break;	
-					case 3: echo 'Administrateur'; break;	
-					case 4: echo 'Super administrateur'; break;	
-					default : $userAuth;
-				}
+			echo 'et avec le niveau d\'autentification <b>';
+			echo ClassRegistry::init('Utilisateur')->getRoleFromAuthenticationLevel($userAuth);	
 			echo '</b>.</p>';
 			if ($userAuth >= 3) {
 				//Utilisateur admin/super admin

@@ -27,13 +27,19 @@ class Utilisateur extends AppModel {
 	}
 	
 	public function getRoleFromAuthenticationLevel($userAuth = 0) {
-			switch ($userAuth) {
-				case 1: return 'Apprenti';
-				case 2: return 'Responsable';
-				case 3: return 'Administrateur';
-				case 4: return 'Super Administrateur';
-			}
+		if ($userAuth < 1 || $userAuth > 4)
 			return 'Non autorisé';
+		return $this->acceptedRoles[$userAuth-1];
+	}
+	
+	public function getLdapUsers() {
+		$connection = ClassRegistry::init('LdapConnection');
+		$ldapUsers = array();
+		foreach($connection->getAllLdapUsers() as $userInformations)
+			if(!empty($userInformations[$connection->getAuthenticationType()][0]))
+				$ldapUsers[$userInformations[$connection->getAuthenticationType()][0]] 
+					= $userInformations[$connection->getAuthenticationType()][0];
+		return $ldapUsers;
 	}
 	
 

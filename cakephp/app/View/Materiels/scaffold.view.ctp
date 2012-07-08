@@ -78,13 +78,8 @@
 	displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
 	displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);
 	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['full_storage']);
-	
-	$utilisateurs = ClassRegistry::init('Utilisateur');
-	$user = $utilisateurs->find('all', array(
-                'conditions' => array(
-                    'id' => ${$singularVar}[$modelClass]['utilisateur_id']
-                )));
-	displayElement('Responsable', $this->Html->link($user[0]['Utilisateur']['ldap'], 'mailto:'.$user[0]['Utilisateur']['email']));
+	displayElement('Responsable', $this->Html->link(
+		${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
 ?>
 </table>
 </div>
@@ -98,7 +93,11 @@
 	<?php if (sizeof(${$singularVar}['Suivi']) == 0) { echo 'Aucun suivi pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 
-			<th>Organisme</th><th>Date du contrôle</th><th>Date prochain contrôle</th><th>Type d'intervention</th><th style="width:50px;">Détail</th>
+			<th>Organisme</th>
+			<th>Date du contrôle</th>
+			<th>Date prochain contrôle</th>
+			<th>Type d'intervention</th>
+			<th style="width:50px;">Détail</th>
 		</tr> 
 		
 		<?php foreach (${$singularVar}['Suivi'] as $suivi): ?> 

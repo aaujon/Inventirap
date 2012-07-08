@@ -10,7 +10,6 @@
 	$utilisateurs = ClassRegistry::init('Utilisateur');
 	
 	$ldapUsers = array();
-	
 	foreach($connection->getAllLdapUsers() as $userInformations)
 		if(!empty($userInformations[$connection->getAuthenticationType()][0]))
 			$ldapUsers[$userInformations[$connection->getAuthenticationType()][0]] 
@@ -56,4 +55,3 @@
 		}
 	)
 </script>
-	

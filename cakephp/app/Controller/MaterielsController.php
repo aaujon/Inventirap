@@ -7,10 +7,8 @@ class MaterielsController extends AppController {
 	public function find() {
 		$this->loadModel('Category');
 		$this->loadModel('SousCategory');
-		$this->loadModel('Utilisateur');
 		$this->set('s_categories', $this->Category->find('list'));
 		$this->set('s_sous_categories', $this->SousCategory->find('list'));
-		$this->set('s_utilisateurs', $this->Utilisateur->find('list'));
 		if (isset($this->data['Materiel'])) {
 			$all = $this->data['Materiel']['s_all'];
 			$this->set('results', $this->Materiel->find('all', array('conditions' => array(
@@ -19,7 +17,7 @@ class MaterielsController extends AppController {
 				'Materiel.numero_irap LIKE' => '%'.$this->data['Materiel']['s_numero_irap'].'%',
 				'Materiel.category_id LIKE' => '%'.$this->data['Materiel']['s_category_id'].'%',
 				'Materiel.sous_category_id LIKE' => '%'.$this->data['Materiel']['s_sous_category_id'].'%',
-				'Materiel.utilisateur_id LIKE' => '%'.$this->data['Materiel']['s_utilisateur_id'].'%',
+				'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
 				'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
 				//Pour tous les champs:
 				array('OR' => array (
@@ -29,6 +27,8 @@ class MaterielsController extends AppController {
 					'Materiel.organisme LIKE' => '%'.$all.'%',
 					'Materiel.fournisseur LIKE' => '%'.$all.'%',
 					'Materiel.numero_commande LIKE' => '%'.$all.'%',
+					'Materiel.nom_responsable LIKE' => '%'.$all.'%',
+					'Materiel.email_responsable LIKE' => '%'.$all.'%',
 					'Materiel.code_comptable LIKE' => '%'.$all.'%',
 					'Materiel.numero_serie LIKE' => '%'.$all.'%',
 					'Materiel.lieu_detail LIKE' => '%'.$all.'%'

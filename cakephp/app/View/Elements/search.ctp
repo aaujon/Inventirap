@@ -7,12 +7,11 @@
     echo $this->Form->create('Materiel', array('action' => 'find')); 
     echo $this->Form->input('s_designation', array('label' => 'Designation'));
     echo $this->Form->input('s_numero_irap', array('label' => 'N° IRAP')); 
+    echo $this->Form->input('s_responsable', array('label' => 'Responsable')); 
     echo $this->Form->input('s_category_id', 
     	array('label' => 'Catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_categories, 'style' => 'width: 200px')); 
     echo $this->Form->input('s_sous_category_id', 
     	array('label' => 'Sous catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_sous_categories, 'style' => 'width: 200px')); 
-    echo $this->Form->input('s_utilisateur_id', 
-    	array('label' => 'Utilisateur responsable', 'empty' => 'Tous', $selected, 'options' => $s_utilisateurs, 'style' => 'width: 200px')); 
     echo $this->Form->input('s_status', array(
     	'label' => 'Statut', 'empty' => 'Tous', $selected, 
     	'options' => array('CREATED' => 'Créé', 'VALIDATED' => 'Validé', 'TOBEARCHIVED' => 'À archiver', 'ARCHIVED' => 'Archivé'), 

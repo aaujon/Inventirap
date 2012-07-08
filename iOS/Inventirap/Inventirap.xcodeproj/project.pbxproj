@@ -12,7 +12,6 @@
 		AF9BE9D315A21D7800F6F024 /* InformationViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9BE9D215A21D7800F6F024 /* InformationViewController_iPad.xib */; };
 		AF9BE9EB15A22DC200F6F024 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9EA15A22DC200F6F024 /* Product.m */; };
 		AF9BE9F215A22E0800F6F024 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9F115A22E0800F6F024 /* Property.m */; };
-		AFD1682C15A3607E0017418B /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD1682B15A3607E0017418B /* XMLParser.m */; };
 		AFD1683015A389CA0017418B /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD1682F15A389CA0017418B /* CustomCell.m */; };
 		AFD1683215A389E50017418B /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFD1683115A389E50017418B /* CustomCell.xib */; };
 		AFD1683415A39B030017418B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD1683315A39B030017418B /* Default.png */; };
@@ -82,8 +81,6 @@
 		AF9BE9EA15A22DC200F6F024 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		AF9BE9F015A22E0800F6F024 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
 		AF9BE9F115A22E0800F6F024 /* Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Property.m; sourceTree = "<group>"; };
-		AFD1682A15A3607E0017418B /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
-		AFD1682B15A3607E0017418B /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		AFD1682E15A389CA0017418B /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		AFD1682F15A389CA0017418B /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		AFD1683115A389E50017418B /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
@@ -291,8 +288,6 @@
 				AFE5CEB415A7804C000CEAB7 /* SettingsViewController.m */,
 				AFE5E83D15A0A43700E32EE8 /* InformationViewController.h */,
 				AFE5E83E15A0A43700E32EE8 /* InformationViewController.m */,
-				AFD1682A15A3607E0017418B /* XMLParser.h */,
-				AFD1682B15A3607E0017418B /* XMLParser.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -407,7 +402,6 @@
 				AFE5E84015A0A43700E32EE8 /* InformationViewController.m in Sources */,
 				AF9BE9EB15A22DC200F6F024 /* Product.m in Sources */,
 				AF9BE9F215A22E0800F6F024 /* Property.m in Sources */,
-				AFD1682C15A3607E0017418B /* XMLParser.m in Sources */,
 				AFD1683015A389CA0017418B /* CustomCell.m in Sources */,
 				AFE5CEB615A7804C000CEAB7 /* SettingsViewController.m in Sources */,
 				AF0B5B3315A796C200263815 /* Settings.m in Sources */,

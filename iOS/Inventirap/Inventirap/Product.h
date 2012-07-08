@@ -14,11 +14,19 @@
 {
     NSString *m_name;
     NSMutableArray *m_properties;
+    NSMutableArray *m_sectionList;
+    NSMutableDictionary *m_section;
 }
 
-- (id) initWithName:(NSString*) name;
-- (void) addPropertyName:(NSString*)name AndValue:(NSString*)value;
+- (id) init;
+- (void) setName:(NSString*)name;
 - (NSString*) getName;
-- (NSUInteger) getPropertiesCount;
-- (Property*) getPropertyAtIndex:(NSUInteger)index;
+
+- (void) setSectionWithName:(NSString*)name;
+- (NSUInteger) getSectionsCount;
+- (NSString*) getSectionAtIndex:(NSUInteger)index;
+
+- (void) addPropertyName:(NSString*)name AndValue:(NSString*)value;
+- (NSUInteger) getPropertiesNumberForSection:(NSUInteger)section;
+- (Property*) getPropertyAtIndex:(NSUInteger)index ForSection:(NSUInteger)section;
 @end

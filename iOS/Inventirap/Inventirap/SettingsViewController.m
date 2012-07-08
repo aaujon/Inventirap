@@ -16,15 +16,22 @@
 @implementation SettingsViewController
 @synthesize webServiceUrlTextField;
 
+#pragma mark -
+#pragma mark Initialization
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+#warning Replace with correct images
         self.title = NSLocalizedString(@"Settings", @"Settings");
         self.tabBarItem.image = [UIImage imageNamed:@"second"];
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark View lifecycle
 
 - (void)viewDidLoad
 {
@@ -38,6 +45,9 @@
     [self setWebServiceUrlTextField:nil];
     [super viewDidUnload];
 }
+
+#pragma mark -
+#pragma mark Interface interactions
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

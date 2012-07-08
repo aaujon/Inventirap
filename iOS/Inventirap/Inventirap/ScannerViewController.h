@@ -9,14 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ZXingWidgetController.h"
 
-@class InformationViewController, XMLParser;
+@class InformationViewController;
 
 @interface ScannerViewController : UIViewController <ZXingDelegate, NSURLConnectionDelegate> {
     
     InformationViewController *m_informationViewController;
     
-    XMLParser *m_XMLParser;
-    NSMutableData *m_webData;
+    NSMutableData *m_jsonData;
     NSURLConnection *m_connection;
 }
 

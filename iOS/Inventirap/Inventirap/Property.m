@@ -14,8 +14,7 @@
 {
     self = [super init];
     
-    if (self)
-    {
+    if (self) {
         m_name = name;
         m_value = value;
     }

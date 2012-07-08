@@ -65,4 +65,29 @@ class AppController extends Controller {
 			$this->LdapAuth->allow($this->authLevelUnauthorized);
 		}
 	}
-}
+	
+	public function beforeScaffold($action) {
+		if ($action == 'delete')
+			$this->logInventirap($this->params['pass'][0]);
+		return true;	
+	}
+	
+	public function afterScaffoldSave($action) {
+		if ($action == 'add')
+			$this->logInventirap($this->{ucfirst(substr($this->params['controller'], 0, -1))}->id);
+		if ($action == 'edit')
+			$this->logInventirap($this->params['pass'][0]);
+			
+		return true;	
+	}
+	
+	public function logInventirap($id = -1) {
+		$user = $this->Session->read('LdapUserName').' ('.$this->Session->read('LdapUserAuthenticationLevel').') ';
+		$controller = substr($this->params['controller'], 0, -1).' ';
+		$action = $this->params['action'].' ';
+		$text = $user.$action.$controller;
+		if ($id != -1)
+			$text .= '#'.$id;
+		CakeLog::write('inventirap', $text);
+	}}
+?>

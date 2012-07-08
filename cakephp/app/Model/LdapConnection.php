@@ -16,8 +16,7 @@ class LdapConnection extends AppModel {
 		parent::__construct();
 	}
 
-	private function checkConfiguration()
-	{
+	private function checkConfiguration() {
 			
 		$ldapServerConfiguration = get_class_vars('DATABASE_CONFIG');
 
@@ -54,50 +53,40 @@ class LdapConnection extends AppModel {
 				return $res;
 			}
 		}
-		catch(Exception $e) {
-			throw  $e;
-		}
+		catch (Exception $e) { }
 		return false;
 	}
 	
 	public function getUserAttributes($userName) {
 		try {
 
-			if($this->checkConfiguration())
-			{
+			if($this->checkConfiguration()) {
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
 				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=' . $userName);
 				$res = ldap_get_entries($ldapConnection, $results);
 	
 				return $res;
-				
 			}
 		}
-		catch(Exception $e)
-		{
-			throw  $e;
-		}
+		catch (Exception $e) { }
 		
 		return false;
 	}
 
-	public function getAuthenticationType()
-	{
+	public function getAuthenticationType() {
 		return $this->authenticationType;
 	}
 	
-	public function ldapAuthentication($login, $password)
-	{
+	public function ldapAuthentication($login, $password) {
 		try {
-			if($this->checkConfiguration())
-			{
+			if($this->checkConfiguration()) {
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				
 				return @ldap_bind($ldapConnection, $this->authenticationType . '=' . $login . ',' . $this->baseDn, $password);
 			}
 		}
-		catch(Exception $e) {}
+		catch (Exception $e) { }
 		return false;
 	}
 }

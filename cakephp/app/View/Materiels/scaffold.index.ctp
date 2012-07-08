@@ -1,10 +1,11 @@
 <?php
-	$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 
 	$toShow = array(
 		'designation' => 'Désignation',
 		'numero_irap' => 'Numéro IRAP',
 		'category_id' => 'Catégorie',
+		'nom_responsable' => 'Responsable',
 		'status' => 'Statut'
 	);
 ?>
@@ -15,45 +16,33 @@
 	<?php foreach ($toShow as $_field => $label): ?>
 	<th><?php echo $this->Paginator->sort($_field, $label); ?></th>
 	<?php endforeach;?>
-	<th style="width:90px;"></th>
+	<th style="width:100px;"></th>
 </tr>
 <?php
 $i = 0;
 foreach (${$pluralVar} as ${$singularVar}):
+	$id = 		${$singularVar}[$modelClass]['id'];
+	$statut = 	${$singularVar}[$modelClass]['status'];
 	echo "<tr>";
-			foreach ($toShow as $_field => $label) { 
-			$isKey = false;
-			if (!empty($associations['belongsTo'])) {
-				foreach ($associations['belongsTo'] as $_alias => $_details) {
-					if ($_field === $_details['foreignKey']) {
-						$isKey = true;
-						echo "<td>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
-						break;
-					}
+		foreach ($toShow as $_field => $label) { 
+		$isKey = false;
+		if (!empty($associations['belongsTo'])) {
+			foreach ($associations['belongsTo'] as $_alias => $_details) {
+				if ($_field === $_details['foreignKey']) {
+					$isKey = true;
+					echo "<td>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
+					break;
 				}
 			}
-			if ($isKey !== true) {
-				if ($_field == 'storage_place')
-					echo "<td>" . h(${$singularVar}[$modelClass]['full_storage']) . "</td>";
-				else	
-					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
-			}	
 		}
-		
-
-		echo '<td class="actions">';
-		echo $this->Html->link('<i class="icon-search"></i>', 
-			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Détails', 'style' => 'margin: 0 2px', 'escape' => false));
-		echo $this->Html->link('<i class="icon-pencil"></i>', 
-			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Éditer', 'style' => 'margin: 0 2px', 'escape' => false));
-	    if ($ldapUserAuthenticationLevel >= 3) {
-			echo $this->Form->postLink('<i class="icon-inbox"></i>',
-				array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]),
-				array('title' => 'Archiver', 'style' => 'margin: 0 2px', 'escape' => false),
-				__d('cake', 'Êtes-vous sur d\'archiver ').' '.${$singularVar}[$modelClass]['designation'].' ?'
-			);
-		}
-		echo '</td>';
+		if ($isKey !== true) {
+			if ($_field == 'storage_place')
+				echo "<td>" . h(${$singularVar}[$modelClass]['full_storage']) . "</td>";
+			else	
+				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+		}	
+	}
+	echo $this->element('materiel_actions', array('id' => $id, 'statut' => $statut));
 	echo '</tr>';
 
 endforeach;

@@ -45,6 +45,10 @@ class MaterielsController extends AppController {
 					array('conditions' => array('Materiel.status ' => 'TOBEARCHIVED'))));
 		}
 	}
+	public function delete() {
+		$this->Session->setFlash('Pas de suppression de matériel.');
+		$this->redirect(array('action'=> 'index'));
+	}
 	
 	public function toValidate() {
 		$this->set('results', $this->Materiel->find('all', array('conditions' => array(
@@ -101,28 +105,27 @@ class MaterielsController extends AppController {
 		$this->LdapAuth->deny();
 		$this->LdapAuth->allow($this->authLevelUnauthorized);
 
-		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
-		if (($ldapUserAuthenticationLevel > 1) && ($ldapUserAuthenticationLevel <= 4)) {
+		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
+		if (($userAuth > 1) && ($userAuth <= 4)) {
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search', 'delete');
-		} elseif ($ldapUserAuthenticationLevel == 1) {
+		} elseif ($userAuth == 1) {
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search');
 		}
-		$this->LdapAuth->allow('*');
 	}
 
 	private function checkAuthentication($action = 'null') {
-		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 
 		if ((strcmp($action, 'statusToBeArchived') == 0) 
-			&& (($ldapUserAuthenticationLevel >= 1) && ($ldapUserAuthenticationLevel != 4)))
+			&& (($userAuth >= 1) && ($userAuth != 4)))
 			return true;
 
 		if ((strcmp($action, 'statusValidated') == 0) 
-			&& (($ldapUserAuthenticationLevel >= 2) && ($ldapUserAuthenticationLevel != 4)))
+			&& (($userAuth >= 2) && ($userAuth != 4)))
 			return true;
 
 		if ((strcmp($action, 'statusArchived') == 0) 
-			&& ($ldapUserAuthenticationLevel >= 3))
+			&& ($userAuth >= 3))
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');

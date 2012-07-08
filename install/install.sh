@@ -40,9 +40,7 @@ mysql -u $bddUserName --password=$bddPassword -h $bddIp $bddName < ./database/BD
 #Ajouter Super Administrateur
 echo "Quel est le nom du super administrateur de l'inventaire"
 read superAdminName
-echo "Quel est l'adresse email du super administrateur de l'inventaire"
-read superAdminEmail
-mysql -u $bddUserName --password=$bddPassword -h $bddIp -D $bddName -e "INSERT INTO utilisateurs (ldap, role, email) VALUES ('$superAdminName', 'Super Administrator', '$superAdminEmail');"
+mysql -u $bddUserName --password=$bddPassword -h $bddIp -D $bddName -e "INSERT INTO utilisateurs (ldap, role) VALUES ('$superAdminName', 'Super Administrator');"
 
 # Set LDAP address
 echo "Entrez l'adresse du serveur ldap"

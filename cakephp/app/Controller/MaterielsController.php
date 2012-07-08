@@ -118,7 +118,7 @@ class MaterielsController extends AppController {
 	private function checkAuthentication($action = 'null') {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 
-		if ((strcmp($action, 'search') == 0) 
+		if ((strcmp($action, 'find') == 0) 
 			&& ($userAuth >= 1))
 			return true;
 		

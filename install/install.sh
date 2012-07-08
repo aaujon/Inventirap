@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Parametres à changer pour votre installation
-export bddUserName="root";
-export bddPassword="root";
-export bddName="mydb"
-
 #Mettre à jour les sources
 echo "Récupération des sources..."
 # rm -rf Inventirap/

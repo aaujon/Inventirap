@@ -61,6 +61,7 @@
 
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
 	displayElement('Type du matériel', $type);
+	
 	displayElement('Catégorie', $categorie);
 	displayElement('Sous catégorie', $sousCategorie);
 	displayElement('Groupe thématique', $groupeThematique);
@@ -77,7 +78,13 @@
 	displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
 	displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);
 	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['full_storage']);
-	// displayElement('Responsable', $this->Html->link(${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
+	
+	$utilisateurs = ClassRegistry::init('Utilisateur');
+	$user = $utilisateurs->find('all', array(
+                'conditions' => array(
+                    'id' => ${$singularVar}[$modelClass]['utilisateur_id']
+                )));
+	displayElement('Responsable', $this->Html->link($user[0]['Utilisateur']['ldap'], 'mailto:'.$user[0]['Utilisateur']['email']));
 ?>
 </table>
 </div>

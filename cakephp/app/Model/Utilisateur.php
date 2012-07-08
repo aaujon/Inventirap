@@ -4,6 +4,8 @@ class Utilisateur extends AppModel {
 	var $name = 'Utilisateur';
 	var $displayField = 'ldap';
 
+	var $hasMany = 'Materiel';
+	
 	private $acceptedRoles = array ('Apprenti', 'Responsable', 'Administrateur', 'Super Administrateur');
 	
 	public function customValidation($data) {

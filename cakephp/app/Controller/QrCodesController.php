@@ -32,9 +32,9 @@ class QrCodesController extends AppController {
 		if (isset($userName)) {
 			App::import('Vendor', 'phpqrcode/qrlib');
 
-			$fileName = $_SESSION['Config']['userAgent'];
-
-			QRcode::png($message, '/var/www/Inventirap/cakephp/app/tmp/qrcodes/' . $fileName . '.png');
+			$fileName = $_SESSION['Config']['userAgent'] . '.png';
+			$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
+			QRcode::png($message, $cakephpPath . 'tmp/qrcodes/' . $fileName);
 		}
 	}
 }

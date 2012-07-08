@@ -16,7 +16,9 @@
 	<?php foreach ($toShow as $_field => $label): ?>
 	<th><?php echo $this->Paginator->sort($_field, $label); ?></th>
 	<?php endforeach;?>
-	<th style="width:100px;"></th>
+	<th style="width:20px;"></th>
+	<th style="width:20px;"></th>
+	<th style="width:20px;"></th>
 </tr>
 <?php
 $i = 0;

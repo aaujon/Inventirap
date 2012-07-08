@@ -26,7 +26,9 @@
 				<th>Catégorie</th>
 				<th>Responsable</th>
 				<th>Statut</th>
-				<th style="width:100px;"></th>
+				<th style="width:20px;"></th>
+				<th style="width:20px;"></th>
+				<th style="width:20px;"></th>
 			</tr> 
 			
 			<?php foreach ($results as $material): ?> 

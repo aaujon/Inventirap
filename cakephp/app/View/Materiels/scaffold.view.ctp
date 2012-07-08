@@ -1,5 +1,5 @@
 <?php 
-	$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 	echo $this->Html->script('script'); 
 ?>
 <div class="<?php echo $pluralVar;?> view">
@@ -7,6 +7,32 @@
 	echo ${$singularVar}[$modelClass]['designation'];
 	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
 ?></h2>
+
+<div class="actions" style="margin-bottom: 20px; width: 100%; float: none; padding: 10px 0;"><?php			
+	$statut = ${$singularVar}[$modelClass]['status'];
+	$id = ${$singularVar}[$modelClass]['id'];
+	if ($statut == 'CREATED' && $userAuth >= 2) {
+		//Responsable/Admin/Super admin peuvent valider le matériel
+		echo $this->Html->link('<i class="icon-ok-sign"></i> Valider le matériel', 
+			array('action' => 'statusValidated', $id, 'view'), 
+			array('title' => 'Valider', 'style' => 'margin-right: 20px', 'escape' => false));
+	}
+    else if (($statut == 'VALIDATED' || $statut == 'TOBEARCHIVED') && $userAuth >= 3) {
+    	//Admin/Super admin peuvent archiver matériel
+		echo $this->Form->postLink('<i class="icon-inbox"></i> Archiver le matériel',
+			array('action' => 'statusArchived', $id, 'view'), 
+			array('title' => 'Archiver', 'style' => 'margin-right: 20px', 'escape' => false),
+			'Êtes-vous sur d\'archiver '.$id.' ?');
+	}
+	else if ($statut == 'VALIDATED') {
+		//Les autres ne peuvent que demander la demande d'archivage
+		echo $this->Html->link('<i class="icon-inbox"></i> Demander l\'archivage du matériel', 
+			array('action' => 'statusToBeArchived', $id, 'view'), 
+			array('title' => 'Demander l\'archivage', 'style' => 'margin-right: 20px', 'escape' => false));
+	}
+	echo $this->Html->link('<i class="icon-plus"></i> Nouveau suivi', array('controller' => 'suivis', 'action' => 'add'), array('escape' => false));
+	echo $this->Html->link('<i class="icon-plus"></i> Nouvel emprunt', array('controller' => 'emprunts', 'action' => 'add'), array('style' => 'margin-left: 5px', 'escape' => false));
+?></div>
 
 <h3 id="t_informations" style="cursor: pointer;">
 	<i class="icon-chevron-down" style="font-size: 14px;" id="i_informations"></i> 
@@ -44,15 +70,15 @@
 
 	$statut = ${$singularVar}[$modelClass]['status'].'<span class="actions">';
 	if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
-		if (($ldapUserAuthenticationLevel >= 2) && ($ldapUserAuthenticationLevel != 4))
+		if (($userAuth >= 2) && ($userAuth != 4))
 			$statut .= ' '.$this->Html->link('Valider', 
 				array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
-		if (($ldapUserAuthenticationLevel >= 1) && ($ldapUserAuthenticationLevel != 4))
+		if (($userAuth >= 1) && ($userAuth != 4))
 			$statut .= ' '.$this->Html->link('Archiver', 
 				array('action' => 'statusToBeArchived', ${$singularVar}[$modelClass][$primaryKey]));
 	}
 	if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
-		if ($ldapUserAuthenticationLevel == 3)
+		if ($userAuth == 3)
 			$statut .= ' '.$this->Html->link('Archiver', 
 				array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
 	}
@@ -123,6 +149,12 @@
 	<span style="text-decoration: underline;">Emprunt(s) du matériel (<?php echo sizeof(${$singularVar}['Emprunt']); ?>)</span>
 </h3>
 <div id="emprunts" style="display: none;">
+	<?php
+	echo $this->Html->link('Nouvel emprunt', array(
+				'controller' => 'emprunts',
+				'action' => 'add',
+				${$singularVar}[$modelClass][$primaryKey]), array('class' => 'actions'));
+				?>
 	<?php if (sizeof(${$singularVar}['Emprunt']) == 0) { echo 'Aucun emprunt pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 

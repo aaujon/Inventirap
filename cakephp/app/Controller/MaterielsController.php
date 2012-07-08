@@ -5,6 +5,8 @@ class MaterielsController extends AppController {
 	public $helpers = array('Js');
 
 	public function find() {
+		$this->checkAuth();
+		
 		$this->loadModel('Category');
 		$this->loadModel('SousCategory');
 		$this->set('s_categories', $this->Category->find('list'));
@@ -61,28 +63,31 @@ class MaterielsController extends AppController {
 		$this->redirect(array('action'=> 'find'));
 	}
 	
-	public function statusToBeArchived($id = null) {
+	public function statusToBeArchived($id = null, $from = 'index') {
 		$this->checkAuth();
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
-		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
+		$this->Session->setFlash('La demande d\'archivage du matériel a bien été demandé.');
+		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
-	public function statusArchived($id = null) {
-		$this->checkAuth();
-
-		$this->Materiel->id = $id;
-		$this->Materiel->saveField('status', 'ARCHIVED');
-		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
-	}
-
-	public function statusValidated($id = null) {
+	public function statusValidated($id = null, $from = 'index') {
 		$this->checkAuth();
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'VALIDATED');
-		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
+		$this->Session->setFlash('Le matériel a bien été validé.');
+		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
+	}
+
+	public function statusArchived($id = null, $from = 'index') {
+		$this->checkAuth();
+
+		$this->Materiel->id = $id;
+		$this->Materiel->saveField('status', 'ARCHIVED');
+		$this->Session->setFlash('Le matériel a bien été archivé.');
+		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
 	public function getIrapNumber($year = 2012) {
@@ -107,18 +112,18 @@ class MaterielsController extends AppController {
 		if (($userAuth > 1) && ($userAuth <= 4))
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search', 'delete');
 		elseif ($userAuth == 1)
-			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search');
+			$this->LdapAuth->allow('index', 'view', 'add', 'edit');
 	}
 
 	private function checkAuth() {
 		$action = $this->params['action'];
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 
-		if ((strcmp($action, 'statusToBeArchived') == 0) && $userAuth >= 1)
+		if (($action == 'statusToBeArchived' || $action == 'find') && $userAuth >= 1)
 			return true;
-		if ((strcmp($action, 'statusValidated') == 0) && $userAuth >= 4)
+		if ($action == 'statusValidated' && $userAuth >= 4)
 			return true;
-		if ((strcmp($action, 'statusArchived') == 0) && ($userAuth >= 3))
+		if ($action == 'statusArchived' && ($userAuth >= 3))
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');

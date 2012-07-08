@@ -1,13 +1,17 @@
 <?php
 	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 	
-	echo '<td class="actions" style="text-align: right;">';
+	echo '<td class="actions" style="padding: 6px 0;">';
 	echo $this->Html->link('<i class="icon-search"></i>', 
 		array('action' => 'view', $id), 
 		array('title' => 'Détails', 'style' => 'margin: 0 2px', 'escape' => false));
+	echo '</td>';
+	echo '<td class="actions" style="padding: 6px 0;">';
 	echo $this->Html->link('<i class="icon-pencil"></i>', 
 		array('action' => 'edit', $id), 
 		array('title' => 'Éditer', 'style' => 'margin: 0 2px', 'escape' => false));
+	echo '</td>';
+	echo '<td class="actions" style="padding: 6px 0;">';
 	if ($statut == 'CREATED' && $userAuth >= 2) {
 		//Responsable/Admin/Super admin peuvent valider le matériel
 		echo $this->Html->link('<i class="icon-ok-sign"></i>', 

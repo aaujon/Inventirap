@@ -121,9 +121,9 @@ class MaterielsController extends AppController {
 
 		if (($action == 'statusToBeArchived' || $action == 'find') && $userAuth >= 1)
 			return true;
-		if ($action == 'statusValidated' && $userAuth >= 4)
+		if ($action == 'statusValidated' && $userAuth >= 2)
 			return true;
-		if ($action == 'statusArchived' && ($userAuth >= 3))
+		if ($action == 'statusArchived' && $userAuth >= 4)
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');

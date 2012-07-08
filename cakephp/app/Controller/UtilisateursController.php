@@ -71,7 +71,9 @@ class UtilisateursController extends AppController {
 				// Get the user into the database
 				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request))));
 
-				if(count($users) == 1){
+				if(count($users) == 0) {
+					$this->Session->write('LdapUserAuthenticationLevel', 1);
+				} elseif(count($users) == 1){
 					
 					$this->Session->write('LdapUserMail', $this->getEmailFromName($this->LdapAuth->getLogin($this->request)));
 						
@@ -80,6 +82,7 @@ class UtilisateursController extends AppController {
 					
 					$this->Session->setFlash('Connexion réussie.');
 				}
+				
 				$this->redirect('/');
 			} else {
 				$this->Session->setFlash(__('Nom d\'utilisateur ou mot de passe invalide.'));

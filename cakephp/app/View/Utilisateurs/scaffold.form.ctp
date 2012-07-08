@@ -29,6 +29,7 @@
 			array('options' => $ldapUsers, 'empty' => 'Choisir un utilisateur', 'disabled' => true));
 	echo $this->Form->input('role', 
 		array('options' => $inputRoles));
+	echo $this->Form->input('email', array('disabled' => true));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>
@@ -38,3 +39,21 @@
 		echo $this->element('tools_form');
 	?>
 </div>
+
+
+<script>	
+	$('#UtilisateurLdap').change(
+		function() {
+			if($('#UtilisateurLdap').val()) {
+				$.ajax({
+	                type: "post",
+	                url: "\/Inventirap\/cakephp\/utilisateurs\/getEmailFromName\/" + $('#UtilisateurLdap').val(),
+	                success: function(data,textStatus,xhr){
+	                        $('#UtilisateurEmail').val(data);
+	                }
+	            })
+			}
+		}
+	)
+</script>
+	

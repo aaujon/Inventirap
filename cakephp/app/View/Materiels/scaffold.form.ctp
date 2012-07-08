@@ -47,6 +47,13 @@
 			'value' => $this->Session->read('LdapUserName'), 'readonly' => true));
 		echo $this->Form->input('email_responsable', array('label' => 'Email du responsable', 
 			'value' => $this->Session->read('LdapUserMail'), 'readonly' => true));
+			
+		$utilisateurs = ClassRegistry::init('Utilisateur');
+		$user = $utilisateurs->find('all', array(
+                'conditions' => array(
+                    'ldap' => $this->Session->read('LdapUserName')
+                )));
+		echo $this->Form->input('utilisateur_id', array('type' => 'hidden', 'value' => $user[0]['Utilisateur']['id']));		
 	}
 	echo $this->Form->hidden('numero_irap');
 	echo $this->Form->end('Valider');

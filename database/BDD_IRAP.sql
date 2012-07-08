@@ -379,9 +379,9 @@ COMMIT;
 START TRANSACTION;
 USE `mydb`;
 INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Cedric', 'Super Administrateur', 'Cedric.Hillembrand@irap.omp.eu');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Daniel', 'Administrateur', NULL);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Gin', 'Responsable', NULL);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Henri', 'Apprenti', NULL);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Daniel', 'Administrateur', 'Daniel.Toto@irap.omp.eu');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Gin', 'Responsable', 'Gin.Toto@irap.omp.eu');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Henri', 'Apprenti', 'Henri.Robert@irap.omp.eu');
 
 COMMIT;
 

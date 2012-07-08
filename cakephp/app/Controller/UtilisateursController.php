@@ -23,10 +23,6 @@ class UtilisateursController extends AppController {
 		}
 	}
 
-	public function logged () {
-
-	}
-
 	public function logout() {
 		$this->Session->delete('LdapUserName');
 		$this->Session->delete('LdapUserAuthenticationLevel');
@@ -40,10 +36,12 @@ class UtilisateursController extends AppController {
 
 		$this->LdapAuth->deny();
 		$this->LdapAuth->allow($this->authLevelUnauthorized);
+		
+		$this->Session->setFlash('Déconnexion réussie.');
+		$this->redirect('/');
 	}
 
 	public function login() {
-
 		if ($this->request->is('post')) {
 			// The user exists into the ldap server
 			if($this->LdapAuth->connection($this->request))
@@ -58,19 +56,14 @@ class UtilisateursController extends AppController {
 					
 					$connection = ClassRegistry::init('LdapConnection');
 					$attributes = $connection->getUserAttributes($this->LdapAuth->getLogin($this->request));
+					$this->Session->write('LdapUserAuthenticationLevel', 
+						$this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
 					$this->Session->write('LdapUserMail', $attributes[0]['mail'][0]);
-					
-					/*
-					 * Testing instruction !
-					 */
-					$this->Session->setFlash('Your email is : ' . $this->Session->read('LdapUserMail'));
-					
-					// Save his authentication level into a session variable
-					$this->Session->write('LdapUserAuthenticationLevel', $this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
+					$this->Session->setFlash('Connexion réussie.');
 				}
-				$this->redirect('logged');
+				$this->redirect('/');
 			} else {
-				$this->Session->setFlash(__('Invalid login, try again'));
+				$this->Session->setFlash(__('Nom d\'utilisateur ou mot de passe invalide.'));
 			}
 		}
 	}

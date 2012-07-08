@@ -1,22 +1,9 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.View.Errors
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-?>
-<h2>Erreur</h2>
-<p class="error">
-	Désolé, une exception est survenue lors de l'utilisation de la base de données.
-</p>
+<div class="index">
+	<h2><i class="icon-remove-circle"></i> Erreur</h2>
+	<p class="error">
+		<strong><?php echo __d('cake', 'Erreur'); ?>: </strong> Désolé, une exception est survenue lors de l'utilisation de la base de données.
+	</p>
+</div>
+<div class="actions">
+	<?php echo $this->element('menu') ?>
+</div>

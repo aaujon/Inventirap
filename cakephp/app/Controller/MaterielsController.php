@@ -5,8 +5,6 @@ class MaterielsController extends AppController {
 	public $helpers = array('Js');
 
 	public function find() {
-		$this->checkAuthentication('find');
-		
 		$this->loadModel('Category');
 		$this->loadModel('SousCategory');
 		$this->set('s_categories', $this->Category->find('list'));
@@ -64,7 +62,7 @@ class MaterielsController extends AppController {
 	}
 	
 	public function statusToBeArchived($id = null) {
-		$this->checkAuthentication('statusToBeArchived');
+		$this->checkAuth();
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
@@ -72,7 +70,7 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusArchived($id = null) {
-		$this->checkAuthentication('statusArchived');
+		$this->checkAuth();
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
@@ -80,7 +78,7 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusValidated($id = null) {
-		$this->checkAuthentication('statusValidated');
+		$this->checkAuth();
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'VALIDATED');
@@ -106,30 +104,25 @@ class MaterielsController extends AppController {
 		$this->LdapAuth->allow($this->authLevelUnauthorized);
 
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
-		if (($userAuth > 1) && ($userAuth <= 4)) {
+		if (($userAuth > 1) && ($userAuth <= 4))
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search', 'delete');
-		} elseif ($userAuth == 1) {
+		elseif ($userAuth == 1)
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search');
-		}
 	}
 
-	private function checkAuthentication($action = 'null') {
+	private function checkAuth() {
+		$action = $this->params['action'];
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 
 		if ((strcmp($action, 'statusToBeArchived') == 0) && $userAuth >= 1)
 			return true;
-		
-		if ((strcmp($action, 'find') == 0) && ($userAuth >= 1))
-			return true;
-
 		if ((strcmp($action, 'statusValidated') == 0) && $userAuth >= 4)
 			return true;
-
 		if ((strcmp($action, 'statusArchived') == 0) && ($userAuth >= 3))
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');
-		$this->redirect(array('controller' => 'Utilisateurs', 'action'=> 'loggin'));
+		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
 	}
 }
 ?>

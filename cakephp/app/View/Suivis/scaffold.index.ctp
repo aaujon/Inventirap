@@ -1,49 +1,25 @@
 <?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.Détail.Scaffolds
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
- 
-function filter($field) {
-	$whatToShow = array(
-		'materiel_id',
-		'date_controle',
-		'date_prochain_controle',
-		'type_intervention'
-	);
-	foreach($whatToShow as $value) {
-		if ($value == $field)
-			return true;
-	}
-	return false;
-}
+$toShow = array(
+	'materiel_id' => 'Matériel',
+	'date_controle' => 'Date du contrôle',
+	'date_prochain_controle' => 'Date prochain contrôle',
+	'type_intervention' => 'Type d\'intervention'
+);
 ?>
 <div class="<?php echo $pluralVar;?> index">
-<h2>Liste des suivis</h2>
+<h2><i class="icon-list"></i> Liste des suivis</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
-<?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
-	<th><?php echo $this->Paginator->sort($_field);?></th>
-<?php } endforeach;?>
-	<th></th>
+<?php foreach ($toShow as $_field => $label): ?>
+	<th><?php echo $this->Paginator->sort($_field, $label);?></th>
+<?php endforeach;?>
+	<th style="width:90px;"></th>
 </tr>
 <?php
 $i = 0;
 foreach (${$pluralVar} as ${$singularVar}):
 	echo "<tr>";
-		foreach ($scaffoldFields as $_field) { if (filter($_field)) {
+		foreach ($toShow as $_field => $label) {
 			$isKey = false;
 			if (!empty($associations['belongsTo'])) {
 				foreach ($associations['belongsTo'] as $_alias => $_details) {
@@ -57,17 +33,17 @@ foreach (${$pluralVar} as ${$singularVar}):
 			if ($isKey !== true) {
 				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}	
-		}}
-		
+		}
 
 		echo '<td class="actions">';
-		echo $this->Html->link(__d('cake', 'Détail'), array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]));
-		echo $this->Html->link(__d('cake', 'Éditer'), array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]));
-		echo $this->Form->postLink(
-			__d('cake', 'Suppr.'),
+		echo $this->Html->link('<i class="icon-search"></i>', 
+			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+		echo $this->Html->link('<i class="icon-pencil"></i>', 
+			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+		echo $this->Form->postLink('<i class="icon-trash"></i>',
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
-			null,
-			__d('cake', 'Êtes-vous sur de supprimer l\'historique').' '.${$singularVar}[$modelClass]['id'].' ?'
+			array('style' => 'margin: 0 2px', 'escape' => false),
+			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['id'].' ?'
 		);
 		echo '</td>';
 	echo '</tr>';

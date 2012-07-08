@@ -12,7 +12,7 @@ class QrCodesController extends AppController {
 		{
 			App::import('Vendor', 'phpqrcode/qrlib');
 
-			QRcode::png($this->Session->read('qrCodeMessage'));
+			QRcode::png($message);
 
 			$this->Session->delete('qrCodeMessage');
 		}
@@ -25,9 +25,16 @@ class QrCodesController extends AppController {
 			$this->redirect('index');
 		}
 	}
-	public function qrCode($message) {
-		App::import('Vendor', 'phpqrcode/qrlib');
-		QRcode::png($message);
-		$this->Session->delete();
+
+	public function creer($message) {
+
+		$userName = $this->Session->read('LdapUserName');
+		if (isset($userName)) {
+			App::import('Vendor', 'phpqrcode/qrlib');
+
+			$fileName = $_SESSION['Config']['userAgent'] . '.png';
+			$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
+			QRcode::png($message, $cakephpPath . 'tmp/qrcodes/' . $fileName);
+		}
 	}
 }

@@ -1,69 +1,50 @@
 <?php
-function filter($field) {
-	$whatToShow = array(
-		'designation',
-		'numero_irap',
-		'category_id'
+	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
+
+	$toShow = array(
+		'designation' => 'Désignation',
+		'numero_irap' => 'Numéro IRAP',
+		'category_id' => 'Catégorie',
+		'nom_responsable' => 'Responsable',
+		'status' => 'Statut'
 	);
-	foreach($whatToShow as $value) {
-		if ($value == $field)
-			return true;
-	}
-	return false;
-}
 ?>
 <div class="<?php echo $pluralVar;?> index">
-<h2>Liste des matériels</h2>
+<h2><i class="icon-list"></i> Liste des matériels</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
-<?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
-	<th><?php echo $this->Paginator->sort($_field);?></th>
-<?php } endforeach;?>
-	<th style="text-align: center;">Actions</th>
-	<th style="text-align: center;">Status</th>
+	<?php foreach ($toShow as $_field => $label): ?>
+	<th><?php echo $this->Paginator->sort($_field, $label); ?></th>
+	<?php endforeach;?>
+	<th style="width:20px;"></th>
+	<th style="width:20px;"></th>
+	<th style="width:20px;"></th>
 </tr>
 <?php
 $i = 0;
 foreach (${$pluralVar} as ${$singularVar}):
+	$id = 		${$singularVar}[$modelClass]['id'];
+	$statut = 	${$singularVar}[$modelClass]['status'];
 	echo "<tr>";
-			foreach ($scaffoldFields as $_field) { if (filter($_field)) {
-			$isKey = false;
-			if (!empty($associations['belongsTo'])) {
-				foreach ($associations['belongsTo'] as $_alias => $_details) {
-					if ($_field === $_details['foreignKey']) {
-						$isKey = true;
-						echo "<td>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
-						break;
-					}
+		foreach ($toShow as $_field => $label) { 
+		$isKey = false;
+		if (!empty($associations['belongsTo'])) {
+			foreach ($associations['belongsTo'] as $_alias => $_details) {
+				if ($_field === $_details['foreignKey']) {
+					$isKey = true;
+					echo "<td>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
+					break;
 				}
 			}
-			if ($isKey !== true) {
-				if ($_field == 'storage_place')
-					echo "<td>" . h(${$singularVar}[$modelClass]['full_storage']) . "</td>";
-				else	
-					echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
-			}	
-		}}
-		
-
-		echo '<td class="actions">';
-		echo $this->Html->link(__d('cake', 'Détail'), array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]));
-		echo $this->Html->link(__d('cake', 'Éditer'), array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]));
-		echo $this->Form->postLink(
-			__d('cake', 'Suppr.'),
-			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
-			null,
-			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
-		);
-		echo '</td><td class="actions" style="text-align: right;">';
-		if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
-			echo $this->Html->link(__d('cake', 'Valider'), array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
 		}
-		if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
-			echo $this->Html->link(__d('cake', 'Archiver'), array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
-		}
-		echo '</td>';
+		if ($isKey !== true) {
+			if ($_field == 'storage_place')
+				echo "<td>" . h(${$singularVar}[$modelClass]['full_storage']) . "</td>";
+			else	
+				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+		}	
+	}
+	echo $this->element('materiel_actions', array('id' => $id, 'statut' => $statut));
 	echo '</tr>';
 
 endforeach;

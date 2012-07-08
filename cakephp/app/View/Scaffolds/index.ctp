@@ -1,20 +1,4 @@
 <?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.View.Scaffolds
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
 function filter($field) {
 	$notToShow = array('id');
 	foreach($notToShow as $value) {
@@ -25,13 +9,13 @@ function filter($field) {
 }
 ?>
 <div class="<?php echo $pluralVar;?> index">
-<h2>Liste des <?php echo strtolower($pluralHumanName);?></h2>
+<h2><i class="icon-list"></i> Liste des <?php echo strtolower($pluralHumanName);?></h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
 <?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
 	<th><?php echo $this->Paginator->sort($_field);?></th>
 <?php } endforeach;?>
-	<th style="text-align: center;"><?php echo __d('cake', 'Actions');?></th>
+	<th style="width:90px;"></th>
 </tr>
 <?php
 $i = 0;
@@ -49,17 +33,19 @@ foreach (${$pluralVar} as ${$singularVar}):
 				}
 			}
 			if ($isKey !== true) {
-				echo "<td>" . $this->Html->link(h(${$singularVar}[$modelClass][$_field]), array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey])) . "</td>";
+				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}
 		}}
 
 		echo '<td class="actions">';
-		echo $this->Html->link(__d('cake', 'Éditer'), array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]));
-		echo $this->Form->postLink(
-			__d('cake', 'Suppr.'),
+		echo $this->Html->link('<i class="icon-search"></i>', 
+			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+		echo $this->Html->link('<i class="icon-pencil"></i>', 
+			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
+		echo $this->Form->postLink('<i class="icon-trash"></i>',
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
-			null,
-			__d('cake', 'Êtes-vous sur de supprimer').' #' . ${$singularVar}[$modelClass][$primaryKey]
+			array('style' => 'margin: 0 2px', 'escape' => false),
+			__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['id'].' ?'
 		);
 		echo '</td>';
 	echo '</tr>';

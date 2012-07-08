@@ -1,7 +1,7 @@
 <?php
 class SousCategoriesController extends AppController {
     public $scaffold;
-    
+
     public function getByCategory() {
 		$category_id = $this->request->data['Materiel']['category_id'];
 		$subcategories = $this->SousCategory->find('list', array(

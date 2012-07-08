@@ -1,9 +1,9 @@
 <div class="<?php echo $pluralVar;?> form">
 <?php
 	if ($this->params['action'] == 'add')
-		echo '<h2>Ajouter '.strtolower($singularHumanName).'</h2>';
+		echo '<h2><i class="icon-plus"></i> Ajouter '.strtolower($singularHumanName).'</h2>';
 	else 
-		echo '<h2>Éditer '.strtolower($singularHumanName).'</h2>';
+		echo '<h2><i class="icon-edit"></i> Éditer '.strtolower($singularHumanName).'</h2>';
 
 	echo $this->Form->create();
 

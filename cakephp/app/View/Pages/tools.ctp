@@ -1,10 +1,12 @@
 <div class="index">
-<h2>Outils</h2>
+<h2><i class="icon-wrench"></i> Outils</h2>
 <table cellpadding="0" cellspacing="0">
 	<tr><th>Actions</th></tr>
-	<tr><td><?php echo $this->Html->link('Gérer les utilisateurs', array(
+	<?php
+		if ($this->Session->read('LdapUserAuthenticationLevel') == 4) { ?>
+			<tr><td><?php echo $this->Html->link('Gérer les utilisateurs', array(
 		'controller' => 'utilisateurs')); ?></td></tr>
-	
+	<?php } ?>
 	<tr><td><?php echo $this->Html->link('Gérer les catégories', array(
 		'controller' => 'categories')); ?></td></tr>
 	<tr><td><?php echo $this->Html->link('Gérer les sous-catégories', array(

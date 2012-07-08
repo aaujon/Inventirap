@@ -43,16 +43,31 @@ class LdapConnection extends AppModel {
 			);
 	}
 	
-	public function getAllLdapUsers()
-	{
+	public function getAllLdapUsers() {
+		try {
+			if($this->checkConfiguration()) {
+				$ldapConnection = ldap_connect($this->host, $this->port);
+				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
+				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=*');
+				$res = ldap_get_entries($ldapConnection, $results);
+				
+				return $res;
+			}
+		}
+		catch(Exception $e) {
+			throw  $e;
+		}
+		return false;
+	}
+	
+	public function getUserAttributes($userName) {
 		try {
 
 			if($this->checkConfiguration())
 			{
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
-				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=*');
-				
+				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=' . $userName);
 				$res = ldap_get_entries($ldapConnection, $results);
 	
 				return $res;
@@ -75,21 +90,15 @@ class LdapConnection extends AppModel {
 	public function ldapAuthentication($login, $password)
 	{
 		try {
-
 			if($this->checkConfiguration())
 			{
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				
-				return ldap_bind($ldapConnection, $this->authenticationType . '=' . $login . ',' . $this->baseDn, $password);
+				return @ldap_bind($ldapConnection, $this->authenticationType . '=' . $login . ',' . $this->baseDn, $password);
 			}
 		}
-		catch(Exception $e)
-		{
-			// throw  $e;
-		}
-		
+		catch(Exception $e) {}
 		return false;
 	}
-
 }
 ?>

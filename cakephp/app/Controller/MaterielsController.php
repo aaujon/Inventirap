@@ -54,14 +54,12 @@ class MaterielsController extends AppController {
 	
 	public function toValidate() {
 		$this->set('results', $this->Materiel->find('all', array('conditions' => array(
-				'Materiel.status ' => 'CREATED')))
-		);
+				'Materiel.status ' => 'CREATED'))));
 		$this->redirect(array('action'=> 'find'));
 	}
 	public function toArchive() {
 		$this->set('results', $this->Materiel->find('all', array('conditions' => array(
-				'Materiel.status ' => 'TOBEARCHIVED')))
-		);
+				'Materiel.status ' => 'TOBEARCHIVED'))));
 		$this->redirect(array('action'=> 'find'));
 	}
 	
@@ -118,20 +116,16 @@ class MaterielsController extends AppController {
 	private function checkAuthentication($action = 'null') {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 
-		if ((strcmp($action, 'find') == 0) 
-			&& ($userAuth >= 1))
+		if ((strcmp($action, 'statusToBeArchived') == 0) && $userAuth >= 1)
 			return true;
 		
-		if ((strcmp($action, 'statusToBeArchived') == 0) 
-			&& (($userAuth >= 1) && ($userAuth != 4)))
+		if ((strcmp($action, 'find') == 0) && ($userAuth >= 1))
 			return true;
 
-		if ((strcmp($action, 'statusValidated') == 0) 
-			&& (($userAuth >= 2) && ($userAuth != 4)))
+		if ((strcmp($action, 'statusValidated') == 0) && $userAuth >= 4)
 			return true;
 
-		if ((strcmp($action, 'statusArchived') == 0) 
-			&& ($userAuth >= 3))
+		if ((strcmp($action, 'statusArchived') == 0) && ($userAuth >= 3))
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');

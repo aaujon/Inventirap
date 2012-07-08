@@ -66,24 +66,19 @@ class UtilisateursController extends AppController {
 			// The user exists into the ldap server
 			if($this->LdapAuth->connection($this->request))
 			{
-				// Save his name into a session variable
+				// Save his name and authentification level into a session variable
 				$this->Session->write('LdapUserName', $this->LdapAuth->getLogin($this->request));
+				$this->Session->write('LdapUserAuthenticationLevel', 1);
 
 				// Get the user into the database
 				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin($this->request))));
-
-				if(count($users) == 0) {
-					$this->Session->write('LdapUserAuthenticationLevel', 1);
-				} elseif(count($users) == 1){
-					
+				if(count($users) == 1) {
 					$this->Session->write('LdapUserMail', $this->getEmailFromName($this->LdapAuth->getLogin($this->request)));
-						
-					// Save his authentication level into a session variable
-					$this->Session->write('LdapUserAuthenticationLevel', $this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
-					
+					// Update his authentication level into a session variable
+					$this->Session->write('LdapUserAuthenticationLevel', 
+						$this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
 					$this->Session->setFlash('Connexion réussie.');
 				}
-				
 				$this->redirect('/');
 			} else {
 				$this->Session->setFlash(__('Nom d\'utilisateur ou mot de passe invalide.'));

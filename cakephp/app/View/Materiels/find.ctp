@@ -19,14 +19,14 @@
 	</h3>
 	<div id="result" <?php if (!$r) echo 'style="display: none;"'; ?>>
 		<?php if (isset($results) && sizeof($results) != 0) { ?>
-		<table> 
+		<table cellpadding="0" cellspacing="0"> 
 			<tr> 
 				<th>Désignation</th>
 				<th>Numéro IRAP</th>
 				<th>Catégorie</th>
-				<th>Statut</th>
 				<th>Responsable</th>
-				<th style="width:50px;">Détail</th>
+				<th>Statut</th>
+				<th style="width:100px;"></th>
 			</tr> 
 			
 			<?php foreach ($results as $material): ?> 
@@ -34,13 +34,10 @@
 				<td><?php echo $material['Materiel']['designation']; ?></td> 
 				<td><?php echo $material['Materiel']['numero_irap']; ?></td>
 				<td><?php echo $this->Html->link($material['Category']['nom'], array('controller' => 'categories', 'action' => 'view', $material['Category']['id']));?></td>
-				<td><?php echo $material['Materiel']['status']; ?></td>
 				<td><?php echo $material['Materiel']['nom_responsable']; ?></td>
-				<td class="actions"><?php 
-					echo $this->Html->link('<i class="icon-search"></i>', 
-						array('controller' => 'materiels', 'action' => 'view', $material['Materiel']['id']), 
-						array('escape' => false, 'style' => 'margin:0')); ?>
-				</td>
+				<td><?php echo $material['Materiel']['status']; ?></td>
+				<?php echo $this->element('materiel_actions', array('id' => $material['Materiel']['id'], 'statut' => $material['Materiel']['status'])); ?>
+				
 			</tr> 
 			<?php endforeach; ?> 
 		</table> 

@@ -62,20 +62,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`utilisateurs`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`utilisateurs` ;
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
-  `id` INT NULL AUTO_INCREMENT ,
-  `ldap` VARCHAR(45) NULL ,
-  `role` VARCHAR(45) NULL ,
-  `email` VARCHAR(100) NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`materiels`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`materiels` ;
@@ -103,13 +89,13 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   `ref_existante` VARCHAR(45) NULL ,
   `lieu_stockage` VARCHAR(45) NULL ,
   `lieu_detail` VARCHAR(45) NULL ,
-  `utilisateur_id` INT NULL ,
+  `nom_responsable` VARCHAR(45) NULL ,
+  `email_responsable` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_administrative_materials_sub_categories1` (`sous_category_id` ASC) ,
   INDEX `fk_materials_thematic_group1` (`thematic_group_id` ASC) ,
   INDEX `fk_materials_work_group1` (`work_group_id` ASC) ,
   INDEX `fk_materiels_categories1` (`category_id` ASC) ,
-  INDEX `fk_materiels_utilisateurs1` (`utilisateur_id` ASC) ,
   CONSTRAINT `fk_administrative_materials_sub_categories1`
     FOREIGN KEY (`sous_category_id` )
     REFERENCES `mydb`.`sous_categories` (`id` )
@@ -129,12 +115,20 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
     FOREIGN KEY (`category_id` )
     REFERENCES `mydb`.`categories` (`id` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_materiels_utilisateurs1`
-    FOREIGN KEY (`utilisateur_id` )
-    REFERENCES `mydb`.`utilisateurs` (`id` )
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`utilisateurs`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`utilisateurs` ;
+
+CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `ldap` VARCHAR(45) NULL ,
+  `role` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 
@@ -374,24 +368,24 @@ INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (7, 'GM');
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`utilisateurs`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Cedric', 'Super Administrateur', 'Cedric.Hillembrand@irap.omp.eu');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Daniel', 'Administrateur', 'Daniel.Toto@irap.omp.eu');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Gin', 'Responsable', 'Gin.Toto@irap.omp.eu');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`, `email`) VALUES (NULL, 'Henri', 'Apprenti', 'Henri.Robert@irap.omp.eu');
-
-COMMIT;
-
--- -----------------------------------------------------
 -- Data for table `mydb`.`materiels`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `date_acquisition`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `utilisateur_id`) VALUES (1, 'Macbook air', 1, 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', '2012-07-04', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 1);
-INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `date_acquisition`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `utilisateur_id`) VALUES (2, 'Macbook retina', 1, 3, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', '2012-07-04', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 1);
+INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `date_acquisition`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`) VALUES (1, 'Macbook air', 1, 2, 'IRAP-12-0001', 'Ceci est une description un peu nulle', 'IRAP', 1, 0, 'CREATED', '2012-07-04', 'Apple', 1000, 'WTF', 'ZERZE45', '44', NULL, 1, 1, NULL, 'B', 'Chambre', 'Cedric', 'Cedric.Hillembrand@irap.omp.eu');
+INSERT INTO `mydb`.`materiels` (`id`, `designation`, `category_id`, `sous_category_id`, `numero_irap`, `description`, `organisme`, `materiel_administratif`, `materiel_technique`, `status`, `date_acquisition`, `fournisseur`, `prix_ht`, `eotp`, `numero_commande`, `code_comptable`, `numero_serie`, `thematic_group_id`, `work_group_id`, `ref_existante`, `lieu_stockage`, `lieu_detail`, `nom_responsable`, `email_responsable`) VALUES (2, 'Macbook retina', 1, 3, 'IRAP-12-0002', 'Ceci est une description pas vraiment mieux que la premiere', NULL, 1, 1, 'CREATED', '2012-07-04', 'Apple', 2000, NULL, 'RETRT45', '44', NULL, 3, 4, NULL, 'A', 'Etagère', 'Cedric', 'Cedric.Hillembrand@irap.omp.eu');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `mydb`.`utilisateurs`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mydb`;
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Cedric', 'Super Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Gin', 'Responsable');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Henri', 'Apprenti');
 
 COMMIT;
 
@@ -401,8 +395,8 @@ COMMIT;
 START TRANSACTION;
 USE `mydb`;
 INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 1, '2012-03-03', '2012-03-03', 'Maintenance', 'IRAP', 3, 'Super cooolos');
-INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 1, '2012-03-03', '2012-03-03', 'Calibration', 'IRAP', 1, 'Ca sert pas à grand chose');
-INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 1, '2012-03-03', '2012-03-03', 'Maintenance', 'IRAP', 10, 'Pas souvent lui la maintenance');
+INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 2, '2012-03-03', '2012-03-03', 'Calibration', 'IRAP', 1, 'Ca sert pas à grand chose');
+INSERT INTO `mydb`.`suivis` (`id`, `materiel_id`, `date_controle`, `date_prochain_controle`, `type_intervention`, `organisme`, `frequence`, `commentaire`) VALUES (NULL, 2, '2012-03-03', '2012-03-03', 'Maintenance', 'IRAP', 10, 'Pas souvent lui la maintenance');
 
 COMMIT;
 

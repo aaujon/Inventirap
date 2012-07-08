@@ -35,7 +35,7 @@
 				<td><?php echo $material['Materiel']['numero_irap']; ?></td>
 				<td><?php echo $this->Html->link($material['Category']['nom'], array('controller' => 'categories', 'action' => 'view', $material['Category']['id']));?></td>
 				<td><?php echo $material['Materiel']['status']; ?></td>
-				<td><?php echo $material['Utilisateur']['ldap']; ?></td>
+				<td><?php echo $material['Materiel']['nom_responsable']; ?></td>
 				<td class="actions"><?php 
 					echo $this->Html->link('<i class="icon-search"></i>', 
 						array('controller' => 'materiels', 'action' => 'view', $material['Materiel']['id']), 

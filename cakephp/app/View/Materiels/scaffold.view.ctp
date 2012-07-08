@@ -77,7 +77,7 @@
 	displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
 	displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);
 	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['full_storage']);
-	displayElement('Responsable', $this->Html->link(${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
+	// displayElement('Responsable', $this->Html->link(${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
 ?>
 </table>
 </div>

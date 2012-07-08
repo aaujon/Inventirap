@@ -1,9 +1,6 @@
 <div class="index">
-	<h2>Page de connexion</h2>
-	
+	<h2><i class="icon-key"></i> Page de connexion</h2>
 	<?php
-		echo $this->Session->flash('auth');
-	
 		echo $this->Form->create('Utilisateur', array('action' => 'login'));
 		echo $this->Form->input('ldap');
 		echo $this->Form->input('password', array('div' => 'required'));

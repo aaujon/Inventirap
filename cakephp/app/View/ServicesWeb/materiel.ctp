@@ -1,5 +1,1 @@
-<?php
-
-echo json_encode(compact('materials', 'id'));
-
-?>
+<?php echo json_encode(compact('materials', 'id')); ?>

@@ -15,12 +15,20 @@ class ServicesWebController extends AppController {
 		$this->LdapAuth->allow('*');
     }
 	
-	public function materiel($id = null) {
-		$mat = ClassRegistry::init('Materiel');
+	public function materiel($irapNum = '') {
 		
-		$mat->id = $id;
+		if(preg_match('~IRAP-..-[0-9]*~', $irapNum)) {
+			
+			$this->set('id', $irapNum);
+			
+			$materiels = ClassRegistry::init('Materiel');	
 		
-		$this->set('materials', $mat->read());
+			$materiel = $materiels->find('all', array(
+                'conditions' => array(
+                    'numero_irap' => $irapNum)));
+
+			$this->set('materials', $materiel);
+		}
 	}
 }
 

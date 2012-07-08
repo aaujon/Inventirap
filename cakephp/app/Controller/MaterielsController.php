@@ -5,6 +5,8 @@ class MaterielsController extends AppController {
 	public $helpers = array('Js');
 
 	public function find() {
+		$this->checkAuthentication('find');
+		
 		$this->loadModel('Category');
 		$this->loadModel('SousCategory');
 		$this->set('s_categories', $this->Category->find('list'));
@@ -116,6 +118,9 @@ class MaterielsController extends AppController {
 
 		if ((strcmp($action, 'statusToBeArchived') == 0) && $userAuth >= 1)
 			return true;
+		
+		if ((strcmp($action, 'find') == 0) && ($userAuth >= 1))
+			return true;
 
 		if ((strcmp($action, 'statusValidated') == 0) && $userAuth >= 4)
 			return true;
@@ -124,7 +129,7 @@ class MaterielsController extends AppController {
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');
-		$this->redirect(array('controller' => 'Materiels', 'action'=> 'index'));
+		$this->redirect(array('controller' => 'Utilisateurs', 'action'=> 'loggin'));
 	}
 }
 ?>

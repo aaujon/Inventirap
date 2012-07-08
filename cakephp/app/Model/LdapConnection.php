@@ -90,21 +90,15 @@ class LdapConnection extends AppModel {
 	public function ldapAuthentication($login, $password)
 	{
 		try {
-
 			if($this->checkConfiguration())
 			{
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				
-				return ldap_bind($ldapConnection, $this->authenticationType . '=' . $login . ',' . $this->baseDn, $password);
+				return @ldap_bind($ldapConnection, $this->authenticationType . '=' . $login . ',' . $this->baseDn, $password);
 			}
 		}
-		catch(Exception $e)
-		{
-			// throw  $e;
-		}
-		
+		catch(Exception $e) {}
 		return false;
 	}
-
 }
 ?>

@@ -2,8 +2,8 @@
 
 #Mettre à jour les sources
 echo "Récupération des sources..."
-# rm -rf Inventirap/
-# git clone git://github.com/aaujon/Inventirap.git
+rm -rf Inventirap/
+git clone git://github.com/aaujon/Inventirap.git
 
 #Configurer l'application
 echo "Mise à jour des droits des dossiers..."

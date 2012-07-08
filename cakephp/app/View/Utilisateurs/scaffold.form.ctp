@@ -1,4 +1,3 @@
-
 <div class="<?php echo $pluralVar;?> form">
 <?php
 	if ($this->params['action'] == 'add')
@@ -14,21 +13,19 @@
 		if(!empty($userInformations[$connection->getAuthenticationType()][0]))
 			$ldapUsers[$userInformations[$connection->getAuthenticationType()][0]] 
 				= $userInformations[$connection->getAuthenticationType()][0];
-	
-	$inputRoles = array();
-	foreach($utilisateurs->getAcceptedRoles() as $role)
-		$inputRoles[$role] = $role;
-	
+		
 	echo $this->Form->create();
 	if ($this->params['action'] == 'add')
-		echo $this->Form->input('ldap', 
-			array('options' => $ldapUsers, 'empty' => 'Choisir un utilisateur', 'selected' => ''));
+		echo $this->Form->input('ldap', array(
+			'options' => $ldapUsers, 
+			'empty' => 'Choisir un utilisateur', 
+			'selected' => ''));
 	else 
-		echo $this->Form->input('ldap', 
-			array('options' => $ldapUsers, 'empty' => 'Choisir un utilisateur', 'disabled' => true));
-	echo $this->Form->input('role', 
-		array('options' => $inputRoles));
-	echo $this->Form->input('email', array('disabled' => true));
+		echo $this->Form->input('ldap', array(
+			'options' => $ldapUsers, 
+			'empty' => 'Choisir un utilisateur', 
+			'disabled' => true));
+	echo $this->Form->input('role', array('options' => $utilisateurs->getAcceptedRoles()));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>
@@ -38,20 +35,3 @@
 		echo $this->element('tools_form');
 	?>
 </div>
-
-
-<script>	
-	$('#UtilisateurLdap').change(
-		function() {
-			if($('#UtilisateurLdap').val()) {
-				$.ajax({
-	                type: "post",
-	                url: "\/Inventirap\/cakephp\/utilisateurs\/getEmailFromName\/" + $('#UtilisateurLdap').val(),
-	                success: function(data,textStatus,xhr){
-	                        $('#UtilisateurEmail').val(data);
-	                }
-	            })
-			}
-		}
-	)
-</script>

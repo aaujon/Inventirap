@@ -26,8 +26,8 @@ class Utilisateur extends AppModel {
 		return 0;
 	}
 	
-	public function getRoleFromAuthenticationLevel($ldapUserAuthenticationLevel = 0) {
-			switch ($ldapUserAuthenticationLevel) {
+	public function getRoleFromAuthenticationLevel($userAuth = 0) {
+			switch ($userAuth) {
 				case 1: return 'Apprenti';
 				case 2: return 'Responsable';
 				case 3: return 'Administrateur';
@@ -42,12 +42,6 @@ class Utilisateur extends AppModel {
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'Le champ ldap doit être rempli.'
-                )
-                ),
-		'password' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'Le champ mot de passe doit être rempli.'
                 )
                 ),
        	'role' => array(

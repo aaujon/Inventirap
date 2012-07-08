@@ -55,8 +55,10 @@ read ldapPort
 sed -i "s/389/$ldapPort/" ./cakephp/app/Config/database.php
 
 # Ajouter les droits en ecriture pour la creation des qrcodes
-touch ./cakephp/app/Vendor/phpqrcode/test-errors.txt
-chmod 777 ./cakephp/app/Vendor/phpqrcode/test-errors.txt
+
+# phpqrcode write its errors into its folder ...
+chmod -R 777 cakephp/app/Vendor/phpqrcode/
+
 touch ./cakephp/app/Vendor/phpqrcode/errors.txt
 chmod 777 ./cakephp/app/Vendor/phpqrcode/errors.txt
 mkdir ./cakephp/app/tmp/qrcodes

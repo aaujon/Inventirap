@@ -46,11 +46,11 @@ foreach (${$pluralVar} as ${$singularVar}):
 			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Détails', 'style' => 'margin: 0 2px', 'escape' => false));
 		echo $this->Html->link('<i class="icon-pencil"></i>', 
 			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('title' => 'Éditer', 'style' => 'margin: 0 2px', 'escape' => false));
-	    if ($ldapUserAuthenticationLevel > 1) {
-			echo $this->Form->postLink('<i class="icon-trash"></i>',
-				array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
-				array('title' => 'Supprimer', 'style' => 'margin: 0 2px', 'escape' => false),
-				__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['designation'].' ?'
+	    if ($ldapUserAuthenticationLevel >= 3) {
+			echo $this->Form->postLink('<i class="icon-inbox"></i>',
+				array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]),
+				array('title' => 'Archiver', 'style' => 'margin: 0 2px', 'escape' => false),
+				__d('cake', 'Êtes-vous sur d\'archiver ').' '.${$singularVar}[$modelClass]['designation'].' ?'
 			);
 		}
 		echo '</td>';

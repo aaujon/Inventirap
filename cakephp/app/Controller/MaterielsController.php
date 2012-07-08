@@ -67,7 +67,7 @@ class MaterielsController extends AppController {
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
-		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
 	}
 
 	public function statusArchived($id = null) {
@@ -75,7 +75,7 @@ class MaterielsController extends AppController {
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
-		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
 	}
 
 	public function statusValidated($id = null) {
@@ -83,7 +83,7 @@ class MaterielsController extends AppController {
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'VALIDATED');
-		$this->redirect(array('controller' => $this->params['controller'], 'action'=> 'index'));
+		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
 	}
 
 	public function getIrapNumber($year = 2012) {
@@ -99,7 +99,7 @@ class MaterielsController extends AppController {
 	
 	/* 
 	 * Auth functions
-	 *
+	 */
 	public function beforeFilter() {
 		$this->LdapAuth->deny();
 		$this->LdapAuth->allow($this->authLevelUnauthorized);
@@ -125,11 +125,11 @@ class MaterielsController extends AppController {
 			return true;
 
 		if ((strcmp($action, 'statusArchived') == 0) 
-			&& ($ldapUserAuthenticationLevel == 3))
+			&& ($ldapUserAuthenticationLevel >= 3))
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');
 		$this->redirect(array('controller' => 'Materiels', 'action'=> 'index'));
-	}*/
+	}
 }
 ?>

@@ -2,8 +2,8 @@
 
 #Mettre à jour les sources
 echo "Récupération des sources..."
-# rm -rf Inventirap/
-# git clone git://github.com/aaujon/Inventirap.git
+rm -rf Inventirap/
+git clone git://github.com/aaujon/Inventirap.git
 
 #Configurer l'application
 echo "Mise à jour des droits des dossiers..."
@@ -30,6 +30,11 @@ echo "Entrez le nom de la base à utiliser"
 read bddName
 sed -i "s/'database' => 'mydb'/'database' => '$bddName'/" ./cakephp/app/Config/database.php
 
+mysql -u $bddUserName --password=$bddPassword -h $bddIp -e "DROP DATABASE $bddName;"
+mysql -u $bddUserName --password=$bddPassword -h $bddIp -e "CREATE DATABASE $bddName;"
+
+sed -i "s/mydb/$bddName/" ./database/BDD_IRAP.sql
+
 mysql -u $bddUserName --password=$bddPassword -h $bddIp $bddName < ./database/BDD_IRAP.sql
 
 #Ajouter Super Administrateur
@@ -54,5 +59,4 @@ chmod -R 777 cakephp/app/Vendor/phpqrcode/
 
 touch ./cakephp/app/Vendor/phpqrcode/errors.txt
 chmod 777 ./cakephp/app/Vendor/phpqrcode/errors.txt
-mkdir ./cakephp/app/tmp/qrcodes
-chmod -R 777 ./cakephp/app/tmp/qrcodes/
+chmod -R 777 cakephp/app/webroot/img

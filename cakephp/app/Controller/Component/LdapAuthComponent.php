@@ -1,32 +1,28 @@
 <?php
-
 App::import('Component', 'Auth');
 
 class LdapAuthComponent extends AuthComponent {
 
 	public function connection($request) {
-
-		try {
-			$connection = ClassRegistry::init('LdapConnection');
-
-			$login = $this->getLogin($request);
-			$password = $this->getPassword($request); 
+		try {			
+			$login = $this->request->data['Utilisateur']['ldap'];
+			$password = $this->request->data['Utilisateur']['password']; 
 			
-			return $connection->ldapAuthentication($login, $password);
-			
+			return ClassRegistry::init('LdapConnection')->ldapAuthentication($login, $password);	
 		}
-		catch(Exception $e)
-		{
+		catch(Exception $e) {
 			return $e->getMessage();
 		}
-
-	}
-
-	public function getPassword($request) {
-		return $this->request->data['Utilisateur']['password'];
 	}
 	
-	public function getLogin($request) {
-		return $this->request->data['Utilisateur']['ldap'];
+	public function getUserName() {
+		$ldapAuthentication =  $this->request->data['Utilisateur']['ldap'];
+		
+		$ldapConnection = ClassRegistry::init('LdapConnection');
+		
+		$user = $ldapConnection->getUserAttributes($ldapAuthentication);
+		
+		return $user[0]['sn'][0] . ' ' . $user[0]['givenname'][0];
 	}
 }
+?>

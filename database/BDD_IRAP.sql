@@ -84,8 +84,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   `numero_commande` VARCHAR(45) NULL ,
   `code_comptable` VARCHAR(45) NULL ,
   `numero_serie` VARCHAR(45) NULL ,
-  `thematic_group_id` INT NOT NULL ,
-  `work_group_id` INT NOT NULL ,
+  `thematic_group_id` INT NULL ,
+  `work_group_id` INT NULL ,
   `ref_existante` VARCHAR(45) NULL ,
   `lieu_stockage` VARCHAR(45) NULL ,
   `lieu_detail` VARCHAR(45) NULL ,
@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS `mydb`.`utilisateurs` ;
 
 CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `ldap` VARCHAR(45) NULL ,
+  `name` VARCHAR(45) NULL ,
   `role` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -343,12 +343,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (1, 'GPPS');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (1, 'N/A');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (2, 'PSE');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (3, 'MICMAC');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (4, 'GAHEC');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (5, 'SISU');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (6, 'SG');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (7, 'GPPS');
 
 COMMIT;
 
@@ -382,10 +383,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Cedric', 'Super Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Gin', 'Responsable');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Henri', 'Apprenti');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Cedric', 'Super Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Gin', 'Responsable');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Henri', 'Apprenti');
 
 COMMIT;
 

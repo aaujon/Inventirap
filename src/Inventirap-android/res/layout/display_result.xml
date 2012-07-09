@@ -4,16 +4,15 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <ListView
+    <ExpandableListView
         android:id="@+id/android:list"
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
+        android:layout_height="fill_parent"
         android:drawSelectorOnTop="false" />
     <TextView
         android:id="@id/android:empty"
         android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-    	android:text="No data" />
+    	android:text="No items" />
 
 </LinearLayout>

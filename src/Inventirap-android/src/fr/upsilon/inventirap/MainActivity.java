@@ -14,6 +14,11 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private final int QRCODE_RESULT = 0;
+	private final int REQUEST_RESULT = 1;
+	
+	public static final int REQUEST_BAD_ADDRESS = 1;
+	public static final int REQUEST_NO_MATERIAL = 2;
+	public static final int REQUEST_BADLY_FORMATTED = 3;
 	
 	private Context context;
 	private Button scanButton;
@@ -67,31 +72,48 @@ public class MainActivity extends Activity {
     	
         if (requestCode == QRCODE_RESULT) {
      //       if (resultCode == RESULT_OK) {
-        		String contents = "123";
+        		String contents = "IRAP-12-0001";
+        		//String contents = "1";
                // String contents = intent.getStringExtra("SCAN_RESULT");
 //                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 Log.d(this.getClass().getName(), "content : " + contents);
                 
-                int value = 0;
-                try {
-                	Integer.parseInt(contents);
-                } catch (NumberFormatException e) {
-                	// error while decoding
+                /*if (!contents.startsWith("IRAP-")) {
                 	Toast t = Toast.makeText(context, R.string.bad_decode, Toast.LENGTH_LONG);
                 	t.show();
                 	return;
-                }
+                }*/
 
                 
                 Intent requestIntent = new Intent(context, RequestActivity.class);
-                requestIntent.putExtra(getString(R.string.DECODED_VALUE), value);
-                startActivity(requestIntent);
+                requestIntent.putExtra(getString(R.string.DECODED_VALUE), contents);
+                startActivityForResult(requestIntent, REQUEST_RESULT);
                 
                 // Handle successful scan
-            } else if (resultCode == RESULT_CANCELED) {
+          /*  } else if (resultCode == RESULT_CANCELED) {
                 Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
                 toast.show();
-            }
+            }*/
      //   }
+        } else if (requestCode == REQUEST_RESULT) {
+        	Toast t;
+        	switch(resultCode) {
+        	case REQUEST_BAD_ADDRESS:
+				t = Toast.makeText(context, R.string.webservice_error, Toast.LENGTH_LONG);
+            	t.show();
+            	break;
+        	case REQUEST_NO_MATERIAL:
+        		t = Toast.makeText(context, R.string.no_such_element, Toast.LENGTH_LONG);
+            	t.show();
+            	break;
+        	case REQUEST_BADLY_FORMATTED:
+        		t = Toast.makeText(context, R.string.json_error, Toast.LENGTH_LONG);
+            	t.show();
+        		break;
+        	default:
+        		
+        	}
+        	
+        }
     }
 }

@@ -41,9 +41,13 @@ public class ParametersActivity extends Activity {
         	// get server ip
         	String server_ip = serverEditText.getText().toString();
         	
+        	// check http://
+        	if (!server_ip.startsWith("http://"))
+        		server_ip = "http://"+server_ip;
+        	
         	// save server addr in preferences
             Log.d(this.getClass().getName(), "back button pressed, save prefs.");
-            Log.d(this.getClass().getName(), "servier ip : "+server_ip);
+            Log.d(this.getClass().getName(), "server ip : "+server_ip);
             
             Editor editor = prefs.edit();
             

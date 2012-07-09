@@ -2,26 +2,29 @@ package fr.upsilon.inventirap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import android.app.Activity;
+import android.app.ExpandableListActivity;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ExpandableListAdapter;
 import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.SimpleExpandableListAdapter;
 
-public class DisplayResultActivity extends ListActivity {
-	private final int QRCODE_RESULT = 0;
+public class DisplayResultActivity extends ExpandableListActivity {
 	
 	private Context context;
-	private ListAdapter adapter;
+	private ExpandableListAdapter adapter;
+	private ArrayList<HashMap<String, String>> groupList = new ArrayList<HashMap<String, String>>();
+    ArrayList<ArrayList<HashMap<String, String>>> childList= new ArrayList<ArrayList<HashMap<String,String>>>();
+
 	
     /** Called when the activity is first created. */
     @Override
@@ -30,27 +33,89 @@ public class DisplayResultActivity extends ListActivity {
         setContentView(R.layout.display_result);
         
         context = this;
-        Document document = WebServicesTools.document;
-        NodeList nodeList = document.getFirstChild().getChildNodes();
-        int nodeNumber = nodeList.getLength();
-        Log.d("", "node number : "+nodeNumber);
+        JSONObject json = WebServicesTools.jsonObj;
+        try {
+        	JSONArray jsonArray = json.getJSONArray("materials");
+        	json = jsonArray.getJSONObject(0);
+        	//String j = json.getString("materials");
+        	//Log.d("", (String)json.keys().next());
+        	//Log.d("", j);
+			//json = new JSONObject(j);
+		} catch (JSONException e1) {
+			finish();
+		}
+        int length = json.length();
+
+        Log.d("", "json length : "+length);
         
-        ArrayList<HashMap<String, String>> myList= new ArrayList<HashMap<String,String>>();
-        for (int i = 0 ; i < nodeNumber ; i++) {
+        Iterator it = json.keys();
+        while (it.hasNext()) {
+        	String name = (String) it.next();
+        	
         	HashMap<String, String> map = new HashMap<String, String>();
+        	String value = "";
+        	String text = "";
         	
-        	Element e = (Element) nodeList.item(i);
-        	map.put("1", e.getNodeName());
-        	map.put("2", e.getChildNodes().item(0).getNodeValue());
-        	
-        	myList.add(map);
+        	// get value
+			try {		
+				value = json.getString(name);
+				Log.d("", "get :" + name);
+				
+				HashMap<String, String> mapGroup = new HashMap<String, String>();
+		        mapGroup.put("row",name);
+		        groupList.add(mapGroup);
+				
+				if (name.compareTo("Category") == 0) {
+					value = json.getJSONObject("Category").getString("nom");
+				} else if (name.compareTo("SousCategory") == 0) {
+					value = json.getJSONObject("SousCategory").getString("nom");
+				} else if (name.compareTo("WorkGroup") == 0) {
+					value = json.getJSONObject("WorkGroup").getString("nom");
+				} else if (name.compareTo("ThematicGroup") == 0) {
+					value = json.getJSONObject("ThematicGroup").getString("nom");
+				} else if (name.compareTo("Materiel") == 0) {
+					JSONObject material = json.getJSONObject("Materiel");
+					ArrayList<HashMap<String, String>> internalMap = new ArrayList<HashMap<String,String>>();
+					for (Iterator<String> it2 = material.keys() ; it2.hasNext() ; ) {
+						String name2 = it2.next();
+						if (name2.endsWith("_id"))
+							continue;
+						String value2 = material.getString(name2);
+						
+			        	HashMap<String, String> map2 = new HashMap<String, String>();
+						
+						map2.put("1", name2);
+						map2.put("2", value2);
+						internalMap.add(map2);
+					}
+					
+					childList.add(internalMap);
+					
+				}
+				
+			} catch (JSONException e) {
+			}
+
+			if (name.compareTo("Materiel") == 0) {
+				
+			} else {
+				ArrayList<HashMap<String, String>> internalMap = new ArrayList<HashMap<String,String>>();
+	        	map.put("1", "");
+	        	map.put("2", value);
+	        	
+	        	internalMap.add(map);
+	        	
+	        	childList.add(internalMap);
+			}
         }
         
-        adapter = new SimpleAdapter(context, myList, R.layout.element,
+       /* adapter = new SimpleExpandableListAdapter(context, myList, R.layout.element,
         		new String[] {"1", "2"},
         		new int[] {R.id.field1, R.id.field2});
-        		
-  
+        */		
+        adapter = new SimpleExpandableListAdapter(context, 
+        		groupList, R.layout.group_row, new String[] {"row"}, new int[] {R.id.row_name},
+        		childList, R.layout.element, new String[] {"1", "2"}, new int[] {R.id.field1, R.id.field2});
         setListAdapter(adapter);
         
     }

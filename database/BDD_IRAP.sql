@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS `mydb`.`utilisateurs` ;
 
 CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `ldap` VARCHAR(45) NULL ,
+  `name` VARCHAR(45) NULL ,
   `role` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
@@ -382,10 +382,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Cedric', 'Super Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Gin', 'Responsable');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `ldap`, `role`) VALUES (NULL, 'Henri', 'Apprenti');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Hillembrand Cedric', 'Super Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Turner Daniel', 'Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Sky Gin', 'Responsable');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Robert Henri', 'Apprenti');
 
 COMMIT;
 

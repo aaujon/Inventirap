@@ -5,8 +5,8 @@ class LdapAuthComponent extends AuthComponent {
 
 	public function connection($request) {
 		try {			
-			$login = $this->getLogin();
-			$password = $this->getPassword(); 
+			$login = $this->request->data['Utilisateur']['ldap'];
+			$password = $this->request->data['Utilisateur']['password']; 
 			
 			return ClassRegistry::init('LdapConnection')->ldapAuthentication($login, $password);	
 		}
@@ -14,11 +14,15 @@ class LdapAuthComponent extends AuthComponent {
 			return $e->getMessage();
 		}
 	}
-	public function getLogin() {
-		return $this->request->data['Utilisateur']['ldap'];
-	}
-	public function getPassword() {
-		return $this->request->data['Utilisateur']['password'];
+	
+	public function getUserName() {
+		$ldapAuthentication =  $this->request->data['Utilisateur']['ldap'];
+		
+		$ldapConnection = ClassRegistry::init('LdapConnection');
+		
+		$user = $ldapConnection->getUserAttributes($ldapAuthentication);
+		
+		return $user[0]['sn'][0] . ' ' . $user[0]['givenname'][0];
 	}
 }
 ?>

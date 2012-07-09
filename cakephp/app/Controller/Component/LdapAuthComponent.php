@@ -22,7 +22,7 @@ class LdapAuthComponent extends AuthComponent {
 		
 		$user = $ldapConnection->getUserAttributes($ldapAuthentication);
 		
-		return $user[0]['sn'][0] . ' ' . $user[0]['givenname'][0];
+		return $user[0]['givenname'][0] . ' ' . $user[0]['sn'][0];
 	}
 }
 ?>

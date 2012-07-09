@@ -14,7 +14,7 @@ class UtilisateursController extends AppController {
 				$this->Session->write('UserName', $this->LdapAuth->getUserName());
 				$this->Session->write('LdapUserMail', $this->getEmailFromLdapName($this->Session->read('LdapUserName')));
 				
-				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->Session->read('UserName'))));
+				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->Session->read('LdapUserName'))));
 				if(count($users) == 1) {
 					// Update his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', 

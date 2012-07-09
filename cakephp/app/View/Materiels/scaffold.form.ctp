@@ -37,6 +37,7 @@
 			echo $this->Form->input('sous_category_id', array(
 				'label' => 'Sous catégorie', 'empty' => 'Choisir une sous-catégorie', 'selected' => '', 
 				'options' => array(), 'style' => 'width: 200px'));
+			
 			//Champs hidden
 			echo $this->Form->hidden('materiel_administratif', array('value' => $this->passedArgs['adm']));
 			echo $this->Form->hidden('materiel_technique', array('value' => $this->passedArgs['tec']));

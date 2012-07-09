@@ -18,6 +18,8 @@
 	$statut = ${$singularVar}[$modelClass]['status'];
 	$administratif = ${$singularVar}[$modelClass]['materiel_administratif'];
 	$technique = ${$singularVar}[$modelClass]['materiel_technique'];
+	$them_groupe = ${$singularVar}['ThematicGroup']['nom'];
+	$trav_groupe = ${$singularVar}['WorkGroup']['nom'];
 	
 	if ($statut == 'CREATED' && $userAuth >= 2) {
 		//Responsable/Admin/Super admin peuvent valider le matériel
@@ -61,6 +63,7 @@
 	else
 		$type = 'Aucun'; 
 
+	//Catégorie/Sous catégorie
 	$categorie = $this->Html->link(${$singularVar}['Category']['nom'], array(
 				'controller' => 'categories',
 				'action' => 'view',
@@ -69,11 +72,17 @@
 				'controller' => 'sous_categories',
 				'action' => 'view',
 				${$singularVar}['SousCategory']['id']));
-	$groupeThematique = $this->Html->link(${$singularVar}['ThematicGroup']['nom'], array(
+				
+	//Groupe thématique/travail
+	$groupeThematique = '';
+	$groupeTravail = '';
+	if ($them_groupe != 'N/A')
+		$groupeThematique = $this->Html->link($them_groupe, array(
 				'controller' => 'thematic_groups',
 				'action' => 'view',
 				${$singularVar}['ThematicGroup']['id']));
-	$groupeTravail = $this->Html->link(${$singularVar}['WorkGroup']['nom'], array(
+	if ($trav_groupe != 'N/A')
+		$groupeTravail = $this->Html->link($trav_groupe, array(
 				'controller' => 'work_groups',
 				'action' => 'view',
 				${$singularVar}['WorkGroup']['id']));

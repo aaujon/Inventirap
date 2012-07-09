@@ -343,12 +343,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (1, 'GPPS');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (1, 'N/A');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (2, 'PSE');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (3, 'MICMAC');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (4, 'GAHEC');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (5, 'SISU');
 INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (6, 'SG');
+INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (7, 'GPPS');
 
 COMMIT;
 
@@ -382,10 +383,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Hillembrand Cedric', 'Super Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Turner Daniel', 'Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Sky Gin', 'Responsable');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Robert Henri', 'Apprenti');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Cedric', 'Super Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Gin', 'Responsable');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `name`, `role`) VALUES (NULL, 'Henri', 'Apprenti');
 
 COMMIT;
 

@@ -68,6 +68,7 @@ class MaterielsController extends AppController {
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
+		$this->logInventirap($id);
 		$this->Session->setFlash('La demande d\'archivage du matériel a bien été demandé.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
@@ -77,6 +78,7 @@ class MaterielsController extends AppController {
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'VALIDATED');
+		$this->logInventirap($id);
 		$this->Session->setFlash('Le matériel a bien été validé.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
@@ -86,6 +88,7 @@ class MaterielsController extends AppController {
 
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
+		$this->logInventirap($id);
 		$this->Session->setFlash('Le matériel a bien été archivé.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
@@ -121,9 +124,9 @@ class MaterielsController extends AppController {
 
 		if (($action == 'statusToBeArchived' || $action == 'find') && $userAuth >= 1)
 			return true;
-		if ($action == 'statusValidated' && $userAuth >= 4)
+		if ($action == 'statusValidated' && $userAuth >= 2)
 			return true;
-		if ($action == 'statusArchived' && ($userAuth >= 3))
+		if ($action == 'statusArchived' && $userAuth >= 4)
 			return true;
 
 		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');

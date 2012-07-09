@@ -129,3 +129,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+ 
+CakeLog::config('inventirap', array(
+ 	'engine' => 'FileLog',
+ 	'file' => 'inventirap.log'));

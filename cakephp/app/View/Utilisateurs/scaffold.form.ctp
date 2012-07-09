@@ -18,7 +18,11 @@
 			'options' => $utilisateur->getLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
 			'disabled' => true));
-	echo $this->Form->input('role', array('options' => $utilisateur->getAcceptedRoles()));
+	echo $this->Form->input('role', array('options' => array(
+		'Apprenti' => 'Apprenti', 
+		'Responsable' => 'Responsable', 
+		'Administrateur' => 'Administrateur', 
+		'Super Administrateur' => 'Super Administrateur')));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>

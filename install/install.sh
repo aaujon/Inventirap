@@ -1,14 +1,9 @@
 #!/bin/bash
 
-# Parametres à changer pour votre installation
-export bddUserName="root";
-export bddPassword="root";
-export bddName="mydb"
-
 #Mettre à jour les sources
 echo "Récupération des sources..."
-# rm -rf Inventirap/
-# git clone git://github.com/aaujon/Inventirap.git
+rm -rf Inventirap/
+git clone git://github.com/aaujon/Inventirap.git
 
 #Configurer l'application
 echo "Mise à jour des droits des dossiers..."
@@ -40,9 +35,7 @@ mysql -u $bddUserName --password=$bddPassword -h $bddIp $bddName < ./database/BD
 #Ajouter Super Administrateur
 echo "Quel est le nom du super administrateur de l'inventaire"
 read superAdminName
-echo "Quel est l'adresse email du super administrateur de l'inventaire"
-read superAdminEmail
-mysql -u $bddUserName --password=$bddPassword -h $bddIp -D $bddName -e "INSERT INTO utilisateurs (ldap, role, email) VALUES ('$superAdminName', 'Super Administrator', '$superAdminEmail');"
+mysql -u $bddUserName --password=$bddPassword -h $bddIp -D $bddName -e "INSERT INTO utilisateurs (ldap, role) VALUES ('$superAdminName', 'Super Administrateur');"
 
 # Set LDAP address
 echo "Entrez l'adresse du serveur ldap"

@@ -18,6 +18,8 @@
 
 @implementation InformationViewController
 
+@synthesize product;
+
 #pragma mark -
 #pragma mark Initialization
 
@@ -30,11 +32,6 @@
     return self;
 }
 
-- (void)initData:(Product *)data
-{
-    m_product = data;
-}
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -44,9 +41,6 @@
 
     [self.tableView setRowHeight:50];
     [self.tableView setShowsVerticalScrollIndicator:NO];
-    
-    [[self navigationItem] setTitle : [m_product getName]];
-
 }
 
 - (void)viewDidUnload
@@ -64,12 +58,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [m_product getSectionsCount];
+    return [[self product] getSectionsCount];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [m_product getPropertiesNumberForSection:section];
+    return [[self product] getPropertiesNumberForSection:section];
 }
 
 
@@ -83,8 +77,8 @@
         cell = (CustomCell *)temporaryController.view;
     }
     
-    NSString *label = [[m_product getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] getName];
-    NSString *description = [[m_product getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] getValue];
+    NSString *label = [[[self product] getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] name];
+    NSString *description = [[[self product] getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] value];
     
     cell.nameLabel.text = label;
     cell.descriptionLabel.text = description;
@@ -105,7 +99,7 @@
 	headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 20.0);
     headerLabel.textAlignment = UITextAlignmentCenter;
     
-	headerLabel.text = [m_product getSectionAtIndex:section];
+	headerLabel.text = [[self product] getSectionAtIndex:section];
 	[customView addSubview:headerLabel];
     
 	return customView;

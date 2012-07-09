@@ -11,22 +11,14 @@
 @class Property;
 
 @interface Product : NSObject
-{
-    NSString *m_name;
-    NSMutableArray *m_properties;
-    NSMutableArray *m_sectionList;
-    NSMutableDictionary *m_section;
-}
 
-- (id) init;
-- (void) setName:(NSString*)name;
-- (NSString*) getName;
+@property (nonatomic, retain) NSString *name;
 
-- (void) setSectionWithName:(NSString*)name;
+- (void) setSectionWithName:(NSString*)sectionName;
 - (NSUInteger) getSectionsCount;
 - (NSString*) getSectionAtIndex:(NSUInteger)index;
 
-- (void) addPropertyName:(NSString*)name AndValue:(NSString*)value;
+- (void) addPropertyName:(NSString*)propertyName AndValue:(NSString*)value;
 - (NSUInteger) getPropertiesNumberForSection:(NSUInteger)section;
 - (Property*) getPropertyAtIndex:(NSUInteger)index ForSection:(NSUInteger)section;
 @end

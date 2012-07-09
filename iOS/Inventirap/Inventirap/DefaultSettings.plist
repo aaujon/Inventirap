@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>WebServiceURL</key>
-	<string>http://myserver/webService</string>
+	<string>https://inventirap.irap.omp.eu/ServicesWeb/materiel/</string>
 </dict>
 </plist>

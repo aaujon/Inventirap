@@ -15,14 +15,24 @@
 
 @interface ScannerViewController ()
 
+@property (nonatomic, retain) InformationViewController *informationViewController;
+@property (nonatomic, retain) NSMutableData *jsonData;
+@property (nonatomic, retain) NSURLConnection *connection;
+
+@property (nonatomic, copy) NSString *scanResults;
+
+- (void) launchQRCodeReader;
+- (void) processResults;
+- (void) sendWebServiceRequest:(NSString*)ident;
+- (void) parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product;
+
 @end
 
 @implementation ScannerViewController
 
-@synthesize applicationActivity;
-@synthesize scanResults;
-@synthesize scanButton;
-@synthesize informationLabel;
+@synthesize informationViewController;
+@synthesize scanResults, jsonData, connection;
+@synthesize applicationActivity, scanButton, informationLabel;
 
 #pragma mark -
 #pragma mark Initialization
@@ -33,11 +43,11 @@
     
     if (self) {
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            m_informationViewController = [[InformationViewController alloc] initWithNibName:@"InformationViewController_iPhone" bundle:nil];
+            [self setInformationViewController:[[InformationViewController alloc] initWithNibName:@"InformationViewController_iPhone" bundle:nil]];
         } else {
-            m_informationViewController = [[InformationViewController alloc] initWithNibName:@"InformationViewController_iPad" bundle:nil];
+            [self setInformationViewController:[[InformationViewController alloc] initWithNibName:@"InformationViewController_iPad" bundle:nil]];
         }
-        self.title = NSLocalizedString(@"Scanner", @"Scanner");
+        [self setTitle:NSLocalizedString(@"Scanner", @"Scanner")];
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
     }
     
@@ -93,20 +103,22 @@
 
 - (IBAction)scanButtonAction:(id)sender
 {
-    [self launchQRCodeReader];
+#warning Restore correct code
+    [self processResults];
+    //[self launchQRCodeReader];
 }
 
 - (void) processResults
 {
 #warning Enable QRCode result check
-    if (YES) { //[scanResults hasPrefix:@"IRAP-"])
+    if (YES) { //[[self scanResults] hasPrefix:@"IRAP-"])
         [applicationActivity startAnimating];
         [scanButton setEnabled:false];
         
         [informationLabel setTextColor: [UIColor blackColor]];
         [informationLabel setText:@"Contacting WebService ..."];
         
-        [self sendWebServiceRequest:scanResults];
+        [self sendWebServiceRequest:[self scanResults]];
     } else {
         [informationLabel setTextColor: [UIColor redColor]];
         [informationLabel setText:@"Invalid QRCode"];
@@ -121,7 +133,7 @@
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
     [self dismissModalViewControllerAnimated:NO];
-	self.scanResults = result;
+    [self setScanResults:result];
     
     [self processResults];
 }
@@ -137,14 +149,15 @@
 - (void) sendWebServiceRequest:(NSString*)ident
 {
     NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
-
-#warning Change URL
-    completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL]];
     
-    m_connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (m_connection) {
-        m_jsonData = [NSMutableData data];
+#warning Change URL
+    completeURL = @"http://inventirap.dyndns.org:8080/Inventirap/cakephp/ServicesWeb/materiel/IRAP-12-0002";
+    completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
+    
+    [self setConnection:[[NSURLConnection alloc] initWithRequest:request delegate:self]];
+    if ([self connection]) {
+        [self setJsonData:[NSMutableData data]];
     } else {
         [informationLabel setTextColor: [UIColor redColor]];
         [informationLabel setText:@"Error while connecting to the WebService"];
@@ -186,12 +199,12 @@
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    [m_jsonData setLength:0];
+    [[self jsonData] setLength:0];
 }
 
 -(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [m_jsonData appendData:data];
+    [[self jsonData] appendData:data];
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -205,42 +218,77 @@
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
 #warning Replace with real json data
-    NSString *blabla = @"{\"materials\":[{\"Materiel\":{\"id\":\"1\",\"designation\":\"Macbook air\",\"category_id\":\"1\",\"sous_category_id\":\"2\",\"numero_irap\":\"IRAP-12-0001\",\"description\":\"Ceci est une description un peu nulle\",\"organisme\":\"IRAP\",\"materiel_administratif\":true,\"materiel_technique\":false,\"status\":\"CREATED\",\"date_acquisition\":\"2012-07-04\",\"fournisseur\":\"Apple\",\"prix_ht\":\"1000\",\"eotp\":\"WTF\",\"numero_commande\":\"ZERZE45\",\"code_comptable\":\"44\",\"numero_serie\":null,\"thematic_group_id\":\"1\",\"work_group_id\":\"1\",\"ref_existante\":null,\"lieu_stockage\":\"B\",\"lieu_detail\":\"Chambre\",\"utilisateur_id\":\"1\",\"full_storage\":\"B-Chambre\"},\"Category\":{\"id\":\"1\",\"nom\":\"Multimetre\"},\"SousCategory\":{\"id\":\"2\",\"nom\":\"RUI + LC\",\"category_id\":\"1\"},\"ThematicGroup\":{\"id\":\"1\",\"nom\":\"GPPS\"},\"WorkGroup\":{\"id\":\"1\",\"nom\":\"NVA\"},\"Suivi\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"3\",\"commentaire\":\"Super cooolos\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Calibration\",\"organisme\":\"IRAP\",\"frequence\":\"1\",\"commentaire\":\"Ca sert pas \u00e0 grand chose\"},{\"id\":\"3\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"10\",\"commentaire\":\"Pas souvent lui la maintenance\"}],\"Emprunt\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_emprunt\":\"2011-01-01\",\"date_retour_emprunt\":\"2013-01-01\",\"piece\":\"Souris\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Dark Vador\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_emprunt\":\"2010-04-05\",\"date_retour_emprunt\":\"2010-12-12\",\"piece\":\"Clavier\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Woody Allen\"}]}],\"id\":\"IRAP-12-0001\"}";
+    NSString *blabla = @"{\"materials\":[{\"Materiel\":{\"id\":\"1\",\"designation\":\"Macbook air\",\"category_id\":\"1\",\"sous_category_id\":\"2\",\"numero_irap\":\"IRAP-12-0001\",\"description\":\"Ceci est une description un peu nulle\",\"organisme\":\"IRAP\",\"materiel_administratif\":false,\"materiel_technique\":false,\"status\":\"CREATED\",\"date_acquisition\":\"2012-07-04\",\"fournisseur\":\"Apple\",\"prix_ht\":\"1000\",\"eotp\":\"WTF\",\"numero_commande\":\"ZERZE45\",\"code_comptable\":\"44\",\"numero_serie\":null,\"thematic_group_id\":\"1\",\"work_group_id\":\"1\",\"ref_existante\":null,\"lieu_stockage\":\"B\",\"lieu_detail\":\"Chambre\",\"utilisateur_id\":\"1\",\"full_storage\":\"B-Chambre\"},\"Category\":{\"id\":\"1\",\"nom\":\"Multimetre\"},\"SousCategory\":{\"id\":\"2\",\"nom\":\"RUI + LC\",\"category_id\":\"1\"},\"ThematicGroup\":{\"id\":\"1\",\"nom\":\"GPPS\"},\"WorkGroup\":{\"id\":\"1\",\"nom\":\"NVA\"},\"Suivi\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"3\",\"commentaire\":\"Super cooolos\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Calibration\",\"organisme\":\"IRAP\",\"frequence\":\"1\",\"commentaire\":\"Ca sert pas \u00e0 grand chose\"},{\"id\":\"3\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"10\",\"commentaire\":\"Pas souvent lui la maintenance\"}],\"Emprunt\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_emprunt\":\"2011-01-01\",\"date_retour_emprunt\":\"2013-01-01\",\"piece\":\"Souris\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Dark Vador\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_emprunt\":\"2010-04-05\",\"date_retour_emprunt\":\"2010-12-12\",\"piece\":\"Clavier\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Woody Allen\"}]}],\"id\":\"IRAP-12-0001\"}";
     
-    NSData *jsonData = [blabla dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonDatax = [blabla dataUsingEncoding:NSUTF8StringEncoding];
     
-    
-    NSError *error = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
-    
-    [informationLabel setText:@"Parsing results ..."];
-    
-    Product *product = [[Product alloc] init];
-    
-    NSArray *results = [res objectForKey:@"materials"];
-    NSDictionary* result = [results objectAtIndex:0];
-    
-    // Parsing Materiel
-    NSDictionary* materiel = [result objectForKey:@"Materiel"];
-    [self parseDictionary:materiel ForProduct:product];    
-    [product setSectionWithName:@"Matériel"];
-    
-    // Parsing Category
-    NSDictionary* category = [result objectForKey:@"Category"];
-    [self parseDictionary:category ForProduct:product];    
-    [product setSectionWithName:@"Catégorie"];
-    
-    // Parsing SousCategory
-    NSDictionary* subcategory = [result objectForKey:@"SousCategory"];
-    [self parseDictionary:subcategory ForProduct:product];    
-    [product setSectionWithName:@"Sous-Catégories"];
-    
-    [applicationActivity stopAnimating];
-    [informationLabel setHidden:YES];
-    [scanButton setEnabled:true];
-    
-    [m_informationViewController initData:product];
-    [self.navigationController pushViewController:m_informationViewController animated:TRUE];
-    
+    @try {
+        NSError *error = nil;
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonDatax options:kNilOptions error:&error];
+        
+        [informationLabel setText:@"Parsing results ..."];
+        
+        Product *product = [[Product alloc] init];
+        
+        NSArray *results = [res objectForKey:@"materials"];
+        NSDictionary* result = [results objectAtIndex:0];
+        
+        NSString *valueAsString;
+        id value;
+        
+        // Parsing Materiel
+        NSDictionary* materiel = [result objectForKey:@"Materiel"];
+        
+        value = [materiel objectForKey:@"numero_irap"];
+        valueAsString = (NSString *)value;
+        [product addPropertyName:@"Numéro IRAP" AndValue:valueAsString];
+        
+        value = [materiel objectForKey:@"designation"];
+        valueAsString = (NSString *)value;
+        [product addPropertyName:@"Désignation" AndValue:valueAsString];
+        [product setName:valueAsString];
+        
+        value = [materiel objectForKey:@"organisme"];
+        valueAsString = (NSString *)value;
+        [product addPropertyName:@"Organisme d'achat" AndValue:valueAsString];
+        
+        value = [materiel objectForKey:@"utilisateur_id"];
+        valueAsString = (NSString *)value;
+        [product addPropertyName:@"Nom du responsable" AndValue:valueAsString];
+        
+        value = [materiel objectForKey:@"lieu_stockage"];
+        valueAsString = (NSString *)value;
+        [product addPropertyName:@"Localisation" AndValue:valueAsString];
+        
+        //[self parseDictionary:materiel ForProduct:product];    
+        [product setSectionWithName:@"Matériel"];
+        /*
+        // Parsing Category
+        NSDictionary* category = [result objectForKey:@"Category"];
+        [self parseDictionary:category ForProduct:product];    
+        [product setSectionWithName:@"Catégorie"];
+        
+        // Parsing SousCategory
+        NSDictionary* subcategory = [result objectForKey:@"SousCategory"];
+        [self parseDictionary:subcategory ForProduct:product];    
+        [product setSectionWithName:@"Sous-Catégories"];*/
+        
+        [[self informationViewController] setProduct:product];
+        
+        [[[self informationViewController] tableView] scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+        [[[self informationViewController] navigationItem] setTitle : [product name]];
+        
+        [self.navigationController pushViewController:[self informationViewController] animated:TRUE];
+        [informationLabel setHidden:YES];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
+        [informationLabel setTextColor: [UIColor redColor]];
+        [informationLabel setText:@"Error while parsing the json result."];
+    }
+    @finally {
+        [applicationActivity stopAnimating];
+        [scanButton setEnabled:true];
+    }
 }
 @end

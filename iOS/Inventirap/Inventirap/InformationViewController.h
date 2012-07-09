@@ -11,9 +11,6 @@
 @class Product;
 
 @interface InformationViewController : UITableViewController
-{
-    Product *m_product;    
-}
 
-- (void) initData:(Product *)data;
+@property (nonatomic, retain) Product *product;
 @end

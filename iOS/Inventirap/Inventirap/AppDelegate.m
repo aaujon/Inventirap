@@ -44,7 +44,10 @@
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.scannerNavController, self.settingsNavController, nil];
     
+    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
+    
     [[UITabBar appearance] setTintColor:[UIColor grayColor]];
+    //[[[self tabBarController] tabBar] setSelectedImageTintColor:[UIColor yellowColor]];
     
     self.window.rootViewController = self.tabBarController;
     

@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface Property : NSObject
-{
-    NSString* m_name;
-    NSString* m_value;
-}
 
-- (id) initWithName:(NSString*)name AndValue:(NSString*)value;
-- (NSString*) getName;
-- (NSString*) getValue;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *value;
+
+- (id) initWithName:(NSString*)propName AndValue:(NSString*)propValue;
+
 @end

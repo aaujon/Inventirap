@@ -80,7 +80,6 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "Inventirap"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -10,25 +10,17 @@
 
 @implementation Property
 
-- (id) initWithName:(NSString*)name AndValue:(NSString*)value
+@synthesize name, value;
+- (id) initWithName:(NSString*)propName AndValue:(NSString*)propValue
 {
     self = [super init];
     
     if (self) {
-        m_name = name;
-        m_value = value;
+        name = propName;
+        value = propValue;
     }
     
     return self;
-}
-
-- (NSString*) getName
-{
-    return m_name;
-}
-- (NSString*) getValue
-{
-    return m_value;
 }
 
 @end

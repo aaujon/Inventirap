@@ -9,7 +9,17 @@
 #import "Product.h"
 #import "Property.h"
 
+@interface Product ()
+{
+    NSMutableArray *m_properties;
+    NSMutableArray *m_sectionList;
+    NSMutableDictionary *m_section;
+}
+@end
+
 @implementation Product
+
+@synthesize name;
 
 #pragma mark -
 #pragma mark Initialization
@@ -26,24 +36,13 @@
     return self;
 }
 
-
-- (void) setName:(NSString*)name
-{
-    m_name = name;
-}
-
-- (NSString*) getName
-{
-    return m_name;
-}
-
 #pragma mark -
 #pragma mark Sections methods
 
-- (void) setSectionWithName:(NSString*)name
+- (void) setSectionWithName:(NSString*)sectionName
 {
-    [m_section setValue:m_properties forKey:name];
-    [m_sectionList addObject:name];
+    [m_section setValue:m_properties forKey:sectionName];
+    [m_sectionList addObject:sectionName];
     m_properties = [[NSMutableArray alloc] init];
 }
 
@@ -60,9 +59,9 @@
 #pragma mark -
 #pragma mark Properties methods
 
-- (void) addPropertyName:(NSString*)name AndValue:(NSString*)value
+- (void) addPropertyName:(NSString*)propertyName AndValue:(NSString*)value
 {
-    Property *property = [[Property alloc] initWithName:name AndValue:value];
+    Property *property = [[Property alloc] initWithName:propertyName AndValue:value];
     [m_properties addObject:property];
 }
 

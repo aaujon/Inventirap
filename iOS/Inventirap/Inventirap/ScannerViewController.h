@@ -11,20 +11,12 @@
 
 @class InformationViewController;
 
-@interface ScannerViewController : UIViewController <ZXingDelegate, NSURLConnectionDelegate> {
-    
-    InformationViewController *m_informationViewController;
-    
-    NSMutableData *m_jsonData;
-    NSURLConnection *m_connection;
-}
+@interface ScannerViewController : UIViewController <ZXingDelegate, NSURLConnectionDelegate>
 
-@property (nonatomic, copy) NSString *scanResults;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *applicationActivity;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 
-- (void) launchQRCodeReader;
 - (IBAction) scanButtonAction:(id)sender;
 
 @end

@@ -54,5 +54,4 @@ chmod -R 777 cakephp/app/Vendor/phpqrcode/
 
 touch ./cakephp/app/Vendor/phpqrcode/errors.txt
 chmod 777 ./cakephp/app/Vendor/phpqrcode/errors.txt
-mkdir ./cakephp/app/tmp/qrcodes
-chmod -R 777 ./cakephp/app/tmp/qrcodes/
+chmod -R 777 cakephp/app/webroot/img

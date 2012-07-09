@@ -9,22 +9,22 @@ class UtilisateursController extends AppController {
 			if($this->LdapAuth->connection($this->request))
 			{
 				// Save his name and authentification level into a session variable
-				$this->Session->write('LdapUserName', $this->LdapAuth->getLogin());
+				$this->Session->write('LdapUserName', $this->request->data['Utilisateur']['ldap']);
 				$this->Session->write('LdapUserAuthenticationLevel', 1);
-
-				// Get the user into the database
-				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->LdapAuth->getLogin())));
+				$this->Session->write('UserName', $this->LdapAuth->getUserName());
+				$this->Session->write('LdapUserMail', $this->getEmailFromLdapName($this->Session->read('LdapUserName')));
+				
+				$users = $this->Utilisateur->find('all', array('conditions' => array('ldap' => $this->Session->read('UserName'))));
 				if(count($users) == 1) {
-					$this->Session->write('LdapUserMail', $this->getEmailFromName($this->LdapAuth->getLogin()));
 					// Update his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', 
 						$this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
 				}
-				CakeLog::write('inventirap', 'Logged in : '.$this->LdapAuth->getLogin());
+				CakeLog::write('inventirap', 'Logged in : ' . $this->Session->read('LdapUserName'));
 				$this->Session->setFlash('Connexion réussie.');
 				$this->redirect('/');
 			} else {
-				CakeLog::write('inventirap', 'Invalid login : '.$this->LdapAuth->getLogin());
+				CakeLog::write('inventirap', 'Invalid login : ' . $this->Session->read('LdapUserName'));
 				$this->Session->setFlash(__('Nom d\'utilisateur ou mot de passe invalide.'));
 				$this->redirect('/');
 			}
@@ -74,9 +74,9 @@ class UtilisateursController extends AppController {
 		}
 	}
 
-	public function getEmailFromName($name) {
+	public function getEmailFromLdapName($ldapName) {
 		if(isset($name)) {
-			$attributes = ClassRegistry::init('LdapConnection')->getUserAttributes($name);
+			$attributes = ClassRegistry::init('LdapConnection')->getUserAttributes($ldapName);
 			@$mail = $attributes[0]['mail'][0];
 
 			return $mail;

@@ -35,10 +35,17 @@ class Utilisateur extends AppModel {
 	public function getLdapUsers() {
 		$connection = ClassRegistry::init('LdapConnection');
 		$ldapUsers = array();
-		foreach($connection->getAllLdapUsers() as $userInformations)
-			if(!empty($userInformations[$connection->getAuthenticationType()][0]))
-				$ldapUsers[$userInformations[$connection->getAuthenticationType()][0]] 
-					= $userInformations[$connection->getAuthenticationType()][0];
+		$usersName = array();
+		foreach($connection->getAllLdapUsers() as $userInformations) {
+			if((!empty($userInformations['sn'][0])) && (!empty($userInformations['givenname'][0]))) {
+				array_push($usersName, $userInformations['sn'][0] . ' ' . $userInformations['givenname'][0]);
+			}
+		}
+		sort($usersName);
+		foreach($usersName as $userName) {
+			$ldapUsers[$userName] = $userName;
+		}
+		
 		return $ldapUsers;
 	}
 	

@@ -41,9 +41,9 @@ class UtilisateursController extends AppController {
 		/*
 		 * Delete the eventual tmp qrcode
 		 */
-		$fileName = $_SESSION['Config']['userAgent'] . '.png';
+		$fileName = $this->Session->id() . '.png';
 		$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
-		@unlink($cakephpPath . 'tmp/qrcodes/' . $fileName);
+		@unlink($cakephpPath . 'webroot/img/' . $fileName);
 		@unlink($cakephpPath . 'Vendor/phpqrcode/' . $fileName . '-errors.txt');
 
 		$this->Session->destroy();

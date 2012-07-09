@@ -11,6 +11,7 @@ class LdapConnection extends AppModel {
 	private $port;
 	private $baseDn;
 	private $authenticationType;
+	private $filter;
 
 	public function __construct() {
 		parent::__construct();
@@ -23,11 +24,13 @@ class LdapConnection extends AppModel {
 		if(!empty($ldapServerConfiguration['ldap']['host'])
 		&& !empty($ldapServerConfiguration['ldap']['port'])
 		&& !empty($ldapServerConfiguration['ldap']['baseDn'])
-		&& !empty($ldapServerConfiguration['ldap']['authenticationType']))
+		&& !empty($ldapServerConfiguration['ldap']['authenticationType'])
+		&& !empty($ldapServerConfiguration['ldap']['filter']))
 		{
 			$this->host =  $ldapServerConfiguration['ldap']['host'];
 			$this->port =  $ldapServerConfiguration['ldap']['port'];
 			$this->baseDn =  $ldapServerConfiguration['ldap']['baseDn'];
+			$this->filter =  $ldapServerConfiguration['ldap']['filter'];
 			$this->authenticationType =  $ldapServerConfiguration['ldap']['authenticationType'];
 			return true;
 		}
@@ -37,6 +40,7 @@ class LdapConnection extends AppModel {
 				<li>host = ' . @$ldapServerConfiguration['ldap']['host'] . '</li>
 				<li>port = ' . @$ldapServerConfiguration['ldap']['port'] . '</li>
 				<li>baseDn = ' . @$ldapServerConfiguration['ldap']['baseDn'] . '</li>
+				<li>filter = ' . @$ldapServerConfiguration['ldap']['filter'] . '</li>
 				<li>authenticationType = ' . @$ldapServerConfiguration['ldap']['authenticationType'] . '</li>
 			</ul>'
 			);
@@ -47,7 +51,9 @@ class LdapConnection extends AppModel {
 			if($this->checkConfiguration()) {
 				$ldapConnection = ldap_connect($this->host, $this->port);
 				ldap_set_option($ldapConnection, LDAP_OPT_PROTOCOL_VERSION, 3);
-				$results = ldap_search($ldapConnection, $this->baseDn, $this->authenticationType . '=*');
+
+				$results = ldap_search($ldapConnection, $this->baseDn, $this->filter);
+				
 				$res = ldap_get_entries($ldapConnection, $results);
 				
 				return $res;

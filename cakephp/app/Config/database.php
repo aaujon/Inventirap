@@ -74,7 +74,8 @@ class DATABASE_CONFIG {
         'host'		 			=> '192.168.1.65',
         'port'					=> '389',
 		'authenticationType'	=> 'cn',
-        'baseDn'				=> 'ou=users,dc=irap,dc=omp,dc=eu'
+        'baseDn'				=> 'ou=users,dc=irap,dc=omp,dc=eu',
+        'filter'				=> '(cn=*)'
     );
 	
 }

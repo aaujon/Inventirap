@@ -75,7 +75,7 @@ class UtilisateursController extends AppController {
 	}
 
 	public function getEmailFromLdapName($ldapName) {
-		if(isset($name)) {
+		if(isset($ldapName)) {
 			$attributes = ClassRegistry::init('LdapConnection')->getUserAttributes($ldapName);
 			@$mail = $attributes[0]['mail'][0];
 

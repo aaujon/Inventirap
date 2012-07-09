@@ -86,26 +86,29 @@
 
 
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
-	displayElement('Type du matériel', $type);
+	
+	if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
+		displayElement('Type du matériel', $type);
+	}
 	
 	displayElement('Catégorie', $categorie);
 	displayElement('Sous catégorie', $sousCategorie);
 	displayElement('Groupe thématique', $groupeThematique);
 	displayElement('Groupe de travail', $groupeTravail);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
-	displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
 	displayElement('Statut', $statut);
-	displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
 	if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
+		displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
+		displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
 		displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
 		displayElement('EOTP', ${$singularVar}[$modelClass]['eotp']);
+		displayElement('N° commande', ${$singularVar}[$modelClass]['numero_commande']);
+		displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
+		displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);
 	}
-	displayElement('N° commande', ${$singularVar}[$modelClass]['numero_commande']);
-	displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
-	displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);
 	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['full_storage']);
 	displayElement('Responsable', $this->Html->link(
-		${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
+	${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
 ?>
 </table>
 </div>

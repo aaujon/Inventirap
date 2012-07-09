@@ -71,7 +71,7 @@
 		echo $this->Form->input('work_group_id', array('label' => 'Groupe de travail', 'style' => 'width: 100px'));
 		if ($this->params['action'] == 'add') {
 			echo $this->Form->input('nom_responsable', array('label' => 'Nom du responsable', 
-				'value' => $this->Session->read('LdapUserName'), 'readonly' => true));
+				'value' => $this->Session->read('UserName'), 'readonly' => true));
 			echo $this->Form->input('email_responsable', array('label' => 'Email du responsable', 
 				'value' => $this->Session->read('LdapUserMail'), 'readonly' => true));
 		}

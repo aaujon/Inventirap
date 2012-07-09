@@ -8,12 +8,17 @@
 	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
 	
 	$qrCodeName = $this->requestAction('/QrCodes/creer/' . ${$singularVar}[$modelClass]['numero_irap']);
-	echo '<a href="/Inventirap/cakephp/img/' . $qrCodeName . '"><img style="float:right" src="/Inventirap/cakephp/img/' . $qrCodeName . '" alt="QrCode : ' . ${$singularVar}[$modelClass]['numero_irap'] . '" border="0" height="120px"></a>';
+	echo $this->Html->image($qrCodeName, array(
+		'alt' => 'QrCode : '.${$singularVar}[$modelClass]['numero_irap'],
+		'style' => 'float: right'));
 ?></h2>
 
 <div class="actions" style="margin-bottom: 20px; width: 100%; float: none; padding: 10px 0;"><?php			
-	$statut = ${$singularVar}[$modelClass]['status'];
 	$id = ${$singularVar}[$modelClass]['id'];
+	$statut = ${$singularVar}[$modelClass]['status'];
+	$administratif = ${$singularVar}[$modelClass]['materiel_administratif'];
+	$technique = ${$singularVar}[$modelClass]['materiel_technique'];
+	
 	if ($statut == 'CREATED' && $userAuth >= 2) {
 		//Responsable/Admin/Super admin peuvent valider le matériel
 		echo $this->Html->link('<i class="icon-ok-sign"></i> Valider le matériel', 
@@ -33,8 +38,10 @@
 			array('action' => 'statusToBeArchived', $id, 'view'), 
 			array('title' => 'Demander l\'archivage', 'style' => 'margin-right: 20px', 'escape' => false));
 	}
-	echo $this->Html->link('<i class="icon-plus"></i> Nouveau suivi', array('controller' => 'suivis', 'action' => 'add'), array('escape' => false));
-	echo $this->Html->link('<i class="icon-plus"></i> Nouvel emprunt', array('controller' => 'emprunts', 'action' => 'add'), array('style' => 'margin-left: 5px', 'escape' => false));
+	echo $this->Html->link('<i class="icon-plus"></i> Nouveau suivi', 
+		array('controller' => 'suivis', 'action' => 'add'), array('escape' => false));
+	echo $this->Html->link('<i class="icon-plus"></i> Nouvel emprunt', 
+		array('controller' => 'emprunts', 'action' => 'add'), array('style' => 'margin-left: 5px', 'escape' => false));
 ?></div>
 
 <h3 id="t_informations" style="cursor: pointer;">
@@ -45,11 +52,11 @@
 <table>
 	<tr><th style="width: 250px;"></th><th></th></tr>
 <?php
-	if(${$singularVar}[$modelClass]['materiel_administratif'] && ${$singularVar}[$modelClass]['materiel_technique'])
+	if($administratif && $technique)
 		$type = 'Administratif et technique';
-	else if (${$singularVar}[$modelClass]['materiel_administratif'])
-		$type = 'Administratif';
-	else if (${$singularVar}[$modelClass]['materiel_technique'])
+	else if ($administratif)
+		$type = '';			//Si administratif ne pas le montrer
+	else if ($technique)
 		$type = 'Technique';
 	else
 		$type = 'Aucun'; 
@@ -89,18 +96,14 @@
 
 
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
-	
-	if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
-		displayElement('Type du matériel', $type);
-	}
-	
+	displayElement('Type du matériel', $type);
 	displayElement('Catégorie', $categorie);
 	displayElement('Sous catégorie', $sousCategorie);
 	displayElement('Groupe thématique', $groupeThematique);
 	displayElement('Groupe de travail', $groupeTravail);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Statut', $statut);
-	if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
+	if ($type != '') {
 		displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
 		displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
 		displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
@@ -111,7 +114,7 @@
 	}
 	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['full_storage']);
 	displayElement('Responsable', $this->Html->link(
-	${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
+		${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
 ?>
 </table>
 </div>

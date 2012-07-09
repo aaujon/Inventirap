@@ -41,3 +41,4 @@ class QrCodesController extends AppController {
 		}
 	}
 }
+?>

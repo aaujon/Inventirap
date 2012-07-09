@@ -30,6 +30,11 @@ echo "Entrez le nom de la base à utiliser"
 read bddName
 sed -i "s/'database' => 'mydb'/'database' => '$bddName'/" ./cakephp/app/Config/database.php
 
+mysql -u $bddUserName --password=$bddPassword -h $bddIp -e "DROP DATABASE $bddName;"
+mysql -u $bddUserName --password=$bddPassword -h $bddIp -e "CREATE DATABASE $bddName;"
+
+sed -i "s/mydb/$bddName/" ./database/BDD_IRAP.sql
+
 mysql -u $bddUserName --password=$bddPassword -h $bddIp $bddName < ./database/BDD_IRAP.sql
 
 #Ajouter Super Administrateur

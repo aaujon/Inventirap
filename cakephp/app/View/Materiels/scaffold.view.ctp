@@ -6,6 +6,9 @@
 <h2><?php 
 	echo ${$singularVar}[$modelClass]['designation'];
 	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
+	
+	$qrCodeName = $this->requestAction('/QrCodes/creer/' . ${$singularVar}[$modelClass]['numero_irap']);
+	echo '<a href="/Inventirap/cakephp/img/' . $qrCodeName . '"><img style="float:right" src="/Inventirap/cakephp/img/' . $qrCodeName . '" alt="QrCode : ' . ${$singularVar}[$modelClass]['numero_irap'] . '" border="0" height="120px"></a>';
 ?></h2>
 
 <div class="actions" style="margin-bottom: 20px; width: 100%; float: none; padding: 10px 0;"><?php			

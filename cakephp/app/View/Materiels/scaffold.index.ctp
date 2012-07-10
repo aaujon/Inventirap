@@ -58,9 +58,11 @@ endforeach;
 	?></p>
 	<div class="paging">
 	<?php
+		echo $this->Paginator->first('<<', array('class' => 'prev')).' ';
 		echo $this->Paginator->prev('< ' . __d('cake', ''), array(), null, array('class' => 'prev disabled'));
 		echo $this->Paginator->numbers(array('separator' => ''));
 		echo $this->Paginator->next(__d('cake', '') .' >', array(), null, array('class' => 'next disabled'));
+		echo ' '.$this->Paginator->last('>>', array('class' => 'next', 'style' => 'border-left: 1px solid #CCC'));
 	?>
 	</div>
 </div>

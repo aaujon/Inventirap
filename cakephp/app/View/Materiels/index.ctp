@@ -25,9 +25,9 @@ $i = 0;
 foreach ($data as $result):
 	$id = 		$result['Materiel']['id'];
 	$statut = 	$result['Materiel']['status'];
-	echo "<tr>";
+	echo '<tr>';
 		foreach ($toShow as $_field => $label) {
-			echo '<td>';
+			echo '<td style="font-size: 85%">';
 			if ($_field == 'category_id')
 				echo  $this->Html->link($result['Category']['nom'], 
 					array('controller' => 'categories', 'action' => 'view', $result['Category']['id']));

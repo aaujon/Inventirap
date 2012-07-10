@@ -1,11 +1,23 @@
 <?php 
-	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 	echo $this->Html->script('script'); 
+	
+	$id = ${$singularVar}[$modelClass]['id'];
+	$statut = ${$singularVar}[$modelClass]['status'];
+	$administratif = ${$singularVar}[$modelClass]['materiel_administratif'];
+	$technique = ${$singularVar}[$modelClass]['materiel_technique'];
+	$them_groupe = ${$singularVar}['ThematicGroup']['nom'];
+	$trav_groupe = ${$singularVar}['WorkGroup']['nom'];
+	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 ?>
 <div class="<?php echo $pluralVar;?> view">
 <h2><?php 
+	if ($statut == 'ARCHIVED')
+		echo '<i class="icon-inbox"></i> ';
 	echo ${$singularVar}[$modelClass]['designation'];
-	echo ' <span style="font-size: 70%; color: grey;">('.${$singularVar}[$modelClass]['numero_irap'].')</span>';
+	echo ' <span style="font-size: 70%; color: grey;">'.${$singularVar}[$modelClass]['numero_irap'];
+	if ($statut == 'ARCHIVED')
+		echo ' (Archivé)';
+	echo'</span>';
 	
 	$qrCodeName = $this->requestAction('/QrCodes/creer/' . ${$singularVar}[$modelClass]['numero_irap']);
 	echo $this->Html->image($qrCodeName, array(
@@ -14,13 +26,6 @@
 ?></h2>
 
 <div class="actions" style="margin-bottom: 20px; width: 100%; float: none; padding: 10px 0;"><?php			
-	$id = ${$singularVar}[$modelClass]['id'];
-	$statut = ${$singularVar}[$modelClass]['status'];
-	$administratif = ${$singularVar}[$modelClass]['materiel_administratif'];
-	$technique = ${$singularVar}[$modelClass]['materiel_technique'];
-	$them_groupe = ${$singularVar}['ThematicGroup']['nom'];
-	$trav_groupe = ${$singularVar}['WorkGroup']['nom'];
-	
 	if ($statut == 'CREATED' && $userAuth >= 2) {
 		//Responsable/Admin/Super admin peuvent valider le matériel
 		echo $this->Html->link('<i class="icon-ok-sign"></i> Valider le matériel', 
@@ -73,7 +78,7 @@
 				'action' => 'view',
 				${$singularVar}['SousCategory']['id']));
 				
-	//Groupe thématique/travail
+	//Gestion groupe thématique/travail
 	$groupeThematique = '';
 	$groupeTravail = '';
 	if ($them_groupe != 'N/A')
@@ -87,22 +92,6 @@
 				'action' => 'view',
 				${$singularVar}['WorkGroup']['id']));
 
-	$statut = ${$singularVar}[$modelClass]['status'].'<span class="actions">';
-	if (${$singularVar}[$modelClass]['status'] == 'CREATED') {
-		if (($userAuth >= 2) && ($userAuth != 4))
-			$statut .= ' '.$this->Html->link('Valider', 
-				array('action' => 'statusValidated', ${$singularVar}[$modelClass][$primaryKey]));
-		if (($userAuth >= 1) && ($userAuth != 4))
-			$statut .= ' '.$this->Html->link('Archiver', 
-				array('action' => 'statusToBeArchived', ${$singularVar}[$modelClass][$primaryKey]));
-	}
-	if (${$singularVar}[$modelClass]['status'] == 'VALIDATED') {
-		if ($userAuth == 3)
-			$statut .= ' '.$this->Html->link('Archiver', 
-				array('action' => 'statusArchived', ${$singularVar}[$modelClass][$primaryKey]));
-	}
-	$statut .= '</span>';
-
 
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
 	displayElement('Type du matériel', $type);
@@ -112,10 +101,10 @@
 	displayElement('Groupe de travail', $groupeTravail);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Statut', $statut);
-	if ($type != '') {
+	if ($userAuth >= 3) {
 		displayElement('Organisme', ${$singularVar}[$modelClass]['organisme']);
 		displayElement('Fournisseur', ${$singularVar}[$modelClass]['fournisseur']);
-		displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht'].'€');
+		displayElement('Prix (HT)', ${$singularVar}[$modelClass]['prix_ht']);
 		displayElement('EOTP', ${$singularVar}[$modelClass]['eotp']);
 		displayElement('N° commande', ${$singularVar}[$modelClass]['numero_commande']);
 		displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);

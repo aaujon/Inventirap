@@ -15,5 +15,17 @@ class SousCategoriesController extends AppController {
 		$this->set('souscategories',$subcategories);
 		$this->layout = 'ajax';
 	}
+	
+	public function beforeFilter() {
+		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
+		if ($userAuth == 4)
+			$this->LdapAuth->allow('*');
+		elseif ($userAuth == 2 || $userAuth == 3)
+			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'getByCategory');
+		elseif ($userAuth == 1)
+			$this->LdapAuth->allow('index', 'view', 'getByCategory');
+		else 
+			$this->LdapAuth->deny();
+	}
 }
 ?>

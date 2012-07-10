@@ -32,6 +32,7 @@
 		echo $this->Form->input('designation', array('label' => 'Désignation'));
 		if ($this->params['action'] == 'add') {
 			//Afficher les choix par défaut pour catégorie/sous catégorie
+			asort($this->viewVars['categories']);
 			echo $this->Form->input('category_id', array(
 				'label' => 'Catégorie', 'empty' => 'Choisir une catégorie', 'selected' => '', 'style' => 'width: 200px'));
 			echo $this->Form->input('sous_category_id', array(

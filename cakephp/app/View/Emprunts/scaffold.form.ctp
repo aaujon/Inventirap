@@ -5,9 +5,12 @@
 	else 
 		echo '<h2><i class="icon-edit"></i> Éditer un emprunt</h2>';
 
+	$materiel_id = '';
+	if ($this->params['action'] == 'add' && isset($this->passedArgs['mat']))
+		$materiel_id = $this->passedArgs['mat'];
+		
 	echo $this->Form->create();
-
-	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné'));
+	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
 	echo $this->Form->input('date_emprunt', array('label' => 'Date de l\'emprunt'));
 	echo $this->Form->input('date_retour_emprunt', array('label' => 'Date de retour'));
 	echo $this->Form->input('piece', array('label' => 'Pièce'));

@@ -41,9 +41,9 @@
 			array('title' => 'Demander l\'archivage', 'style' => 'margin-right: 20px', 'escape' => false));
 	}
 	echo $this->Html->link('<i class="icon-plus"></i> Nouveau suivi', 
-		array('controller' => 'suivis', 'action' => 'add'), array('escape' => false));
+		array('controller' => 'suivis', 'action' => 'add', 'mat' => $id), array('escape' => false));
 	echo $this->Html->link('<i class="icon-plus"></i> Nouvel emprunt', 
-		array('controller' => 'emprunts', 'action' => 'add'), array('style' => 'margin-left: 5px', 'escape' => false));
+		array('controller' => 'emprunts', 'action' => 'add', 'mat' => $id), array('style' => 'margin-left: 5px', 'escape' => false));
 ?></div>
 
 <h3 id="t_informations" style="cursor: pointer;">

@@ -2,7 +2,16 @@
 class MaterielsController extends AppController {
 
 	public $scaffold;
-	public $helpers = array('Js');
+	public $helpers = array('Js', 'Paginator');
+	var $paginate = array(
+		'limit' => 25,
+		'order' => array('Materiel.id' => 'desc'));
+
+	public function index() {
+		$data = $this->paginate('Materiel', array(
+			'Materiel.status' => array('CREATED', 'VALIDATED', 'TOBEARCHIVED')));
+		$this->set('data', $data);
+	}
 
 	public function find() {
 		$this->checkAuth();

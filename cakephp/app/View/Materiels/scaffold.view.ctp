@@ -198,7 +198,9 @@
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_edit');
+		echo $this->element('tools_edit', array(
+			'pluralHumanName' => 'Matériels',
+			'singularHumanName' => 'matériel'));
 	?>
 </div>
 

@@ -62,11 +62,8 @@ class Emprunt extends AppModel {
 		return true;
     }
     
-    function checkPieceLaboratoire() { 
-		$emp = $this->data[$this->name]['piece'];
-		$ret = $this->data[$this->name]['laboratoire'];
-		
-		return false;
+    function checkPieceLaboratoire() {
+		return (($this->data[$this->name]['piece'] != '') || ($this->data[$this->name]['laboratoire'] != ''));
     }
 }
 ?>

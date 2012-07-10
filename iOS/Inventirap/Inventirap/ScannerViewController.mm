@@ -29,6 +29,7 @@
 @end
 
 @implementation ScannerViewController
+@synthesize lastProductButton;
 
 @synthesize informationViewController;
 @synthesize scanResults, jsonData, connection;
@@ -65,12 +66,21 @@
     [informationLabel setHidden:YES];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    if ([[self informationViewController] selectedProduct] == nil) {
+        [[self lastProductButton] setHidden:YES];
+    } else {
+        [[self lastProductButton] setHidden:NO];
+    }
+}
+
 - (void)viewDidUnload
 {
-    applicationActivity = nil;
     [self setApplicationActivity:nil];
     [self setScanButton:nil];
     [self setInformationLabel:nil];
+    [self setLastProductButton:nil];
     [super viewDidUnload];
 }
 
@@ -103,9 +113,14 @@
 
 - (IBAction)scanButtonAction:(id)sender
 {
+    [[self lastProductButton] setHidden:YES];
 #warning Restore correct code
     [self processResults];
     //[self launchQRCodeReader];
+}
+
+- (IBAction)lastProductButtonAction:(id)sender {
+    [self.navigationController pushViewController:[self informationViewController] animated:TRUE];
 }
 
 - (void) processResults
@@ -240,14 +255,14 @@
         // Creating our simple product
         NSDictionary* materiel = [result objectForKey:@"Materiel"];
         
-        value = [materiel objectForKey:@"numero_irap"];
-        valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Numéro IRAP" AndValue:valueAsString];
-        
         value = [materiel objectForKey:@"designation"];
         valueAsString = (NSString *)value;
         [simpleProduct addPropertyName:@"Désignation" AndValue:valueAsString];
         [simpleProduct setName:valueAsString];
+        
+        value = [materiel objectForKey:@"numero_irap"];
+        valueAsString = (NSString *)value;
+        [simpleProduct addPropertyName:@"Numéro IRAP" AndValue:valueAsString];
         
         value = [materiel objectForKey:@"organisme"];
         valueAsString = (NSString *)value;
@@ -259,7 +274,7 @@
         
         value = [materiel objectForKey:@"email_responsable"];
         valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Contact resonsable" AndValue:valueAsString];
+        [simpleProduct addPropertyName:@"Contact responsable" AndValue:valueAsString];
         
         value = [materiel objectForKey:@"full_storage"];
         valueAsString = (NSString *)value;

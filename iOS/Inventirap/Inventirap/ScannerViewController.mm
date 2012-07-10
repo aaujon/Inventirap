@@ -297,9 +297,9 @@
         [self parseDictionary:subcategory ForProduct:detailedProduct];    
         [detailedProduct setSectionWithName:@"Sous-Catégories"];
         
-        [[self informationViewController] setSelectedProduct:simpleProduct];
         [[self informationViewController] setSimpleProduct:simpleProduct];
         [[self informationViewController] setDetailedProduct:detailedProduct];
+        [[self informationViewController] displaySimpleProduct];
         
         [[[self informationViewController] tableView] scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
         [[[self informationViewController] navigationItem] setTitle : [simpleProduct name]];

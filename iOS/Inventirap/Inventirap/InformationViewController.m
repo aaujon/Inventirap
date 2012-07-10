@@ -13,12 +13,15 @@
 #import "CustomCell.h"
 
 @interface InformationViewController ()
+
+@property (nonatomic) Boolean isSimpleProductDisplayed;
+
 @end
 
 @implementation InformationViewController
 
-@synthesize simpleProduct, detailedProduct;
-@synthesize selectedProduct;
+@synthesize simpleProduct, detailedProduct, selectedProduct;
+@synthesize isSimpleProductDisplayed;
 
 #pragma mark -
 #pragma mark Initialization
@@ -39,17 +42,20 @@
 {
     [super viewDidLoad];
 
-    
+#warning Change button look
+    /*
     UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     [infoButton addTarget:self action:@selector(detailsButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];*/
     
- /*   UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] 
-                                   initWithTitle:@"Details"                                            
+    UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] 
+                                   initWithTitle:@"More"                                            
                                    style:UIBarButtonItemStyleBordered 
                                    target:self 
-                                   action:@selector(detailsView)];*/
+                                   action:@selector(detailsButtonAction)];
     self.navigationItem.rightBarButtonItem = detailsButton;
+    
+    [self setIsSimpleProductDisplayed:YES];
     
     [self.tableView setRowHeight:50];
     [self.tableView setShowsVerticalScrollIndicator:NO];
@@ -62,11 +68,26 @@
 
 - (void) detailsButtonAction
 {
-    if ([self selectedProduct] == [self simpleProduct]) {
-        [self setSelectedProduct:[self detailedProduct]];
+    if ([self isSimpleProductDisplayed]) {
+        [self displayDetailedProduct];
     } else {
-        [self setSelectedProduct:[self simpleProduct]];
+        [self displaySimpleProduct];
     }
+}
+
+- (void) displaySimpleProduct
+{
+    [self setSelectedProduct:[self simpleProduct]];
+    [[[self navigationItem] rightBarButtonItem] setTitle:@"More"];
+    [self setIsSimpleProductDisplayed:YES];
+    [self.tableView reloadData];
+}
+
+- (void) displayDetailedProduct
+{
+    [self setSelectedProduct:[self detailedProduct]];
+    [[[self navigationItem] rightBarButtonItem] setTitle:@"Less"];
+    [self setIsSimpleProductDisplayed:NO];
     [self.tableView reloadData];
 }
 

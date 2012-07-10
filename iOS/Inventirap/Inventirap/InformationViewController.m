@@ -49,7 +49,7 @@
     UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];*/
     
     UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] 
-                                   initWithTitle:@"More"                                            
+                                   initWithTitle:NSLocalizedString(@"MORE", nil)                                            
                                    style:UIBarButtonItemStyleBordered 
                                    target:self 
                                    action:@selector(detailsButtonAction)];
@@ -78,7 +78,7 @@
 - (void) displaySimpleProduct
 {
     [self setSelectedProduct:[self simpleProduct]];
-    [[[self navigationItem] rightBarButtonItem] setTitle:@"More"];
+    [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"MORE", nil)];
     [self setIsSimpleProductDisplayed:YES];
     [self.tableView reloadData];
 }
@@ -86,7 +86,7 @@
 - (void) displayDetailedProduct
 {
     [self setSelectedProduct:[self detailedProduct]];
-    [[[self navigationItem] rightBarButtonItem] setTitle:@"Less"];
+    [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"LESS", nil)];
     [self setIsSimpleProductDisplayed:NO];
     [self.tableView reloadData];
 }

@@ -48,8 +48,8 @@
         } else {
             [self setInformationViewController:[[InformationViewController alloc] initWithNibName:@"InformationViewController_iPad" bundle:nil]];
         }
-        [self setTitle:NSLocalizedString(@"Scanner", @"Scanner")];
-        self.tabBarItem.image = [UIImage imageNamed:@"first"];
+        [self setTitle:NSLocalizedString(@"SCANNER", nil)];
+        self.tabBarItem.image = [UIImage imageNamed:@"scannerTabBarIcon"];
     }
     
     return self;
@@ -131,12 +131,12 @@
         [scanButton setEnabled:false];
         
         [informationLabel setTextColor: [UIColor blackColor]];
-        [informationLabel setText:@"Contacting WebService ..."];
+        [informationLabel setText:NSLocalizedString(@"CONTACTWEBSERV", nil)];
         
         [self sendWebServiceRequest:[self scanResults]];
     } else {
         [informationLabel setTextColor: [UIColor redColor]];
-        [informationLabel setText:@"Invalid QRCode"];
+        [informationLabel setText:NSLocalizedString(@"INVALIDEQRCODE", nil)];
     }
     [informationLabel setHidden:NO];
     
@@ -175,7 +175,7 @@
         [self setJsonData:[NSMutableData data]];
     } else {
         [informationLabel setTextColor: [UIColor redColor]];
-        [informationLabel setText:@"Error while connecting to the WebService"];
+        [informationLabel setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
         [applicationActivity stopAnimating];
         [scanButton setEnabled:true];
     }
@@ -191,9 +191,9 @@
         } else {
             if ([value isKindOfClass:[NSNumber class]]) {
                 if ([value boolValue])
-                    value = @"oui";
+                    value = NSLocalizedString(@"YES", nil);
                 else {
-                    value = @"non";
+                    value = NSLocalizedString(@"NO", nil);
                 }
             }
         }
@@ -225,7 +225,7 @@
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [informationLabel setTextColor: [UIColor redColor]];
-    [informationLabel setText:@"Error while connecting to the WebService"];
+    [informationLabel setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
     [applicationActivity stopAnimating];
     [scanButton setEnabled:true];
 }
@@ -241,7 +241,7 @@
         NSError *error = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonDatax options:kNilOptions error:&error];
         
-        [informationLabel setText:@"Parsing results ..."];
+        [informationLabel setText:NSLocalizedString(@"PARSINGRES", nil)];
         
         Product *simpleProduct = [[Product alloc] init];
         Product *detailedProduct = [[Product alloc] init];
@@ -257,28 +257,28 @@
         
         value = [materiel objectForKey:@"designation"];
         valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Désignation" AndValue:valueAsString];
+        [simpleProduct addPropertyName:NSLocalizedString(@"DESIGNATION", nil) AndValue:valueAsString];
         [simpleProduct setName:valueAsString];
         
         value = [materiel objectForKey:@"numero_irap"];
         valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Numéro IRAP" AndValue:valueAsString];
+        [simpleProduct addPropertyName:NSLocalizedString(@"NUMIRAP", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"organisme"];
         valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Organisme d'achat" AndValue:valueAsString];
+        [simpleProduct addPropertyName:NSLocalizedString(@"PURCHASINGORGA", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"nom_responsable"];
         valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Responsable" AndValue:valueAsString];
+        [simpleProduct addPropertyName:NSLocalizedString(@"ACCOUNTANT", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"email_responsable"];
         valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Contact responsable" AndValue:valueAsString];
+        [simpleProduct addPropertyName:NSLocalizedString(@"ACCOUNTCONTACT", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"full_storage"];
         valueAsString = (NSString *)value;
-        [simpleProduct addPropertyName:@"Localisation" AndValue:valueAsString];
+        [simpleProduct addPropertyName:NSLocalizedString(@"LOCALIZATION", nil) AndValue:valueAsString];
         
         [simpleProduct setSectionWithName:@"Matériel"];
         
@@ -310,7 +310,7 @@
     @catch (NSException *exception) {
         NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
         [informationLabel setTextColor: [UIColor redColor]];
-        [informationLabel setText:@"Error while parsing the json result."];
+        [informationLabel setText:NSLocalizedString(@"ERRORPARSINGRES", nil)];
     }
     @finally {
         [applicationActivity stopAnimating];

@@ -11,6 +11,9 @@
 # MAC
 .DS_Store
 
+# Xcode
+xcuserdata
+
 # Windows
 Thumbs.db
 

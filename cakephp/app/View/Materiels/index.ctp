@@ -9,7 +9,7 @@
 		'status' => 'Statut'
 	);
 ?>
-<div class="<?php echo $pluralVar;?> index">
+<div class="index">
 <h2><i class="icon-list"></i> Liste des matériels</h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
@@ -22,27 +22,18 @@
 </tr>
 <?php
 $i = 0;
-foreach (${$pluralVar} as ${$singularVar}):
-	$id = 		${$singularVar}[$modelClass]['id'];
-	$statut = 	${$singularVar}[$modelClass]['status'];
+foreach ($data as $result):
+	$id = 		$result['Materiel']['id'];
+	$statut = 	$result['Materiel']['status'];
 	echo "<tr>";
-		foreach ($toShow as $_field => $label) { 
-		$isKey = false;
-		if (!empty($associations['belongsTo'])) {
-			foreach ($associations['belongsTo'] as $_alias => $_details) {
-				if ($_field === $_details['foreignKey']) {
-					$isKey = true;
-					echo "<td>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
-					break;
-				}
-			}
-		}
-		if ($isKey !== true) {
-			if ($_field == 'storage_place')
-				echo "<td>" . h(${$singularVar}[$modelClass]['full_storage']) . "</td>";
-			else	
-				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
-		}	
+		foreach ($toShow as $_field => $label) {
+			echo '<td>';
+			if ($_field == 'category_id')
+				echo  $this->Html->link($result['Category']['nom'], 
+					array('controller' => 'categories', 'action' => 'view', $result['Category']['id']));
+			else
+				echo h($result['Materiel'][$_field]);
+			echo '</td>';
 	}
 	echo $this->element('materiel_actions', array('id' => $id, 'statut' => $statut));
 	echo '</tr>';
@@ -69,6 +60,8 @@ endforeach;
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_view');
+		echo $this->element('tools_view', array(
+			'pluralHumanName' => 'Matériels',
+			'singularHumanName' => 'matériel'));
 	?>
 </div>

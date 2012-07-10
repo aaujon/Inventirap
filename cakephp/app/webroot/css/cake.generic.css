@@ -745,3 +745,10 @@ pre {
 #url-rewriting-warning {
 	display:none;
 }
+
+form .norequire { 
+	font-weight: normal !important;  
+}
+form .norequire label:after { 
+		content: '' !important;  
+}

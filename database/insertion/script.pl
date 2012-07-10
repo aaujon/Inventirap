@@ -1,5 +1,52 @@
 #!/usr/bin/perl
 
+use DBI;
+use DBD::mysql;
+
+####
+# Insert SQL requests
+####
+
+# CONFIG VARIABLES
+$platform = "mysql";
+$database = "test_irap";
+$host = "localhost";
+$port = "3306";
+$user = "root";
+$pw = "root";
+
+$tableName = "utilisateurs";
+
+# DATA SOURCE NAME
+$dsn = "dbi:$platform:$database:$host:$port";
+
+# PERL DBI CONNECT
+# $connect = DBI->connect($dsn, $user, $pw);
+
+# PREPARE THE QUERY
+# $query = "INSERT INTO $tableName (nom, role) VALUES ('Pierrick', 'Super Administrateur')";
+# $query_handle = $connect->prepare($query);
+
+# EXECUTE THE QUERY
+# $query_handle->execute();
+
+####
+# Select SQL requets
+####
+
+
+
+
+
+
+
+
+
+
+####
+# Read file
+####
+
 my $fileName = "test_inventaire_IRAP_2012_V5.csv";
 
 open(my $FH, '<', $fileName) or die "Can't open $fileName: $!";

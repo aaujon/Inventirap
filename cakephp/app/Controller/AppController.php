@@ -46,7 +46,7 @@ class AppController extends Controller {
         'LdapAuth' => array(
             'loginRedirect' => array('controller' => 'Utilisateurs', 'action' => 'login'),
             'logoutRedirect' => array('controller' => 'Utilisateurs', 'action' => 'logout'),
-			'loginAction' => array('controller' => 'Utilisateurs', 'action' => 'login')
+			'loginAction' => array('controller' => 'Utilisateurs', 'action' => 'notAuthorized')
 	)
 	);
 

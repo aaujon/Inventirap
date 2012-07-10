@@ -32,24 +32,30 @@ class Utilisateur extends AppModel {
 		return $this->acceptedRoles[$userAuth-1];
 	}
 	
+	public function getEmailFromLdapName($ldapName) {
+		if(isset($ldapName)) {
+			$attributes = ClassRegistry::init('LdapConnection')->getUserAttributes($ldapName);
+			@$mail = $attributes[0]['mail'][0];
+
+			return $mail;
+		}
+	}
+	
 	public function getLdapUsers() {
-		$connection = ClassRegistry::init('LdapConnection');
+		$allUsers = ClassRegistry::init('LdapConnection')->getAllLdapUsers();
 		$ldapUsers = array();
 		$usersName = array();
-		foreach($connection->getAllLdapUsers() as $userInformations) {
-			if((!empty($userInformations['sn'][0])) && (!empty($userInformations['givenname'][0]))) {
-				array_push($usersName, $userInformations['givenname'][0] . ' ' . $userInformations['sn'][0]);
-			}
-		}
+		foreach($allUsers as $user)
+			if(!empty($user['sn'][0]) && !empty($user['givenname'][0]))
+				array_push($usersName, $user['givenname'][0] . ' ' . $user['sn'][0]);
+				
 		sort($usersName);
-		foreach($usersName as $userName) {
+		foreach($usersName as $userName)
 			$ldapUsers[$userName] = $userName;
-		}
 		
 		return $ldapUsers;
 	}
 	
-
 	var $validate = array(
         'ldap' => array(
             'required' => array(

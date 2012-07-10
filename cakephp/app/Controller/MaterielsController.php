@@ -14,8 +14,6 @@ class MaterielsController extends AppController {
 	}
 
 	public function find() {
-		$this->checkAuth();
-
 		$this->loadModel('Category');
 		$this->loadModel('SousCategory');
 		$this->set('s_categories', $this->Category->find('list', array('order' => array('Category.nom'))));
@@ -73,8 +71,6 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusToBeArchived($id = null, $from = 'index') {
-		$this->checkAuth();
-
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
 		$this->logInventirap($id);
@@ -83,8 +79,6 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusValidated($id = null, $from = 'index') {
-		$this->checkAuth();
-
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'VALIDATED');
 		$this->logInventirap($id);
@@ -93,8 +87,6 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusArchived($id = null, $from = 'index') {
-		$this->checkAuth();
-
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
 		$this->logInventirap($id);
@@ -113,33 +105,16 @@ class MaterielsController extends AppController {
 		return 'IRAP-'.$shortYear.'-'.sprintf("%04d", $newId);
 	}
 
-	/*
-	 * Auth functions
-	 */
 	public function beforeFilter() {
-		$this->LdapAuth->deny();
-		$this->LdapAuth->allow($this->authLevelUnauthorized);
-
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
-		if (($userAuth > 1) && ($userAuth <= 4))
-		$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'search', 'delete');
+		if (($userAuth == 3) || ($userAuth == 4))
+			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find', 'statusArchived', 'statusToBeArchived', 'statusValidated');
+		elseif ($userAuth == 2)
+			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find', 'statusToBeArchived', 'statusValidated');
 		elseif ($userAuth == 1)
-		$this->LdapAuth->allow('index', 'view', 'add', 'edit');
-	}
-
-	private function checkAuth() {
-		$action = $this->params['action'];
-		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
-
-		if (($action == 'statusToBeArchived' || $action == 'find') && $userAuth >= 1)
-		return true;
-		if ($action == 'statusValidated' && $userAuth >= 2)
-		return true;
-		if ($action == 'statusArchived' && $userAuth >= 4)
-		return true;
-
-		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action');
-		$this->redirect(array('controller' => 'materiels', 'action'=> 'index'));
+			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find');
+		else
+			$this->LdapAuth->deny();
 	}
 }
 ?>

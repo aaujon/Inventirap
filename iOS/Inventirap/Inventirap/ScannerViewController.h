@@ -15,8 +15,10 @@
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *applicationActivity;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
+@property (weak, nonatomic) IBOutlet UIButton *lastProductButton;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 
 - (IBAction) scanButtonAction:(id)sender;
+- (IBAction)lastProductButtonAction:(id)sender;
 
 @end

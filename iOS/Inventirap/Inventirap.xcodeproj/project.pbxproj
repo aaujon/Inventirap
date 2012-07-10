@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AF0B5B3015A78FFA00263815 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */; };
 		AF0B5B3315A796C200263815 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B5B3215A796C200263815 /* Settings.m */; };
-		AF9BE9D315A21D7800F6F024 /* InformationViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF9BE9D215A21D7800F6F024 /* InformationViewController_iPad.xib */; };
 		AF9BE9EB15A22DC200F6F024 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9EA15A22DC200F6F024 /* Product.m */; };
 		AF9BE9F215A22E0800F6F024 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9F115A22E0800F6F024 /* Property.m */; };
 		AFD1683015A389CA0017418B /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD1682F15A389CA0017418B /* CustomCell.m */; };
@@ -36,7 +35,6 @@
 		AFE5E7F915A073B200E32EE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE5E7F815A073B200E32EE8 /* AppDelegate.m */; };
 		AFE5E7FC15A073B200E32EE8 /* ScannerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AFE5E7FB15A073B200E32EE8 /* ScannerViewController.mm */; };
 		AFE5E7FF15A073B200E32EE8 /* ScannerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFE5E7FD15A073B200E32EE8 /* ScannerViewController_iPhone.xib */; };
-		AFE5E80215A073B200E32EE8 /* ScannerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFE5E80015A073B200E32EE8 /* ScannerViewController_iPad.xib */; };
 		AFE5E81B15A0747400E32EE8 /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E81115A073F800E32EE8 /* libZXingWidget.a */; };
 		AFE5E82215A0755A00E32EE8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E81C15A0755A00E32EE8 /* AddressBook.framework */; };
 		AFE5E82315A0755A00E32EE8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E81D15A0755A00E32EE8 /* AudioToolbox.framework */; };
@@ -76,7 +74,6 @@
 		AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		AF0B5B3115A796C200263815 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		AF0B5B3215A796C200263815 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
-		AF9BE9D215A21D7800F6F024 /* InformationViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationViewController_iPad.xib; sourceTree = "<group>"; };
 		AF9BE9E915A22DC200F6F024 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		AF9BE9EA15A22DC200F6F024 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		AF9BE9F015A22E0800F6F024 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 		AFE5E7FA15A073B200E32EE8 /* ScannerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		AFE5E7FB15A073B200E32EE8 /* ScannerViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScannerViewController.mm; sourceTree = "<group>"; };
 		AFE5E7FE15A073B200E32EE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScannerViewController_iPhone.xib; sourceTree = "<group>"; };
-		AFE5E80115A073B200E32EE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ScannerViewController_iPad.xib; sourceTree = "<group>"; };
 		AFE5E80815A073F800E32EE8 /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = ../zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
 		AFE5E81C15A0755A00E32EE8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		AFE5E81D15A0755A00E32EE8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -193,9 +189,7 @@
 			children = (
 				AFD1684715A39BB90017418B /* Images */,
 				AFE5E7FD15A073B200E32EE8 /* ScannerViewController_iPhone.xib */,
-				AFE5E80015A073B200E32EE8 /* ScannerViewController_iPad.xib */,
 				AFE5E83F15A0A43700E32EE8 /* InformationViewController_iPhone.xib */,
-				AF9BE9D215A21D7800F6F024 /* InformationViewController_iPad.xib */,
 				AFE5CEB515A7804C000CEAB7 /* SettingsViewController_iPhone.xib */,
 				AFD1683115A389E50017418B /* CustomCell.xib */,
 			);
@@ -368,9 +362,7 @@
 			files = (
 				AFE5E7F315A073B200E32EE8 /* InfoPlist.strings in Resources */,
 				AFE5E7FF15A073B200E32EE8 /* ScannerViewController_iPhone.xib in Resources */,
-				AFE5E80215A073B200E32EE8 /* ScannerViewController_iPad.xib in Resources */,
 				AFE5E84115A0A43700E32EE8 /* InformationViewController_iPhone.xib in Resources */,
-				AF9BE9D315A21D7800F6F024 /* InformationViewController_iPad.xib in Resources */,
 				AFD1683215A389E50017418B /* CustomCell.xib in Resources */,
 				AFD1683415A39B030017418B /* Default.png in Resources */,
 				AFD1683615A39B060017418B /* Default@2x.png in Resources */,
@@ -433,14 +425,6 @@
 				AFE5E7FE15A073B200E32EE8 /* en */,
 			);
 			name = ScannerViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		AFE5E80015A073B200E32EE8 /* ScannerViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AFE5E80115A073B200E32EE8 /* en */,
-			);
-			name = ScannerViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -506,6 +490,7 @@
 				);
 				INFOPLIST_FILE = "Inventirap/Inventirap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -521,6 +506,7 @@
 				);
 				INFOPLIST_FILE = "Inventirap/Inventirap-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

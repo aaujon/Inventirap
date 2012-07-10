@@ -218,7 +218,7 @@
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection
 {
 #warning Replace with real json data
-    NSString *blabla = @"{\"materials\":[{\"Materiel\":{\"id\":\"1\",\"designation\":\"Macbook air\",\"category_id\":\"1\",\"sous_category_id\":\"2\",\"numero_irap\":\"IRAP-12-0001\",\"description\":\"Ceci est une description un peu nulle\",\"organisme\":\"IRAP\",\"materiel_administratif\":false,\"materiel_technique\":false,\"status\":\"CREATED\",\"date_acquisition\":\"2012-07-04\",\"fournisseur\":\"Apple\",\"prix_ht\":\"1000\",\"eotp\":\"WTF\",\"numero_commande\":\"ZERZE45\",\"code_comptable\":\"44\",\"numero_serie\":null,\"thematic_group_id\":\"1\",\"work_group_id\":\"1\",\"ref_existante\":null,\"lieu_stockage\":\"B\",\"lieu_detail\":\"Chambre\",\"utilisateur_id\":\"1\",\"full_storage\":\"B-Chambre\"},\"Category\":{\"id\":\"1\",\"nom\":\"Multimetre\"},\"SousCategory\":{\"id\":\"2\",\"nom\":\"RUI + LC\",\"category_id\":\"1\"},\"ThematicGroup\":{\"id\":\"1\",\"nom\":\"GPPS\"},\"WorkGroup\":{\"id\":\"1\",\"nom\":\"NVA\"},\"Suivi\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"3\",\"commentaire\":\"Super cooolos\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Calibration\",\"organisme\":\"IRAP\",\"frequence\":\"1\",\"commentaire\":\"Ca sert pas \u00e0 grand chose\"},{\"id\":\"3\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"10\",\"commentaire\":\"Pas souvent lui la maintenance\"}],\"Emprunt\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_emprunt\":\"2011-01-01\",\"date_retour_emprunt\":\"2013-01-01\",\"piece\":\"Souris\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Dark Vador\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_emprunt\":\"2010-04-05\",\"date_retour_emprunt\":\"2010-12-12\",\"piece\":\"Clavier\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Woody Allen\"}]}],\"id\":\"IRAP-12-0001\"}";
+    NSString *blabla = @"{\"materials\":[{\"Materiel\":{\"id\":\"1\",\"designation\":\"Macbook air\",\"category_id\":\"1\",\"sous_category_id\":\"2\",\"numero_irap\":\"IRAP-12-0001\",\"description\":\"Ceci est une description un peu nulle\",\"organisme\":\"IRAP\",\"materiel_administratif\":false,\"nom_responsable\":\"Cedric\",\"email_responsable\":\"Cedric.Hillembrand@irap.omp.eu\",\"materiel_technique\":false,\"status\":\"CREATED\",\"date_acquisition\":\"2012-07-04\",\"fournisseur\":\"Apple\",\"prix_ht\":\"1000\",\"eotp\":\"WTF\",\"numero_commande\":\"ZERZE45\",\"code_comptable\":\"44\",\"numero_serie\":null,\"thematic_group_id\":\"1\",\"work_group_id\":\"1\",\"ref_existante\":null,\"lieu_stockage\":\"B\",\"lieu_detail\":\"Chambre\",\"utilisateur_id\":\"1\",\"full_storage\":\"B-Chambre\"},\"Category\":{\"id\":\"1\",\"nom\":\"Multimetre\"},\"SousCategory\":{\"id\":\"2\",\"nom\":\"RUI + LC\",\"category_id\":\"1\"},\"ThematicGroup\":{\"id\":\"1\",\"nom\":\"GPPS\"},\"WorkGroup\":{\"id\":\"1\",\"nom\":\"NVA\"},\"Suivi\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"3\",\"commentaire\":\"Super cooolos\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Calibration\",\"organisme\":\"IRAP\",\"frequence\":\"1\",\"commentaire\":\"Ca sert pas \u00e0 grand chose\"},{\"id\":\"3\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"10\",\"commentaire\":\"Pas souvent lui la maintenance\"}],\"Emprunt\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_emprunt\":\"2011-01-01\",\"date_retour_emprunt\":\"2013-01-01\",\"piece\":\"Souris\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Dark Vador\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_emprunt\":\"2010-04-05\",\"date_retour_emprunt\":\"2010-12-12\",\"piece\":\"Clavier\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Woody Allen\"}]}],\"id\":\"IRAP-12-0001\"}";
     
     NSData *jsonDatax = [blabla dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -228,7 +228,8 @@
         
         [informationLabel setText:@"Parsing results ..."];
         
-        Product *product = [[Product alloc] init];
+        Product *simpleProduct = [[Product alloc] init];
+        Product *detailedProduct = [[Product alloc] init];
         
         NSArray *results = [res objectForKey:@"materials"];
         NSDictionary* result = [results objectAtIndex:0];
@@ -236,47 +237,57 @@
         NSString *valueAsString;
         id value;
         
-        // Parsing Materiel
+        // Creating our simple product
         NSDictionary* materiel = [result objectForKey:@"Materiel"];
         
         value = [materiel objectForKey:@"numero_irap"];
         valueAsString = (NSString *)value;
-        [product addPropertyName:@"Numéro IRAP" AndValue:valueAsString];
+        [simpleProduct addPropertyName:@"Numéro IRAP" AndValue:valueAsString];
         
         value = [materiel objectForKey:@"designation"];
         valueAsString = (NSString *)value;
-        [product addPropertyName:@"Désignation" AndValue:valueAsString];
-        [product setName:valueAsString];
+        [simpleProduct addPropertyName:@"Désignation" AndValue:valueAsString];
+        [simpleProduct setName:valueAsString];
         
         value = [materiel objectForKey:@"organisme"];
         valueAsString = (NSString *)value;
-        [product addPropertyName:@"Organisme d'achat" AndValue:valueAsString];
+        [simpleProduct addPropertyName:@"Organisme d'achat" AndValue:valueAsString];
         
-        value = [materiel objectForKey:@"utilisateur_id"];
+        value = [materiel objectForKey:@"nom_responsable"];
         valueAsString = (NSString *)value;
-        [product addPropertyName:@"Nom du responsable" AndValue:valueAsString];
+        [simpleProduct addPropertyName:@"Responsable" AndValue:valueAsString];
         
-        value = [materiel objectForKey:@"lieu_stockage"];
+        value = [materiel objectForKey:@"email_responsable"];
         valueAsString = (NSString *)value;
-        [product addPropertyName:@"Localisation" AndValue:valueAsString];
+        [simpleProduct addPropertyName:@"Contact resonsable" AndValue:valueAsString];
         
-        //[self parseDictionary:materiel ForProduct:product];    
-        [product setSectionWithName:@"Matériel"];
-        /*
+        value = [materiel objectForKey:@"full_storage"];
+        valueAsString = (NSString *)value;
+        [simpleProduct addPropertyName:@"Localisation" AndValue:valueAsString];
+        
+        [simpleProduct setSectionWithName:@"Matériel"];
+        
+        
+        //Creating a more detailed product
+        [self parseDictionary:materiel ForProduct:detailedProduct];    
+        [detailedProduct setSectionWithName:@"Matériel"];
+
         // Parsing Category
         NSDictionary* category = [result objectForKey:@"Category"];
-        [self parseDictionary:category ForProduct:product];    
-        [product setSectionWithName:@"Catégorie"];
+        [self parseDictionary:category ForProduct:detailedProduct];    
+        [detailedProduct setSectionWithName:@"Catégorie"];
         
         // Parsing SousCategory
         NSDictionary* subcategory = [result objectForKey:@"SousCategory"];
-        [self parseDictionary:subcategory ForProduct:product];    
-        [product setSectionWithName:@"Sous-Catégories"];*/
+        [self parseDictionary:subcategory ForProduct:detailedProduct];    
+        [detailedProduct setSectionWithName:@"Sous-Catégories"];
         
-        [[self informationViewController] setProduct:product];
+        [[self informationViewController] setSelectedProduct:simpleProduct];
+        [[self informationViewController] setSimpleProduct:simpleProduct];
+        [[self informationViewController] setDetailedProduct:detailedProduct];
         
         [[[self informationViewController] tableView] scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-        [[[self informationViewController] navigationItem] setTitle : [product name]];
+        [[[self informationViewController] navigationItem] setTitle : [simpleProduct name]];
         
         [self.navigationController pushViewController:[self informationViewController] animated:TRUE];
         [informationLabel setHidden:YES];

@@ -38,7 +38,7 @@ class Utilisateur extends AppModel {
 		$usersName = array();
 		foreach($connection->getAllLdapUsers() as $userInformations) {
 			if((!empty($userInformations['sn'][0])) && (!empty($userInformations['givenname'][0]))) {
-				array_push($usersName, $userInformations['sn'][0] . ' ' . $userInformations['givenname'][0]);
+				array_push($usersName, $userInformations['givenname'][0] . ' ' . $userInformations['sn'][0]);
 			}
 		}
 		sort($usersName);

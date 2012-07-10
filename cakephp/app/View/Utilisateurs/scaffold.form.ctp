@@ -9,7 +9,7 @@
 		
 	echo $this->Form->create();
 	if ($this->params['action'] == 'add')
-		echo $this->Form->input('ldap', array(
+		echo $this->Form->input('nom', array(
 			'options' => $utilisateur->getLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
 			'selected' => ''));

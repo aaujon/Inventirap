@@ -9,8 +9,8 @@ class MaterielsController extends AppController {
 
 		$this->loadModel('Category');
 		$this->loadModel('SousCategory');
-		$this->set('s_categories', $this->Category->find('list'));
-		$this->set('s_sous_categories', $this->SousCategory->find('list'));
+		$this->set('s_categories', $this->Category->find('list', array('order' => array('Category.nom'))));
+		$this->set('s_sous_categories', $this->SousCategory->find('list', array('order' => array('SousCategory.nom'))));
 		if (isset($this->data['Materiel'])) {
 			$all = $this->data['Materiel']['s_all'];
 			$this->set('results', $this->Materiel->find('all', array('conditions' => array(

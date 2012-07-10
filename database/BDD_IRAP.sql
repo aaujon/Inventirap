@@ -382,11 +382,11 @@ COMMIT;
 -- Data for table `test_irap`.`utilisateurs`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `test_irap`;
-INSERT INTO `test_irap`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Cedric', 'Super Administrateur');
-INSERT INTO `test_irap`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Daniel', 'Administrateur');
-INSERT INTO `test_irap`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Gin', 'Responsable');
-INSERT INTO `test_irap`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Henri', 'Apprenti');
+USE `mydb`;
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Cedric Hillembrand', 'Super Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Daniel Turner', 'Administrateur');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Gin Sky', 'Responsable');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Henri Robert', 'Apprenti');
 
 COMMIT;
 

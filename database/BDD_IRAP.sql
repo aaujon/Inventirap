@@ -231,6 +231,13 @@ INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (38, 'Enceinte à vide');
 INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (39, 'Etuve/Enceinte thermique');
 INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (40, 'Pompes');
 INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (41, 'Matériel informatique en prêt');
+INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (42, 'Electronique (old)');
+INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (43, 'Informatique (old)');
+INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (44, 'Instrumentation (old)');
+INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (45, 'Logisitique (old)');
+INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (46, 'Mobilier (old)');
+INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (47, 'Optique (old)');
+INSERT INTO `mydb`.`categories` (`id`, `nom`) VALUES (48, 'Autre (old)');
 
 COMMIT;
 
@@ -335,6 +342,13 @@ INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (93, 'D
 INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (94, 'Defaut', 39);
 INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (95, 'Defaut', 40);
 INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (96, 'Defaut', 41);
+INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (97, 'Defaut (old)', 42);
+INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (98, 'Defaut (old)', 43);
+INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (99, 'Defaut (old)', 44);
+INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (100, 'Defaut (old)', 45);
+INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (101, 'Defaut (old)', 46);
+INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (102, 'Defaut (old)', 47);
+INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `category_id`) VALUES (103, 'Defaut (old)', 48);
 
 COMMIT;
 

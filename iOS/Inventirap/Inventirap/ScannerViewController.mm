@@ -69,8 +69,16 @@
     
     buttonLayer = [[self lastProductButton] layer];
     [self customizeButtonLayer:buttonLayer];
-    
     [[self lastProductButton] setTitle:NSLocalizedString(@"LASTPRODUCT", nil) forState:UIControlStateNormal];
+    
+    [[self scanButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [[[self scanButton] titleLabel] setShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
+    [[[self scanButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    
+    [[self lastProductButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [[[self lastProductButton] titleLabel] setShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
+    [[[self lastProductButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    
     [applicationActivity setHidesWhenStopped:YES];
     [informationLabel setHidden:YES];
 }
@@ -110,7 +118,7 @@
     [layer setMasksToBounds:YES];
     [layer setCornerRadius:10.0];
     [layer setBorderWidth:1.0];
-    [layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [layer setBorderColor:[[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] CGColor]];
 }
 
 - (void)launchQRCodeReader

@@ -138,10 +138,9 @@
 	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
 
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	headerLabel.backgroundColor = [UIColor lightGrayColor];
+	headerLabel.backgroundColor = [UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0];
 	headerLabel.opaque = YES;
-	headerLabel.textColor = [UIColor blackColor];
-	headerLabel.highlightedTextColor = [UIColor whiteColor];
+	headerLabel.textColor = [UIColor whiteColor];
 	headerLabel.font = [UIFont boldSystemFontOfSize:14];
 	headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 20.0);
     headerLabel.textAlignment = UITextAlignmentCenter;

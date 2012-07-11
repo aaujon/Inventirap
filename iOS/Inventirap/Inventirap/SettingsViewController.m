@@ -43,9 +43,13 @@
     [layer setMasksToBounds:YES];
     [layer setCornerRadius:10.0];
     [layer setBorderWidth:1.0];
-    [layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [layer setBorderColor:[[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] CGColor]];
     
     [[self resetButton] setTitle:NSLocalizedString(@"RESETDEFAULT", nil) forState:UIControlStateNormal];
+    [[self resetButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [[[self resetButton] titleLabel] setShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
+    [[[self resetButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    
     [[self webServiceUrlLabel] setText:NSLocalizedString(@"WEBSERVURL", nil)];
     [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
 }

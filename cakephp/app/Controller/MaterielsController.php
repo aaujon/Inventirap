@@ -64,6 +64,9 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusToBeArchived($id = null, $from = 'index') {
+		if ($this->Session->read('LdapUserAuthenticationLevel') < 1)
+			$this->notAuthorized($id, $from);
+			
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
 		$this->logInventirap($id);
@@ -72,6 +75,9 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusValidated($id = null, $from = 'index') {
+		if ($this->Session->read('LdapUserAuthenticationLevel') < 2)
+			$this->notAuthorized($id, $from);
+	
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'VALIDATED');
 		$this->logInventirap($id);
@@ -80,6 +86,9 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusArchived($id = null, $from = 'index') {
+		if ($this->Session->read('LdapUserAuthenticationLevel') < 3)
+			$this->notAuthorized($id, $from);
+			
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
 		$this->logInventirap($id);
@@ -98,20 +107,9 @@ class MaterielsController extends AppController {
 		return 'IRAP-'.$shortYear.'-'.sprintf("%04d", $newId);
 	}
 
-	public function beforeFilter() {
-		$this->LdapAuth->allow('*');
-		/*
-		NOT WORKING PROPERLY
-		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
-		if ($userAuth >= 3)
-			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find', 'statusArchived', 'statusToBeArchived', 'statusValidated');
-		elseif ($userAuth == 2)
-			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find', 'statusToBeArchived', 'statusValidated');
-		elseif ($userAuth == 1)
-			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find');
-		else
-			$this->LdapAuth->deny();
-		*/
+	public function notAuthorized($id, $from) {
+		$this->Session->setFlash('Nous n\'avez pas le niveau d\'authorisation nécessaire pour cette action.');
+		$this->redirect(array('action'=> $from, $id));
 	}
 }
 ?>

@@ -3,7 +3,7 @@ class Categorie extends AppModel {
 	public $name = 'Categorie';
 	public $displayField = 'nom';
 	
-	var $hasMany = 'SousCategorie';
+	var $hasMany = array('SousCategorie' => array('foreignKey' => 'categorie_id'));
 
 	var $validate = array(
 		'nom' => array(        

@@ -4,7 +4,7 @@ class SousCategorie extends AppModel {
 	public $displayField = 'nom';
 
 	var $belongsTo = 'Categorie';
-	var $hasMany = 'Materiel';
+	var $hasMany = array('Materiel' => array('foreignKey' => 'sous_categorie_id'));
 
 	var $validate = array(
 		'nom' => array(        

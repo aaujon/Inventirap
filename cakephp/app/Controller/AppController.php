@@ -15,10 +15,14 @@ class AppController extends Controller {
 	));
 
 	public function beforeFilter() {
-		$this->LdapAuth->allow(array('login', 'display'));
+		$userName = $this->Session->read('LdapUserName');
+		if (isset($userName))
+			$this->LdapAuth->allow('*');
+		else
+			$this->LdapAuth->allow('login', 'display');
 	}
-	
-	
+
+
 	/*
 	 * Méthodes de log des données
 	 */

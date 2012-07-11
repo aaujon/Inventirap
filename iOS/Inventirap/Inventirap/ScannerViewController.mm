@@ -25,6 +25,7 @@
 - (void) processResults;
 - (void) sendWebServiceRequest:(NSString*)ident;
 - (void) parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product;
+- (NSString*) checkValueValidity:(id)value;
 - (void) customizeButtonLayer:(CALayer*)layer;
 
 @end
@@ -182,7 +183,7 @@
     NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
     
 #warning Change URL
-    completeURL = @"http://inventirap.dyndns.org:8080/Inventirap/cakephp/ServicesWeb/materiel/IRAP-12-0002";
+    completeURL = @"http://inventirap.dyndns.org:8080/Inventirap/cakephp/ServicesWeb/materiel/IRAP-12-0001";
     completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
@@ -202,20 +203,9 @@
 {
     for(id key in dictionary) {
         id value = [dictionary objectForKey:key];
-        if ([value isKindOfClass:[NSNull class]]) {
-            value = @"";
-        } else {
-            if ([value isKindOfClass:[NSNumber class]]) {
-                if ([value boolValue])
-                    value = NSLocalizedString(@"YES", nil);
-                else {
-                    value = NSLocalizedString(@"NO", nil);
-                }
-            }
-        }
         
         NSString *keyAsString = (NSString *)key;
-        NSString *valueAsString = (NSString *)value;
+        NSString *valueAsString = [self checkValueValidity:value];
         
         if ([keyAsString isEqualToString:@"designation"]) {
             [product setName:valueAsString];
@@ -223,6 +213,26 @@
         
         [product addPropertyName:keyAsString AndValue:valueAsString];
     }
+}
+
+- (NSString*) checkValueValidity:(id)value
+{
+    NSString *validValue;
+    
+    if ([value isKindOfClass:[NSNull class]]) {
+        validValue = @"";
+    } else {
+        if ([value isKindOfClass:[NSNumber class]]) {
+            if ([value boolValue])
+                validValue = NSLocalizedString(@"YES", nil);
+            else {
+                validValue = NSLocalizedString(@"NO", nil);
+            }
+        } else {
+            validValue = (NSString *)value;
+        }
+    }
+    return validValue;
 }
 
 #pragma mark -
@@ -275,28 +285,28 @@
         NSDictionary* materiel = [result objectForKey:@"Materiel"];
         
         value = [materiel objectForKey:@"designation"];
-        valueAsString = (NSString *)value;
+        valueAsString = [self checkValueValidity:value];
         [simpleProduct addPropertyName:NSLocalizedString(@"DESIGNATION", nil) AndValue:valueAsString];
         [simpleProduct setName:valueAsString];
         
         value = [materiel objectForKey:@"numero_irap"];
-        valueAsString = (NSString *)value;
+        valueAsString = [self checkValueValidity:value];
         [simpleProduct addPropertyName:NSLocalizedString(@"NUMIRAP", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"organisme"];
-        valueAsString = (NSString *)value;
+        valueAsString = [self checkValueValidity:value];
         [simpleProduct addPropertyName:NSLocalizedString(@"PURCHASINGORGA", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"nom_responsable"];
-        valueAsString = (NSString *)value;
+        valueAsString = [self checkValueValidity:value];
         [simpleProduct addPropertyName:NSLocalizedString(@"ACCOUNTANT", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"email_responsable"];
-        valueAsString = (NSString *)value;
+        valueAsString = [self checkValueValidity:value];
         [simpleProduct addPropertyName:NSLocalizedString(@"ACCOUNTCONTACT", nil) AndValue:valueAsString];
         
         value = [materiel objectForKey:@"full_storage"];
-        valueAsString = (NSString *)value;
+        valueAsString = [self checkValueValidity:value];
         [simpleProduct addPropertyName:NSLocalizedString(@"LOCALIZATION", nil) AndValue:valueAsString];
         
         [simpleProduct setSectionWithName:@"Matériel"];

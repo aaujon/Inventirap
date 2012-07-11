@@ -47,7 +47,7 @@ class Utilisateur extends AppModel {
 		$usersName = array();
 		foreach($allUsers as $user)
 			if(!empty($user['sn'][0]) && !empty($user['givenname'][0]))
-				array_push($usersName, $user['givenname'][0] . ' ' . $user['sn'][0]);
+				array_push($usersName, $user['sn'][0] . ' ' . $user['givenname'][0]);
 				
 		sort($usersName);
 		foreach($usersName as $userName)

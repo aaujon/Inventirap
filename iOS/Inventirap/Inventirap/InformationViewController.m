@@ -48,6 +48,10 @@
     [infoButton addTarget:self action:@selector(detailsButtonAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];*/
     
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ViewBackground"]];
+    [tempImageView setFrame:self.tableView.frame]; 
+    [self.tableView setBackgroundView:tempImageView];
+    
     UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] 
                                    initWithTitle:NSLocalizedString(@"MORE", nil)                                            
                                    style:UIBarButtonItemStyleBordered 
@@ -161,5 +165,18 @@
 {
 	return 20.0;
 }
+
+// Removing seperation lines below last cells (when there are only few)
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if ([self numberOfSectionsInTableView:tableView] == (section+1)){
+        return [UIView new];
+    }       
+    return nil;
+}
+
+- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
+
 
 @end

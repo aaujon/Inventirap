@@ -11,7 +11,9 @@
 @interface SettingsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *webServiceUrlTextField;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+@property (weak, nonatomic) IBOutlet UILabel *webServiceUrlLabel;
 
 - (IBAction)backgroundTouch:(id)sender;
-- (IBAction)resetButton:(id)sender;
+- (IBAction)resetButtonAction:(id)sender;
 @end

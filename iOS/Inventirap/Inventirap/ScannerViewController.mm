@@ -49,7 +49,7 @@
             [self setInformationViewController:[[InformationViewController alloc] initWithNibName:@"InformationViewController_iPad" bundle:nil]];
         }
         [self setTitle:NSLocalizedString(@"SCANNER", nil)];
-        self.tabBarItem.image = [UIImage imageNamed:@"scannerTabBarIcon"];
+        [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"scannerTabBarIcon"] withFinishedUnselectedImage:[UIImage imageNamed:@"scannerTabBarIcon"]];
     }
     
     return self;
@@ -62,6 +62,8 @@
 {
     [super viewDidLoad];
     
+    
+    [[self lastProductButton] setTitle:NSLocalizedString(@"LASTPRODUCT", nil) forState:UIControlStateNormal];
     [applicationActivity setHidesWhenStopped:YES];
     [informationLabel setHidden:YES];
 }

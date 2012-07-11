@@ -15,6 +15,8 @@
 
 @implementation SettingsViewController
 @synthesize webServiceUrlTextField;
+@synthesize resetButton;
+@synthesize webServiceUrlLabel;
 
 #pragma mark -
 #pragma mark Initialization
@@ -23,9 +25,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-#warning Replace with correct images
         self.title = NSLocalizedString(@"SETTINGS", nil);
-        self.tabBarItem.image = [UIImage imageNamed:@"settingsTabBarIcon"];
+        [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"settingsTabBarIcon"] withFinishedUnselectedImage:[UIImage imageNamed:@"settingsTabBarIcon"]];
     }
     return self;
 }
@@ -36,13 +37,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [[self resetButton] setTitle:NSLocalizedString(@"RESETDEFAULT", nil) forState:UIControlStateNormal];
+    [[self webServiceUrlLabel] setText:NSLocalizedString(@"WEBSERVURL", nil)];
     [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
 }
 
 - (void)viewDidUnload
 {
     [self setWebServiceUrlTextField:nil];
+    [self setResetButton:nil];
+    [self setWebServiceUrlLabel:nil];
+    [self setWebServiceUrlLabel:nil];
     [super viewDidUnload];
 }
 
@@ -54,7 +59,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)resetButton:(id)sender
+- (IBAction)resetButtonAction:(id)sender
 {
     NSString *bundle = [[NSBundle mainBundle] pathForResource:@"DefaultSettings" ofType:@"plist"];
     NSMutableDictionary *savedSettings = [[NSMutableDictionary alloc] initWithContentsOfFile: bundle];

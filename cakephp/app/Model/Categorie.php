@@ -1,10 +1,9 @@
 <?php
-class SousCategory extends AppModel {
-	public $name = 'SousCategory';
+class Categorie extends AppModel {
+	public $name = 'Categorie';
 	public $displayField = 'nom';
-
-	var $belongsTo = 'Category';
-	var $hasMany = 'Materiel';
+	
+	var $hasMany = 'SousCategorie';
 
 	var $validate = array(
 		'nom' => array(        
@@ -14,7 +13,7 @@ class SousCategory extends AppModel {
 			),        
 			'valid' => array(            
 				'rule' => 'check_string',              
-				'message' => 'Le champ doit être valide'        
+				'message' => 'Le champ doit être valide.'        
 			),      
 		)
 	);

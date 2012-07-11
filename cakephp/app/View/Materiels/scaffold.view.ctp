@@ -5,8 +5,8 @@
 	$statut = ${$singularVar}[$modelClass]['status'];
 	$administratif = ${$singularVar}[$modelClass]['materiel_administratif'];
 	$technique = ${$singularVar}[$modelClass]['materiel_technique'];
-	$them_groupe = ${$singularVar}['ThematicGroup']['nom'];
-	$trav_groupe = ${$singularVar}['WorkGroup']['nom'];
+	$them_groupe = ${$singularVar}['GroupesThematique']['nom'];
+	$trav_groupe = ${$singularVar}['GroupesTravail']['nom'];
 	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 ?>
 <div class="<?php echo $pluralVar;?> view">
@@ -69,28 +69,28 @@
 		$type = 'Aucun'; 
 
 	//Catégorie/Sous catégorie
-	$categorie = $this->Html->link(${$singularVar}['Category']['nom'], array(
+	$categorie = $this->Html->link(${$singularVar}['Categorie']['nom'], array(
 				'controller' => 'categories',
 				'action' => 'view',
-				${$singularVar}['Category']['id']));
-	$sousCategorie = $this->Html->link(${$singularVar}['SousCategory']['nom'], array(
+				${$singularVar}['Categorie']['id']));
+	$sousCategorie = $this->Html->link(${$singularVar}['SousCategorie']['nom'], array(
 				'controller' => 'sous_categories',
 				'action' => 'view',
-				${$singularVar}['SousCategory']['id']));
+				${$singularVar}['SousCategorie']['id']));
 				
 	//Gestion groupe thématique/travail
 	$groupeThematique = '';
 	$groupeTravail = '';
 	if ($them_groupe != 'N/A')
 		$groupeThematique = $this->Html->link($them_groupe, array(
-				'controller' => 'thematic_groups',
+				'controller' => 'groupes_thematiques',
 				'action' => 'view',
-				${$singularVar}['ThematicGroup']['id']));
+				${$singularVar}['GroupesThematique']['id']));
 	if ($trav_groupe != 'N/A')
 		$groupeTravail = $this->Html->link($trav_groupe, array(
-				'controller' => 'work_groups',
+				'controller' => 'groupes_travails',
 				'action' => 'view',
-				${$singularVar}['WorkGroup']['id']));
+				${$singularVar}['GroupesTravail']['id']));
 
 
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);

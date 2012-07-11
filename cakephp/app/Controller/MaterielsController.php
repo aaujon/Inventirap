@@ -14,10 +14,10 @@ class MaterielsController extends AppController {
 	}
 
 	public function find() {
-		$this->loadModel('Category');
-		$this->loadModel('SousCategory');
-		$this->set('s_categories', $this->Category->find('list', array('order' => array('Category.nom'))));
-		$this->set('s_sous_categories', $this->SousCategory->find('list', array('order' => array('SousCategory.nom'))));
+		$this->loadModel('Categorie');
+		$this->loadModel('SousCategorie');
+		$this->set('s_categories', $this->Categorie->find('list', array('order' => array('Categorie.nom'))));
+		$this->set('s_sous_categories', $this->SousCategorie->find('list', array('order' => array('SousCategorie.nom'))));
 		if (isset($this->data['Materiel'])) {
 			$all = $this->data['Materiel']['s_all'];
 			$this->set('results', $this->Materiel->find('all', array(
@@ -27,8 +27,8 @@ class MaterielsController extends AppController {
 				//Champs spéficiques:
 				'Materiel.designation LIKE' => '%'.$this->data['Materiel']['s_designation'].'%',
 				'Materiel.numero_irap LIKE' => '%'.$this->data['Materiel']['s_numero_irap'].'%',
-				'Materiel.category_id LIKE' => '%'.$this->data['Materiel']['s_category_id'].'%',
-				'Materiel.sous_category_id LIKE' => '%'.$this->data['Materiel']['s_sous_category_id'].'%',
+				'Materiel.categorie_id LIKE' => '%'.$this->data['Materiel']['s_categorie_id'].'%',
+				'Materiel.sous_categorie_id LIKE' => '%'.$this->data['Materiel']['s_sous_categorie_id'].'%',
 				'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
 				'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
 				//Pour tous les champs:

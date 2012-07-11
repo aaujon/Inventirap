@@ -1,10 +1,11 @@
 <?php
-class ThematicGroup extends AppModel {
-	public $name = 'ThematicGroup';
+class SousCategorie extends AppModel {
+	public $name = 'SousCategorie';
 	public $displayField = 'nom';
 
+	var $belongsTo = 'Categorie';
 	var $hasMany = 'Materiel';
-	
+
 	var $validate = array(
 		'nom' => array(        
 			'required' => array(            
@@ -12,7 +13,7 @@ class ThematicGroup extends AppModel {
 				'message' => 'Le champ doit être rempli.'         
 			),        
 			'valid' => array(            
-				'rule' => 'check_string',                
+				'rule' => 'check_string',              
 				'message' => 'Le champ doit être valide'        
 			),      
 		)

@@ -1,6 +1,6 @@
 <?php
-class WorkGroup extends AppModel {
-	public $name = 'WorkGroup';
+class GroupesThematique extends AppModel {
+	public $name = 'GroupesThematique';
 	public $displayField = 'nom';
 
 	var $hasMany = 'Materiel';
@@ -12,7 +12,7 @@ class WorkGroup extends AppModel {
 				'message' => 'Le champ doit être rempli.'         
 			),        
 			'valid' => array(            
-				'rule' => 'check_string',           
+				'rule' => 'check_string',                
 				'message' => 'Le champ doit être valide'        
 			),      
 		)

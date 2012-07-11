@@ -49,14 +49,15 @@
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:2.0f forBarMetrics:UIBarMetricsDefault];
     
     //[[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabBarItemBackground"]];
-    //[[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"navigationBar"]];
+    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"TabBarItem"]];
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f]];
     
+    [[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0.0f, -2.0f)];
     [[UITabBarItem appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor colorWithRed:220.0/255.0 green:104.0/255.0 blue:1.0/255.0 alpha:1.0], UITextAttributeTextColor, 
-      [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], UITextAttributeTextShadowColor, 
-      [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, nil] forState:UIControlStateNormal];
+      /*[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], UITextAttributeTextShadowColor, 
+      [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset,*/ nil] forState:UIControlStateNormal];
      
      self.window.rootViewController = self.tabBarController;
      
@@ -72,11 +73,6 @@
      
      - (void)applicationDidEnterBackground:(UIApplication *)application
     {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        
-        // Reading saved settings and creating a writable file if needed
         NSError *error;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];

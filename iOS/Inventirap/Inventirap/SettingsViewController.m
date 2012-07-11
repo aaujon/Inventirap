@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "Settings.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SettingsViewController ()
 
@@ -37,6 +38,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CALayer *layer = [[self resetButton] layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:10.0];
+    [layer setBorderWidth:1.0];
+    [layer setBorderColor:[[UIColor blackColor] CGColor]];
+    
     [[self resetButton] setTitle:NSLocalizedString(@"RESETDEFAULT", nil) forState:UIControlStateNormal];
     [[self webServiceUrlLabel] setText:NSLocalizedString(@"WEBSERVURL", nil)];
     [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];

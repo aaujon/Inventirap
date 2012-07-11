@@ -79,6 +79,10 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="234637192">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">navigationBar.png</string>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="640713352">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -155,6 +159,7 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="296013604"/>
+						<reference key="IBUINormalBackgroundImage" ref="234637192"/>
 						<reference key="IBUIFontDescription" ref="640713352"/>
 						<reference key="IBUIFont" ref="279025014"/>
 					</object>
@@ -374,10 +379,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">ViewBackground.png</string>
-			<string key="NS.object.0">{320, 367}</string>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="ViewBackground.png">{320, 367}</string>
+			<string key="navigationBar.png">{320, 44}</string>
+		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>

@@ -25,6 +25,7 @@
 - (void) processResults;
 - (void) sendWebServiceRequest:(NSString*)ident;
 - (void) parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product;
+- (void) customizeButtonLayer:(CALayer*)layer;
 
 @end
 
@@ -62,6 +63,11 @@
 {
     [super viewDidLoad];
     
+    CALayer *buttonLayer = [[self scanButton] layer];
+    [self customizeButtonLayer:buttonLayer];
+    
+    buttonLayer = [[self lastProductButton] layer];
+    [self customizeButtonLayer:buttonLayer];
     
     [[self lastProductButton] setTitle:NSLocalizedString(@"LASTPRODUCT", nil) forState:UIControlStateNormal];
     [applicationActivity setHidesWhenStopped:YES];
@@ -97,6 +103,14 @@
 
 #pragma mark -
 #pragma mark Scan and more
+
+- (void) customizeButtonLayer:(CALayer*)layer
+{
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:10.0];
+    [layer setBorderWidth:1.0];
+    [layer setBorderColor:[[UIColor blackColor] CGColor]];
+}
 
 - (void)launchQRCodeReader
 {
@@ -242,6 +256,9 @@
     @try {
         NSError *error = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonDatax options:kNilOptions error:&error];
+        
+        if (res == NULL)
+            [NSException raise:@"Invalid web service response" format:@"json results are incorrect : %@", res];
         
         [informationLabel setText:NSLocalizedString(@"PARSINGRES", nil)];
         

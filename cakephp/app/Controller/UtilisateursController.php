@@ -36,11 +36,13 @@ class UtilisateursController extends AppController {
 		/*
 		 * Delete the eventual tmp qrcode
 		 */
-		$fileName = $this->Session->id() . '.png';
+		$fileName = $this->Session->id();
 		$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
-		@unlink($cakephpPath . 'webroot/img/' . $fileName);
-		@unlink($cakephpPath . 'Vendor/phpqrcode/' . $fileName . '-errors.txt');
-
+		@unlink($cakephpPath . 'webroot/img/' . $fileName . '.png');
+		@unlink($cakephpPath . 'Vendor/phpqrcode/' . $fileName  . '.png-errors.txt');
+		@exec ('rm -rf ' . $documentFolderPath = $cakephpPath . 'tmp/documents/' . $fileName);
+		
+		
 		$this->Session->destroy();
 		$this->Session->setFlash('Déconnexion réussie.');
 		$this->redirect('/');

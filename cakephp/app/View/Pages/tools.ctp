@@ -10,9 +10,9 @@
 		<tr><td><?php echo $this->Html->link('Gérer les sous-catégories', array(
 			'controller' => 'sous_categories', 'sort' => 'nom')); ?></td></tr>
 		<tr><td><?php echo $this->Html->link('Gérer les groupes thématiques', array(
-			'controller' => 'thematic_groups', 'sort' => 'nom')); ?></td></tr>
+			'controller' => 'groupes_thematiques', 'sort' => 'nom')); ?></td></tr>
 		<tr><td><?php echo $this->Html->link('Gérer les groupes de travail', array(
-			'controller' => 'work_groups', 'sort' => 'nom')); ?></td></tr>
+			'controller' => 'groupes_travails', 'sort' => 'nom')); ?></td></tr>
 	</table>	
 </div>
 <div class="actions">

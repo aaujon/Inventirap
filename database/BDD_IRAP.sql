@@ -38,11 +38,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`thematic_groups`
+-- Table `mydb`.`groupes_thematiques`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`thematic_groups` ;
+DROP TABLE IF EXISTS `mydb`.`groupes_thematiques` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`thematic_groups` (
+CREATE  TABLE IF NOT EXISTS `mydb`.`groupes_thematiques` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
@@ -50,11 +50,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`work_groups`
+-- Table `mydb`.`groupes_travails`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`work_groups` ;
+DROP TABLE IF EXISTS `mydb`.`groupes_travails` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`work_groups` (
+CREATE  TABLE IF NOT EXISTS `mydb`.`groupes_travails` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
@@ -84,31 +84,31 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   `numero_commande` VARCHAR(45) NULL ,
   `code_comptable` VARCHAR(45) NULL ,
   `numero_serie` VARCHAR(45) NULL ,
-  `thematic_group_id` INT NULL ,
-  `work_group_id` INT NULL ,
+  `groupes_thematique_id` INT NULL ,
+  `groupes_travail_id` INT NULL ,
   `ref_existante` VARCHAR(45) NULL ,
   `lieu_stockage` VARCHAR(45) NULL ,
   `lieu_detail` VARCHAR(45) NULL ,
   `nom_responsable` VARCHAR(45) NULL ,
   `email_responsable` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_administrative_materials_sous_categories1` (`sous_categorie_id` ASC) ,
-  INDEX `fk_materials_thematic_group1` (`thematic_group_id` ASC) ,
-  INDEX `fk_materials_work_group1` (`work_group_id` ASC) ,
+  INDEX `fk_administrative_materials_sub_categories1` (`sous_categorie_id` ASC) ,
+  INDEX `fk_materials_groupes_thematiques1` (`groupes_thematique_id` ASC) ,
+  INDEX `fk_materials_groupes_travails1` (`groupes_travail_id` ASC) ,
   INDEX `fk_materiels_categories1` (`categorie_id` ASC) ,
-  CONSTRAINT `fk_administrative_materials_sous_categories1`
+  CONSTRAINT `fk_administrative_materials_sub_categories1`
     FOREIGN KEY (`sous_categorie_id` )
     REFERENCES `mydb`.`sous_categories` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_materials_thematic_group1`
-    FOREIGN KEY (`thematic_group_id` )
-    REFERENCES `mydb`.`thematic_groups` (`id` )
+  CONSTRAINT `fk_materials_groupes_thematiques1`
+    FOREIGN KEY (`groupes_thematique_id` )
+    REFERENCES `mydb`.`groupes_thematiques` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_materials_work_group1`
-    FOREIGN KEY (`work_group_id` )
-    REFERENCES `mydb`.`work_groups` (`id` )
+  CONSTRAINT `fk_materials_groupes_travail1`
+    FOREIGN KEY (`groupes_travail_id` )
+    REFERENCES `mydb`.`groupes_travails` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_materiels_categories1`
@@ -353,32 +353,32 @@ INSERT INTO `mydb`.`sous_categories` (`id`, `nom`, `categorie_id`) VALUES (103, 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`thematic_groups`
+-- Data for table `mydb`.`groupes_thematiques`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (1, 'N/A');
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (2, 'PSE');
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (3, 'MICMAC');
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (4, 'GAHEC');
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (5, 'SISU');
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (6, 'SG');
-INSERT INTO `mydb`.`thematic_groups` (`id`, `nom`) VALUES (7, 'GPPS');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (1, 'N/A');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (2, 'PSE');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (3, 'MICMAC');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (4, 'GAHEC');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (5, 'SISU');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (6, 'SG');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (7, 'GPPS');
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`work_groups`
+-- Data for table `mydb`.`groupes_travails`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (1, 'N/A');
-INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (2, 'GEDI');
-INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (3, 'GT2I');
-INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (4, 'GI');
-INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (5, 'GACL');
-INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (6, 'GGPAQ');
-INSERT INTO `mydb`.`work_groups` (`id`, `nom`) VALUES (7, 'GM');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (1, 'N/A');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (2, 'GEDI');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (3, 'GT2I');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (4, 'GI');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (5, 'GACL');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (6, 'GGPAQ');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (7, 'GM');
 
 COMMIT;
 
@@ -391,6 +391,5 @@ INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Cedric Hi
 INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Daniel Turner', 'Administrateur');                                                                                                                                                                        
 INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Gin Sky', 'Responsable');                                                                                                                                                                                 
 INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Henri Robert', 'Apprenti');
-
 
 COMMIT;

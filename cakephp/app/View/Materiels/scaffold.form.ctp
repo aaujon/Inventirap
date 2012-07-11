@@ -45,8 +45,8 @@
 	echo $this->Form->input('lieu_detail', array('label' => 'Lieu de stockage (pièce)'));
 	echo $this->Form->input('date_acquisition', array('label' => 'Date d\'acquisition'));
 	echo $this->Form->input('numero_serie', array('label' => 'Numéro de série'));
-	echo $this->Form->input('thematic_group_id', array('label' => 'Groupe thématique', 'style' => 'width: 100px'));
-	echo $this->Form->input('work_group_id', array('label' => 'Groupe de travail', 'style' => 'width: 100px'));
+	echo $this->Form->input('groupes_thematique_id', array('label' => 'Groupe thématique', 'style' => 'width: 100px'));
+	echo $this->Form->input('groupes_travail_id', array('label' => 'Groupe de travail', 'style' => 'width: 100px'));
 	if ($this->params['action'] == 'add') {
 		echo $this->Form->input('nom_responsable', array('label' => 'Nom du responsable', 
 			'value' => $this->Session->read('UserName'), 'readonly' => true));

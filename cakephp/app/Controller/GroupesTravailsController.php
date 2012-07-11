@@ -1,8 +1,10 @@
 <?php
-class ThematicGroupsController extends AppController {
+class GroupesTravailsController extends AppController {
     public $scaffold;
     
-    public function beforeFilter() {
+    public $name = 'GroupesTravail';
+    
+	public function beforeFilter() {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 		if ($userAuth == 4)
 			$this->LdapAuth->allow('*');

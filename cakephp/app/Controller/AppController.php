@@ -6,7 +6,6 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-	public static $authLevelUnauthorized = array('login', 'logout', 'logged', 'display'); // auth level 0
 	public $components = array(
         'Session',
         'LdapAuth' => array(
@@ -15,25 +14,19 @@ class AppController extends Controller {
 			'loginAction' => array('controller' => 'Utilisateurs', 'action' => 'notAuthorized')
 	));
 
-	/*
-	 * This method is called before each action to check if the user is allwed to execute the action
-	 */
 	public function beforeFilter() {
-		$this->LdapAuth->deny();
-		
-		$userName = $this->Session->read('LdapUserName');
-		if (isset($userName))
-			$this->LdapAuth->allow('*');
-		else
-			$this->LdapAuth->allow($this->authLevelUnauthorized);
+		$this->LdapAuth->allow(array('login', 'display'));
 	}
 	
+	
+	/*
+	 * Méthodes de log des données
+	 */
 	public function beforeScaffold($action) {
 		if ($action == 'delete')
 			$this->logInventirap($this->params['pass'][0]);
 		return true;	
 	}
-	
 	public function afterScaffoldSave($action) {
 		if ($action == 'add')
 			$this->logInventirap($this->{ucfirst(substr($this->params['controller'], 0, -1))}->id);
@@ -42,7 +35,6 @@ class AppController extends Controller {
 			
 		return true;	
 	}
-	
 	public function logInventirap($id = -1) {
 		$user = $this->Session->read('LdapUserName').' ('.$this->Session->read('LdapUserAuthenticationLevel').') ';
 		$controller = substr($this->params['controller'], 0, -1).' ';

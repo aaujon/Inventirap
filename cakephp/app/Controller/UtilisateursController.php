@@ -16,11 +16,10 @@ class UtilisateursController extends AppController {
 					ClassRegistry::init('LdapConnection')->getEmailFromLdapName($this->Session->read('LdapUserName')));
 				
 				$users = $this->Utilisateur->find('all', array('conditions' => array('nom' => $this->Session->read('UserName'))));
-				if(count($users) == 1) {
+				if(count($users) == 1)
 					// Update his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', 
 						$this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
-				}
 				CakeLog::write('inventirap', 'Logged in : ' . $this->Session->read('LdapUserName'));
 				$this->Session->setFlash('Connexion réussie.');
 				$this->redirect('/');
@@ -34,11 +33,6 @@ class UtilisateursController extends AppController {
 	
 	public function logout() {
 		CakeLog::write('inventirap', 'Logget out : '.$this->Session->read('LdapUserName'));
-		
-		$this->Session->delete('LdapUserName');
-		$this->Session->delete('LdapUserAuthenticationLevel');
-		$this->Session->delete('LdapUserMail');
-
 		/*
 		 * Delete the eventual tmp qrcode
 		 */
@@ -48,10 +42,6 @@ class UtilisateursController extends AppController {
 		@unlink($cakephpPath . 'Vendor/phpqrcode/' . $fileName . '-errors.txt');
 
 		$this->Session->destroy();
-
-		$this->LdapAuth->deny();
-		$this->LdapAuth->allow($this->authLevelUnauthorized);
-		
 		$this->Session->setFlash('Déconnexion réussie.');
 		$this->redirect('/');
 	}

@@ -6,8 +6,13 @@
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 		if (!isset($userName)) {
 			//Non connecté
-			echo '<p>Vous n\'êtes pas connecté, veuillez vous authentifier sur la page de ';
-			echo $this->Html->link('connexion', array('controller' => 'utilisateurs', 'action' => 'login'));
+			echo '<p>Vous n\'êtes pas connecté, veuillez vous authentifier.';
+
+			echo $this->Form->create('Utilisateur', array('action' => 'login'));
+			echo $this->Form->input('ldap');
+			echo $this->Form->input('password', array('div' => 'required'));
+			echo $this->Form->end('Se connecter');
+		
 			echo '.</p>';
 		}
 		else {
@@ -22,9 +27,9 @@
 				<table cellpadding="0" cellspacing="0" style="width: 400px;">
 					<tr><th>Actions</th></tr>
 					<tr><td><?php echo $this->Html->link('Voir les matériels à valider', array(
-						'controller' => 'materiels', 'action' => 'find', 'toValidate')); ?></td></tr>
+						'controller' => 'materiels', 'action' => 'find', 'what' => 'toValidate')); ?></td></tr>
 					<tr><td><?php echo $this->Html->link('Voir les matériels à archiver', array(
-						'controller' => 'materiels', 'action' => 'find', 'toBeArchived')); ?></td></tr>
+						'controller' => 'materiels', 'action' => 'find', 'what' => 'toBeArchived')); ?></td></tr>
 				</table>	
 				<?php
 			}

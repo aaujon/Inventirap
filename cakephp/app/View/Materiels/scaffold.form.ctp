@@ -13,15 +13,15 @@
 	if ($this->params['action'] == 'add') {
 		//Afficher les choix par défaut pour catégorie/sous catégorie
 		asort($this->viewVars['categories']);
-		echo $this->Form->input('category_id', array(
+		echo $this->Form->input('categorie_id', array(
 			'label' => 'Catégorie', 'empty' => 'Choisir une catégorie', 'selected' => '', 'style' => 'width: 200px'));
-		echo $this->Form->input('sous_category_id', array(
+		echo $this->Form->input('sous_categorie_id', array(
 			'label' => 'Sous catégorie', 'empty' => 'Choisir une sous-catégorie', 'selected' => '', 
 			'options' => array(), 'style' => 'width: 200px'));
 	}
 	else {
-		echo $this->Form->input('category_id', array('label' => 'Catégorie', 'style' => 'width: 200px'));
-		echo $this->Form->input('sous_category_id', array('label' => 'Sous catégorie', 'style' => 'width: 200px'));
+		echo $this->Form->input('categorie_id', array('label' => 'Catégorie', 'style' => 'width: 200px'));
+		echo $this->Form->input('sous_categorie_id', array('label' => 'Sous catégorie', 'style' => 'width: 200px'));
 		echo $this->Form->input('materiel_administratif', array('label' => 'Matériel administratif'));
 		echo $this->Form->input('materiel_technique', array('label' => 'Matériel technique'));
 	}
@@ -65,10 +65,10 @@
 	?>
 </div>
 <?php
-$this->Js->get('#MaterielCategoryId')->event('change', 
-	$this->Js->request(array('controller' => 'sousCategories', 'action'=>'getByCategory'), 
+$this->Js->get('#MaterielCategorieId')->event('change', 
+	$this->Js->request(array('controller' => 'sousCategories', 'action'=>'getByCategorie'), 
 		array(
-			'update' => '#MaterielSousCategoryId',
+			'update' => '#MaterielSousCategorieId',
 			'async' => true, 'method' => 'post', 'dataExpression' => true,
 			'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
 	)));

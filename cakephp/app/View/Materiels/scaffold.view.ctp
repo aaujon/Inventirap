@@ -69,14 +69,14 @@
 		$type = 'Aucun'; 
 
 	//Catégorie/Sous catégorie
-	$categorie = $this->Html->link(${$singularVar}['Category']['nom'], array(
+	$categorie = $this->Html->link(${$singularVar}['Categorie']['nom'], array(
 				'controller' => 'categories',
 				'action' => 'view',
-				${$singularVar}['Category']['id']));
-	$sousCategorie = $this->Html->link(${$singularVar}['SousCategory']['nom'], array(
+				${$singularVar}['Categorie']['id']));
+	$sousCategorie = $this->Html->link(${$singularVar}['SousCategorie']['nom'], array(
 				'controller' => 'sous_categories',
 				'action' => 'view',
-				${$singularVar}['SousCategory']['id']));
+				${$singularVar}['SousCategorie']['id']));
 				
 	//Gestion groupe thématique/travail
 	$groupeThematique = '';

@@ -4,7 +4,7 @@
 	$toShow = array(
 		'designation' => 'Désignation',
 		'numero_irap' => 'Numéro IRAP',
-		'category_id' => 'Catégorie',
+		'categorie_id' => 'Catégorie',
 		'nom_responsable' => 'Responsable',
 		'status' => 'Statut'
 	);
@@ -28,9 +28,9 @@ foreach ($data as $result):
 	echo '<tr>';
 		foreach ($toShow as $_field => $label) {
 			echo '<td class="smallText">';
-			if ($_field == 'category_id')
-				echo  $this->Html->link($result['Category']['nom'], 
-					array('controller' => 'categories', 'action' => 'view', $result['Category']['id']));
+			if ($_field == 'categorie_id')
+				echo  $this->Html->link($result['Categorie']['nom'], 
+					array('controller' => 'categories', 'action' => 'view', $result['Categorie']['id']));
 			else
 				echo h($result['Materiel'][$_field]);
 			echo '</td>';

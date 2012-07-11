@@ -1,8 +1,6 @@
 <?php
-class CategoriesController extends AppController {
+class GroupesThematiquesController extends AppController {
     public $scaffold;
-
-    public $name = 'Categorie';
     
     public function beforeFilter() {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');

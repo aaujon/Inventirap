@@ -1,10 +1,8 @@
 <?php
-class CategoriesController extends AppController {
+class GroupesTravailController extends AppController {
     public $scaffold;
-
-    public $name = 'Categorie';
     
-    public function beforeFilter() {
+	public function beforeFilter() {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 		if ($userAuth == 4)
 			$this->LdapAuth->allow('*');

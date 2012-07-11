@@ -7,6 +7,9 @@
 		else
 			$t = 'Nouveau '.$t;
 			
+		$t = str_replace('groupes', 'grp', $t);
+		$t = str_replace('thematique', 'themat.', $t);
+		
 		echo $this->Html->link('<i class="icon-plus"></i> '.$t, 
 			array('action' => 'add'), 
 			array('escape' => false)); 

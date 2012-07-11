@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  Inventirap
+
+  Created by Thomas Zilio on 10/07/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+"SCANNER" = "Scanner";
+"SETTINGS" = "Settings";
+
+"YES" = "Yes";
+"NO" = "No";
+"MORE" = "More";
+"LESS" = "Less";
+
+"CONTACTWEBSERV" = "Contacting WebService ...";
+"INVALIDQRCODE" = "Invalid QRCode";
+"ERRORCONTACTWEBSERV" = "Error while connecting to the WebService";
+"ERRORPARSINGRES" = "Error while parsing the json result.";
+"PARSINGRES" = "Parsing results ...";
+
+"DESIGNATION" = "Designation";
+"NUMIRAP" = "IRAP number";
+"PURCHASINGORGA" = "Purchasing organization";
+"ACCOUNTANT" = "Accountant";
+"ACCOUNTCONTACT" = "Accountant contact";
+"LOCALIZATION" = "Localization";

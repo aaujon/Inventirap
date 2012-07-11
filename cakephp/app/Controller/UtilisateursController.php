@@ -12,7 +12,8 @@ class UtilisateursController extends AppController {
 				$this->Session->write('LdapUserName', $this->request->data['Utilisateur']['ldap']);
 				$this->Session->write('LdapUserAuthenticationLevel', 1);
 				$this->Session->write('UserName', $this->LdapAuth->getUserName());
-				$this->Session->write('LdapUserMail', $this->getEmailFromLdapName($this->Session->read('LdapUserName')));
+				$this->Session->write('LdapUserMail', 
+					ClassRegistry::init('LdapConnection')->getEmailFromLdapName($this->Session->read('LdapUserName')));
 				
 				$users = $this->Utilisateur->find('all', array('conditions' => array('nom' => $this->Session->read('UserName'))));
 				if(count($users) == 1) {
@@ -55,32 +56,16 @@ class UtilisateursController extends AppController {
 		$this->redirect('/');
 	}
 
-	/*
-	 * This method is called before each action to check if the user is allwed to execute the action
-	 */
-	public function beforeFilter() {
-
-		/*
-		 * The parent filter allows index and view
-		 * For the Users, there is only the SuperAdministrators who can do it
-		 */
-
-		$this->LdapAuth->deny();
-		$this->LdapAuth->allow($this->authLevelUnauthorized);
-
-		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
-		if ($ldapUserAuthenticationLevel == 4) {
-			$this->LdapAuth->allow('display', 'index', 'view', 'add', 'edit', 'delete');
-		}
+	public function notAuthorized() { 
+		$this->Session->setFlash('Vous n\'êtes pas autorisé à effectuer cette action.');
+		$this->redirect('/');
 	}
-
-	public function getEmailFromLdapName($ldapName) {
-		if(isset($ldapName)) {
-			$attributes = ClassRegistry::init('LdapConnection')->getUserAttributes($ldapName);
-			@$mail = $attributes[0]['mail'][0];
-
-			return $mail;
-		}
+	
+	public function beforeFilter() {
+		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+		$this->LdapAuth->allow('login', 'logout', 'notAuthorized');
+		if ($ldapUserAuthenticationLevel == 4)
+			$this->LdapAuth->allow('display', 'index', 'view', 'add', 'edit', 'delete');
 	}
 }
 ?>

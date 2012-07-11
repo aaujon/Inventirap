@@ -24,8 +24,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 #warning Replace with correct images
-        self.title = NSLocalizedString(@"Settings", @"Settings");
-        self.tabBarItem.image = [UIImage imageNamed:@"second"];
+        self.title = NSLocalizedString(@"SETTINGS", nil);
+        self.tabBarItem.image = [UIImage imageNamed:@"settingsTabBarIcon"];
     }
     return self;
 }

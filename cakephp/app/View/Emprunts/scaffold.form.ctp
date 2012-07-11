@@ -13,9 +13,9 @@
 	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
 	echo $this->Form->input('date_emprunt', array('label' => 'Date de l\'emprunt'));
 	echo $this->Form->input('date_retour_emprunt', array('label' => 'Date de retour'));
-	echo $this->Form->input('piece', array('label' => 'Pièce'));
+	echo $this->Form->input('piece', array('label' => 'Pièce', 'div' => array('class' => 'input norequire')));
+	echo $this->Form->input('laboratoire', array('div' => array('class' => 'input norequire')));
 	echo $this->Form->input('emprunt_interne', array('label' => 'Emprunt interne'));
-	echo $this->Form->input('laboratoire');
 	echo $this->Form->input('responsable');	
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>

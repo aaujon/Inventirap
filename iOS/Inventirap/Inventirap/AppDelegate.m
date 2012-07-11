@@ -39,14 +39,17 @@
     
     // Navigation and Tab Bar Controllers initialization
     self.scannerNavController = [[UINavigationController alloc] initWithRootViewController:self.scannerViewController];
+    [self.scannerNavController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forBarMetrics:UIBarMetricsDefault];
+
     self.settingsNavController = [[UINavigationController alloc] initWithRootViewController:self.settingsViewController];
+    [self.settingsNavController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forBarMetrics:UIBarMetricsDefault];
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.scannerNavController, self.settingsNavController, nil];
+    [self.tabBarController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tabBarItemBackground"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabBarItemBackground"]];
+
     
-    [[UINavigationBar appearance] setTintColor:[UIColor grayColor]];
-    
-    [[UITabBar appearance] setTintColor:[UIColor grayColor]];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f]];
     //[[[self tabBarController] tabBar] setSelectedImageTintColor:[UIColor yellowColor]];
     
     self.window.rootViewController = self.tabBarController;

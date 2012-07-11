@@ -18,4 +18,13 @@
     	'style' => 'width: 200px')); 
     echo $this->Form->input('s_all', array('label' => 'Tous les champs'));
     echo $this->Form->end('Rechercher'); 
+
+	$this->Js->get('#MaterielSCategoryId')->event('change', 
+		$this->Js->request(array('controller' => 'sousCategories', 'action'=>'getByCategory'), 
+			array(
+				'update' => '#MaterielSSousCategoryId',
+				'async' => true, 'method' => 'post', 'dataExpression' => true,
+				'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
+		)));
+	echo $this->Js->writeBuffer();
 ?>

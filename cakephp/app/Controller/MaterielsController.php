@@ -3,8 +3,8 @@ class MaterielsController extends AppController {
 
 	public $scaffold;
 	public $helpers = array('Js', 'Paginator');
-	var $paginate = array(
-		'limit' => 25,
+	public $paginate = array(
+		'limit' => 30,
 		'order' => array('Materiel.id' => 'desc'));
 
 	public function index() {
@@ -20,16 +20,19 @@ class MaterielsController extends AppController {
 		$this->set('s_sous_categories', $this->SousCategory->find('list', array('order' => array('SousCategory.nom'))));
 		if (isset($this->data['Materiel'])) {
 			$all = $this->data['Materiel']['s_all'];
-			$this->set('results', $this->Materiel->find('all', array('conditions' => array(
-			//Champs spéficiques:
+			$this->set('results', $this->Materiel->find('all', array(
+			//Limitation au vue de la taille de la base de donnée
+			'limit' => '0, 100', 
+			'conditions' => array(
+				//Champs spéficiques:
 				'Materiel.designation LIKE' => '%'.$this->data['Materiel']['s_designation'].'%',
 				'Materiel.numero_irap LIKE' => '%'.$this->data['Materiel']['s_numero_irap'].'%',
 				'Materiel.category_id LIKE' => '%'.$this->data['Materiel']['s_category_id'].'%',
 				'Materiel.sous_category_id LIKE' => '%'.$this->data['Materiel']['s_sous_category_id'].'%',
 				'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
 				'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
-			//Pour tous les champs:
-			array('OR' => array (
+				//Pour tous les champs:
+				array('OR' => array (
 					'Materiel.designation LIKE' => '%'.$all.'%',
 					'Materiel.numero_irap LIKE' => '%'.$all.'%',
 					'Materiel.description LIKE' => '%'.$all.'%',
@@ -41,33 +44,23 @@ class MaterielsController extends AppController {
 					'Materiel.code_comptable LIKE' => '%'.$all.'%',
 					'Materiel.numero_serie LIKE' => '%'.$all.'%',
 					'Materiel.lieu_detail LIKE' => '%'.$all.'%'
-					))
-					)))
-					);
+			))))));
 		}
-		else if (isset($this->params['pass'][0])) {
-			if ($this->params['pass'][0] == 'toValidate')
-			$this->set('results', $this->Materiel->find('all',
-			array('conditions' => array('Materiel.status ' => 'CREATED'))));
-			else if ($this->params['pass'][0] == 'toBeArchived')
-			$this->set('results', $this->Materiel->find('all',
-			array('conditions' => array('Materiel.status ' => 'TOBEARCHIVED'))));
+		else if (isset($this->params['named']['what'])) {
+			$what = $this->params['named']['what'];
+			if ($what == 'toValidate')
+				$this->set('results', $this->Materiel->find('all', array(
+					'limit' => '0, 100',
+					'conditions' => array('Materiel.status ' => 'CREATED'))));
+			else if ($what == 'toBeArchived')
+				$this->set('results', $this->Materiel->find('all', array(
+					'limit' => '0, 100',
+					'conditions' => array('Materiel.status ' => 'TOBEARCHIVED'))));
 		}
 	}
 	public function delete() {
-		$this->Session->setFlash('Pas de suppression de matériel.');
+		$this->Session->setFlash('Pas de suppression de matériel autorisé.');
 		$this->redirect(array('action'=> 'index'));
-	}
-
-	public function toValidate() {
-		$this->set('results', $this->Materiel->find('all', array('conditions' => array(
-				'Materiel.status ' => 'CREATED'))));
-		$this->redirect(array('action'=> 'find'));
-	}
-	public function toArchive() {
-		$this->set('results', $this->Materiel->find('all', array('conditions' => array(
-				'Materiel.status ' => 'TOBEARCHIVED'))));
-		$this->redirect(array('action'=> 'find'));
 	}
 
 	public function statusToBeArchived($id = null, $from = 'index') {
@@ -106,8 +99,11 @@ class MaterielsController extends AppController {
 	}
 
 	public function beforeFilter() {
+		$this->LdapAuth->allow('*');
+		/*
+		NOT WORKING PROPERLY
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
-		if (($userAuth == 3) || ($userAuth == 4))
+		if ($userAuth >= 3)
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find', 'statusArchived', 'statusToBeArchived', 'statusValidated');
 		elseif ($userAuth == 2)
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find', 'statusToBeArchived', 'statusValidated');
@@ -115,6 +111,7 @@ class MaterielsController extends AppController {
 			$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'find');
 		else
 			$this->LdapAuth->deny();
+		*/
 	}
 }
 ?>

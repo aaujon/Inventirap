@@ -752,3 +752,6 @@ form .norequire {
 form .norequire label:after { 
 		content: '' !important;  
 }
+.smallText {
+	font-size: 85%
+}

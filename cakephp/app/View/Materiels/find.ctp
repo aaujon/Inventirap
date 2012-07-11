@@ -33,11 +33,11 @@
 			
 			<?php foreach ($results as $material): ?> 
 			<tr> 
-				<td><?php echo $material['Materiel']['designation']; ?></td> 
-				<td><?php echo $material['Materiel']['numero_irap']; ?></td>
-				<td><?php echo $this->Html->link($material['Category']['nom'], array('controller' => 'categories', 'action' => 'view', $material['Category']['id']));?></td>
-				<td><?php echo $material['Materiel']['nom_responsable']; ?></td>
-				<td><?php echo $material['Materiel']['status']; ?></td>
+				<td class="smallText"><?php echo $material['Materiel']['designation']; ?></td> 
+				<td class="smallText"><?php echo $material['Materiel']['numero_irap']; ?></td>
+				<td class="smallText"><?php echo $this->Html->link($material['Category']['nom'], array('controller' => 'categories', 'action' => 'view', $material['Category']['id']));?></td>
+				<td class="smallText"><?php echo $material['Materiel']['nom_responsable']; ?></td>
+				<td class="smallText"><?php echo $material['Materiel']['status']; ?></td>
 				<?php echo $this->element('materiel_actions', array('id' => $material['Materiel']['id'], 'statut' => $material['Materiel']['status'])); ?>
 				
 			</tr> 

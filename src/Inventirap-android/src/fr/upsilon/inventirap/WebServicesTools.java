@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.util.Log;
 
 public class WebServicesTools {
 	public static JSONObject jsonObj;
@@ -22,6 +23,7 @@ public class WebServicesTools {
 		
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		
+		Log.d("", "WebService call : " + url+WEBSERVICE_ADDRESS+content);
 		HttpPost httpPost = new HttpPost(url+WEBSERVICE_ADDRESS+content);
 		HttpResponse httpResponse;
 

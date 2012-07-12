@@ -1,0 +1,54 @@
+package fr.upsilon.inventirap;
+
+import java.io.IOException;
+import java.io.StringReader;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+
+import android.content.Context;
+
+public class WebServicesTools {
+	public static Document document;
+	private static String WEBSERVICE_ADDRESS = "/material/view/";
+
+	public static String getXML(Context context, String url, String content) throws IOException {
+		String line = null;
+		
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		
+		HttpPost httpPost = new HttpPost(url+WEBSERVICE_ADDRESS+content);
+		HttpResponse httpResponse;
+
+		httpResponse = httpClient.execute(httpPost);
+		HttpEntity httpEntity = httpResponse.getEntity();
+		line = EntityUtils.toString(httpEntity);
+		
+		return line;
+	}
+	
+	public static boolean XMLFromString(String xml) {
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		try {
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			
+			InputSource is = new InputSource();
+			is.setCharacterStream(new StringReader(xml));
+			document = db.parse(is);
+		} catch (Exception e) {
+			return false;
+		}
+		
+		return true;
+	}
+}

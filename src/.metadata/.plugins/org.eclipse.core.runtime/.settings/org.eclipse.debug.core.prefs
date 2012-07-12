@@ -1,0 +1,3 @@
+#Sun Jul 08 18:13:33 CEST 2012
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="jsonObj"/>\n<expression enabled\="true" text\="e.getChildNodes().item(0).getNodeValue()"/>\n<expression enabled\="true" text\="e"/>\n</watchExpressions>\n
+eclipse.preferences.version=1

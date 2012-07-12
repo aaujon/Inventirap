@@ -3,6 +3,8 @@ package fr.upsilon.inventirap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -31,6 +33,17 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         
         context = this;
+        
+        /* first time */
+        String name = getResources().getString(R.string.app_name);
+        SharedPreferences prefs = context.getSharedPreferences(name, MODE_PRIVATE);
+        String server_ip = prefs.getString(getResources().getString(R.string.SERVER_IP), null);
+        if (server_ip == null) {
+        	Editor editor = prefs.edit();
+        	//editor.putString(getResources().getString(R.string.SERVER_IP), "http://inventirap.irap.omp.eu/");
+        	editor.putString(getResources().getString(R.string.SERVER_IP), "http://localhost:8080/Inventirap/cakephp/");
+        	editor.commit();
+    	}
         
         scanButton = (Button) findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new OnClickListener() {
@@ -93,6 +106,7 @@ public class MainActivity extends Activity {
           /*  } else if (resultCode == RESULT_CANCELED) {
                 Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
                 toast.show();
+                
             }*/
      //   }
         } else if (requestCode == REQUEST_RESULT) {

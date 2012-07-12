@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/home/arnaud/Project/Inventirap/src/.metadata/.plugins/org.eclipse.jdt.core
-3495999078.index
-3675429444.index
-3213429866.index

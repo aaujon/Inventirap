@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E34CC4B15AED90E00A535D6 /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E34CC4915AED90E00A535D6 /* buttonBackground.png */; };
+		6E34CC4C15AED90E00A535D6 /* buttonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E34CC4A15AED90E00A535D6 /* buttonBackground@2x.png */; };
+		6E34CC4F15AEDB5800A535D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E34CC4E15AEDB5800A535D6 /* QuartzCore.framework */; };
 		AF0B5B3015A78FFA00263815 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */; };
 		AF0B5B3315A796C200263815 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B5B3215A796C200263815 /* Settings.m */; };
 		AF9BE9EB15A22DC200F6F024 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9EA15A22DC200F6F024 /* Product.m */; };
@@ -78,6 +81,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E34CC4915AED90E00A535D6 /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackground.png; sourceTree = "<group>"; };
+		6E34CC4A15AED90E00A535D6 /* buttonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackground@2x.png"; sourceTree = "<group>"; };
+		6E34CC4E15AEDB5800A535D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		AF0B5B3115A796C200263815 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		AF0B5B3215A796C200263815 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E34CC4F15AEDB5800A535D6 /* QuartzCore.framework in Frameworks */,
 				AFE5E82215A0755A00E32EE8 /* AddressBook.framework in Frameworks */,
 				AFE5E82315A0755A00E32EE8 /* AudioToolbox.framework in Frameworks */,
 				AFE5E82415A0755A00E32EE8 /* AVFoundation.framework in Frameworks */,
@@ -157,6 +164,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E34CC4D15AED91500A535D6 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				6E34CC4915AED90E00A535D6 /* buttonBackground.png */,
+				6E34CC4A15AED90E00A535D6 /* buttonBackground@2x.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		AF9BE9E815A22D5000F6F024 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +254,7 @@
 				AFCE620C15ACE13400EFC6E3 /* TabBar */,
 				AFCE620F15ACE17500EFC6E3 /* NavigationBar */,
 				AFCE621015ACE18B00EFC6E3 /* Backgrounds */,
+				6E34CC4D15AED91500A535D6 /* Buttons */,
 				AFCE620D15ACE14A00EFC6E3 /* Icons */,
 				AFCE620E15ACE15B00EFC6E3 /* Launch Images */,
 			);
@@ -278,9 +295,10 @@
 		AFE5E7E715A073B100E32EE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AFE5E7E815A073B100E32EE8 /* UIKit.framework */,
-				AFE5E7EA15A073B100E32EE8 /* Foundation.framework */,
 				AFE5E7EC15A073B100E32EE8 /* CoreGraphics.framework */,
+				AFE5E7EA15A073B100E32EE8 /* Foundation.framework */,
+				6E34CC4E15AEDB5800A535D6 /* QuartzCore.framework */,
+				AFE5E7E815A073B100E32EE8 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -448,6 +466,8 @@
 				AFCD4B2C15AE350A00711B3C /* tabBarBackground.png in Resources */,
 				AFCD4B2F15AE36C900711B3C /* tabBarItemSelected.png in Resources */,
 				AFCD4B3015AE36C900711B3C /* tabBarItemSelected@2x.png in Resources */,
+				6E34CC4B15AED90E00A535D6 /* buttonBackground.png in Resources */,
+				6E34CC4C15AED90E00A535D6 /* buttonBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,11 +14,11 @@
 
 @property (nonatomic, retain) NSString *name;
 
-- (void) setSectionWithName:(NSString*)sectionName;
-- (NSUInteger) getSectionsCount;
-- (NSString*) getSectionAtIndex:(NSUInteger)index;
+- (void)setSectionWithName:(NSString*)sectionName;
+- (NSUInteger)getSectionsCount;
+- (NSString*)getSectionAtIndex:(NSUInteger)index;
 
-- (void) addPropertyName:(NSString*)propertyName AndValue:(NSString*)value;
-- (NSUInteger) getPropertiesNumberForSection:(NSUInteger)section;
-- (Property*) getPropertyAtIndex:(NSUInteger)index ForSection:(NSUInteger)section;
+- (void)addPropertyName:(NSString*)propertyName AndValue:(NSString*)value;
+- (NSUInteger)getPropertiesNumberForSection:(NSUInteger)section;
+- (Property*)getPropertyAtIndex:(NSUInteger)index ForSection:(NSUInteger)section;
 @end

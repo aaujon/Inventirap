@@ -127,9 +127,10 @@
 					<object class="IBUIButton" id="568034285">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{99, 201}, {123, 37}}</string>
+						<string key="NSFrame">{{98, 201}, {125, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -151,7 +152,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">navigationBar.png</string>
+							<string key="NSResourceName">buttonBackground.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -256,8 +257,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="640104335"/>
 							<reference ref="811152064"/>
-							<reference ref="568034285"/>
 							<reference ref="617120577"/>
+							<reference ref="568034285"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -367,7 +368,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="ViewBackground.png">{320, 367}</string>
-			<string key="navigationBar.png">{320, 44}</string>
+			<string key="buttonBackground.png">{30, 37}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

@@ -25,6 +25,7 @@
 - (void) processResults;
 - (void) sendWebServiceRequest:(NSString*)ident;
 - (void) parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product;
+- (void) parseArray:(NSArray*)array ForSection:(NSString*)name AndProduct:(Product*)product;
 - (NSString*) checkValueValidity:(id)value;
 - (void) customizeButtonLayer:(CALayer*)layer;
 
@@ -40,7 +41,7 @@
 #pragma mark -
 #pragma mark Initialization
 
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
@@ -72,18 +73,18 @@
     [[self lastProductButton] setTitle:NSLocalizedString(@"LASTPRODUCT", nil) forState:UIControlStateNormal];
     
     [[self scanButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [[[self scanButton] titleLabel] setShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
+    [[self scanButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
     [[[self scanButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
     
     [[self lastProductButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [[[self lastProductButton] titleLabel] setShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
+    [[self lastProductButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
     [[[self lastProductButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
     
-    [applicationActivity setHidesWhenStopped:YES];
-    [informationLabel setHidden:YES];
+    [[self applicationActivity] setHidesWhenStopped:YES];
+    [[self informationLabel] setHidden:YES];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     if ([[self informationViewController] selectedProduct] == nil) {
         [[self lastProductButton] setHidden:YES];
@@ -113,7 +114,7 @@
 #pragma mark -
 #pragma mark Scan and more
 
-- (void) customizeButtonLayer:(CALayer*)layer
+- (void)customizeButtonLayer:(CALayer*)layer
 {
     [layer setMasksToBounds:YES];
     [layer setCornerRadius:10.0];
@@ -123,7 +124,7 @@
 
 - (void)launchQRCodeReader
 {
-    [informationLabel setHidden:YES];
+    [[self informationLabel] setHidden:YES];
     
 	// Opening the QRCode reader window
     ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self
@@ -144,26 +145,27 @@
     //[self launchQRCodeReader];
 }
 
-- (IBAction)lastProductButtonAction:(id)sender {
+- (IBAction)lastProductButtonAction:(id)sender
+{
     [self.navigationController pushViewController:[self informationViewController] animated:TRUE];
 }
 
-- (void) processResults
+- (void)processResults
 {
 #warning Enable QRCode result check
     if (YES) { //[[self scanResults] hasPrefix:@"IRAP-"])
-        [applicationActivity startAnimating];
-        [scanButton setEnabled:false];
+        [[self applicationActivity] startAnimating];
+        [[self scanButton] setEnabled:false];
         
-        [informationLabel setTextColor: [UIColor blackColor]];
-        [informationLabel setText:NSLocalizedString(@"CONTACTWEBSERV", nil)];
+        [[self informationLabel] setTextColor: [UIColor blackColor]];
+        [[self informationLabel] setText:NSLocalizedString(@"CONTACTWEBSERV", nil)];
         
         [self sendWebServiceRequest:[self scanResults]];
     } else {
-        [informationLabel setTextColor: [UIColor redColor]];
-        [informationLabel setText:NSLocalizedString(@"INVALIDEQRCODE", nil)];
+        [[self informationLabel] setTextColor: [UIColor redColor]];
+        [[self informationLabel] setText:NSLocalizedString(@"INVALIDEQRCODE", nil)];
     }
-    [informationLabel setHidden:NO];
+    [[self informationLabel] setHidden:NO];
     
 }
 
@@ -186,28 +188,30 @@
 #pragma mark -
 #pragma mark Scan processing
 
-- (void) sendWebServiceRequest:(NSString*)ident
+- (void)sendWebServiceRequest:(NSString*)ident
 {
+#warning Erase ident change
+    ident = @"IRAP-12-0001";
     NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
     
 #warning Change URL
-    completeURL = @"http://inventirap.dyndns.org:8080/Inventirap/cakephp/ServicesWeb/materiel/IRAP-12-0001";
-    completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
+    //completeURL = @"http://inventirap.dyndns.org:8080/Inventirap/cakephp/ServicesWeb/materiel/IRAP-12-0001";
+    //completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
     [self setConnection:[[NSURLConnection alloc] initWithRequest:request delegate:self]];
     if ([self connection]) {
         [self setJsonData:[NSMutableData data]];
     } else {
-        [informationLabel setTextColor: [UIColor redColor]];
-        [informationLabel setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
-        [applicationActivity stopAnimating];
-        [scanButton setEnabled:true];
+        [[self informationLabel] setTextColor: [UIColor redColor]];
+        [[self informationLabel] setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
+        [[self applicationActivity] stopAnimating];
+        [[self scanButton] setEnabled:true];
     }
     
 }
 
-- (void) parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product
+- (void)parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product
 {
     for(id key in dictionary) {
         id value = [dictionary objectForKey:key];
@@ -223,7 +227,17 @@
     }
 }
 
-- (NSString*) checkValueValidity:(id)value
+- (void) parseArray:(NSArray*)array ForSection:(NSString*)name AndProduct:(Product*)product
+{
+    int i = 1;
+    for (NSDictionary *element in array) {
+        [self parseDictionary:element ForProduct:product];    
+        [product setSectionWithName:[NSString stringWithFormat:@"%@ %d", name, i]];
+        i++;
+    }
+}
+
+- (NSString*)checkValueValidity:(id)value
 {
     NSString *validValue;
     
@@ -246,7 +260,7 @@
 #pragma mark -
 #pragma mark Connection delegate methods
 
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [[self jsonData] setLength:0];
 }
@@ -256,15 +270,15 @@
     [[self jsonData] appendData:data];
 }
 
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [informationLabel setTextColor: [UIColor redColor]];
-    [informationLabel setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
-    [applicationActivity stopAnimating];
-    [scanButton setEnabled:true];
+    [[self informationLabel] setTextColor: [UIColor redColor]];
+    [[self informationLabel] setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
+    [[self applicationActivity] stopAnimating];
+    [[self scanButton] setEnabled:true];
 }
 
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 #warning Replace with real json data
     NSString *blabla = @"{\"materials\":[{\"Materiel\":{\"id\":\"1\",\"designation\":\"Macbook air\",\"category_id\":\"1\",\"sous_category_id\":\"2\",\"numero_irap\":\"IRAP-12-0001\",\"description\":\"Ceci est une description un peu nulle\",\"organisme\":\"IRAP\",\"materiel_administratif\":false,\"nom_responsable\":\"Cedric\",\"email_responsable\":\"Cedric.Hillembrand@irap.omp.eu\",\"materiel_technique\":false,\"status\":\"CREATED\",\"date_acquisition\":\"2012-07-04\",\"fournisseur\":\"Apple\",\"prix_ht\":\"1000\",\"eotp\":\"WTF\",\"numero_commande\":\"ZERZE45\",\"code_comptable\":\"44\",\"numero_serie\":null,\"thematic_group_id\":\"1\",\"work_group_id\":\"1\",\"ref_existante\":null,\"lieu_stockage\":\"B\",\"lieu_detail\":\"Chambre\",\"utilisateur_id\":\"1\",\"full_storage\":\"B-Chambre\"},\"Category\":{\"id\":\"1\",\"nom\":\"Multimetre\"},\"SousCategory\":{\"id\":\"2\",\"nom\":\"RUI + LC\",\"category_id\":\"1\"},\"ThematicGroup\":{\"id\":\"1\",\"nom\":\"GPPS\"},\"WorkGroup\":{\"id\":\"1\",\"nom\":\"NVA\"},\"Suivi\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"3\",\"commentaire\":\"Super cooolos\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Calibration\",\"organisme\":\"IRAP\",\"frequence\":\"1\",\"commentaire\":\"Ca sert pas \u00e0 grand chose\"},{\"id\":\"3\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"10\",\"commentaire\":\"Pas souvent lui la maintenance\"}],\"Emprunt\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_emprunt\":\"2011-01-01\",\"date_retour_emprunt\":\"2013-01-01\",\"piece\":\"Souris\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Dark Vador\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_emprunt\":\"2010-04-05\",\"date_retour_emprunt\":\"2010-12-12\",\"piece\":\"Clavier\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Woody Allen\"}]}],\"id\":\"IRAP-12-0001\"}";
@@ -273,12 +287,13 @@
     
     @try {
         NSError *error = nil;
-        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonDatax options:kNilOptions error:&error];
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:[self jsonData] options:kNilOptions error:&error];
         
-        if (res == NULL)
+        if (res == NULL) {
             [NSException raise:@"Invalid web service response" format:@"json results are incorrect : %@", res];
+        }
         
-        [informationLabel setText:NSLocalizedString(@"PARSINGRES", nil)];
+        [[self informationLabel] setText:NSLocalizedString(@"PARSINGRES", nil)];
         
         Product *simpleProduct = [[Product alloc] init];
         Product *detailedProduct = [[Product alloc] init];
@@ -317,23 +332,44 @@
         valueAsString = [self checkValueValidity:value];
         [simpleProduct addPropertyName:NSLocalizedString(@"LOCALIZATION", nil) AndValue:valueAsString];
         
-        [simpleProduct setSectionWithName:@"Matériel"];
+        [simpleProduct setSectionWithName:NSLocalizedString(@"MATERIAL", nil)];
         
         
         //Creating a more detailed product
         [self parseDictionary:materiel ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:@"Matériel"];
+        [detailedProduct setSectionWithName:NSLocalizedString(@"MATERIAL", nil)];
 
         // Parsing Category
         NSDictionary* category = [result objectForKey:@"Category"];
         [self parseDictionary:category ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:@"Catégorie"];
+        [detailedProduct setSectionWithName:NSLocalizedString(@"CATEGORY", nil)];
         
         // Parsing SousCategory
         NSDictionary* subcategory = [result objectForKey:@"SousCategory"];
         [self parseDictionary:subcategory ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:@"Sous-Catégories"];
+        [detailedProduct setSectionWithName:NSLocalizedString(@"SUBCATEGORY", nil)];
+
+        // Parsing Thematic group
+        NSDictionary *thematicGroup = [result objectForKey:@"ThematicGroup"];
+        [self parseDictionary:thematicGroup ForProduct:detailedProduct];    
+        [detailedProduct setSectionWithName:NSLocalizedString(@"THEMATICGROUP", nil)];
         
+        // Parsing Work group
+        NSDictionary *workGroup = [result objectForKey:@"WorkGroup"];
+        [self parseDictionary:workGroup ForProduct:detailedProduct];    
+        [detailedProduct setSectionWithName:NSLocalizedString(@"WORKGROUP", nil)];
+        
+        // Parsing borrowings
+        NSArray *borrowings = [result objectForKey:@"Emprunt"];
+        [self parseArray:borrowings ForSection:NSLocalizedString(@"BORROWING", nil) AndProduct:detailedProduct];
+        
+        // Parsing borrowings
+        NSArray *monitorings = [result objectForKey:@"Suivi"];
+        [self parseArray:monitorings ForSection:NSLocalizedString(@"MONITORING", nil) AndProduct:detailedProduct];
+        
+        //[NSThread sleepForTimeInterval:2];
+        
+        // Setting the information view
         [[self informationViewController] setSimpleProduct:simpleProduct];
         [[self informationViewController] setDetailedProduct:detailedProduct];
         [[self informationViewController] displaySimpleProduct];
@@ -342,16 +378,16 @@
         [[[self informationViewController] navigationItem] setTitle : [simpleProduct name]];
         
         [self.navigationController pushViewController:[self informationViewController] animated:TRUE];
-        [informationLabel setHidden:YES];
+        [[self informationLabel] setHidden:YES];
     }
     @catch (NSException *exception) {
         NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
-        [informationLabel setTextColor: [UIColor redColor]];
-        [informationLabel setText:NSLocalizedString(@"ERRORPARSINGRES", nil)];
+        [[self informationLabel] setTextColor: [UIColor redColor]];
+        [[self informationLabel] setText:NSLocalizedString(@"ERRORPARSINGRES", nil)];
     }
     @finally {
-        [applicationActivity stopAnimating];
-        [scanButton setEnabled:true];
+        [[self applicationActivity] stopAnimating];
+        [[self scanButton] setEnabled:true];
     }
 }
 @end

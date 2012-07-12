@@ -20,7 +20,7 @@
 
 "CONTACTWEBSERV" = "Connexion au service web ...";
 "INVALIDQRCODE" = "QRCode invalide";
-"ERRORCONTACTWEBSERV" = "Erreur pendant la connexion au service web";
+"ERRORCONNECTWEBSERV" = "Erreur pendant la connexion au service web";
 "ERRORPARSINGRES" = "Erreur pendant l'analyse des résultats json";
 "PARSINGRES" = "Analyse des résultats ...";
 
@@ -30,3 +30,11 @@
 "ACCOUNTANT" = "Responsable";
 "ACCOUNTCONTACT" = "Contact du responsable";
 "LOCALIZATION" = "Localisation";
+
+"MATERIAL" = "Matériel";
+"CATEGORY" = "Catégorie";
+"SUBCATEGORY" = "Sous-catégorie";
+"THEMATICGROUP" = "Groupe thématique";
+"WORKGROUP" = "Groupe de travail";
+"BORROWING" = "Emprunt";
+"MONITORING" = "Suivi";

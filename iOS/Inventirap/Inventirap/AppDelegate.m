@@ -51,8 +51,9 @@
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor whiteColor], UITextAttributeTextColor,
       [UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0], UITextAttributeTextShadowColor,
-      [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, nil]];
+      [NSValue valueWithUIOffset:UIOffsetMake(1, 1)], UITextAttributeTextShadowOffset, nil]];
     
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
     
     [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabBarBackground"]];
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabBarItemSelected"]];
@@ -63,7 +64,7 @@
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor whiteColor], UITextAttributeTextColor,
       [UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0], UITextAttributeTextShadowColor,
-      [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, nil] forState:UIControlStateNormal];
+      [NSValue valueWithUIOffset:UIOffsetMake(1, 1)], UITextAttributeTextShadowOffset, nil] forState:UIControlStateNormal];
     
     self.window.rootViewController = self.tabBarController;
     
@@ -79,26 +80,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Settings.plist"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if (![fileManager fileExistsAtPath: path]) {
-        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
-        [fileManager copyItemAtPath:bundle toPath: path error:&error];
-    }
-    
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-    
-    //here add elements to data file and write data to file
-    NSString *value = [[Settings sharedSettings] webServiceUrl];
-    
-    [data setObject:value forKey:@"WebServiceURL"];
-    [data writeToFile: path atomically:YES];
-    
+    //Saving settigns
+    [[Settings sharedSettings] saveSettings];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

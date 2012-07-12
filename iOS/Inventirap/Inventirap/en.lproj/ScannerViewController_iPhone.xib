@@ -65,7 +65,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Scan QRCode</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="74332147">
 							<int key="NSColorSpace">3</int>
@@ -79,9 +78,9 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="234637192">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="1004604176">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">navigationBar.png</string>
+							<string key="NSResourceName">buttonBackground.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="640713352">
 							<int key="type">2</int>
@@ -146,6 +145,7 @@
 						<string key="NSFrame">{{98, 219}, {125, 37}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -159,7 +159,7 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="296013604"/>
-						<reference key="IBUINormalBackgroundImage" ref="234637192"/>
+						<reference key="IBUINormalBackgroundImage" ref="1004604176"/>
 						<reference key="IBUIFontDescription" ref="640713352"/>
 						<reference key="IBUIFont" ref="279025014"/>
 					</object>
@@ -381,7 +381,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="ViewBackground.png">{320, 367}</string>
-			<string key="navigationBar.png">{320, 44}</string>
+			<string key="buttonBackground.png">{30, 37}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

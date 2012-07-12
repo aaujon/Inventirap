@@ -8,6 +8,7 @@
 
 #import "InformationViewController.h"
 
+#import "QuartzCore/QuartzCore.h"
 #import "Product.h"
 #import "Property.h"
 #import "CustomCell.h"
@@ -70,7 +71,17 @@
     [super viewDidUnload];
 }
 
-- (void) detailsButtonAction
+- (void) animateTransition
+{
+    CATransition *animation = [CATransition animation];
+    [animation setType:kCATransitionFade];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setFillMode:kCAFillModeBoth];
+    [animation setDuration:.4];
+    [[self.tableView layer] addAnimation:animation forKey:@"UITableViewReloadDataAnimationKey"];
+}
+
+- (void)detailsButtonAction
 {
     if ([self isSimpleProductDisplayed]) {
         [self displayDetailedProduct];
@@ -79,20 +90,22 @@
     }
 }
 
-- (void) displaySimpleProduct
+- (void)displaySimpleProduct
 {
     [self setSelectedProduct:[self simpleProduct]];
     [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"MORE", nil)];
     [self setIsSimpleProductDisplayed:YES];
     [self.tableView reloadData];
+    [self animateTransition];
 }
 
-- (void) displayDetailedProduct
+- (void)displayDetailedProduct
 {
     [self setSelectedProduct:[self detailedProduct]];
     [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"LESS", nil)];
     [self setIsSimpleProductDisplayed:NO];
     [self.tableView reloadData];
+    [self animateTransition];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

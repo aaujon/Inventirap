@@ -20,7 +20,7 @@
 
 "CONTACTWEBSERV" = "Contacting WebService ...";
 "INVALIDQRCODE" = "Invalid QRCode";
-"ERRORCONTACTWEBSERV" = "Error while connecting to the WebService";
+"ERRORCONNECTWEBSERV" = "Error while connecting to the WebService";
 "ERRORPARSINGRES" = "Error while parsing the json result.";
 "PARSINGRES" = "Parsing results ...";
 
@@ -30,3 +30,11 @@
 "ACCOUNTANT" = "Accountant";
 "ACCOUNTCONTACT" = "Accountant contact";
 "LOCALIZATION" = "Localization";
+
+"MATERIAL" = "Material";
+"CATEGORY" = "Category";
+"SUBCATEGORY" = "Sub-category";
+"THEMATICGROUP" = "Thematic group";
+"WORKGROUP" = "Work group";
+"BORROWING" = "Borrowing";
+"MONITORING" = "Monitoring";

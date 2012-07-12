@@ -45,6 +45,17 @@
 			array('action' => 'statusToBeArchived', $id, 'view'), 
 			array('title' => 'Demander l\'archivage', 'style' => 'margin-right: 20px', 'escape' => false));
 	}
+	
+	if ($statut == 'VALIDATED') {
+		echo $this->Html->link('<i class="icon-file"></i> Document de sortie', 
+			array('controller' => 'Documents', 'action' => 'sortie', ${$singularVar}[$modelClass]['numero_irap']),
+			array('title' => 'Voir le document de sortie', 'style' => 'margin-right: 5px', 'escape' => false));
+	} else {
+		echo $this->Html->link('<i class="icon-file"></i> Document d\'admission', 
+			array('controller' => 'Documents', 'action' => 'admission', ${$singularVar}[$modelClass]['numero_irap']),
+			array('title' => 'Voir le document d\'admission', 'style' => 'margin-right: 5px', 'escape' => false));
+	}
+	
 	echo $this->Html->link('<i class="icon-plus"></i> Nouveau suivi', 
 		array('controller' => 'suivis', 'action' => 'add', 'mat' => $id), array('escape' => false));
 	echo $this->Html->link('<i class="icon-plus"></i> Nouvel emprunt', 

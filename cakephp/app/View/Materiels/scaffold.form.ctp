@@ -22,8 +22,8 @@
 	else {
 		echo $this->Form->input('categorie_id', array('label' => 'Catégorie', 'style' => 'width: 200px'));
 		echo $this->Form->input('sous_categorie_id', array('label' => 'Sous catégorie', 'style' => 'width: 200px'));
-		echo $this->Form->input('materiel_administratif', array('label' => 'Matériel administratif'));
-		echo $this->Form->input('materiel_technique', array('label' => 'Matériel technique'));
+		echo $this->Form->input('materiel_administratif', array('label' => 'Matériel inventoriable'));
+		echo $this->Form->input('materiel_technique', array('label' => 'Matériel non inventoriable et technique'));
 	}
 	echo $this->Form->input('description');
 	if ($userAuth >= 3) {

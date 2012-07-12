@@ -118,12 +118,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self selectedProduct] getSectionsCount];
+    return [[self selectedProduct] sectionsCount];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self selectedProduct] getPropertiesNumberForSection:section];
+    return [[self selectedProduct] propertiesNumberForSection:section];
 }
 
 
@@ -137,8 +137,8 @@
         cell = (CustomCell *)temporaryController.view;
     }
     
-    NSString *label = [[[self selectedProduct] getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] name];
-    NSString *description = [[[self selectedProduct] getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] value];
+    NSString *label = [[[self selectedProduct] propertyAtIndex:indexPath.row ForSection:[indexPath section]] name];
+    NSString *description = [[[self selectedProduct] propertyAtIndex:indexPath.row ForSection:[indexPath section]] value];
     
     cell.nameLabel.text = label;
     cell.descriptionLabel.text = description;
@@ -158,7 +158,7 @@
 	headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 20.0);
     headerLabel.textAlignment = UITextAlignmentCenter;
     
-	headerLabel.text = [[self selectedProduct] getSectionAtIndex:section];
+	headerLabel.text = [[self selectedProduct] sectionAtIndex:section];
 	[customView addSubview:headerLabel];
     
 	return customView;

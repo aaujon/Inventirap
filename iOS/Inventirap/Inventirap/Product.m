@@ -46,12 +46,12 @@
     m_properties = [[NSMutableArray alloc] init];
 }
 
-- (NSString*)getSectionAtIndex:(NSUInteger)index
+- (NSString*)sectionAtIndex:(NSUInteger)index
 {
     return [m_sectionList objectAtIndex:index];
 }
 
-- (NSUInteger)getSectionsCount
+- (NSUInteger)sectionsCount
 {
     return [m_section count];
 }
@@ -65,12 +65,12 @@
     [m_properties addObject:property];
 }
 
-- (NSUInteger)getPropertiesNumberForSection:(NSUInteger)section
+- (NSUInteger)propertiesNumberForSection:(NSUInteger)section
 {
     return [[m_section objectForKey:[m_sectionList objectAtIndex:section]] count];
 }
 
-- (Property*)getPropertyAtIndex:(NSUInteger)index ForSection:(NSUInteger)section
+- (Property*)propertyAtIndex:(NSUInteger)index ForSection:(NSUInteger)section
 {
     return [[m_section objectForKey:[m_sectionList objectAtIndex:section]] objectAtIndex:index];
 }

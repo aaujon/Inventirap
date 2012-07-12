@@ -21,13 +21,13 @@
 
 @property (nonatomic, copy) NSString *scanResults;
 
-- (void) launchQRCodeReader;
-- (void) processResults;
-- (void) sendWebServiceRequest:(NSString*)ident;
-- (void) parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product;
-- (void) parseArray:(NSArray*)array ForSection:(NSString*)name AndProduct:(Product*)product;
+- (void)launchQRCodeReader;
+- (void)processResults;
+- (void)sendWebServiceRequest:(NSString*)ident;
+- (void)createSection:(NSString*)section From:(NSDictionary*)dictionary ForProduct:(Product*)product;
+- (void)createSections:(NSString*)sectionsName From:(NSArray*)array For:(Product*)product;
 - (NSString*) checkValueValidity:(id)value;
-- (void) customizeButtonLayer:(CALayer*)layer;
+- (void)customizeButtonLayer:(CALayer*)layer;
 
 @end
 
@@ -191,12 +191,12 @@
 - (void)sendWebServiceRequest:(NSString*)ident
 {
 #warning Erase ident change
-    ident = @"IRAP-12-0001";
+    //ident = @"IRAP-12-0001";
     NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
     
 #warning Change URL
     //completeURL = @"http://inventirap.dyndns.org:8080/Inventirap/cakephp/ServicesWeb/materiel/IRAP-12-0001";
-    //completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
+    completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
     [self setConnection:[[NSURLConnection alloc] initWithRequest:request delegate:self]];
@@ -211,12 +211,12 @@
     
 }
 
-- (void)parseDictionary:(NSDictionary*)dictionary ForProduct:(Product*)product
+- (void)createSection:(NSString*)sectionName From:(NSDictionary*)dictionary ForProduct:(Product*)product
 {
     for(id key in dictionary) {
         id value = [dictionary objectForKey:key];
         
-        NSString *keyAsString = (NSString *)key;
+        NSString *keyAsString = [NSString stringWithFormat:@"%@",key];
         NSString *valueAsString = [self checkValueValidity:value];
         
         if ([keyAsString isEqualToString:@"designation"]) {
@@ -225,14 +225,14 @@
         
         [product addPropertyName:keyAsString AndValue:valueAsString];
     }
+    [product setSectionWithName:sectionName];
 }
 
-- (void) parseArray:(NSArray*)array ForSection:(NSString*)name AndProduct:(Product*)product
+- (void)createSections:(NSString*)sectionsName From:(NSArray*)array For:(Product*)product
 {
     int i = 1;
     for (NSDictionary *element in array) {
-        [self parseDictionary:element ForProduct:product];    
-        [product setSectionWithName:[NSString stringWithFormat:@"%@ %d", name, i]];
+        [self createSection:[NSString stringWithFormat:@"%@ %d", sectionsName, i] From:element ForProduct:product];
         i++;
     }
 }
@@ -251,7 +251,7 @@
                 validValue = NSLocalizedString(@"NO", nil);
             }
         } else {
-            validValue = (NSString *)value;
+            validValue = [NSString stringWithFormat:@"%@",value];
         }
     }
     return validValue;
@@ -280,6 +280,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [[self informationLabel] setText:NSLocalizedString(@"PARSINGRES", nil)];
+    
 #warning Replace with real json data
     NSString *blabla = @"{\"materials\":[{\"Materiel\":{\"id\":\"1\",\"designation\":\"Macbook air\",\"category_id\":\"1\",\"sous_category_id\":\"2\",\"numero_irap\":\"IRAP-12-0001\",\"description\":\"Ceci est une description un peu nulle\",\"organisme\":\"IRAP\",\"materiel_administratif\":false,\"nom_responsable\":\"Cedric\",\"email_responsable\":\"Cedric.Hillembrand@irap.omp.eu\",\"materiel_technique\":false,\"status\":\"CREATED\",\"date_acquisition\":\"2012-07-04\",\"fournisseur\":\"Apple\",\"prix_ht\":\"1000\",\"eotp\":\"WTF\",\"numero_commande\":\"ZERZE45\",\"code_comptable\":\"44\",\"numero_serie\":null,\"thematic_group_id\":\"1\",\"work_group_id\":\"1\",\"ref_existante\":null,\"lieu_stockage\":\"B\",\"lieu_detail\":\"Chambre\",\"utilisateur_id\":\"1\",\"full_storage\":\"B-Chambre\"},\"Category\":{\"id\":\"1\",\"nom\":\"Multimetre\"},\"SousCategory\":{\"id\":\"2\",\"nom\":\"RUI + LC\",\"category_id\":\"1\"},\"ThematicGroup\":{\"id\":\"1\",\"nom\":\"GPPS\"},\"WorkGroup\":{\"id\":\"1\",\"nom\":\"NVA\"},\"Suivi\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"3\",\"commentaire\":\"Super cooolos\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Calibration\",\"organisme\":\"IRAP\",\"frequence\":\"1\",\"commentaire\":\"Ca sert pas \u00e0 grand chose\"},{\"id\":\"3\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"10\",\"commentaire\":\"Pas souvent lui la maintenance\"}],\"Emprunt\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_emprunt\":\"2011-01-01\",\"date_retour_emprunt\":\"2013-01-01\",\"piece\":\"Souris\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Dark Vador\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_emprunt\":\"2010-04-05\",\"date_retour_emprunt\":\"2010-12-12\",\"piece\":\"Clavier\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Woody Allen\"}]}],\"id\":\"IRAP-12-0001\"}";
     
@@ -287,13 +289,11 @@
     
     @try {
         NSError *error = nil;
-        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:[self jsonData] options:kNilOptions error:&error];
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonDatax options:kNilOptions error:&error];
         
         if (res == NULL) {
             [NSException raise:@"Invalid web service response" format:@"json results are incorrect : %@", res];
         }
-        
-        [[self informationLabel] setText:NSLocalizedString(@"PARSINGRES", nil)];
         
         Product *simpleProduct = [[Product alloc] init];
         Product *detailedProduct = [[Product alloc] init];
@@ -336,36 +336,31 @@
         
         
         //Creating a more detailed product
-        [self parseDictionary:materiel ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:NSLocalizedString(@"MATERIAL", nil)];
+         [self createSection:NSLocalizedString(@"MATERIAL", nil) From:materiel ForProduct:detailedProduct];
 
         // Parsing Category
         NSDictionary* category = [result objectForKey:@"Category"];
-        [self parseDictionary:category ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:NSLocalizedString(@"CATEGORY", nil)];
+        [self createSection:NSLocalizedString(@"CATEGORY", nil) From:category ForProduct:detailedProduct];
         
         // Parsing SousCategory
         NSDictionary* subcategory = [result objectForKey:@"SousCategory"];
-        [self parseDictionary:subcategory ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:NSLocalizedString(@"SUBCATEGORY", nil)];
+        [self createSection:NSLocalizedString(@"SUBCATEGORY", nil) From:subcategory ForProduct:detailedProduct];
 
         // Parsing Thematic group
         NSDictionary *thematicGroup = [result objectForKey:@"ThematicGroup"];
-        [self parseDictionary:thematicGroup ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:NSLocalizedString(@"THEMATICGROUP", nil)];
+        [self createSection:NSLocalizedString(@"THEMATICGROUP", nil) From:thematicGroup ForProduct:detailedProduct];
         
         // Parsing Work group
         NSDictionary *workGroup = [result objectForKey:@"WorkGroup"];
-        [self parseDictionary:workGroup ForProduct:detailedProduct];    
-        [detailedProduct setSectionWithName:NSLocalizedString(@"WORKGROUP", nil)];
+        [self createSection:NSLocalizedString(@"WORKGROUP", nil) From:workGroup ForProduct:detailedProduct];
         
         // Parsing borrowings
         NSArray *borrowings = [result objectForKey:@"Emprunt"];
-        [self parseArray:borrowings ForSection:NSLocalizedString(@"BORROWING", nil) AndProduct:detailedProduct];
+        [self createSections:NSLocalizedString(@"BORROWING", nil) From:borrowings For:detailedProduct];
         
         // Parsing borrowings
         NSArray *monitorings = [result objectForKey:@"Suivi"];
-        [self parseArray:monitorings ForSection:NSLocalizedString(@"MONITORING", nil) AndProduct:detailedProduct];
+        [self createSections:NSLocalizedString(@"MONITORING", nil) From:monitorings For:detailedProduct];
         
         //[NSThread sleepForTimeInterval:2];
         
@@ -389,5 +384,10 @@
         [[self applicationActivity] stopAnimating];
         [[self scanButton] setEnabled:true];
     }
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
+{
+    return nil;
 }
 @end

@@ -302,10 +302,5 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 
 .icon-user-md:before              { content: "\f200"; }
 
-li {
-	font-size: 12px;
-}
-
-.actions.a {
-	font-size: 12px;	
-}
+.actions a { font-size: 80%; }
+.actions a i { font-size: 14px; }

@@ -32,8 +32,7 @@
 		echo $this->Form->input('fournisseur');
 		if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
 			echo $this->Form->input('prix_ht', array('label' => 'Prix HT (€)'));
-			echo $this->Form->input('eotp', array('label' => 'EOTP (Centre de crédit)', 'style' => 'width: 100px', 
-				'options' => array('Xlab'=>'Xlab', 'SIFAC'=> 'SIFAC')));
+			echo $this->Form->input('eotp', array('label' => 'EOTP (Centre de crédit)'));
 		}
 		echo $this->Form->input('numero_commande', array('label' => 'Numéro de commande'));
 		echo $this->Form->input('code_comptable', array('label' => 'Code comptable'));

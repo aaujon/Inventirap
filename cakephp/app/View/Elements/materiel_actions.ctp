@@ -27,4 +27,11 @@
 			array('title' => 'Demander l\'archivage', 'style' => 'margin: 0 2px', 'escape' => false));
 	}
 	echo '</td>';
+	echo '<td class="actions" style="padding: 6px 0;">';
+	if ($delete)
+		echo $this->Form->postLink('<i class="icon-trash"></i>',
+			array('action' => 'delete', $id),
+			array('style' => 'margin: 0 2px', 'escape' => false),
+			'Êtes-vous sur de supprimer '.$id.' ?');
+	echo '</td>';
 ?>

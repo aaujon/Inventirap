@@ -31,19 +31,36 @@
 				<th style="width:20px;"></th>
 			</tr> 
 			
-			<?php foreach ($results as $material): ?> 
-			<tr> 
-				<td class="smallText"><?php echo $material['Materiel']['designation']; ?></td> 
-				<td class="smallText"><?php echo $material['Materiel']['numero_irap']; ?></td>
-				<td class="smallText"><?php echo $this->Html->link($material['Categorie']['nom'], array('controller' => 'categories', 'action' => 'view', $material['Categorie']['id']));?></td>
-				<td class="smallText"><?php echo $material['Materiel']['nom_responsable']; ?></td>
-				<td class="smallText"><?php echo $material['Materiel']['status']; ?></td>
-				<?php echo $this->element('materiel_actions', array('id' => $material['Materiel']['id'], 'statut' => $material['Materiel']['status'])); ?>
-				
-			</tr> 
-			<?php endforeach; ?> 
-		</table> 
-		<?php } else { echo 'Aucun résultat.'; }?>
+			<?php foreach ($results as $material): 
+			echo '<tr>';
+			echo '<td class="smallText">'; 
+				echo $this->Html->link($material['Materiel']['designation'], 
+					array('action' => 'view', $material['Materiel']['id']), 
+					array('title' => 'Détails'));
+			echo '</td>'; 
+			echo '<td class="smallText">';
+				echo $material['Materiel']['numero_irap']; 
+			echo '</td>';
+			echo '<td class="smallText">'; 
+				echo $this->Html->link($material['Categorie']['nom'], 
+					array('controller' => 'categories', 'action' => 'view', $material['Categorie']['id']));
+			echo '</td>';
+			echo '<td class="smallText">';
+				echo $material['Materiel']['nom_responsable']; 
+			echo '</td>';
+			echo '<td class="smallText">'; 
+				echo $material['Materiel']['status']; 
+			echo '</td>';
+			echo $this->element('materiel_actions', array(
+				'id' => $material['Materiel']['id'], 
+				'statut' => $material['Materiel']['status'], 
+				'delete' => ($material['Materiel']['status'] == 'CREATED')));	
+			echo '<tr>';
+			endforeach;
+		echo '</table>';
+		} else { 
+			echo 'Aucun résultat.'; 
+		} ?>
 	</div>
 </div>
 <div class="actions">

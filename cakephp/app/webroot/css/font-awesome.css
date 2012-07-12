@@ -301,3 +301,11 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 .icon-paste:before                { content: "\f0ea"; }
 
 .icon-user-md:before              { content: "\f200"; }
+
+li {
+	font-size: 12px;
+}
+
+.actions.a {
+	font-size: 12px;	
+}

@@ -39,6 +39,7 @@
 @end
 
 @implementation ScannerViewController
+@synthesize lastProductLabel;
 @synthesize lastProductButton;
 
 @synthesize informationViewController;
@@ -75,9 +76,8 @@
     CALayer *buttonLayer = [[self scanButton] layer];
     [self customizeButtonLayer:buttonLayer];
     
-    buttonLayer = [[self lastProductButton] layer];
-    [self customizeButtonLayer:buttonLayer];
-    [[self lastProductButton] setTitle:NSLocalizedString(@"LASTPRODUCT", nil) forState:UIControlStateNormal];
+    [[self lastProductLabel] setTextColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
+    [[self lastProductLabel] setText:NSLocalizedString(@"LASTPRODUCT", nil)];
     
     [[self scanButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [[self scanButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
@@ -95,8 +95,10 @@
 {
     if ([[self informationViewController] selectedProduct] == nil) {
         [[self lastProductButton] setHidden:YES];
+        [[self lastProductLabel] setHidden:YES];
     } else {
         [[self lastProductButton] setHidden:NO];
+        [[self lastProductLabel] setHidden:NO];
     }
 }
 
@@ -106,6 +108,7 @@
     [self setScanButton:nil];
     [self setInformationLabel:nil];
     [self setLastProductButton:nil];
+    [self setLastProductLabel:nil];
     [super viewDidUnload];
 }
 
@@ -221,7 +224,7 @@
         [self createSections:NSLocalizedString(@"MONITORING", nil) From:result withKey:@"Suivi" For:detailedProduct];
         
 #warning Remove this command
-        [NSThread sleepForTimeInterval:5];
+        //[NSThread sleepForTimeInterval:5];
         
         // Setting the information view
         [[self informationViewController] setSimpleProduct:simpleProduct];

@@ -15,7 +15,7 @@
 "LESS" = "Less";
 
 "RESETDEFAULT" = "Reset to default";
-"LASTPRODUCT" = "Last product";
+"LASTPRODUCT" = "Return to the last scan";
 "WEBSERVURL" = "Web service URL";
 
 "CONTACTWEBSERV" = "Contacting WebService ...";

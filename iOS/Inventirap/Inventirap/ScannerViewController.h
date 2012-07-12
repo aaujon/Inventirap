@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UIButton *lastProductButton;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastProductLabel;
 
 - (IBAction)scanButtonAction:(id)sender;
 - (IBAction)lastProductButtonAction:(id)sender;

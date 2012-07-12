@@ -35,6 +35,10 @@
 		AFD1683215A389E50017418B /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFD1683115A389E50017418B /* CustomCell.xib */; };
 		AFD1683415A39B030017418B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD1683315A39B030017418B /* Default.png */; };
 		AFD1683615A39B060017418B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFD1683515A39B060017418B /* Default@2x.png */; };
+		AFE31B0B15AF902D00A7A8A0 /* buttonReturn.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE31B0915AF902D00A7A8A0 /* buttonReturn.png */; };
+		AFE31B0C15AF902D00A7A8A0 /* buttonReturn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE31B0A15AF902D00A7A8A0 /* buttonReturn@2x.png */; };
+		AFE31B0F15AF91ED00A7A8A0 /* buttonReturn@Selecte.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE31B0D15AF91ED00A7A8A0 /* buttonReturn@Selecte.png */; };
+		AFE31B1015AF91ED00A7A8A0 /* buttonReturn@Selected2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE31B0E15AF91ED00A7A8A0 /* buttonReturn@Selected2x.png */; };
 		AFE5CEB615A7804C000CEAB7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE5CEB415A7804C000CEAB7 /* SettingsViewController.m */; };
 		AFE5CEB715A7804C000CEAB7 /* SettingsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFE5CEB515A7804C000CEAB7 /* SettingsViewController_iPhone.xib */; };
 		AFE5E7E915A073B100E32EE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E7E815A073B100E32EE8 /* UIKit.framework */; };
@@ -115,6 +119,10 @@
 		AFD1683115A389E50017418B /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		AFD1683315A39B030017418B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		AFD1683515A39B060017418B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		AFE31B0915AF902D00A7A8A0 /* buttonReturn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonReturn.png; sourceTree = "<group>"; };
+		AFE31B0A15AF902D00A7A8A0 /* buttonReturn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonReturn@2x.png"; sourceTree = "<group>"; };
+		AFE31B0D15AF91ED00A7A8A0 /* buttonReturn@Selecte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonReturn@Selecte.png"; sourceTree = "<group>"; };
+		AFE31B0E15AF91ED00A7A8A0 /* buttonReturn@Selected2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonReturn@Selected2x.png"; sourceTree = "<group>"; };
 		AFE5CEB315A7804C000CEAB7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AFE5CEB415A7804C000CEAB7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AFE5CEB515A7804C000CEAB7 /* SettingsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -169,8 +177,12 @@
 		6E34CC4D15AED91500A535D6 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				6E34CC4915AED90E00A535D6 /* buttonBackground.png */,
+				AFE31B0A15AF902D00A7A8A0 /* buttonReturn@2x.png */,
+				AFE31B0915AF902D00A7A8A0 /* buttonReturn.png */,
+				AFE31B0D15AF91ED00A7A8A0 /* buttonReturn@Selecte.png */,
+				AFE31B0E15AF91ED00A7A8A0 /* buttonReturn@Selected2x.png */,
 				6E34CC4A15AED90E00A535D6 /* buttonBackground@2x.png */,
+				6E34CC4915AED90E00A535D6 /* buttonBackground.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -472,6 +484,10 @@
 				6E34CC5715AF014500A535D6 /* Icon@2x.png in Resources */,
 				6E34CC5915AF01B300A535D6 /* Icon.png in Resources */,
 				6E34CC5B15AF025800A535D6 /* Icon-giant.png in Resources */,
+				AFE31B0B15AF902D00A7A8A0 /* buttonReturn.png in Resources */,
+				AFE31B0C15AF902D00A7A8A0 /* buttonReturn@2x.png in Resources */,
+				AFE31B0F15AF91ED00A7A8A0 /* buttonReturn@Selecte.png in Resources */,
+				AFE31B1015AF91ED00A7A8A0 /* buttonReturn@Selected2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

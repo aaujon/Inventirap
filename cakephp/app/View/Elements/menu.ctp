@@ -1,7 +1,7 @@
 <h3><?php echo __d('cake', 'Menu'); ?></h3>
 <ul>
 	<li><?php echo $this->Html->link('<i class="icon-home"></i> Accueil', '/', array('escape' => false)); ?></li>
-	<li><?php echo $this->Html->link('<i class="icon-search"></i> Recherche', array(
+	<li><?php echo $this->Html->link('<i class="icon-search"></i> Recherche/Liste', array(
 	'controller' => 'materiels', 'action' => 'find'),
 	array('escape' => false)); ?></li>
 	<li><?php echo $this->Html->link('<i class="icon-list"></i> Liste des matériels',

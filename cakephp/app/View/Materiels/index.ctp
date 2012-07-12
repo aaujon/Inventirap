@@ -29,8 +29,7 @@ foreach ($data as $result):
 		foreach ($toShow as $_field => $label) {
 			echo '<td class="smallText">';
 			if ($_field == 'categorie_id')
-				echo  $this->Html->link($result['Categorie']['nom'], 
-					array('controller' => 'categories', 'action' => 'view', $result['Categorie']['id']));
+			 	echo  $result['Categorie']['nom'];
 			else
 				echo h($result['Materiel'][$_field]);
 			echo '</td>';

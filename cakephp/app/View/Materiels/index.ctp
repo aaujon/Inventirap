@@ -26,20 +26,12 @@ foreach ($data as $result):
 	$id = 		$result['Materiel']['id'];
 	$statut = 	$result['Materiel']['status'];
 	echo '<tr>';
-		foreach ($toShow as $_field => $label) {
-			echo '<td class="smallText">';
-			if ($_field == 'categorie_id') {
-			 	echo $result['Categorie']['nom'];
-			} elseif($_field == 'designation') {
-				echo $this->Html->link($result['Materiel'][$_field], 
-					array('action' => 'view', $id), 
-					array('title' => 'Détails'));
-			} else {
-				echo h($result['Materiel'][$_field]);
-			}
-			echo '</td>';
-	}
-	echo $this->element('materiel_actions', array('id' => $id, 'statut' => $statut));
+	echo '<td class="smallText">'.$this->Html->link($result['Materiel'][$_field], array('action' => 'view', $id)).'</td>';
+	echo '<td class="smallText">'.$result['Materiel']['numero_irap'].'</td>';
+	echo '<td class="smallText">'.$result['Categorie']['nom'].'</td>';
+	echo '<td class="smallText">'.$result['Materiel']['nom_responsable'].'</td>';
+	echo '<td class="smallText">'.$statut.'</td>';
+	echo $this->element('materiel_actions', array('id' => $id, 'statut' => $statut, 'delete' => ($statut == 'CREATED')));
 	echo '</tr>';
 
 endforeach;

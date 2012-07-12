@@ -58,9 +58,17 @@ class MaterielsController extends AppController {
 					'conditions' => array('Materiel.status ' => 'TOBEARCHIVED'))));
 		}
 	}
-	public function delete() {
-		$this->Session->setFlash('Pas de suppression de matériel autorisé.');
-		$this->redirect(array('action'=> 'index'));
+	public function delete($id) {
+		$this->Materiel->id = $id;
+		if ($this->Materiel->field('status') != 'CREATED') {
+			$this->Session->setFlash('Pas de suppression de matériel autorisé.');
+			$this->redirect(array('action'=> 'index'));
+		}
+		else {
+			$this->Materiel->delete($id);
+			$this->Session->setFlash('Le matériel a bien été supprimé.');
+			$this->redirect(array('action'=> 'index'));
+		}
 	}
 
 	public function statusToBeArchived($id = null, $from = 'index') {

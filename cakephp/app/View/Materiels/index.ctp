@@ -26,7 +26,7 @@ foreach ($data as $result):
 	$id = 		$result['Materiel']['id'];
 	$statut = 	$result['Materiel']['status'];
 	echo '<tr>';
-	echo '<td class="smallText">'.$this->Html->link($result['Materiel'][$_field], array('action' => 'view', $id)).'</td>';
+	echo '<td class="smallText">'.$this->Html->link($result['Materiel']['designation'], array('action' => 'view', $id)).'</td>';
 	echo '<td class="smallText">'.$result['Materiel']['numero_irap'].'</td>';
 	echo '<td class="smallText">'.$result['Categorie']['nom'].'</td>';
 	echo '<td class="smallText">'.$result['Materiel']['nom_responsable'].'</td>';

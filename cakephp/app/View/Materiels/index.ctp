@@ -28,10 +28,15 @@ foreach ($data as $result):
 	echo '<tr>';
 		foreach ($toShow as $_field => $label) {
 			echo '<td class="smallText">';
-			if ($_field == 'categorie_id')
-			 	echo  $result['Categorie']['nom'];
-			else
+			if ($_field == 'categorie_id') {
+			 	echo $result['Categorie']['nom'];
+			} elseif($_field == 'designation') {
+				echo $this->Html->link($result['Materiel'][$_field], 
+					array('action' => 'view', $id), 
+					array('title' => 'Détails'));
+			} else {
 				echo h($result['Materiel'][$_field]);
+			}
 			echo '</td>';
 	}
 	echo $this->element('materiel_actions', array('id' => $id, 'statut' => $statut));

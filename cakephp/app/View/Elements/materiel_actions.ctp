@@ -2,11 +2,6 @@
 	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 	
 	echo '<td class="actions" style="padding: 6px 0;">';
-	echo $this->Html->link('<i class="icon-eye-open"></i>', 
-		array('action' => 'view', $id), 
-		array('title' => 'Détails', 'style' => 'margin: 0 2px', 'escape' => false));
-	echo '</td>';
-	echo '<td class="actions" style="padding: 6px 0;">';
 	echo $this->Html->link('<i class="icon-pencil"></i>', 
 		array('action' => 'edit', $id), 
 		array('title' => 'Éditer', 'style' => 'margin: 0 2px', 'escape' => false));

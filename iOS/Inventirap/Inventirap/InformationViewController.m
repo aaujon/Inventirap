@@ -43,12 +43,6 @@
 {
     [super viewDidLoad];
 
-#warning Change button look
-    /*
-    UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    [infoButton addTarget:self action:@selector(detailsButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];*/
-    
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ViewBackground"]];
     [tempImageView setFrame:self.tableView.frame]; 
     [self.tableView setBackgroundView:tempImageView];

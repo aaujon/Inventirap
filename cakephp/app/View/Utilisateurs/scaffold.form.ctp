@@ -14,7 +14,7 @@
 			'empty' => 'Choisir un utilisateur', 
 			'selected' => ''));
 	else 
-		echo $this->Form->input('ldap', array(
+		echo $this->Form->input('nom', array(
 			'options' => $utilisateur->getLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
 			'disabled' => true));

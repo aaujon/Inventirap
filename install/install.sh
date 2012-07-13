@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#Mettre à jour les sources
+# Mettre à jour les sources
 echo "Récupération des sources..."
-rm -rf Inventirap/
-git clone git://github.com/aaujon/Inventirap.git
+# rm -rf Inventirap/
+# git clone git://github.com/aaujon/Inventirap.git
 
 #Configurer l'application
 echo "Mise à jour des droits des dossiers..."
@@ -40,7 +40,7 @@ mysql -u $bddUserName --password=$bddPassword -h $bddIp $bddName < ./database/BD
 #Ajouter Super Administrateur
 echo "Quel est le nom du super administrateur de l'inventaire"
 read superAdminName
-mysql -u $bddUserName --password=$bddPassword -h $bddIp -D $bddName -e "INSERT INTO utilisateurs (ldap, role) VALUES ('$superAdminName', 'Super Administrateur');"
+mysql -u $bddUserName --password=$bddPassword -h $bddIp -D $bddName -e "INSERT INTO utilisateurs (nom, role) VALUES ('$superAdminName', 'Super Administrateur');"
 
 # Set LDAP address
 echo "Entrez l'adresse du serveur ldap"
@@ -55,8 +55,12 @@ sed -i "s/389/$ldapPort/" ./cakephp/app/Config/database.php
 # Ajouter les droits en ecriture pour la creation des qrcodes
 
 # phpqrcode write its errors into its folder ...
-chmod -R 777 cakephp/app/Vendor/phpqrcode/
+chmod -R 777 ./cakephp/app/Vendor/phpqrcode/
 
 touch ./cakephp/app/Vendor/phpqrcode/errors.txt
 chmod 777 ./cakephp/app/Vendor/phpqrcode/errors.txt
-chmod -R 777 cakephp/app/webroot/img
+chmod -R 777 ./cakephp/app/webroot/img/
+
+# Ajoute les droits en ecriture pour la generation des documents
+
+chmod -R 777 ./cakephp/app/tmp/documents/

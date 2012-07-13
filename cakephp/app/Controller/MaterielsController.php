@@ -8,8 +8,15 @@ class MaterielsController extends AppController {
 		'order' => array('Materiel.id' => 'desc'));
 
 	public function index() {
-		$data = $this->paginate('Materiel', array(
-			'Materiel.status' => array('CREATED', 'VALIDATED', 'TOBEARCHIVED')));
+		$statut = array('CREATED', 'VALIDATED', 'TOBEARCHIVED');
+		if (isset($this->params['named']['what']))
+			if ($this->params['named']['what'] == 'toValidate')
+				$statut = array('CREATED');
+			else if ($this->params['named']['what'] == 'toBeArchived')
+				$statut = array('TOBEARCHIVED');
+			
+		//Requête SQL
+		$data = $this->paginate('Materiel', array('Materiel.status' => $statut));
 		$this->set('data', $data);
 	}
 
@@ -46,22 +53,11 @@ class MaterielsController extends AppController {
 					'Materiel.lieu_detail LIKE' => '%'.$all.'%'
 			))))));
 		}
-		else if (isset($this->params['named']['what'])) {
-			$what = $this->params['named']['what'];
-			if ($what == 'toValidate')
-				$this->set('results', $this->Materiel->find('all', array(
-					'limit' => '0, 100',
-					'conditions' => array('Materiel.status ' => 'CREATED'))));
-			else if ($what == 'toBeArchived')
-				$this->set('results', $this->Materiel->find('all', array(
-					'limit' => '0, 100',
-					'conditions' => array('Materiel.status ' => 'TOBEARCHIVED'))));
-		}
 	}
 	public function delete($id) {
 		$this->Materiel->id = $id;
 		if ($this->Materiel->field('status') != 'CREATED') {
-			$this->Session->setFlash('Pas de suppression de matériel autorisé.');
+			$this->Session->setFlash('Pas de suppression de matériel autorisé après qu\'il ait été validé.');
 			$this->redirect(array('action'=> 'index'));
 		}
 		else {

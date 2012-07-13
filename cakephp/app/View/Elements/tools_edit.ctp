@@ -13,26 +13,26 @@
 	?></li>
 	<li><?php
 		$action = ''; 
-		if(strstr($t, 'catégorie')) {
+		if(strstr($t, 'catégorie'))
 			$action = 'Édit. cette';
-		} elseif(strstr($t, 'utilisateur')) {
+		elseif(strstr($t, 'utilisateur'))
 			$action = 'Édit. cet';
-		} else {
+		else
 			$action = 'Édit. ce';
-		}
+			
 		echo $this->Html->link('<i class="icon-pencil"></i>' . $action . ' ' . $t, 
 			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), 
 			array('escape' => false));
 	?></li>
 	<li><?php 
 		$action = ''; 
-		if(strstr($t, 'catégorie')) {
+		if(strstr($t, 'catégorie'))
 			$action = 'Suppr. cette';
-		} elseif(strstr($t, 'utilisateur')) {
+		elseif(strstr($t, 'utilisateur'))
 			$action = 'Suppr. cet';
-		} else {
+		else 
 			$action = 'Suppr. ce';
-		}
+			
 		echo $this->Form->postLink('<i class="icon-trash"></i>' . $action . ' ' . $t,
 			array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 			array('escape' => false),

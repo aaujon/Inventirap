@@ -95,14 +95,5 @@ class LdapConnection extends AppModel {
 		catch (Exception $e) { }
 		return false;
 	}
-	
-	public function getEmailFromLdapName($ldapName) {
-		if(isset($ldapName)) {
-			$attributes = $this->getUserAttributes($ldapName);
-			@$mail = $attributes[0]['mail'][0];
-
-			return $mail;
-		}
-	}
 }
 ?>

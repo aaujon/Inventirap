@@ -13,7 +13,7 @@ class UtilisateursController extends AppController {
 				$this->Session->write('LdapUserAuthenticationLevel', 1);
 				$this->Session->write('UserName', $this->LdapAuth->getUserName());
 				$this->Session->write('LdapUserMail', 
-					ClassRegistry::init('LdapConnection')->getEmailFromLdapName($this->Session->read('LdapUserName')));
+					ClassRegistry::init('Utilisateur')->getEmailFromLdapName($this->Session->read('LdapUserName')));
 				
 				$users = $this->Utilisateur->find('all', array('conditions' => array('nom' => $this->Session->read('UserName'))));
 				if(count($users) == 1)

@@ -11,7 +11,7 @@
 @implementation Property
 
 @synthesize name, value;
-- (id) initWithName:(NSString*)propName AndValue:(NSString*)propValue
+- (id)initWithName:(NSString*)propName AndValue:(NSString*)propValue
 {
     self = [super init];
     

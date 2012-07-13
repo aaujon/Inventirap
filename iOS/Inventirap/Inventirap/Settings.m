@@ -12,7 +12,7 @@
 
 @synthesize webServiceUrl;
 
-+(Settings*)sharedSettings
++ (Settings*)sharedSettings
 {
 	static dispatch_once_t pred = 0;
     __strong static id _sharedSettings = nil;
@@ -23,7 +23,7 @@
 }
 
 
--(id)init
+- (id)init
 {
 	self = [super init];
 	if (self != nil) {
@@ -48,7 +48,37 @@
 	return self;
 }
 
--(void)changeWebServiceUrl:(NSString*)newUrl {
-	self.webServiceUrl = newUrl;
+- (void)changeWebServiceUrl:(NSString*)newUrl {
+	[self setWebServiceUrl:newUrl];
 }
+
+- (void) resetSettings
+{
+    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"DefaultSettings" ofType:@"plist"];
+    NSMutableDictionary *savedSettings = [[NSMutableDictionary alloc] initWithContentsOfFile: bundle];
+    
+    [self setWebServiceUrl:[savedSettings objectForKey:@"WebServiceURL"]];
+}
+
+- (void)saveSettings
+{
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Settings.plist"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager fileExistsAtPath: path]) {
+        NSString *bundle = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
+        [fileManager copyItemAtPath:bundle toPath: path error:&error];
+    }
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+    
+    //Add elements to data file and write data to file
+    [data setObject:[self webServiceUrl] forKey:@"WebServiceURL"];
+    [data writeToFile: path atomically:YES];
+}
+
 @end

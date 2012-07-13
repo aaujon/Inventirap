@@ -8,6 +8,7 @@
 
 #import "InformationViewController.h"
 
+#import "QuartzCore/QuartzCore.h"
 #import "Product.h"
 #import "Property.h"
 #import "CustomCell.h"
@@ -42,12 +43,6 @@
 {
     [super viewDidLoad];
 
-#warning Change button look
-    /*
-    UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    [infoButton addTarget:self action:@selector(detailsButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];*/
-    
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ViewBackground"]];
     [tempImageView setFrame:self.tableView.frame]; 
     [self.tableView setBackgroundView:tempImageView];
@@ -70,7 +65,17 @@
     [super viewDidUnload];
 }
 
-- (void) detailsButtonAction
+- (void) animateTransition
+{
+    CATransition *animation = [CATransition animation];
+    [animation setType:kCATransitionFade];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setFillMode:kCAFillModeBoth];
+    [animation setDuration:.4];
+    [[self.tableView layer] addAnimation:animation forKey:@"UITableViewReloadDataAnimationKey"];
+}
+
+- (void)detailsButtonAction
 {
     if ([self isSimpleProductDisplayed]) {
         [self displayDetailedProduct];
@@ -79,20 +84,22 @@
     }
 }
 
-- (void) displaySimpleProduct
+- (void)displaySimpleProduct
 {
     [self setSelectedProduct:[self simpleProduct]];
     [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"MORE", nil)];
     [self setIsSimpleProductDisplayed:YES];
     [self.tableView reloadData];
+    [self animateTransition];
 }
 
-- (void) displayDetailedProduct
+- (void)displayDetailedProduct
 {
     [self setSelectedProduct:[self detailedProduct]];
     [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"LESS", nil)];
     [self setIsSimpleProductDisplayed:NO];
     [self.tableView reloadData];
+    [self animateTransition];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -105,12 +112,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self selectedProduct] getSectionsCount];
+    return [[self selectedProduct] sectionsCount];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self selectedProduct] getPropertiesNumberForSection:section];
+    return [[self selectedProduct] propertiesNumberForSection:section];
 }
 
 
@@ -124,8 +131,8 @@
         cell = (CustomCell *)temporaryController.view;
     }
     
-    NSString *label = [[[self selectedProduct] getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] name];
-    NSString *description = [[[self selectedProduct] getPropertyAtIndex:indexPath.row ForSection:[indexPath section]] value];
+    NSString *label = [[[self selectedProduct] propertyAtIndex:indexPath.row ForSection:[indexPath section]] name];
+    NSString *description = [[[self selectedProduct] propertyAtIndex:indexPath.row ForSection:[indexPath section]] value];
     
     cell.nameLabel.text = label;
     cell.descriptionLabel.text = description;
@@ -138,15 +145,14 @@
 	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
 
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	headerLabel.backgroundColor = [UIColor lightGrayColor];
+	headerLabel.backgroundColor = [UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0];
 	headerLabel.opaque = YES;
-	headerLabel.textColor = [UIColor blackColor];
-	headerLabel.highlightedTextColor = [UIColor whiteColor];
+	headerLabel.textColor = [UIColor whiteColor];
 	headerLabel.font = [UIFont boldSystemFontOfSize:14];
 	headerLabel.frame = CGRectMake(0.0, 0.0, 320.0, 20.0);
     headerLabel.textAlignment = UITextAlignmentCenter;
     
-	headerLabel.text = [[self selectedProduct] getSectionAtIndex:section];
+	headerLabel.text = [[self selectedProduct] sectionAtIndex:section];
 	[customView addSubview:headerLabel];
     
 	return customView;

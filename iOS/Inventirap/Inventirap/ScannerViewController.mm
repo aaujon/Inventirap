@@ -225,7 +225,7 @@
         [[self informationViewController] setDetailedProduct:detailedProduct];
         [[self informationViewController] displaySimpleProduct];
         
-        dispatch_async(kMainQueue, ^{
+        dispatch_sync(kMainQueue, ^{
             [[[self informationViewController] tableView] scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
             [[[self informationViewController] navigationItem] setTitle : [simpleProduct name]];
             
@@ -235,13 +235,13 @@
     }
     @catch (NSException *exception) {
         NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
-        dispatch_async(kMainQueue, ^{
+        dispatch_sync(kMainQueue, ^{
             [[self informationLabel] setTextColor: [UIColor redColor]];
             [[self informationLabel] setText:NSLocalizedString(@"ERRORPARSINGRES", nil)];
         });
     }
     @finally {
-        dispatch_async(kMainQueue, ^{
+        dispatch_sync(kMainQueue, ^{
             [[self applicationActivity] stopAnimating];
             [[self scanButton] setEnabled:true];
         });

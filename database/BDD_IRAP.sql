@@ -28,8 +28,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`sous_categories` (
   `nom` VARCHAR(45) NULL ,
   `categorie_id` INT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `categorie_id` (`categorie_id` ASC) ,
-  CONSTRAINT `categorie_id`
+  INDEX `category_id` (`categorie_id` ASC) ,
+  CONSTRAINT `category_id`
     FOREIGN KEY (`categorie_id` )
     REFERENCES `mydb`.`categories` (`id` )
     ON DELETE NO ACTION
@@ -93,20 +93,20 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   `email_responsable` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_administrative_materials_sub_categories1` (`sous_categorie_id` ASC) ,
-  INDEX `fk_materials_groupes_thematiques1` (`groupes_thematique_id` ASC) ,
-  INDEX `fk_materials_groupes_travails1` (`groupes_travail_id` ASC) ,
+  INDEX `fk_materials_thematic_group1` (`groupes_thematique_id` ASC) ,
+  INDEX `fk_materials_work_group1` (`groupes_travail_id` ASC) ,
   INDEX `fk_materiels_categories1` (`categorie_id` ASC) ,
   CONSTRAINT `fk_administrative_materials_sub_categories1`
     FOREIGN KEY (`sous_categorie_id` )
     REFERENCES `mydb`.`sous_categories` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_materials_groupes_thematiques1`
+  CONSTRAINT `fk_materials_thematic_group1`
     FOREIGN KEY (`groupes_thematique_id` )
     REFERENCES `mydb`.`groupes_thematiques` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_materials_groupes_travail1`
+  CONSTRAINT `fk_materials_work_group1`
     FOREIGN KEY (`groupes_travail_id` )
     REFERENCES `mydb`.`groupes_travails` (`id` )
     ON DELETE NO ACTION
@@ -166,9 +166,10 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`emprunts` (
   `materiel_id` INT NOT NULL ,
   `date_emprunt` DATE NULL ,
   `date_retour_emprunt` DATE NULL ,
-  `piece` VARCHAR(45) NULL ,
   `emprunt_interne` TINYINT(1) NULL ,
   `laboratoire` VARCHAR(45) NULL ,
+  `e_lieu_stockage` VARCHAR(45) NULL ,
+  `e_lieu_detail` VARCHAR(45) NULL ,
   `responsable` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_technical_materials_internal_loans_copy1_admi_materials1` (`materiel_id` ASC) ,

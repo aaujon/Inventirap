@@ -31,6 +31,23 @@ class UtilisateursController extends AppController {
 		}
 	}
 	
+	public function getLdapEmail($userName) {
+		
+		$ldapConnection = ClassRegistry::init('LdapConnection');
+		
+		$allUsers = $ldapConnection->getAllLdapUsers();
+		
+		foreach($allUsers as $user) {
+			if(!empty($user['sn'][0]) && !empty($user['givenname'][0])) {
+				if(strcmp($userName, $user['sn'][0] . ' ' . $user['givenname'][0]) == 0) {
+					$this->set('email', $user['mail'][0]);
+				}
+			}
+		}
+		
+		$this->layout = 'ajax';
+	}
+	
 	public function logout() {
 		CakeLog::write('inventirap', 'Logget out : '.$this->Session->read('LdapUserName'));
 		/*
@@ -56,8 +73,12 @@ class UtilisateursController extends AppController {
 	public function beforeFilter() {
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 		$this->LdapAuth->allow('login', 'logout', 'notAuthorized');
-		if ($ldapUserAuthenticationLevel == 4)
+		if ($ldapUserAuthenticationLevel >= 1) {
+			$this->LdapAuth->allow('getLdapEmail');
+		}
+		if ($ldapUserAuthenticationLevel == 4) {
 			$this->LdapAuth->allow('display', 'index', 'view', 'add', 'edit', 'delete');
+		}
 	}
 }
 ?>

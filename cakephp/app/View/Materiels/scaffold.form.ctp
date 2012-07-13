@@ -46,12 +46,14 @@
 	echo $this->Form->input('numero_serie', array('label' => 'Numéro de série'));
 	echo $this->Form->input('groupes_thematique_id', array('label' => 'Groupe thématique', 'style' => 'width: 100px'));
 	echo $this->Form->input('groupes_travail_id', array('label' => 'Groupe de travail', 'style' => 'width: 100px'));
-	if ($this->params['action'] == 'add') {
-		echo $this->Form->input('nom_responsable', array('label' => 'Nom du responsable', 
-			'value' => $this->Session->read('UserName'), 'readonly' => true));
-		echo $this->Form->input('email_responsable', array('label' => 'Email du responsable', 
-			'value' => $this->Session->read('LdapUserMail'), 'readonly' => true));
-	}
+	
+	$utilisateur = ClassRegistry::init('Utilisateur');
+	echo $this->Form->input('nom_responsable', array(
+			'options' => $utilisateur->getLdapUsers(), 
+			'empty' => 'Choisir un utilisateur', 
+			'selected' => $this->Session->read('UserName')));
+	echo $this->Form->input('email_responsable', array('label' => 'Email du responsable', 
+			'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 'readonly' => true));
 	echo $this->Form->hidden('numero_irap');
 	echo $this->Form->end('Valider');
 	
@@ -71,5 +73,12 @@ $this->Js->get('#MaterielCategorieId')->event('change',
 			'async' => true, 'method' => 'post', 'dataExpression' => true,
 			'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
 	)));
+$this->Js->get('#MaterielNomResponsable')->event('change', 
+	'$.ajax({
+		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#MaterielNomResponsable").val()
+	}).done(function(data) { 
+		$("#MaterielEmailResponsable").val(data)
+	})');
 echo $this->Js->writeBuffer();
+
 ?>

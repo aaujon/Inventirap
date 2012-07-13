@@ -5,13 +5,12 @@ class DocumentsController extends AppController {
 	var $layout = 'xml';
 
 	public function beforeFilter() {
-		$this->LdapAuth->allow('*');
-		//		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
-		//		if(isset($ldapUserAuthenticationLevel)) {
-		//			$this->LdapAuth->allow('*');
-		//		} else {
-		//			$this->LdapAuth->deny();;
-		//		}
+		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
+		if(isset($ldapUserAuthenticationLevel)) {
+			$this->LdapAuth->allow('*');
+		} else {
+			$this->LdapAuth->deny();;
+		}
 	}
 
 	public function sortie($irapNumber) {

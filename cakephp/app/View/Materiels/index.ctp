@@ -78,7 +78,7 @@
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_view', array(
+		echo $this->element('menu_index', array(
 			'pluralHumanName' => 'Matériels', 'singularHumanName' => 'matériel'));
 	?>
 </div>

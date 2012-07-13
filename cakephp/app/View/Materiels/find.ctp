@@ -9,9 +9,36 @@
 		<i class=<?php if ($r) echo '"icon-chevron-up"'; echo '"icon-chevron-down"'; ?> style="font-size: 14px;" id="i_filter"></i> 
 		<span style="text-decoration: underline;">Filtres</span>
 	</h3>
-	<div id="filter" <?php if ($r) echo 'style="display: none;"'; ?>>
-		<?php echo $this->element('search'); ?>
-	</div>
+	<div id="filter" <?php if ($r) echo 'style="display: none;"'; ?>><?php  
+		if (isset($results))
+			$selected = array();
+		else
+			$selected = array('selected' => '');
+			
+	    echo $this->Form->create('Materiel', array('action' => 'find')); 
+	    echo $this->Form->input('s_designation', array('label' => 'Designation'));
+	    echo $this->Form->input('s_numero_irap', array('label' => 'N° IRAP')); 
+	    echo $this->Form->input('s_responsable', array('label' => 'Responsable')); 
+	    echo $this->Form->input('s_categorie_id', 
+	    	array('label' => 'Catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_categories, 'style' => 'width: 200px')); 
+	    echo $this->Form->input('s_sous_categorie_id', 
+	    	array('label' => 'Sous catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_sous_categories, 'style' => 'width: 200px')); 
+	    echo $this->Form->input('s_status', array(
+	    	'label' => 'Statut', 'empty' => 'Tous', $selected, 
+	    	'options' => array('CREATED' => 'Créé', 'VALIDATED' => 'Validé', 'TOBEARCHIVED' => 'À archiver', 'ARCHIVED' => 'Archivé'), 
+	    	'style' => 'width: 200px')); 
+	    echo $this->Form->input('s_all', array('label' => 'Tous les champs'));
+	    echo $this->Form->end('Rechercher'); 
+	
+		$this->Js->get('#MaterielSCategorieId')->event('change', 
+			$this->Js->request(array('controller' => 'sousCategories', 'action'=>'getByCategorie'), 
+				array(
+					'update' => '#MaterielSSousCategorieId',
+					'async' => true, 'method' => 'post', 'dataExpression' => true,
+					'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
+			)));
+		echo $this->Js->writeBuffer();
+	?></div>
 		
 	<h3 id="t_result" style="cursor: pointer;">
 		<i class=<?php if ($r) echo '"icon-chevron-down"'; echo '"icon-chevron-up"'; ?> style="font-size: 14px;" id="i_result"></i> 

@@ -25,19 +25,19 @@ foreach (${$pluralVar} as ${$singularVar}):
 				foreach ($associations['belongsTo'] as $_alias => $_details) {
 					if ($_field === $_details['foreignKey']) {
 						$isKey = true;
-						echo "<td>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
+						echo "<td class='smallText'>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
 						break;
 					}
 				}
 			}
 			if ($isKey !== true) {
-				echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+				echo "<td class='smallText'>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
 			}	
 		}
 		
 
 		echo '<td class="actions">';
-		echo $this->Html->link('<i class="icon-search"></i>', 
+		echo $this->Html->link('<i class="icon-eye-open"></i>', 
 			array('action' => 'view', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
 		echo $this->Html->link('<i class="icon-pencil"></i>', 
 			array('action' => 'edit', ${$singularVar}[$modelClass][$primaryKey]), array('style' => 'margin: 0 2px', 'escape' => false));
@@ -69,6 +69,6 @@ endforeach;
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_view');
+		echo $this->element('menu_index');
 	?>
 </div>

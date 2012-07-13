@@ -121,7 +121,7 @@
 		displayElement('Code comptable', ${$singularVar}[$modelClass]['code_comptable']);
 		displayElement('N° de série', ${$singularVar}[$modelClass]['numero_serie']);
 	}
-	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['lieu_stockage'].'-'${$singularVar}[$modelClass]['lieu_detail']);
+	displayElement('Lieu de stockage', ${$singularVar}[$modelClass]['full_storage']);
 	displayElement('Responsable', $this->Html->link(
 		${$singularVar}[$modelClass]['nom_responsable'], 'mailto:'.${$singularVar}[$modelClass]['email_responsable']));
 ?>
@@ -198,7 +198,7 @@
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_edit', array(
+		echo $this->element('menu_view', array(
 			'pluralHumanName' => 'Matériels',
 			'singularHumanName' => 'matériel'));
 	?>

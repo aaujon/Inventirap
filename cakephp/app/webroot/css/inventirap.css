@@ -1,20 +1,4 @@
 @charset "utf-8";
-/**
- *
- * Generic CSS for CakePHP
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.webroot.css
- * @since         CakePHP(tm)
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
 
 * {
 	margin:0;
@@ -23,7 +7,7 @@
 
 /** General Style Info **/
 body {
-	background: rgb(23,75,140);
+	background: #17457F;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
@@ -82,6 +66,12 @@ p {
 #header{
 	padding: 10px 20px;
 	border-bottom: 1px solid #CCC;
+}
+#header .user {
+	float: right; 
+	color: black; 
+	padding-top: 20px;
+	text-align: right;
 }
 #header h1 {
 	padding: 0px 30px;
@@ -296,7 +286,10 @@ form .input {
 	width: 520px;
 }
 form .input:hover {
-	background: rgb(242,242,242);	
+	background: rgb(242,242,242);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;	
 }
 form .error:hover {
 	background: #FFDACC;	
@@ -509,6 +502,9 @@ p.error em {
 	font-weight: normal;
 	display: block;
 	clear: both;
+}
+.actions .search-input {
+	width: 100%;
 }
 
 /* Buttons and button links */

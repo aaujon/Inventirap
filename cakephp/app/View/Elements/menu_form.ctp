@@ -1,4 +1,4 @@
-<h3 style="padding-top: 10px; margin-top: 20px; border-top: 1px solid #CCC;"><?php echo $pluralHumanName;?></h3>
+<h3 style="margin-top: 20px;"><?php echo $pluralHumanName;?></h3>
 <ul>
 	<li><?php
 	

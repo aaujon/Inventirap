@@ -123,7 +123,7 @@
 }
 
 #pragma mark -
-#pragma mark Scan and more
+#pragma mark Buttons actions and parsing
 
 - (void)customizeButtonLayer:(CALayer*)layer
 {
@@ -178,10 +178,14 @@
 }
 
 - (void) parseJsonData
-{    
+{
+#warning Replace with real json data
+    NSString *blabla = @"{\"materials\":[{\"Materiel\":{\"id\":\"1\",\"designation\":\"Macbook air\",\"category_id\":\"1\",\"sous_category_id\":\"2\",\"numero_irap\":\"IRAP-12-0001\",\"description\":\"Ceci est une description un peu nulle\",\"organisme\":\"IRAP\",\"materiel_administratif\":false,\"nom_responsable\":\"Cedric\",\"email_responsable\":\"Cedric.Hillembrand@irap.omp.eu\",\"materiel_technique\":false,\"status\":\"CREATED\",\"date_acquisition\":\"2012-07-04\",\"fournisseur\":\"Apple\",\"prix_ht\":\"1000\",\"eotp\":\"WTF\",\"numero_commande\":\"ZERZE45\",\"code_comptable\":\"44\",\"numero_serie\":null,\"thematic_group_id\":\"1\",\"work_group_id\":\"1\",\"ref_existante\":null,\"lieu_stockage\":\"B\",\"lieu_detail\":\"Chambre\",\"utilisateur_id\":\"1\",\"full_storage\":\"B-Chambre\"},\"Category\":{\"id\":\"1\",\"nom\":\"Multimetre\"},\"SousCategory\":{\"id\":\"2\",\"nom\":\"RUI + LC\",\"category_id\":\"1\"},\"ThematicGroup\":{\"id\":\"1\",\"nom\":\"GPPS\"},\"WorkGroup\":{\"id\":\"1\",\"nom\":\"NVA\"},\"Suivi\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"3\",\"commentaire\":\"Super cooolos\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Calibration\",\"organisme\":\"IRAP\",\"frequence\":\"1\",\"commentaire\":\"Ca sert pas \u00e0 grand chose\"},{\"id\":\"3\",\"materiel_id\":\"1\",\"date_controle\":\"2012-03-03\",\"date_prochain_controle\":\"2012-03-03\",\"type_intervention\":\"Maintenance\",\"organisme\":\"IRAP\",\"frequence\":\"10\",\"commentaire\":\"Pas souvent lui la maintenance\"}],\"Emprunt\":[{\"id\":\"1\",\"materiel_id\":\"1\",\"date_emprunt\":\"2011-01-01\",\"date_retour_emprunt\":\"2013-01-01\",\"piece\":\"Souris\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Dark Vador\"},{\"id\":\"2\",\"materiel_id\":\"1\",\"date_emprunt\":\"2010-04-05\",\"date_retour_emprunt\":\"2010-12-12\",\"piece\":\"Clavier\",\"emprunt_interne\":false,\"laboratoire\":\"IRAP\",\"responsable\":\"Woody Allen\"}]}],\"id\":\"IRAP-12-0001\"}";
+    
+    NSData *jsonDatax = [blabla dataUsingEncoding:NSUTF8StringEncoding];
     @try {
         NSError *error = nil;
-        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:[self jsonData] options:kNilOptions error:&error];
+        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:jsonDatax options:kNilOptions error:&error];
         
         if (res == NULL) {
             [NSException raise:@"Invalid web service response" format:@"json results are incorrect : %@", res];
@@ -245,26 +249,14 @@
 }
 
 #pragma mark -
-#pragma mark ZXing delegate methods
-
-- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
-{
-    [self dismissModalViewControllerAnimated:NO];
-    [self setScanResults:result];
-    [self processResults];
-}
-
-- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
-{
-    [self dismissModalViewControllerAnimated:NO];
-}
-
-#pragma mark -
 #pragma mark Scan processing
 
 - (void)sendWebServiceRequest:(NSString*)ident
 {
     NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
+    
+#warning Change URL
+    completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
@@ -340,6 +332,24 @@
         }
     }
     return validValue;
+}
+
+#pragma mark -
+#pragma mark ZXing delegate methods
+
+- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
+{
+    [self dismissModalViewControllerAnimated:NO];
+    [self setScanResults:result];
+    [self processResults];
+}
+
+- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
+{
+    [self dismissModalViewControllerAnimated:NO];
+#warning Remove test code
+    [self setScanResults:@"IRAP-12-0001"];
+    [self processResults];
 }
 
 #pragma mark -

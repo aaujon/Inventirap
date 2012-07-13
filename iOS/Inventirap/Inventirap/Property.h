@@ -13,6 +13,6 @@
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *value;
 
-- (id) initWithName:(NSString*)propName AndValue:(NSString*)propValue;
+- (id)initWithName:(NSString*)propName AndValue:(NSString*)propValue;
 
 @end

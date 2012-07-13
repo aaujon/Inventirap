@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "Settings.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SettingsViewController ()
 
@@ -37,7 +38,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CALayer *layer = [[self resetButton] layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:10.0];
+    [layer setBorderWidth:1.0];
+    [layer setBorderColor:[[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] CGColor]];
+    
     [[self resetButton] setTitle:NSLocalizedString(@"RESETDEFAULT", nil) forState:UIControlStateNormal];
+    [[self resetButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [[self resetButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
+    [[[self resetButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
+    
     [[self webServiceUrlLabel] setText:NSLocalizedString(@"WEBSERVURL", nil)];
     [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
 }
@@ -61,11 +73,7 @@
 
 - (IBAction)resetButtonAction:(id)sender
 {
-    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"DefaultSettings" ofType:@"plist"];
-    NSMutableDictionary *savedSettings = [[NSMutableDictionary alloc] initWithContentsOfFile: bundle];
-    
-    [[Settings sharedSettings] changeWebServiceUrl:[savedSettings objectForKey:@"WebServiceURL"]];
-    
+    [[Settings sharedSettings] resetSettings];
     [webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
 }
 

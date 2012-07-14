@@ -391,5 +391,6 @@ INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Hillembra
 INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Turner Daniel', 'Administrateur');
 INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Sky Gin', 'Responsable');
 INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Robert Henri', 'Apprenti');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'GROUPE TECHNIQUE', 'Apprenti');
 
 COMMIT;

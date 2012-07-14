@@ -28,30 +28,30 @@ class MaterielsController extends AppController {
 		if (isset($this->data['Materiel'])) {
 			$all = $this->data['Materiel']['s_all'];
 			$this->set('results', $this->Materiel->find('all', array(
-			//Limitation au vue de la taille de la base de donnée
-			'limit' => '0, 100', 
-			'conditions' => array(
-				//Champs spéficiques:
-				'Materiel.designation LIKE' => '%'.$this->data['Materiel']['s_designation'].'%',
-				'Materiel.numero_irap LIKE' => '%'.$this->data['Materiel']['s_numero_irap'].'%',
-				'Materiel.categorie_id LIKE' => '%'.$this->data['Materiel']['s_categorie_id'].'%',
-				'Materiel.sous_categorie_id LIKE' => '%'.$this->data['Materiel']['s_sous_categorie_id'].'%',
-				'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
-				'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
-				//Pour tous les champs:
-				array('OR' => array (
-					'Materiel.designation LIKE' => '%'.$all.'%',
-					'Materiel.numero_irap LIKE' => '%'.$all.'%',
-					'Materiel.description LIKE' => '%'.$all.'%',
-					'Materiel.organisme LIKE' => '%'.$all.'%',
-					'Materiel.fournisseur LIKE' => '%'.$all.'%',
-					'Materiel.numero_commande LIKE' => '%'.$all.'%',
-					'Materiel.nom_responsable LIKE' => '%'.$all.'%',
-					'Materiel.email_responsable LIKE' => '%'.$all.'%',
-					'Materiel.code_comptable LIKE' => '%'.$all.'%',
-					'Materiel.numero_serie LIKE' => '%'.$all.'%',
-					'Materiel.lieu_detail LIKE' => '%'.$all.'%'
-			))))));
+				//Limitation au vue de la taille de la base de donnée
+				'limit' => '0, 100', 
+				'conditions' => array(
+					//Champs spéficiques:
+					'Materiel.designation LIKE' => '%'.$this->data['Materiel']['s_designation'].'%',
+					'Materiel.numero_irap LIKE' => '%'.$this->data['Materiel']['s_numero_irap'].'%',
+					'Materiel.categorie_id LIKE' => '%'.$this->data['Materiel']['s_categorie_id'].'%',
+					'Materiel.sous_categorie_id LIKE' => '%'.$this->data['Materiel']['s_sous_categorie_id'].'%',
+					'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
+					'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
+					//Pour tous les champs:
+					array('OR' => array (
+						'Materiel.designation LIKE' => '%'.$all.'%',
+						'Materiel.numero_irap LIKE' => '%'.$all.'%',
+						'Materiel.description LIKE' => '%'.$all.'%',
+						'Materiel.organisme LIKE' => '%'.$all.'%',
+						'Materiel.fournisseur LIKE' => '%'.$all.'%',
+						'Materiel.numero_commande LIKE' => '%'.$all.'%',
+						'Materiel.nom_responsable LIKE' => '%'.$all.'%',
+						'Materiel.email_responsable LIKE' => '%'.$all.'%',
+						'Materiel.code_comptable LIKE' => '%'.$all.'%',
+						'Materiel.numero_serie LIKE' => '%'.$all.'%',
+						'Materiel.lieu_detail LIKE' => '%'.$all.'%'))
+			))));
 		}
 	}
 	public function delete($id) {

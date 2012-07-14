@@ -1,8 +1,3 @@
-<?php
-/**
- * Scaffold pour les vues par defaut
- */
-?>
 <div class="<?php echo $pluralVar;?> form">
 <?php
 	if ($this->params['action'] == 'add')
@@ -18,6 +13,6 @@
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_form');
+		echo $this->element('menu_form');
 	?>
 </div>

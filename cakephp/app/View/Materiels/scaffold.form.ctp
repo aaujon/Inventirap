@@ -49,11 +49,14 @@
 	
 	$utilisateur = ClassRegistry::init('Utilisateur');
 	echo $this->Form->input('nom_responsable', array(
-			'options' => $utilisateur->getLdapUsers(), 
-			'empty' => 'Choisir un utilisateur', 
-			'selected' => $this->Session->read('UserName')));
-	echo $this->Form->input('email_responsable', array('label' => 'Email du responsable', 
-			'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 'readonly' => true));
+		'options' => $utilisateur->getLdapUsers(), 
+		'empty' => 'Choisir un utilisateur', 
+		'selected' => $this->Session->read('UserName'),
+		'label' => 'Nom du responsable'));
+	echo $this->Form->input('email_responsable', array(
+		'label' => 'Email du responsable', 
+		'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 
+		'readonly' => true));
 	echo $this->Form->hidden('numero_irap');
 	echo $this->Form->end('Valider');
 	
@@ -62,7 +65,7 @@
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_form');
+		echo $this->element('menu_form');
 	?>
 </div>
 <?php

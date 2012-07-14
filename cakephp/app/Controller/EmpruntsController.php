@@ -1,6 +1,7 @@
 <?php
 class EmpruntsController extends AppController {
     public $scaffold;
+    public $helpers = array('Js');
     
     public function beforeFilter() {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');

@@ -6,15 +6,17 @@
 		$materiel = $this->Html->link(${$singularVar}['Materiel']['designation'], array(
 				'controller' => 'materiels', 'action' => 'view', ${$singularVar}['Materiel']['id']));
 		$interneExterne = 'Externe';
-		if (${$singularVar}[$modelClass]['emprunt_interne'] == 1)
+		$lieuStockage = ${$singularVar}[$modelClass]['laboratoire'];
+		if (${$singularVar}[$modelClass]['emprunt_interne'] == 1) {
 			$interneExterne = 'Interne';
+			$lieuStockage = ${$singularVar}[$modelClass]['e_lieu_stockage'].'-'.${$singularVar}[$modelClass]['e_lieu_detail'];
+		}
 			
 		displayElement('Matériel concerné', $materiel);
-		displayElement('Type d\'emprunt', $interneExterne);
 		displayElement('Date de l\'emprunt', ${$singularVar}[$modelClass]['date_emprunt']);
 		displayElement('Date de retour', ${$singularVar}[$modelClass]['date_retour_emprunt']);
-		displayElement('Pièce', ${$singularVar}[$modelClass]['piece']);
-		displayElement('Laboratoire', ${$singularVar}[$modelClass]['laboratoire']);
+		displayElement('Type d\'emprunt', $interneExterne);
+		displayElement('Lieu de stockage', $lieuStockage);
 		displayElement('Responsable', ${$singularVar}[$modelClass]['responsable']);
 		?>
 	</table>
@@ -22,7 +24,7 @@
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_edit');
+		echo $this->element('menu_view');
 	?>
 </div>
 

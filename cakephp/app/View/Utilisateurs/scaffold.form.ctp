@@ -29,6 +29,6 @@
 <div class="actions">
 	<?php 
 		echo $this->element('menu');
-		echo $this->element('tools_form');
+		echo $this->element('menu_form');
 	?>
 </div>

@@ -1,5 +1,5 @@
 <div class="index">
-	<h2><i class="icon-home"></i> Inventirap</h2>
+	<h2><i class="icon-home"></i> Accueil</h2>
 	<p>Bienvenue sur l'inventaire administratif et technique de l'IRAP.</p>
 	<?php
 		$userName = $this->Session->read('LdapUserName');
@@ -10,7 +10,7 @@
 
 			echo $this->Form->create('Utilisateur', array('action' => 'login'));
 			echo $this->Form->input('ldap');
-			echo $this->Form->input('password', array('div' => 'required'));
+			echo $this->Form->input('password', array('div' => 'input required'));
 			echo $this->Form->end('Se connecter');
 		
 			echo '.</p>';

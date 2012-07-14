@@ -1,34 +1,32 @@
 <?php
 class Emprunt extends AppModel {
 	public $name = 'Emprunt';
-	
 	public $belongsTo = array('Materiel');
-	
 			
 	var $validate = array(
 		'materiel_id' => array(
 			'rule' => 'notEmpty',              
 			'message' => 'Le champ doit être rempli.'
 		),
-		'piece' => array(    
-			'valid' => array(            
-				'rule' => 'check_string',         
-				'message' => 'Le champ doit être valide.'        
-			),
-			'checkPieceLaboratoire' => array(
-				'rule' => 'checkPieceLaboratoire',
-				'message' => 'L\'un des deux champs suivant doit être renseigné: Pièce et/ou Laboratoire'
-			)
-		),
 		'laboratoire' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',         
 				'message' => 'Le champ doit être valide.'        
 			), 
-			'checkPieceLaboratoire' => array(
-				'rule' => 'checkPieceLaboratoire',
-				'message' => 'L\'un des deux champs suivant doit être renseigné: Pièce et/ou Laboratoire'
+			'checkLaboratoire' => array(
+				'rule' => 'checkLaboratoire',
+				'message' => 'Le champ doit être rempli pour un emprunt externe.'
 			)    
+		),
+		'e_lieu_detail' => array(    
+			'valid' => array(            
+				'rule' => 'check_string',         
+				'message' => 'Le champ doit être valide.'        
+			),
+			'checkLieu' => array(
+				'rule' => 'checkLieu',
+				'message' => 'Le champ doit être rempli pour un emprunt interne.'
+			)
 		),
 		'responsable' => array(    
 			'valid' => array(            
@@ -62,8 +60,13 @@ class Emprunt extends AppModel {
 		return true;
     }
     
-    function checkPieceLaboratoire() {
-		return (($this->data[$this->name]['piece'] != '') || ($this->data[$this->name]['laboratoire'] != ''));
+    function checkLaboratoire() {
+    	return ((($this->data[$this->name]['emprunt_interne'] == 0) && ($this->data[$this->name]['laboratoire'] != '')) || 
+				($this->data[$this->name]['emprunt_interne'] == 1));
+    }
+    function checkLieu() {
+    	return ((($this->data[$this->name]['emprunt_interne'] == 1) && ($this->data[$this->name]['e_lieu_detail'] != '')) || 
+				($this->data[$this->name]['emprunt_interne'] == 0));
     }
 }
 ?>

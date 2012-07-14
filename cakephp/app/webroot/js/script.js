@@ -34,3 +34,8 @@ function toogleChevron(element) {
 		$(element).addClass('icon-chevron-down');
 	}
 }
+
+function emprunt_interne_externe() {
+	$('#interne').toggle();
+	$('#externe').toggle();		
+}

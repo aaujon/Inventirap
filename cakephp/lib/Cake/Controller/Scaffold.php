@@ -164,7 +164,7 @@ class Scaffold {
 				$this->ScaffoldModel->id = $request->params['pass'][0];
 			}
 			if (!$this->ScaffoldModel->exists()) {
-				throw new NotFoundException(__d('cake', '%s invalide.', Inflector::humanize($this->modelKey)));
+				throw new NotFoundException(__d('cake', '%s est invalide.', $this->cake2fr($this->modelClass)));
 			}
 			$this->ScaffoldModel->recursive = 1;
 			$this->controller->request->data = $this->ScaffoldModel->read();
@@ -231,7 +231,7 @@ class Scaffold {
 					$this->ScaffoldModel->id = $request['pass'][0];
 				}
 				if (!$this->ScaffoldModel->exists()) {
-					throw new NotFoundException(__d('cake', '%s invalide.', Inflector::humanize($this->modelKey)));
+					throw new NotFoundException(__d('cake', '%s est invalide.', $this->cake2fr($this->modelClass)));
 				}
 			}
 
@@ -243,8 +243,8 @@ class Scaffold {
 				if ($this->ScaffoldModel->save($request->data)) {
 					if ($this->controller->afterScaffoldSave($action)) {
 						$message = __d('cake',
-							'Le %1$s a bien été %2$s.',
-							strtolower(Inflector::humanize($this->modelKey)),
+							'%1$s a bien été %2$s.',
+							$this->cake2fr($this->modelKey),
 							$success
 						);
 						return $this->_sendMessage($message);
@@ -302,10 +302,10 @@ class Scaffold {
 			}
 			$this->ScaffoldModel->id = $id;
 			if (!$this->ScaffoldModel->exists()) {
-				throw new NotFoundException(__d('cake', '%s invalide.', Inflector::humanize($this->modelClass)));
+				throw new NotFoundException(__d('cake', '%s est invalide.', $this->cake2fr($this->modelClass)));
 			}
 			if ($this->ScaffoldModel->delete()) {
-				$message = __d('cake', 'Le %1$s (#%2$s) a bien été supprimé.', Inflector::humanize(strtolower($this->modelClass)), $id);
+				$message = __d('cake', '%1$s (#%2$s) a bien été supprimé.', $this->cake2fr($this->modelClass), $id);
 				return $this->_sendMessage($message);
 			} else {
 				$message = __d('cake',
@@ -442,6 +442,21 @@ class Scaffold {
 			}
 		}
 		return $associations;
+	}
+	
+	private function cake2fr($modelKey) {
+		$modelKey = strtolower($modelKey);
+		switch ($modelKey) {
+			case 'souscategorie' : return 'La sous-catégorie';
+			case 'categorie' : return 'La catégorie';
+			case 'groupesthematique' : return 'Le groupe thématique';
+			case 'groupestravail' : return 'Le groupe de travail';
+			case 'suivi' : return 'Le suivi';
+			case 'emprunt' : return 'L\'emprunt';
+			case 'materiel' : return 'Le matériel';
+			case 'utilisateur' : return 'L\'utilisateur';
+		}
+		return 'Le '.$modelKey;
 	}
 
 }

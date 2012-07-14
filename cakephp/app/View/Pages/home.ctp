@@ -24,8 +24,8 @@
 			if ($userAuth >= 3) {
 				//Utilisateur admin/super admin
 				?>
-				<table cellpadding="0" cellspacing="0" style="width: 400px;">
-					<tr><th>Actions</th></tr>
+				<table cellpadding="0" cellspacing="0" style="width: 800px;">
+					<tr><th></th></tr>
 					<tr><td><?php echo $this->Html->link('Voir les matériels à valider', array(
 						'controller' => 'materiels', 'action' => 'index', 'what' => 'toValidate')); ?></td></tr>
 					<tr><td><?php echo $this->Html->link('Voir les matériels à archiver', array(

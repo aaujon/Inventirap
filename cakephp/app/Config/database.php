@@ -69,24 +69,13 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
-
-	public $test = array(
-		'datasource' => 'Database/Mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
-		'prefix' => '',
-		//'encoding' => 'utf8',
-	);
-	
     
 	public $ldap = array (
         'host'		 			=> '192.168.1.65',
         'port'					=> '389',
-		'authenticationType'	=> 'uid',
-        'baseDn'				=> 'dc=irap,dc=omp,dc=eu'
+		'authenticationType'	=> 'cn',
+        'baseDn'				=> 'ou=users,dc=irap,dc=omp,dc=eu',
+        'filter'				=> '(cn=*)'
     );
 	
 }

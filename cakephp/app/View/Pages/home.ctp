@@ -1,24 +1,41 @@
-<h2>Général</h2>
-<table cellpadding="0" cellspacing="0">
-	<tr><th>Actions</th></tr>
-	<tr><td><?php echo $this->Html->link('Gérer les utilisateurs', array(
-		'controller' => 'specialUsers')); ?></td></tr>
-	
-	<tr><td><?php echo $this->Html->link('Gérer les catégories', array(
-		'controller' => 'categories')); ?></td></tr>
-	<tr><td><?php echo $this->Html->link('Gérer les sous-catégories', array(
-		'controller' => 'subCategories')); ?></td></tr>
-</table>	
+<div class="index">
+	<h2><i class="icon-home"></i> Accueil</h2>
+	<p>Bienvenue sur l'inventaire administratif et technique de l'IRAP.</p>
+	<?php
+		$userName = $this->Session->read('LdapUserName');
+		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
+		if (!isset($userName)) {
+			//Non connecté
+			echo '<p>Vous n\'êtes pas connecté, veuillez vous authentifier.';
 
-<h2>Matériel</h2>
-<table cellpadding="0" cellspacing="0">
-	<tr><th>Actions</th></tr>
-	<tr><td><?php echo $this->Html->link('Voir la liste', array(
-		'controller' => 'materials')); ?></td></tr>
-		<tr><td><?php echo $this->Html->link('Recherche', array(
-		'controller' => 'materials', 'action' => 'search')); ?></td></tr>
-	<tr><td><?php echo $this->Html->link('Voir les emprunts', array(
-		'controller' => 'loans')); ?></td></tr>
-	<tr><td><?php echo $this->Html->link('Voir l\'historique', array(
-		'controller' => 'histories')); ?></td></tr>
-</table>
+			echo $this->Form->create('Utilisateur', array('action' => 'login'));
+			echo $this->Form->input('ldap');
+			echo $this->Form->input('password', array('div' => 'input required'));
+			echo $this->Form->end('Se connecter');
+		
+			echo '.</p>';
+		}
+		else {
+			//Utilisateur connecté
+			echo '<p>Vous êtes connecté avec l\'utilisateur <b>' . $userName . '</b> ';
+			echo 'et avec le niveau d\'autentification <b>';
+			echo ClassRegistry::init('Utilisateur')->getRoleFromAuthenticationLevel($userAuth);	
+			echo '</b>.</p>';
+			if ($userAuth >= 3) {
+				//Utilisateur admin/super admin
+				?>
+				<table cellpadding="0" cellspacing="0" style="width: 400px;">
+					<tr><th>Actions</th></tr>
+					<tr><td><?php echo $this->Html->link('Voir les matériels à valider', array(
+						'controller' => 'materiels', 'action' => 'index', 'what' => 'toValidate')); ?></td></tr>
+					<tr><td><?php echo $this->Html->link('Voir les matériels à archiver', array(
+						'controller' => 'materiels', 'action' => 'index', 'what' => 'toBeArchived')); ?></td></tr>
+				</table>	
+				<?php
+			}
+		}
+	?>
+</div>
+<div class="actions">
+	<?php echo $this->element('menu') ?>
+</div>

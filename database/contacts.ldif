@@ -29,7 +29,7 @@ objectclass: top
 sn: Hillembrand
 uid: chillembrand
 uidnumber: 1000
-userpassword: {SASL}chillembrand@IRAP.OMP.EU
+userpassword: ldap
 
 # Entry 3: cn=Daniel,ou=users,dc=irap,dc=omp,dc=eu
 dn: cn=Daniel,ou=users,dc=irap,dc=omp,dc=eu
@@ -45,7 +45,7 @@ objectclass: top
 sn: Turner
 uid: dturner
 uidnumber: 1001
-userpassword: {SASL}dturner@IRAP.OMP.EU
+userpassword: ldap
 
 # Entry 4: cn=Gin,ou=users,dc=irap,dc=omp,dc=eu
 dn: cn=Gin,ou=users,dc=irap,dc=omp,dc=eu
@@ -61,7 +61,7 @@ objectclass: top
 sn: Sky
 uid: gsky
 uidnumber: 1002
-userpassword: {SASL}gsky@IRAP.OMP.EU
+userpassword: ldap
 
 # Entry 5: cn=Henri,ou=users,dc=irap,dc=omp,dc=eu
 dn: cn=Henri,ou=users,dc=irap,dc=omp,dc=eu
@@ -77,7 +77,7 @@ objectclass: top
 sn: Robert
 uid: hrobert
 uidnumber: 1003
-userpassword: {SASL}hrobert@IRAP.OMP.EU
+userpassword: ldap
 
 # Entry 6: cn=Jacques,ou=users,dc=irap,dc=omp,dc=eu
 dn: cn=Jacques,ou=users,dc=irap,dc=omp,dc=eu
@@ -93,7 +93,23 @@ objectclass: top
 sn: Toto
 uid: jtoto
 uidnumber: 1004
-userpassword: {SASL}jtoto@IRAP.OMP.EU
+userpassword: ldap
+
+# Entry 7: cn=Externe,ou=users,dc=irap,dc=omp,dc=eu
+dn: cn=Externe,ou=users,dc=irap,dc=omp,dc=eu
+cn: Externe
+gidnumber: 500
+givenname: Externe
+homedirectory: /home/users/others
+loginshell: /bin/sh
+mail: Externe@irap.fr
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+sn: Externe
+uid: EExterne
+uidnumber: 1005
+userpassword: ldap
 
 # Entry 7: cn=users,ou=users,dc=irap,dc=omp,dc=eu
 dn: cn=users,ou=users,dc=irap,dc=omp,dc=eu

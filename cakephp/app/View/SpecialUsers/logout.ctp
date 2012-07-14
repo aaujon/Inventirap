@@ -1,1 +1,0 @@
-<h1> The logout page </h1>

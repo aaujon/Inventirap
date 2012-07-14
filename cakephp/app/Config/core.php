@@ -32,7 +32,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	Configure::write('debug', 0);
 
 /**
  * Configure the Error handler used to handle errors for your application.  By default
@@ -184,7 +184,7 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9m');
+	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVo-100pui-WwvniR2G0FgaC9m');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
@@ -229,7 +229,7 @@
  * Uncomment this line and correct your server timezone to fix 
  * any date & time related errors.
  */
-	//date_default_timezone_set('UTC');
+	date_default_timezone_set('UTC');
 
 /**
  * Pick the caching engine to use.  If APC is enabled use it.

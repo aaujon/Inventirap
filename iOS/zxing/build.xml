@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Copyright 2007 ZXing authors
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<project name="ZXing" default="release">
+
+  <property file="build.properties"/>
+
+  <target name="release" depends="javadoc">
+    <zip file="ZXing-${version}.zip">
+      <zipfileset dir="." prefix="zxing-${version}">
+        <exclude name="**/.*"/> <!-- exclude hidden files -->
+        <exclude name="**/.svn"/>
+        <exclude name="**/*.iml"/>
+        <include name="AUTHORS"/>
+        <include name="CHANGES"/>
+        <include name="COPYING"/>
+        <include name="NOTICE"/>
+        <include name="build.xml"/>
+        <include name="build.properties"/>
+        <include name="docs/**"/>
+        <include name="actionscript/**"/>
+        <include name="android/**"/>
+        <include name="android-integration/**"/>
+        <include name="androidtest/**"/>
+        <include name="core/**"/>
+        <include name="cpp/**"/>
+        <include name="csharp/**"/>
+        <include name="iphone/**"/>
+        <include name="javase/**"/>
+        <include name="jruby/**"/>
+        <include name="objc/**"/>
+        <include name="symbian/**"/>
+        <include name="zxing.appspot.com/**"/>
+        <include name="zxingorg/**"/>
+      </zipfileset>
+    </zip>
+  </target>
+
+  <target name="javadoc">
+    <mkdir dir="docs/javadoc"/>
+    <javadoc destdir="docs/javadoc"
+             useexternalfile="true"
+             footer="&lt;script type=&quot;text/javascript&quot;&gt; var gaJsHost = ((&quot;https:&quot; == document.location.protocol) ?  &quot;https://ssl.&quot; : &quot;http://www.&quot;); document.write(unescape(&quot;%3Cscript src='&quot; + gaJsHost + &quot;google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E&quot;)); &lt;/script&gt; &lt;script type=&quot;text/javascript&quot;&gt; var pageTracker = _gat._getTracker(&quot;UA-788492-5&quot;); pageTracker._initData(); pageTracker._trackPageview(); &lt;/script&gt;">
+      <sourcepath>
+        <pathelement location="android/src"/>
+        <pathelement location="android/gen"/>        
+        <pathelement location="core/src"/>
+        <pathelement location="javame/src"/>
+        <pathelement location="javase/src"/>
+        <pathelement location="zxingorg/src"/>
+      </sourcepath>
+      <classpath>
+        <pathelement location="${android-home}/platforms/android-10/android.jar"/>
+        <pathelement location="${tomcat-home}/lib/servlet-api.jar"/>
+        <fileset dir="zxingorg/web/WEB-INF/lib">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+    </javadoc>
+  </target>
+
+</project>

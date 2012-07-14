@@ -2,17 +2,12 @@ package fr.upsilon.inventirap;
 
 import java.io.IOException;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 public class RequestActivity extends Activity {
 	private Context context;

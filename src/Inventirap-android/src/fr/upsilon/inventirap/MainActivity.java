@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
         if (server_ip == null) {
         	Editor editor = prefs.edit();
         	//editor.putString(getResources().getString(R.string.SERVER_IP), "http://inventirap.irap.omp.eu/");
-        	editor.putString(getResources().getString(R.string.SERVER_IP), "http://localhost:8080/Inventirap/cakephp/");
+        	editor.putString(getResources().getString(R.string.SERVER_IP), "http://192.168.1.14:8080/Inventirap/cakephp");
         	editor.commit();
     	}
         
@@ -75,40 +75,33 @@ public class MainActivity extends Activity {
 				startActivity(paramIntent);
 			}
 		});
-        
-        
-        
     }
     
     /* result from QR Code detection */
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
     	
         if (requestCode == QRCODE_RESULT) {
-     //       if (resultCode == RESULT_OK) {
-        		String contents = "IRAP-12-0001";
-        		//String contents = "1";
-               // String contents = intent.getStringExtra("SCAN_RESULT");
+            if (resultCode == RESULT_OK) {
+        		//String contents = "IRAP-12-0001";
+                String contents = intent.getStringExtra("SCAN_RESULT");
 //                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 Log.d(this.getClass().getName(), "content : " + contents);
                 
-                /*if (!contents.startsWith("IRAP-")) {
-                	Toast t = Toast.makeText(context, R.string.bad_decode, Toast.LENGTH_LONG);
+                if (!contents.startsWith("IRAP-")) {
+                	Toast t = Toast.makeText(context, R.string.invalid_qr_code, Toast.LENGTH_LONG);
                 	t.show();
                 	return;
-                }*/
-
+                }
                 
                 Intent requestIntent = new Intent(context, RequestActivity.class);
                 requestIntent.putExtra(getString(R.string.DECODED_VALUE), contents);
                 startActivityForResult(requestIntent, REQUEST_RESULT);
                 
-                // Handle successful scan
-          /*  } else if (resultCode == RESULT_CANCELED) {
+            } else if (resultCode == RESULT_CANCELED) {
                 Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
                 toast.show();
                 
-            }*/
-     //   }
+            }
         } else if (requestCode == REQUEST_RESULT) {
         	Toast t;
         	switch(resultCode) {

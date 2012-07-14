@@ -11,5 +11,6 @@
     <string name="json_error">JSON is badly formatted</string>
     <string name="webservice_error">impossible to contact webservice</string>
     <string name="no_such_element">unknown material</string>
+    <string name="invalid_qr_code">Code invalide</string>
 
 </resources>

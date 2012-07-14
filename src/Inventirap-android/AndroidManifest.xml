@@ -5,7 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="10" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
@@ -31,11 +32,12 @@
         	android:name=".ParametersActivity" >
         </activity>
         <activity
+            android:screenOrientation="portrait"
         	android:label="@string/app_name"
         	android:name=".RequestActivity" >
         </activity>
+        
     </application>
     
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

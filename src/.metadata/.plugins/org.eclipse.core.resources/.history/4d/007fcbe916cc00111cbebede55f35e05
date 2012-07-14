@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:gravity="center|center_vertical"
+    android:orientation="vertical"
+    android:background="#ffffff" >
+
+    <Button
+        android:id="@+id/scanButton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/scan" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="center"
+        android:src="@drawable/background" />
+
+    <Button
+        android:id="@+id/paramsButton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/scanButton"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_margin="50dp"
+        android:layout_marginTop="104dp"
+        android:text="@string/params" />
+
+</RelativeLayout>

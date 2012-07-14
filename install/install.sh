@@ -63,4 +63,5 @@ chmod -R 777 ./cakephp/app/webroot/img/
 
 # Ajoute les droits en ecriture pour la generation des documents
 
+mkdir ./cakephp/app/tmp/documents/generator/
 chmod -R 777 ./cakephp/app/tmp/documents/

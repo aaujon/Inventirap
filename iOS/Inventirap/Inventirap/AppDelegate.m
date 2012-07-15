@@ -52,8 +52,8 @@
       [UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0], UITextAttributeTextShadowColor,
       [NSValue valueWithUIOffset:UIOffsetMake(1, 1)], UITextAttributeTextShadowOffset, nil]];
     
-    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
-    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:12.0f/255 green:85.0f/255 blue:144.0f/255 alpha:1.0]];
+	
     [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabBarBackground"]];
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabBarItemSelected"]];
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f]];

@@ -90,7 +90,7 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusArchived($id = null, $from = 'index') {
-		if ($this->Session->read('LdapUserAuthenticationLevel') == 3)
+		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
 			$this->notAuthorized($id, $from);
 			
 		$this->Materiel->id = $id;

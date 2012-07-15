@@ -7,13 +7,11 @@
 		if (!isset($userName)) {
 			//Non connecté
 			echo '<p>Vous n\'êtes pas connecté, veuillez vous authentifier.';
-
 			echo $this->Form->create('Utilisateur', array('action' => 'login'));
 			echo $this->Form->input('ldap');
 			echo $this->Form->input('password', array('div' => 'input required'));
 			echo $this->Form->end('Se connecter');
-		
-			echo '.</p>';
+			echo '</p>';
 		}
 		else {
 			//Utilisateur connecté

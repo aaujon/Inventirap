@@ -18,7 +18,7 @@
 		echo $this->Form->postLink('<i class="icon-inbox"></i>',
 			array('action' => 'statusArchived', $id),
 			array('title' => 'Sortir de l\'inventaire', 'style' => 'margin: 0 2px', 'escape' => false),
-			'Êtes-vous sur de vouloir sortir de l\'inventaire '.$id.' ?');
+			'Êtes-vous sur de vouloir sortir de l\'inventaire '.$nom.' ?');
 	}
 	else if ($statut == 'VALIDATED') {
 		//Les autres ne peuvent que demander la demande d'archivage
@@ -32,6 +32,6 @@
 		echo $this->Form->postLink('<i class="icon-trash"></i>',
 			array('action' => 'delete', $id),
 			array('title' => 'Supprimer', 'style' => 'margin: 0 2px', 'escape' => false),
-			'Êtes-vous sur de supprimer '.$id.' ?');
+			'Êtes-vous sur de supprimer '.$nom.' ?');
 	echo '</td>';
 ?>

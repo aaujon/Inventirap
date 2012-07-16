@@ -55,7 +55,11 @@
 			echo '<td class="smallText">'.$result['Categorie']['nom'].'</td>';
 			echo '<td class="smallText">'.$result['Materiel']['nom_responsable'].'</td>';
 			echo '<td class="smallText">'.$statut.'</td>';
-			echo $this->element('materiel_actions', array('id' => $id, 'statut' => $statut, 'delete' => ($statut == 'CREATED')));
+			echo $this->element('materiel_actions', array(
+				'id' => $id, 
+				'nom' => $result['Materiel']['designation'], 
+				'statut' => $statut, 
+				'delete' => ($statut == 'CREATED')));
 			echo '</tr>';
 		endforeach;
 		echo '</table>';

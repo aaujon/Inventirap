@@ -80,7 +80,8 @@
 				echo $material['Materiel']['status']; 
 			echo '</td>';
 			echo $this->element('materiel_actions', array(
-				'id' => $material['Materiel']['id'], 
+				'id' => $material['Materiel']['id'],
+				'nom' => $material['Materiel']['designation'], 
 				'statut' => $material['Materiel']['status'], 
 				'delete' => ($material['Materiel']['status'] == 'CREATED')));	
 			echo '<tr>';

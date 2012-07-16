@@ -12,7 +12,7 @@
 		<tr><td><?php echo $this->Html->link('Gérer les groupes thématiques', array(
 			'controller' => 'groupes_thematiques', 'sort' => 'nom')); ?></td></tr>
 		<tr><td><?php echo $this->Html->link('Gérer les groupes métiers', array(
-			'controller' => 'groupes_travails', 'sort' => 'nom')); ?></td></tr>
+			'controller' => 'groupes_metiers', 'sort' => 'nom')); ?></td></tr>
 	</table>	
 </div>
 <div class="actions">

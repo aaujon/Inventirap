@@ -20,9 +20,9 @@ class SousCategoriesController extends AppController {
 
 	public function beforeFilter() {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
-		if ($userAuth == 4)
+		if ($userAuth >= 3)
 		$this->LdapAuth->allow('*');
-		elseif ($userAuth == 2 || $userAuth == 3)
+		elseif ($userAuth == 2)
 		$this->LdapAuth->allow('index', 'view', 'add', 'edit', 'getByCategorie');
 		elseif ($userAuth == 1)
 		$this->LdapAuth->allow('index', 'view', 'getByCategorie');

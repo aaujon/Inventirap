@@ -5,8 +5,6 @@
 	$statut = ${$singularVar}[$modelClass]['status'];
 	$administratif = ${$singularVar}[$modelClass]['materiel_administratif'];
 	$technique = ${$singularVar}[$modelClass]['materiel_technique'];
-	$them_groupe = ${$singularVar}['GroupesThematique']['nom'];
-	$trav_groupe = ${$singularVar}['GroupesTravail']['nom'];
 	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 ?>
 <div class="<?php echo $pluralVar;?> view">
@@ -79,37 +77,13 @@
 	else
 		$type = 'Aucun'; 
 
-	//Catégorie/Sous catégorie
-	$categorie = $this->Html->link(${$singularVar}['Categorie']['nom'], array(
-				'controller' => 'categories',
-				'action' => 'view',
-				${$singularVar}['Categorie']['id']));
-	$sousCategorie = $this->Html->link(${$singularVar}['SousCategorie']['nom'], array(
-				'controller' => 'sous_categories',
-				'action' => 'view',
-				${$singularVar}['SousCategorie']['id']));
 				
-	//Gestion groupe thématique/travail
-	$groupeThematique = '';
-	$groupeTravail = '';
-	if ($them_groupe != 'N/A')
-		$groupeThematique = $this->Html->link($them_groupe, array(
-				'controller' => 'groupes_thematiques',
-				'action' => 'view',
-				${$singularVar}['GroupesThematique']['id']));
-	if ($trav_groupe != 'N/A')
-		$groupeTravail = $this->Html->link($trav_groupe, array(
-				'controller' => 'groupes_travails',
-				'action' => 'view',
-				${$singularVar}['GroupesTravail']['id']));
-
-
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
 	displayElement('Type du matériel', $type);
-	displayElement('Catégorie', $categorie);
-	displayElement('Sous catégorie', $sousCategorie);
-	displayElement('Groupe thématique', $groupeThematique);
-	displayElement('Groupe de travail', $groupeTravail);
+	displayElement('Catégorie', ${$singularVar}['Categorie']['nom']);
+	displayElement('Sous catégorie', ${$singularVar}['SousCategorie']['nom']);
+	displayElement('Groupe thématique', ${$singularVar}['GroupesThematique']['nom']);
+	displayElement('Groupe de travail', ${$singularVar}['GroupesTravail']['nom']);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Statut', $statut);
 	if ($userAuth >= 3) {

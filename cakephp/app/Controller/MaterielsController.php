@@ -76,7 +76,7 @@ class MaterielsController extends AppController {
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
 		$this->logInventirap($id);
-		$this->Session->setFlash('La demande d\'archivage du matériel a bien été demandé.');
+		$this->Session->setFlash('La demande de sortie d\'inventaire a bien été demandé.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
@@ -98,7 +98,7 @@ class MaterielsController extends AppController {
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
 		$this->logInventirap($id);
-		$this->Session->setFlash('Le matériel a bien été archivé.');
+		$this->Session->setFlash('Le matériel a bien été sorti de l\'inventaire.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 

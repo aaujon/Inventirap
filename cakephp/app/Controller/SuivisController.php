@@ -4,7 +4,7 @@ class SuivisController extends AppController {
     
     public function beforeFilter() {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
-		if ($userAuth >= 1)
+		if ($userAuth > 1)
 			$this->LdapAuth->allow('*');
 		elseif ($userAuth == 1)
 			$this->LdapAuth->allow('index', 'view');

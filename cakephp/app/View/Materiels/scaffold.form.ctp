@@ -32,7 +32,7 @@
 	echo $this->Form->input('date_acquisition', array('label' => 'Date d\'acquisition'));
 	echo $this->Form->input('numero_serie', array('label' => 'Numéro de série'));
 	echo $this->Form->input('groupes_thematique_id', array('label' => 'Groupe thématique', 'style' => 'width: 100px'));
-	echo $this->Form->input('groupes_travail_id', array('label' => 'Groupe de travail', 'style' => 'width: 100px'));
+	echo $this->Form->input('groupes_travail_id', array('label' => 'Groupe métier', 'style' => 'width: 100px'));
 	
 	$utilisateur = ClassRegistry::init('Utilisateur');
 	echo $this->Form->input('nom_responsable', array(

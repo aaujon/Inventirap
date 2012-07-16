@@ -11,7 +11,7 @@
 			'controller' => 'sous_categories', 'sort' => 'nom')); ?></td></tr>
 		<tr><td><?php echo $this->Html->link('Gérer les groupes thématiques', array(
 			'controller' => 'groupes_thematiques', 'sort' => 'nom')); ?></td></tr>
-		<tr><td><?php echo $this->Html->link('Gérer les groupes de travail', array(
+		<tr><td><?php echo $this->Html->link('Gérer les groupes métiers', array(
 			'controller' => 'groupes_travails', 'sort' => 'nom')); ?></td></tr>
 	</table>	
 </div>

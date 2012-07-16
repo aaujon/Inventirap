@@ -83,7 +83,7 @@
 	displayElement('Catégorie', ${$singularVar}['Categorie']['nom']);
 	displayElement('Sous catégorie', ${$singularVar}['SousCategorie']['nom']);
 	displayElement('Groupe thématique', ${$singularVar}['GroupesThematique']['nom']);
-	displayElement('Groupe de travail', ${$singularVar}['GroupesTravail']['nom']);
+	displayElement('Groupe métier', ${$singularVar}['GroupesTravail']['nom']);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Statut', $statut);
 	if ($userAuth >= 3) {

@@ -104,10 +104,10 @@
 
 
 <h3 id="t_suivis" style="cursor: pointer;">
-	<i class="icon-chevron-up" style="font-size: 14px;" id="i_suivis"></i> 
+	<i class="icon-chevron-down" style="font-size: 14px;" id="i_suivis"></i> 
 	<span style="text-decoration: underline;">Suivi(s) du matériel (<?php echo sizeof(${$singularVar}['Suivi']); ?>)</span>
 </h3>
-<div id="suivis" style="margin-bottom: 20px; display: none;">
+<div id="suivis" style="margin-bottom: 20px;">
 	<?php if (sizeof(${$singularVar}['Suivi']) == 0) { echo 'Aucun suivi pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 
@@ -137,16 +137,10 @@
 
 
 <h3 id="t_emprunts" style="cursor: pointer;">
-	<i class="icon-chevron-up" style="font-size: 14px;" id="i_emprunts"></i> 
+	<i class="icon-chevron-down" style="font-size: 14px;" id="i_emprunts"></i> 
 	<span style="text-decoration: underline;">Emprunt(s) du matériel (<?php echo sizeof(${$singularVar}['Emprunt']); ?>)</span>
 </h3>
-<div id="emprunts" style="display: none;">
-	<?php
-	echo $this->Html->link('Nouvel emprunt', array(
-				'controller' => 'emprunts',
-				'action' => 'add',
-				${$singularVar}[$modelClass][$primaryKey]), array('class' => 'actions'));
-				?>
+<div id="emprunts">
 	<?php if (sizeof(${$singularVar}['Emprunt']) == 0) { echo 'Aucun emprunt pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 

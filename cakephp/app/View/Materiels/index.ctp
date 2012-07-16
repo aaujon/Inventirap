@@ -29,8 +29,8 @@
 				array('title' => 'Tous', 'style' => 'margin-right: 5px', 'escape' => false));
 		echo $this->Html->link($b_val.' À valider', array('action' => 'index', 'what' => 'toValidate'), 
 				array('title' => 'À valider', 'style' => 'margin-right: 5px', 'escape' => false));
-		echo $this->Html->link($b_arc.' À archiver', array('action' => 'index', 'what' => 'toBeArchived'), 
-				array('title' => 'À archiver', 'style' => 'margin-right: 15px', 'escape' => false));
+		echo $this->Html->link($b_arc.' À sortir', array('action' => 'index', 'what' => 'toBeArchived'), 
+				array('title' => 'À sortir de l\'inventaire', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
 	echo $this->Html->link('<i class="icon-search"></i> Rechercher', array('action' => 'find'), 
 				array('title' => 'Rechercher', 'escape' => false));

@@ -26,21 +26,6 @@
 		echo $this->Form->input('materiel_technique', array('label' => 'Matériel non inventoriable et technique'));
 	}
 	echo $this->Form->input('description');
-	if ($userAuth >= 3) {
-		echo '<div style="border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; margin-bottom: 0; background: #EEE;"><span style="font-size: 9px; color: red;">Partie administrative</span>';
-		echo $this->Form->input('organisme', array(
-			'options' => array('UPS'=> 'UPS', 'CNRS' => 'CNRS'), 'style' => 'width: 100px'));
-		echo $this->Form->input('fournisseur');
-		if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
-			echo $this->Form->input('prix_ht', array('label' => 'Prix HT (€)'));
-			echo $this->Form->input('eotp', array('label' => 'EOTP (Centre de crédit)'));
-		}
-		echo $this->Form->input('numero_commande', array('label' => 'Numéro de commande'));
-		echo $this->Form->input('code_comptable', array('label' => 'Code comptable'));
-		echo $this->Form->input('ref_existante', array('label' => 'Référence existante'));
-		echo '</div>';
-	}
-	
 	echo $this->Form->input('lieu_stockage', array('label' => 'Lieu de stockage', 
 		'options' => array('B'=>'Belin', 'R'=>'Roche', 'T'=>'Tarbes', 'C'=>'CNES', 'A'=>'Autre'), 'style' => 'width: 100px'));
 	echo $this->Form->input('lieu_detail', array('label' => 'Lieu de stockage (pièce)'));
@@ -59,6 +44,21 @@
 		'label' => 'Email du responsable', 
 		'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 
 		'readonly' => true));
+	if ($userAuth == 3) {
+		echo '<div style="border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; margin-bottom: 0; background: #EEE;"><span style="font-size: 9px; color: red;">Partie administrative</span>';
+		echo $this->Form->input('organisme', array(
+			'options' => array('UPS'=> 'UPS', 'CNRS' => 'CNRS'), 'style' => 'width: 100px'));
+		echo $this->Form->input('fournisseur');
+		if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
+			echo $this->Form->input('prix_ht', array('label' => 'Prix HT (€)'));
+			echo $this->Form->input('eotp', array('label' => 'EOTP (Centre de crédit)'));
+		}
+		echo $this->Form->input('numero_commande', array('label' => 'Numéro de commande'));
+		echo $this->Form->input('code_comptable', array('label' => 'Code comptable'));
+		echo $this->Form->input('ref_existante', array('label' => 'Référence existante'));
+		echo '</div>';
+	}
+		
 	echo $this->Form->hidden('numero_irap');
 	echo $this->Form->end('Valider');
 	

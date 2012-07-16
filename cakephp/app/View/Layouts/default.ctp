@@ -23,7 +23,7 @@
 				'url' => '/')); ?>
 			<div class="user">
 				<?php
-					$userName = $this->Session->read('LdapUserName');
+					$userName = $this->Session->read('UserName');
 					if (isset($userName)) {
 						echo 'Bienvenue '.$userName.'<br/>';
 						echo $this->Html->link('Se déconnecter', array('controller' => 'Utilisateurs', 'action' => 'logout')); 

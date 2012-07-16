@@ -20,7 +20,7 @@
 			'empty' => 'Choisir un utilisateur', 
 			'disabled' => true,
 			'div' => 'input required'));
-	echo $this->Form->input('role', array('options' => array(
+	echo $this->Form->input('role', array('label' => 'Rôle', 'options' => array(
 		'Apprenti' => 'Apprenti', 
 		'Responsable' => 'Responsable', 
 		'Administrateur' => 'Administrateur', 

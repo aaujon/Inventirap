@@ -15,7 +15,6 @@
 	echo $this->Form->input('date_prochain_controle', array('label' => 'Date du prochain contrôle'));
 	echo $this->Form->input('type_intervention', array('label' => 'Type d\'intervention'));
 	echo $this->Form->input('organisme', array('label' => 'Organisme'));
-	echo $this->Form->input('frequence', array('label' => 'Fréquence (en année)'));
 	echo $this->Form->input('commentaire', array('label' => 'Commentaire'));	
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>

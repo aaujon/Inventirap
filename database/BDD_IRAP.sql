@@ -45,6 +45,7 @@ DROP TABLE IF EXISTS `mydb`.`groupes_thematiques` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`groupes_thematiques` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
+  `description` VARCHAR(100) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -57,6 +58,7 @@ DROP TABLE IF EXISTS `mydb`.`groupes_travails` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`groupes_travails` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
+  `description` VARCHAR(100) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -368,13 +370,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (1, 'N/A');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (2, 'PSE');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (3, 'MICMAC');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (4, 'GAHEC');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (5, 'SISU');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (6, 'SG');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (7, 'GPPS');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (1, 'N/A', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (2, 'PSE', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (3, 'MICMAC', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (4, 'GAHEC', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (5, 'SISU', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (6, 'SG', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (7, 'GPPS', NULL);
 
 COMMIT;
 
@@ -383,13 +385,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (1, 'N/A');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (2, 'GEDI');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (3, 'GT2I');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (4, 'GI');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (5, 'GACL');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (6, 'GGPAQ');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (7, 'GM');
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`, `description`) VALUES (1, 'N/A', NULL);
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`, `description`) VALUES (2, 'GEDI', NULL);
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`, `description`) VALUES (3, 'GT2I', NULL);
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`, `description`) VALUES (4, 'GI', NULL);
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`, `description`) VALUES (5, 'GACL', NULL);
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`, `description`) VALUES (6, 'GGPAQ', NULL);
+INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`, `description`) VALUES (7, 'GM', NULL);
 
 COMMIT;
 

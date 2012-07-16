@@ -31,7 +31,7 @@
 	if ($delete)
 		echo $this->Form->postLink('<i class="icon-trash"></i>',
 			array('action' => 'delete', $id),
-			array('style' => 'margin: 0 2px', 'escape' => false),
+			array('title' => 'Supprimer', 'style' => 'margin: 0 2px', 'escape' => false),
 			'Êtes-vous sur de supprimer '.$id.' ?');
 	echo '</td>';
 ?>

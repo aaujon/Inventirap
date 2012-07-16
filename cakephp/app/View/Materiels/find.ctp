@@ -19,6 +19,7 @@
 	    echo $this->Form->input('s_designation', array('label' => 'Designation'));
 	    echo $this->Form->input('s_numero_irap', array('label' => 'N° IRAP')); 
 	    echo $this->Form->input('s_responsable', array('label' => 'Responsable')); 
+	    echo $this->Form->input('s_ref_existante', array('label' => 'Référence existante')); 
 	    echo $this->Form->input('s_categorie_id', 
 	    	array('label' => 'Catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_categories, 'style' => 'width: 200px')); 
 	    echo $this->Form->input('s_sous_categorie_id', 

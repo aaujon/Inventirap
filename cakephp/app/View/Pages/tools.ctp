@@ -1,7 +1,7 @@
 <div class="index">
 	<h2><i class="icon-wrench"></i> Outils</h2>
 	<table cellpadding="0" cellspacing="0">
-		<tr><th>Actions</th></tr>
+		<tr><th></th></tr>
 		<?php if ($this->Session->read('LdapUserAuthenticationLevel') == 4) { ?>
 		<tr><td><?php echo $this->Html->link('Gérer les utilisateurs', array(
 			'controller' => 'utilisateurs', 'sort' => 'nom')); ?></td></tr><?php } ?>

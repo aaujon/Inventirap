@@ -123,7 +123,7 @@
 }
 
 #pragma mark -
-#pragma mark Scan and more
+#pragma mark Buttons actions and parsing
 
 - (void)customizeButtonLayer:(CALayer*)layer
 {
@@ -178,7 +178,7 @@
 }
 
 - (void) parseJsonData
-{    
+{
     @try {
         NSError *error = nil;
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:[self jsonData] options:kNilOptions error:&error];
@@ -221,7 +221,7 @@
         [[self informationViewController] setDetailedProduct:detailedProduct];
         [[self informationViewController] displaySimpleProduct];
         
-        dispatch_async(kMainQueue, ^{
+        dispatch_sync(kMainQueue, ^{
             [[[self informationViewController] tableView] scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
             [[[self informationViewController] navigationItem] setTitle : [simpleProduct name]];
             
@@ -231,32 +231,17 @@
     }
     @catch (NSException *exception) {
         NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
-        dispatch_async(kMainQueue, ^{
+        dispatch_sync(kMainQueue, ^{
             [[self informationLabel] setTextColor: [UIColor redColor]];
             [[self informationLabel] setText:NSLocalizedString(@"ERRORPARSINGRES", nil)];
         });
     }
     @finally {
-        dispatch_async(kMainQueue, ^{
+        dispatch_sync(kMainQueue, ^{
             [[self applicationActivity] stopAnimating];
             [[self scanButton] setEnabled:true];
         });
     }
-}
-
-#pragma mark -
-#pragma mark ZXing delegate methods
-
-- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
-{
-    [self dismissModalViewControllerAnimated:NO];
-    [self setScanResults:result];
-    [self processResults];
-}
-
-- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
-{
-    [self dismissModalViewControllerAnimated:NO];
 }
 
 #pragma mark -
@@ -265,7 +250,6 @@
 - (void)sendWebServiceRequest:(NSString*)ident
 {
     NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
     [self setConnection:[[NSURLConnection alloc] initWithRequest:request delegate:self]];
@@ -340,6 +324,21 @@
         }
     }
     return validValue;
+}
+
+#pragma mark -
+#pragma mark ZXing delegate methods
+
+- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
+{
+    [self dismissModalViewControllerAnimated:NO];
+    [self setScanResults:result];
+    [self processResults];
+}
+
+- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
+{
+    [self dismissModalViewControllerAnimated:NO];
 }
 
 #pragma mark -

@@ -32,8 +32,8 @@
 			array('action' => 'statusValidated', $id, 'view'), 
 			array('title' => 'Valider', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
-    else if (($statut == 'VALIDATED' || $statut == 'TOBEARCHIVED') && $userAuth >= 3) {
-    	//Admin/Super admin peuvent archiver matériel
+    else if (($statut == 'VALIDATED' || $statut == 'TOBEARCHIVED') && $userAuth == 3) {
+    	//Admin peut archiver matériel
 		echo $this->Form->postLink('<i class="icon-inbox"></i> Archiver le matériel',
 			array('action' => 'statusArchived', $id, 'view'), 
 			array('title' => 'Archiver', 'style' => 'margin-right: 15px', 'escape' => false),

@@ -16,6 +16,8 @@
 @interface InformationViewController ()
 
 @property (nonatomic) Boolean isSimpleProductDisplayed;
+@property (nonatomic, retain) UIImage *navigationBarButtonMore;
+@property (nonatomic, retain) UIImage *navigationBarButtonLess;
 
 @end
 
@@ -46,12 +48,21 @@
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ViewBackground"]];
     [tempImageView setFrame:self.tableView.frame]; 
     [self.tableView setBackgroundView:tempImageView];
+	
+	[self setNavigationBarButtonMore:[UIImage imageNamed:@"navigationBarButtonMore"]];
+	[self setNavigationBarButtonLess:[UIImage imageNamed:@"navigationBarButtonLess"]];
     
-    UIBarButtonItem *detailsButton = [[UIBarButtonItem alloc] 
-                                   initWithTitle:NSLocalizedString(@"MORE", nil)                                            
+    UIBarButtonItem *detailsButton ;/* = [[UIBarButtonItem alloc]
+                                   initWithTitle:NSLocalizedString(@"MORE", nil)
                                    style:UIBarButtonItemStyleBordered 
                                    target:self 
-                                   action:@selector(detailsButtonAction)];
+                                   action:@selector(detailsButtonAction)];*/
+	
+	detailsButton = [[UIBarButtonItem alloc] initWithImage:[self navigationBarButtonMore]
+													style:UIBarButtonItemStyleBordered
+													target:self
+													action:@selector(detailsButtonAction)];
+	
     self.navigationItem.rightBarButtonItem = detailsButton;
     
     [self setIsSimpleProductDisplayed:YES];
@@ -87,7 +98,7 @@
 - (void)displaySimpleProduct
 {
     [self setSelectedProduct:[self simpleProduct]];
-    [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"MORE", nil)];
+    [[[self navigationItem] rightBarButtonItem] setImage:[self navigationBarButtonMore]];
     [self setIsSimpleProductDisplayed:YES];
     [self.tableView reloadData];
     [self animateTransition];
@@ -96,7 +107,7 @@
 - (void)displayDetailedProduct
 {
     [self setSelectedProduct:[self detailedProduct]];
-    [[[self navigationItem] rightBarButtonItem] setTitle:NSLocalizedString(@"LESS", nil)];
+    [[[self navigationItem] rightBarButtonItem] setImage:[self navigationBarButtonLess]];
     [self setIsSimpleProductDisplayed:NO];
     [self.tableView reloadData];
     [self animateTransition];
@@ -134,6 +145,7 @@
     NSString *label = [[[self selectedProduct] propertyAtIndex:indexPath.row ForSection:[indexPath section]] name];
     NSString *description = [[[self selectedProduct] propertyAtIndex:indexPath.row ForSection:[indexPath section]] value];
     
+	[cell.nameLabel setTextColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0]];
     cell.nameLabel.text = label;
     cell.descriptionLabel.text = description;
 

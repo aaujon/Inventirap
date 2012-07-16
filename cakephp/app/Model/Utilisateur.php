@@ -2,7 +2,9 @@
 
 class Utilisateur extends AppModel {
 	var $name = 'Utilisateur';
-	var $displayField = 'ldap';
+	var $displayField = 'nom';
+	
+	public $belongsTo = array('GroupesTravail');
 	
 	private $acceptedRoles = array ('Apprenti', 'Responsable', 'Administrateur', 'Super Administrateur');
 	
@@ -15,13 +17,13 @@ class Utilisateur extends AppModel {
 	}
 	
 	public function getAuthenticationLevelFromRole($role) {
-		if(strcmp($role, 'Apprenti') == 0)
+		if ($role == 'Apprenti')
 			return 1;
-		elseif (strcmp($role, 'Responsable') == 0)
+		elseif ($role == 'Responsable')
 			return 2;
-		elseif (strcmp($role, 'Administrateur') == 0)
+		elseif ($role == 'Administrateur')
 			return 3;
-		elseif (strcmp($role, 'Super Administrateur') == 0)
+		elseif ($role == 'Super Administrateur')
 			return 4;
 		return 0;
 	}
@@ -57,16 +59,13 @@ class Utilisateur extends AppModel {
 	}
 	
 	var $validate = array(
-        'ldap' => array(
+        'nom' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'Le champ ldap doit être rempli.'
-                )
-                ),
+                'message' => 'Le nom d\'utilisateur doit être rempli.')),
        	'role' => array(
                 'rule' => array('customValidation'),
-                'message' => 'Le champ role doit être valide.'
-                )
+                'message' => 'Le champ role doit être valide.')
 	);
 }
 ?>

@@ -1,8 +1,7 @@
 <?php
 class Materiel extends AppModel {
 	public $name = 'Materiel';
-	
-	var $virtualFields = array('full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
+	public $virtualFields = array('full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
 	public $displayField = 'designation';
 	
 	public $belongsTo = array('Categorie', 'SousCategorie', 'GroupesThematique', 'GroupesTravail');

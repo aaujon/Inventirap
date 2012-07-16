@@ -128,7 +128,14 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
   `role` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) )
+  `groupes_travail_id` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_utilisateurs_groupes_travails1` (`groupes_travail_id` ASC) ,
+  CONSTRAINT `fk_utilisateurs_groupes_travails1`
+    FOREIGN KEY (`groupes_travail_id` )
+    REFERENCES `mydb`.`groupes_travails` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -388,9 +395,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Hillembrand Cedric', 'Super Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Turner Daniel', 'Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Sky Gin', 'Responsable');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Robert Henri', 'Apprenti');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Hillembrand Cedric', 'Super Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Turner Daniel', 'Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Sky Gin', 'Responsable', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Robert Henri', 'Apprenti', 1);
 
 COMMIT;

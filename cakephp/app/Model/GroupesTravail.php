@@ -3,7 +3,7 @@ class GroupesTravail extends AppModel {
 	public $name = 'GroupesTravail';
 	public $displayField = 'nom';
 
-	var $hasMany = 'Materiel';
+	var $hasMany = array('Materiel', 'Utilisateur');
 	
 	var $validate = array(
 		'nom' => array(        

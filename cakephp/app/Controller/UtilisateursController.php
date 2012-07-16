@@ -6,25 +6,29 @@ class UtilisateursController extends AppController {
 	public function login() {
 		if ($this->request->is('post')) {
 			// The user exists into the ldap server
-			if($this->LdapAuth->connection($this->request))
-			{
-				// Save his name and authentification level into a session variable
-				$this->Session->write('LdapUserName', $this->request->data['Utilisateur']['ldap']);
+			if($this->LdapAuth->connection($this->request)) {
+				$ldap = $this->request->data['Utilisateur']['ldap'];
+				$name = $this->LdapAuth->getUserName();
+			
+				// Save his name and authentification level into a session variable			
+				$this->Session->write('LdapUserName', $ldap);
 				$this->Session->write('LdapUserAuthenticationLevel', 1);
-				$this->Session->write('UserName', $this->LdapAuth->getUserName());
+				$this->Session->write('UserName', $name);
 				$this->Session->write('LdapUserMail', 
-					ClassRegistry::init('Utilisateur')->getEmailFromLdapName($this->Session->read('LdapUserName')));
+					ClassRegistry::init('Utilisateur')->getEmailFromLdapName($ldap));
 				
-				$users = $this->Utilisateur->find('all', array('conditions' => array('nom' => $this->Session->read('UserName'))));
+				$users = $this->Utilisateur->find('all', array('conditions' => 
+					array('Utilisateur.nom' => $name)));
+				$this->Session->setFlash($users[0]['Utilisateur']['role']);
 				if(count($users) == 1)
 					// Update his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', 
 						$this->Utilisateur->getAuthenticationLevelFromRole($users[0]['Utilisateur']['role']));
-				CakeLog::write('inventirap', 'Logged in : ' . $this->Session->read('LdapUserName'));
-				$this->Session->setFlash('Connexion réussie.');
+				CakeLog::write('inventirap', 'Logged in : ' . $name);
+				//$this->Session->setFlash('Connexion réussie.');
 				$this->redirect('/');
 			} else {
-				CakeLog::write('inventirap', 'Invalid login : ' . $this->Session->read('LdapUserName'));
+				CakeLog::write('inventirap', 'Invalid login');
 				$this->Session->setFlash(__('Nom d\'utilisateur ou mot de passe invalide.'));
 				$this->redirect('/');
 			}

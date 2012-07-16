@@ -12,17 +12,20 @@
 		echo $this->Form->input('nom', array(
 			'options' => $utilisateur->getLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
-			'selected' => ''));
+			'selected' => '',
+			'div' => 'input required'));
 	else 
 		echo $this->Form->input('nom', array(
 			'options' => $utilisateur->getLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
-			'disabled' => true));
+			'disabled' => true,
+			'div' => 'input required'));
 	echo $this->Form->input('role', array('options' => array(
 		'Apprenti' => 'Apprenti', 
 		'Responsable' => 'Responsable', 
 		'Administrateur' => 'Administrateur', 
 		'Super Administrateur' => 'Super Administrateur')));
+	echo $this->Form->input('groupes_travail_id', array('label' => 'Groupe de travail'));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>

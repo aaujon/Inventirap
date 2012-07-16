@@ -305,7 +305,7 @@ class Scaffold {
 				throw new NotFoundException(__d('cake', '%s est invalide.', $this->cake2fr($this->modelClass)));
 			}
 			if ($this->ScaffoldModel->delete()) {
-				$message = __d('cake', '%1$s (#%2$s) a bien été supprimé.', $this->cake2fr($this->modelClass), $id);
+				$message = __d('cake', '%1$s a bien été supprimé.', $this->cake2fr($this->modelClass));
 				return $this->_sendMessage($message);
 			} else {
 				$message = __d('cake',

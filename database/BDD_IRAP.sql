@@ -127,6 +127,8 @@ DROP TABLE IF EXISTS `mydb`.`utilisateurs` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
+  `login` VARCHAR(45) NULL ,
+  `email` VARCHAR(45) NULL ,
   `role` VARCHAR(45) NULL ,
   `groupes_travail_id` INT NULL ,
   PRIMARY KEY (`id`) ,
@@ -396,9 +398,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Hillembrand Cedric', 'Super Administrateur', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Turner Daniel', 'Administrateur', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Sky Gin', 'Responsable', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`, `groupes_travail_id`) VALUES (NULL, 'Robert Henri', 'Apprenti', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_travail_id`) VALUES (NULL, 'Hillembrand Cedric', NULL, NULL, 'Super Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_travail_id`) VALUES (NULL, 'Turner Daniel', NULL, NULL, 'Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_travail_id`) VALUES (NULL, 'Sky Gin', NULL, NULL, 'Responsable', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_travail_id`) VALUES (NULL, 'Robert Henri', NULL, NULL, 'Apprenti', 1);
 
 COMMIT;

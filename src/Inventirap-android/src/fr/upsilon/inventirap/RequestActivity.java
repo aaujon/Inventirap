@@ -36,7 +36,7 @@ public class RequestActivity extends Activity {
 				try {
 					result = WebServicesTools.getXML(context, server_ip, decoded_value);
 					Log.d("", "get " + result);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					setResult(MainActivity.REQUEST_BAD_ADDRESS);
                 	finish();
 				}

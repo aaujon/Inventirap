@@ -18,7 +18,7 @@ public class WebServicesTools {
 	public static JSONObject jsonObj;
 	private static String WEBSERVICE_ADDRESS = "/ServicesWeb/materiel/";
 
-	public static String getXML(Context context, String url, String content) throws IOException {
+	public static String getXML(Context context, String url, String content) throws IOException, IllegalArgumentException {
 		String line = null;
 		
 		DefaultHttpClient httpClient = new DefaultHttpClient();

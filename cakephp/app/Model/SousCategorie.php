@@ -16,6 +16,12 @@ class SousCategorie extends AppModel {
 				'rule' => 'check_string',              
 				'message' => 'Le champ doit être valide'        
 			),      
+		),
+		'categorie_id' => array(        
+			'required' => array(            
+				'rule' => 'notEmpty',              
+				'message' => 'Le champ doit être rempli.'         
+			)    
 		)
 	);
 }

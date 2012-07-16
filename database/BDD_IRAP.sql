@@ -177,7 +177,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`emprunts` (
   `laboratoire` VARCHAR(45) NULL ,
   `e_lieu_stockage` VARCHAR(45) NULL ,
   `e_lieu_detail` VARCHAR(45) NULL ,
-  `responsable` VARCHAR(45) NULL ,
+  `nom_responsable` VARCHAR(45) NULL ,
+  `email_responsable` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_technical_materials_internal_loans_copy1_admi_materials1` (`materiel_id` ASC) ,
   CONSTRAINT `fk_technical_materials_internal_loans_copy1_admi_materials1`

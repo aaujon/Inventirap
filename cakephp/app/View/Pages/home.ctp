@@ -26,7 +26,7 @@
 					<tr><th></th></tr>
 					<tr><td><?php echo $this->Html->link('Voir les matériels à valider', array(
 						'controller' => 'materiels', 'action' => 'index', 'what' => 'toValidate')); ?></td></tr>
-					<tr><td><?php echo $this->Html->link('Voir les matériels à archiver', array(
+					<tr><td><?php echo $this->Html->link('Voir les matériels à sortir de l\'inventaire', array(
 						'controller' => 'materiels', 'action' => 'index', 'what' => 'toBeArchived')); ?></td></tr>
 				</table>	
 				<?php

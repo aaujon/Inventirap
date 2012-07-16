@@ -2,18 +2,14 @@ package fr.upsilon.inventirap;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class ParametersActivity extends Activity {
-	private final int QRCODE_RESULT = 0;
 	
 	private Context context;
 	private EditText serverEditText;
@@ -41,9 +37,13 @@ public class ParametersActivity extends Activity {
         	// get server ip
         	String server_ip = serverEditText.getText().toString();
         	
+        	// check http://
+        	if (!server_ip.startsWith("http://"))
+        		server_ip = "http://"+server_ip;
+        	
         	// save server addr in preferences
             Log.d(this.getClass().getName(), "back button pressed, save prefs.");
-            Log.d(this.getClass().getName(), "servier ip : "+server_ip);
+            Log.d(this.getClass().getName(), "server ip : "+server_ip);
             
             Editor editor = prefs.edit();
             

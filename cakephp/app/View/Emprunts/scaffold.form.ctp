@@ -56,11 +56,11 @@
 	?>
 </div>
 <?php
-$this->Js->get('#MaterielNomResponsable')->event('change', 
+$this->Js->get('#EmpruntNomResponsable')->event('change', 
 	'$.ajax({
-		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#MaterielNomResponsable").val()
+		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#EmpruntNomResponsable").val()
 	}).done(function(data) { 
-		$("#MaterielEmailResponsable").val(data)
+		$("#EmpruntEmailResponsable").val(data)
 	})');
 echo $this->Js->writeBuffer();
 ?>

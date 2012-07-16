@@ -56,6 +56,55 @@ class MaterielsController extends AppController {
 			))));
 		}
 	}
+	
+	function export() {
+		ini_set('max_execution_time', 600);	
+		
+		$filename = "export_".date("Y.m.d").".csv";
+		$csv_file = fopen('php://output', 'w');
+	
+		header('Content-type: application/csv; charset=UTF-8');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
+	
+		$header_row = array(
+			"id", "Désignation", "Catégorie", "Sous catégorie", "Numéro IRAP", "Description", "Organisme", 
+			"Mat. administratif", "Mat. technique", "Statut", "Date d'acquisition", "Fournisseur", "Prix HT", 
+			"EOTP", "Numéro de commande", "Code comptable", "Numéro de série", "Grp. thématique", "Grp. métier", 
+			"Ref. existante", "Lieu de stockage", "Nom responsable", "Email responsable");
+		fputcsv($csv_file,$header_row,',','"');
+		
+		$results = $this->Materiel->find('all');
+		foreach($results as $result) {
+			$row = array(
+				utf8_encode($result['Materiel']['id']),
+				$result['Materiel']['designation'],
+				$result['Categorie']['nom'],
+				$result['SousCategorie']['nom'],
+				$result['Materiel']['numero_irap'],
+				$result['Materiel']['description'],
+				$result['Materiel']['organisme'],
+				$result['Materiel']['materiel_administratif'],
+				$result['Materiel']['materiel_technique'],
+				$result['Materiel']['status'],
+				$result['Materiel']['date_acquisition'],
+				$result['Materiel']['fournisseur'],
+				$result['Materiel']['prix_ht'],
+				$result['Materiel']['eotp'],
+				$result['Materiel']['numero_commande'],
+				$result['Materiel']['code_comptable'],
+				$result['Materiel']['numero_serie'],
+				$result['GroupesThematique']['nom'],
+				$result['GroupesMetier']['nom'],
+				$result['Materiel']['ref_existante'],
+				$result['Materiel']['lieu_stockage'].'-'.$result['Materiel']['lieu_detail'],
+				$result['Materiel']['nom_responsable'],
+				$result['Materiel']['email_responsable'],
+			);
+			fputcsv($csv_file,$row,',','"');
+		}
+		fclose($csv_file);
+	}
+	
 	public function delete($id) {
 		$this->Materiel->id = $id;
 		if ($this->Materiel->field('status') != 'CREATED') {

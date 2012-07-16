@@ -1,8 +1,8 @@
 <?php
-class GroupesTravailsController extends AppController {
+class GroupesMetiersController extends AppController {
     public $scaffold;
     
-    public $name = 'GroupesTravail';
+    public $name = 'GroupesMetier';
     
 	public function beforeFilter() {
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');

@@ -2,6 +2,7 @@
 class UtilisateursController extends AppController {
 
 	var $scaffold;
+	public $helpers = array('Js');
 	
 	public function login() {
 		if ($this->request->is('post')) {
@@ -33,6 +34,23 @@ class UtilisateursController extends AppController {
 				$this->redirect('/');
 			}
 		}
+	}
+
+	public function getLdapLogin($userName) {
+		
+		$ldapConnection = ClassRegistry::init('LdapConnection');
+		
+		$allUsers = $ldapConnection->getAllLdapUsers();
+		
+		foreach($allUsers as $user) {
+			if(!empty($user['sn'][0]) && !empty($user['givenname'][0])) {
+				if(strcmp($userName, $user['sn'][0] . ' ' . $user['givenname'][0]) == 0) {
+					$this->set('login', $user[$ldapConnection->getAuthenticationType()][0]);
+				}
+			}
+		}
+		
+		$this->layout = 'ajax';
 	}
 	
 	public function getLdapEmail($userName) {
@@ -78,10 +96,10 @@ class UtilisateursController extends AppController {
 		$ldapUserAuthenticationLevel = $this->Session->read('LdapUserAuthenticationLevel');
 		$this->LdapAuth->allow('login', 'logout', 'notAuthorized');
 		if ($ldapUserAuthenticationLevel >= 1) {
-			$this->LdapAuth->allow('getLdapEmail');
+			$this->LdapAuth->allow('login', 'logout', 'notAuthorized', 'getLdapEmail', 'getLdapLogin');
 		}
 		if ($ldapUserAuthenticationLevel == 4) {
-			$this->LdapAuth->allow('display', 'index', 'view', 'add', 'edit', 'delete');
+			$this->LdapAuth->allow('login', 'logout', 'notAuthorized', 'getLdapEmail', 'getLdapLogin', 'display', 'index', 'view', 'add', 'edit', 'delete');
 		}
 	}
 }

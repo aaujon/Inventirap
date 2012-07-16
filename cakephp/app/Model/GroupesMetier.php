@@ -1,6 +1,6 @@
 <?php
-class GroupesTravail extends AppModel {
-	public $name = 'GroupesTravail';
+class GroupesMetier extends AppModel {
+	public $name = 'GroupesMetier';
 	public $displayField = 'nom';
 
 	var $hasMany = array('Materiel', 'Utilisateur');

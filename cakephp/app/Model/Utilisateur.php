@@ -4,9 +4,9 @@ class Utilisateur extends AppModel {
 	var $name = 'Utilisateur';
 	var $displayField = 'nom';
 	
-	public $belongsTo = array('GroupesTravail');
+	public $belongsTo = array('GroupesMetier');
 	
-	private $acceptedRoles = array ('Apprenti', 'Responsable', 'Administrateur', 'Super Administrateur');
+	private $acceptedRoles = array ('Utilisateur', 'Responsable', 'Administration', 'Super Administrateur');
 	
 	public function customValidation($data) {
 		return in_array(current($data), $this->acceptedRoles);
@@ -17,11 +17,11 @@ class Utilisateur extends AppModel {
 	}
 	
 	public function getAuthenticationLevelFromRole($role) {
-		if ($role == 'Apprenti')
+		if ($role == 'Utilisateur')
 			return 1;
 		elseif ($role == 'Responsable')
 			return 2;
-		elseif ($role == 'Administrateur')
+		elseif ($role == 'Administration')
 			return 3;
 		elseif ($role == 'Super Administrateur')
 			return 4;

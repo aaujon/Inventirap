@@ -2,7 +2,7 @@
 $toShow = array(
 	'nom' => 'Nom',
 	'role' => 'Rôle',
-	'groupes_travail_id' => 'Groupe de travail'
+	'groupes_metier_id' => 'Groupe métier'
 );
 ?>
 <div class="<?php echo $pluralVar;?> index">
@@ -19,7 +19,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 	echo '<tr>';
 	echo '<td class="smallText">'.${$singularVar}[$modelClass]['nom'].'</td>';
 	echo '<td class="smallText">'.${$singularVar}[$modelClass]['role'].'</td>';
-	echo '<td class="smallText">'.${$singularVar}['GroupesTravail']['nom'].'</td>';
+	echo '<td class="smallText">'.${$singularVar}['GroupesMetier']['nom'].'</td>';
 
 	echo '<td class="actions">';
 	echo $this->Html->link('<i class="icon-eye-open"></i>', 

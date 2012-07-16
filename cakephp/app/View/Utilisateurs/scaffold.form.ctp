@@ -27,11 +27,11 @@
 			'label' => 'E-mail', 
 			'disabled' => true));
 	echo $this->Form->input('role', array('label' => 'Rôle', 'options' => array(
-		'Apprenti' => 'Apprenti', 
+		'Utilisateur' => 'Utilisateur', 
 		'Responsable' => 'Responsable', 
-		'Administrateur' => 'Administrateur', 
+		'Administration' => 'Administrati', 
 		'Super Administrateur' => 'Super Administrateur')));
-	echo $this->Form->input('groupes_travail_id', array('label' => 'Groupe de travail'));
+	echo $this->Form->input('groupes_metier_id', array('label' => 'Groupe métier'));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>
@@ -41,3 +41,17 @@
 		echo $this->element('menu_form');
 	?>
 </div>
+<?php
+$this->Js->get('#UtilisateurNom')->event('change', 
+	'$.ajax({
+		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#UtilisateurNom").val()
+	}).done(function(data) { 
+		$("#UtilisateurEmail").val(data)
+	});
+	$.ajax({
+		url: "/Inventirap/cakephp/utilisateurs/getLdapLogin/" + $("#UtilisateurNom").val()
+	}).done(function(data) { 
+		$("#UtilisateurLogin").val(data)
+	});');
+echo $this->Js->writeBuffer();
+?>

@@ -5,7 +5,7 @@
 		<?php
 		displayElement('Nom', ${$singularVar}[$modelClass]['nom']);
 		displayElement('Rôle', ${$singularVar}[$modelClass]['role']);
-		displayElement('Groupe de travail', ${$singularVar}['GroupesTravail']['nom']);
+		displayElement('Groupe métier', ${$singularVar}['GroupesMetier']['nom']);
 		?>
 	</table>
 </div>

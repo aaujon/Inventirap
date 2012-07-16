@@ -4,7 +4,7 @@ class Materiel extends AppModel {
 	public $virtualFields = array('full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
 	public $displayField = 'designation';
 	
-	public $belongsTo = array('Categorie', 'SousCategorie', 'GroupesThematique', 'GroupesTravail');
+	public $belongsTo = array('Categorie', 'SousCategorie', 'GroupesThematique', 'GroupesMetier');
 	public $hasMany = array('Suivi', 'Emprunt');
 			
 	var $validate = array(

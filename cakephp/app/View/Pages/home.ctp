@@ -2,7 +2,7 @@
 	<h2><i class="icon-home"></i> Accueil</h2>
 	<p>Bienvenue sur l'inventaire administratif et technique de l'IRAP.</p>
 	<?php
-		$userName = $this->Session->read('LdapUserName');
+		$userName = $this->Session->read('UserName');
 		$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 		if (!isset($userName)) {
 			//Non connecté

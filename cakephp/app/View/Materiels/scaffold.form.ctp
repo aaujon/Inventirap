@@ -44,7 +44,7 @@
 		'label' => 'Email du responsable', 
 		'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 
 		'readonly' => true));
-	if ($userAuth == 3) {
+	if ($userAuth >= 3) {
 		echo '<div style="border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; margin-bottom: 0; background: #EEE;"><span style="font-size: 9px; color: red;">Partie administrative</span>';
 		echo $this->Form->input('organisme', array(
 			'options' => array('UPS'=> 'UPS', 'CNRS' => 'CNRS'), 'style' => 'width: 100px'));

@@ -5,6 +5,7 @@
 		
 		$t = str_replace('groupes', 'groupe', $t);
 		$t = str_replace('thematique', 'thématique', $t);
+		$t = str_replace('metier', 'métier', $t);
 		$t = str_replace('categorie', 'catégorie', $t);
 		
 		if(strlen($t) > 12) {

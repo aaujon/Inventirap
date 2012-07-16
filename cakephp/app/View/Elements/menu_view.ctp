@@ -4,6 +4,7 @@
 		$t = strtolower($singularHumanName);	
 		$t = str_replace('groupes', 'groupe', $t);
 		$t = str_replace('thematique', 'thémat.', $t);
+		$t = str_replace('metier', 'métier', $t);
 		$t = str_replace('categorie', 'catégorie', $t);
 	?>
 	<li><?php 

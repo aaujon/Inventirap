@@ -10,7 +10,7 @@
 	echo $this->Form->create();
 	if ($this->params['action'] == 'add')
 		echo $this->Form->input('nom', array(
-			'options' => $utilisateur->getLdapUsers(), 
+			'options' => $utilisateur->getNewLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
 			'selected' => '',
 			'div' => 'input required'));
@@ -22,10 +22,10 @@
 			'div' => 'input required'));
 	echo $this->Form->input('login', array( 
 			'label' => 'Login', 
-			'disabled' => true));
+			'readonly' => true));
 	echo $this->Form->input('email', array( 
 			'label' => 'E-mail', 
-			'disabled' => true));
+			'readonly' => true));
 	echo $this->Form->input('role', array('label' => 'Rôle', 'options' => array(
 		'Utilisateur' => 'Utilisateur', 
 		'Responsable' => 'Responsable', 

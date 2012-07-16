@@ -19,8 +19,7 @@ class UtilisateursController extends AppController {
 					ClassRegistry::init('Utilisateur')->getEmailFromLdapName($ldap));
 				
 				$users = $this->Utilisateur->find('all', array('conditions' => 
-					array('Utilisateur.nom' => $name)));
-				$this->Session->setFlash($users[0]['Utilisateur']['role']);
+					array('Utilisateur.login' => $ldap)));
 				if(count($users) == 1)
 					// Update his authentication level into a session variable
 					$this->Session->write('LdapUserAuthenticationLevel', 

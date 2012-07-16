@@ -17,14 +17,14 @@
     	//Admin peut archiver matériel
 		echo $this->Form->postLink('<i class="icon-inbox"></i>',
 			array('action' => 'statusArchived', $id),
-			array('title' => 'Archiver', 'style' => 'margin: 0 2px', 'escape' => false),
-			'Êtes-vous sur d\'archiver '.$id.' ?');
+			array('title' => 'Sortir de l\'inventaire', 'style' => 'margin: 0 2px', 'escape' => false),
+			'Êtes-vous sur de vouloir sortir de l\'inventaire '.$id.' ?');
 	}
 	else if ($statut == 'VALIDATED') {
 		//Les autres ne peuvent que demander la demande d'archivage
 		echo $this->Html->link('<i class="icon-inbox"></i>', 
 			array('action' => 'statusToBeArchived', $id), 
-			array('title' => 'Demander l\'archivage', 'style' => 'margin: 0 2px', 'escape' => false));
+			array('title' => 'Demander la sortie de l\'inventaire', 'style' => 'margin: 0 2px', 'escape' => false));
 	}
 	echo '</td>';
 	echo '<td class="actions" style="padding: 6px 0;">';

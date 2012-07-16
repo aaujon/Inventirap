@@ -32,16 +32,16 @@
 	}
     else if (($statut == 'VALIDATED' || $statut == 'TOBEARCHIVED') && $userAuth == 3) {
     	//Admin peut archiver matériel
-		echo $this->Form->postLink('<i class="icon-inbox"></i> Archiver le matériel',
+		echo $this->Form->postLink('<i class="icon-inbox"></i> Sortir de l\'inventaire',
 			array('action' => 'statusArchived', $id, 'view'), 
-			array('title' => 'Archiver', 'style' => 'margin-right: 15px', 'escape' => false),
+			array('title' => 'Sortir de l\'inventaire', 'style' => 'margin-right: 15px', 'escape' => false),
 			'Êtes-vous sur d\'archiver '.$id.' ?');
 	}
 	else if ($statut == 'VALIDATED') {
 		//Les autres ne peuvent que demander la demande d'archivage
-		echo $this->Html->link('<i class="icon-inbox"></i> Demander l\'archivage du matériel', 
+		echo $this->Html->link('<i class="icon-inbox"></i> Demander la sortie de l\'inventaire', 
 			array('action' => 'statusToBeArchived', $id, 'view'), 
-			array('title' => 'Demander l\'archivage', 'style' => 'margin-right: 15px', 'escape' => false));
+			array('title' => 'Demander la sortie de l\'inventaire', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
 	
 	if ($statut == 'VALIDATED') {

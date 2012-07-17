@@ -37,7 +37,7 @@ class MaterielsController extends AppController {
 					'Materiel.categorie_id LIKE' => '%'.$this->data['Materiel']['s_categorie_id'].'%',
 					'Materiel.sous_categorie_id LIKE' => '%'.$this->data['Materiel']['s_sous_categorie_id'].'%',
 					'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
-					'Materiel.ref_existante LIKE' => '%'.$this->data['Materiel']['s_ref_existante'].'%',
+					'Materiel.numero_inventaire_organisme LIKE' => '%'.$this->data['Materiel']['s_numero_inventaire_organisme'].'%',
 					'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
 					//Pour tous les champs:
 					array('OR' => array (
@@ -50,7 +50,7 @@ class MaterielsController extends AppController {
 						'Materiel.nom_responsable LIKE' => '%'.$all.'%',
 						'Materiel.email_responsable LIKE' => '%'.$all.'%',
 						'Materiel.code_comptable LIKE' => '%'.$all.'%',
-						'Materiel.ref_existante LIKE' => '%'.$all.'%',
+						'Materiel.numero_inventaire_organisme LIKE' => '%'.$all.'%',
 						'Materiel.numero_serie LIKE' => '%'.$all.'%',
 						'Materiel.lieu_detail LIKE' => '%'.$all.'%'))
 			))));
@@ -70,7 +70,7 @@ class MaterielsController extends AppController {
 			"id", "Désignation", "Catégorie", "Sous catégorie", "Numéro IRAP", "Description", "Organisme", 
 			"Mat. administratif", "Mat. technique", "Statut", "Date d'acquisition", "Fournisseur", "Prix HT", 
 			"EOTP", "Numéro de commande", "Code comptable", "Numéro de série", "Grp. thématique", "Grp. métier", 
-			"Ref. existante", "Lieu de stockage", "Nom responsable", "Email responsable");
+			"Numero inventaire organisme", "Lieu de stockage", "Nom responsable", "Email responsable");
 		fputcsv($csv_file,$header_row,',','"');
 		
 		$results = $this->Materiel->find('all');
@@ -95,7 +95,7 @@ class MaterielsController extends AppController {
 				$result['Materiel']['numero_serie'],
 				$result['GroupesThematique']['nom'],
 				$result['GroupesMetier']['nom'],
-				$result['Materiel']['ref_existante'],
+				$result['Materiel']['numero_inventaire_organisme'],
 				$result['Materiel']['lieu_stockage'].'-'.$result['Materiel']['lieu_detail'],
 				$result['Materiel']['nom_responsable'],
 				$result['Materiel']['email_responsable'],

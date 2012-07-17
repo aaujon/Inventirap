@@ -91,7 +91,7 @@ class Materiel extends AppModel {
 			),      
 		),
 
-		'ref_existante' => array(    
+		'numero_inventaire_organisme' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              

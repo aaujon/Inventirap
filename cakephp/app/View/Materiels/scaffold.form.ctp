@@ -55,7 +55,7 @@
 		}
 		echo $this->Form->input('numero_commande', array('label' => 'Numéro de commande'));
 		echo $this->Form->input('code_comptable', array('label' => 'Code comptable'));
-		echo $this->Form->input('ref_existante', array('label' => 'Référence existante'));
+		echo $this->Form->input('numero_inventaire_organisme', array('label' => 'Numéro inventaire organisme'));
 		echo '</div>';
 	}
 		

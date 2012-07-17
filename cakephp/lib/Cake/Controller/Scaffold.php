@@ -450,7 +450,7 @@ class Scaffold {
 			case 'souscategorie' : return 'La sous-catégorie';
 			case 'categorie' : return 'La catégorie';
 			case 'groupesthematique' : return 'Le groupe thématique';
-			case 'groupestravail' : return 'Le groupe de travail';
+			case 'groupesmetier' : return 'Le groupe métier';
 			case 'suivi' : return 'Le suivi';
 			case 'emprunt' : return 'L\'emprunt';
 			case 'materiel' : return 'Le matériel';

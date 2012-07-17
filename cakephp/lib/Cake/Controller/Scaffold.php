@@ -222,7 +222,11 @@ class Scaffold {
 		$success = __d('cake', 'mis à jour');
 		if ($action === 'add') {
 			$formAction = 'add';
-			$success = __d('cake', 'ajouté');
+			if(strstr($this->cake2fr($this->modelClass), 'catégorie') || strstr($this->cake2fr($this->modelClass), 'categorie')) {
+				$success = __d('cake', 'ajoutée');
+			} else {
+				$success = __d('cake', 'ajouté');
+			}
 		}
 
 		if ($this->controller->beforeScaffold($action)) {
@@ -447,10 +451,10 @@ class Scaffold {
 	private function cake2fr($modelKey) {
 		$modelKey = strtolower($modelKey);
 		switch ($modelKey) {
-			case 'souscategorie' : return 'La sous-catégorie';
+			case 'sous_categorie' : return 'La sous-catégorie';
 			case 'categorie' : return 'La catégorie';
-			case 'groupesthematique' : return 'Le groupe thématique';
-			case 'groupesmetier' : return 'Le groupe métier';
+			case 'groupes_thematique' : return 'Le groupe thématique';
+			case 'groupes_metier' : return 'Le groupe métier';
 			case 'suivi' : return 'Le suivi';
 			case 'emprunt' : return 'L\'emprunt';
 			case 'materiel' : return 'Le matériel';

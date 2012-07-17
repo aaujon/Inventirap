@@ -134,9 +134,9 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
   `role` VARCHAR(45) NULL ,
   `groupes_metier_id` INT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_utilisateurs_groupes_metiers1` (`groupes_metier_id` ASC) ,
+  INDEX `fk_utilisateurs_groupes_metier1` (`groupes_metier_id` ASC) ,
   UNIQUE INDEX `login_UNIQUE` (`login` ASC) ,
-  CONSTRAINT `fk_utilisateurs_groupes_metiers1`
+  CONSTRAINT `fk_utilisateurs_groupes_metier1`
     FOREIGN KEY (`groupes_metier_id` )
     REFERENCES `mydb`.`groupes_metiers` (`id` )
     ON DELETE NO ACTION

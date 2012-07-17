@@ -14,7 +14,7 @@
 		else {
 			if(strstr($t, 'catégorie')) {
 				$t = 'Nouvelle ' . $t;
-			} elseif(strstr($t, 'utilisateur')) {
+			} elseif(strstr($t, 'utilisateur') || strstr($t, 'emprunt')) {
 				$t = 'Nouvel ' . $t;
 			} else {
 				$t = 'Nouveau ' . $t;

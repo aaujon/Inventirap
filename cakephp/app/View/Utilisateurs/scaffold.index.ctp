@@ -29,7 +29,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 	echo $this->Form->postLink('<i class="icon-trash"></i>',
 		array('action' => 'delete', ${$singularVar}[$modelClass][$primaryKey]),
 		array('style' => 'margin: 0 2px', 'escape' => false),
-		__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['id'].' ?'
+		__d('cake', 'Êtes-vous sur de supprimer').' '.${$singularVar}[$modelClass]['nom'].' ?'
 	);
 	echo '</td>';
 	echo '</tr>';

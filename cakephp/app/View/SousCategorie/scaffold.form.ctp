@@ -7,7 +7,9 @@
 
 	echo $this->Form->create();
 	echo $this->Form->input('nom', array('label' => 'Nom'));
-	echo $this->Form->input('categorie_id', array('label' => 'Catégorie'));
+	echo $this->Form->input('categorie_id', array(
+		'label' => 'Catégorie',
+		'options' => ClassRegistry::init('Categorie')->find('list', array('order' => array('Categorie.nom')))));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>

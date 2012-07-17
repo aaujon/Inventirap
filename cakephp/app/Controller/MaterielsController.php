@@ -60,18 +60,18 @@ class MaterielsController extends AppController {
 	function export() {
 		ini_set('max_execution_time', 600);	
 		
-		$filename = "export_".date("Y.m.d").".csv";
-		$csv_file = fopen('php://output', 'w');
-	
-		header('Content-type: application/csv; charset=UTF-8');
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
+		
+		$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
+		$filename = $cakephpPath . 'tmp/documents/generator/export_'.date("Y.m.d") . '.csv';
+		
+		$csv_file = fopen($filename, 'w');
 	
 		$header_row = array(
 			"id", "Désignation", "Catégorie", "Sous catégorie", "Numéro IRAP", "Description", "Organisme", 
 			"Mat. administratif", "Mat. technique", "Statut", "Date d'acquisition", "Fournisseur", "Prix HT", 
 			"EOTP", "Numéro de commande", "Code comptable", "Numéro de série", "Grp. thématique", "Grp. métier", 
 			"Numero inventaire organisme", "Lieu de stockage", "Nom responsable", "Email responsable");
-		fputcsv($csv_file,$header_row,',','"');
+		fputcsv($csv_file,$header_row,';');
 		
 		$results = $this->Materiel->find('all');
 		foreach($results as $result) {
@@ -100,9 +100,21 @@ class MaterielsController extends AppController {
 				$result['Materiel']['nom_responsable'],
 				$result['Materiel']['email_responsable'],
 			);
-			fputcsv($csv_file,$row,',','"');
+			fputcsv($csv_file,$row,';','"');
 		}
 		fclose($csv_file);
+		
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename=' . $filename);
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($filename));
+		ob_clean();
+		flush();
+		readfile($filename);
 	}
 	
 	public function delete($id) {

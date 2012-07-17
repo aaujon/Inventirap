@@ -39,3 +39,12 @@ function emprunt_interne_externe() {
 	$('#interne').toggle();
 	$('#externe').toggle();		
 }
+
+function selectAll() {
+	for(i = 0; i < document.getElementsByTagName("input").length; i++)
+		document.getElementsByTagName("input")[i].checked = true;
+}
+function selectNone() {
+	for(i = 0; i < document.getElementsByTagName("input").length; i++)
+		document.getElementsByTagName("input")[i].checked = false;
+}

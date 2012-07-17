@@ -118,7 +118,7 @@ class MaterielsController extends AppController {
 		}
 	}
 
-	public function statusToBeArchived($id = null, $from = 'index') {
+	public function statusToBeArchived($id = null, $from = 'view') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') < 1)
 			$this->notAuthorized($id, $from);
 			
@@ -129,7 +129,7 @@ class MaterielsController extends AppController {
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
-	public function statusValidated($id = null, $from = 'index') {
+	public function statusValidated($id = null, $from = 'view') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') < 2)
 			$this->notAuthorized($id, $from);
 	
@@ -140,7 +140,7 @@ class MaterielsController extends AppController {
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
-	public function statusArchived($id = null, $from = 'index') {
+	public function statusArchived($id = null, $from = 'view') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
 			$this->notAuthorized($id, $from);
 			
@@ -149,6 +149,35 @@ class MaterielsController extends AppController {
 		$this->logInventirap($id);
 		$this->Session->setFlash('Le matériel a bien été sorti de l\'inventaire.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
+	}
+	
+	public function jackpot() {
+		//Vérification administration
+		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
+			$this->notAuthorized(NULL, 'index');
+		
+		//Traitement des update si besoin
+		if (isset($this->data['materiels'])) {
+			$what = $this->data['materiels']['what'];
+			$nb = 0;
+			if ($what == 'toValidate' || $what == 'toBeArchived') {
+				foreach ($this->data['materiels'] as $id => $value) : if ($value == 1) {
+					$this->Materiel->id = $id;
+					$new = '"ARCHIVED"';
+					if ($what == 'toValidate')
+						$new = '"VALIDATED"';
+					$this->Materiel->updateAll(array('Materiel.status' => $new), array('Materiel.id' => $id));
+					$nb++;
+				} endforeach;
+				if ($nb != 0)
+					if ($this->data['materiels']['what'] == 'toValidate')
+						$this->Session->setFlash($nb.' matériel(s) mis à jour (validation).');
+					else
+						$this->Session->setFlash($nb.' matériel(s) mis à jour (sortie d\'inventaire).');
+				$this->redirect(array('action' => 'index', 'what' => $what));
+			}
+		}
+		$this->redirect(array('action' => 'index'));
 	}
 
 	public function getIrapNumber($year = 2012) {

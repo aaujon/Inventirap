@@ -43,6 +43,28 @@ class Utilisateur extends AppModel {
 		}
 	}
 	
+	public function getNewLdapUsers() {
+		$allUsers = ClassRegistry::init('LdapConnection')->getAllLdapUsers();
+		
+		$ldapUsers = array();
+		$returnLdapName = array();
+		
+		foreach($allUsers as $user)
+			if(!empty($user['sn'][0]) && !empty($user['givenname'][0]))
+				array_push($ldapUsers, $user['sn'][0] . ' ' . $user['givenname'][0]);
+		sort($ldapUsers);
+				
+		$usersName = $this->find('list', array('fields' => array('nom'),));
+				
+		$ldapNewUserName = array_diff($ldapUsers, $usersName);
+		
+		foreach ($ldapNewUserName as $user) {
+			$returnLdapName[$user] = $user;
+		}
+		
+		return $returnLdapName;
+	}
+	
 	public function getLdapUsers() {
 		$allUsers = ClassRegistry::init('LdapConnection')->getAllLdapUsers();
 		$ldapUsers = array();

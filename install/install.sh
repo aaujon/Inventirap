@@ -23,7 +23,7 @@ read bddUserName
 sed -i "s/'login' => 'root'/'login' => '$bddUserName'/" ./cakephp/app/Config/database.php
 
 echo "Entrez le mot de passe de la base de données"
-read bddPassword
+read -s bddPassword
 sed -i "s/'password' => 'root'/'password' => '$bddPassword'/" ./cakephp/app/Config/database.php
 
 echo "Entrez le nom de la base à utiliser"

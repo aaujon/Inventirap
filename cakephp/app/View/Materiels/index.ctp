@@ -16,9 +16,9 @@
 <div class="index">
 <?php
 	echo '<h2><i class="icon-list"></i> Liste des matériels</h2>';
-	echo '<div class="actions" style="margin-bottom: 20px; width: 100%; float: none; padding: 10px 0;">';
 	if ($userAuth == 3) {
 		//Affichage d'actions pour les administrateurs
+		echo '<div class="actions" style="margin-bottom: 20px; width: 100%; float: none; padding: 10px 0;">';
 		$b_all = $b_val = $b_arc = '';
 		if (isset($what)) {
 			if ($what == 'toValidate')
@@ -43,8 +43,8 @@
 				'title' => 'Sélectionner aucun matériel', 'style' => 'margin-right: 50px', 'escape' => false));
 		
 		}
+		echo '</div>';
 	}
-	echo '</div>';
 	
 	if (sizeof($data) != 0) {
 		echo $this->Form->create('materiels', array('action' => 'jackpot'));

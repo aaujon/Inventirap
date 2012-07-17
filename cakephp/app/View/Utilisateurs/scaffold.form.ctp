@@ -29,7 +29,7 @@
 	echo $this->Form->input('role', array('label' => 'Rôle', 'options' => array(
 		'Utilisateur' => 'Utilisateur', 
 		'Responsable' => 'Responsable', 
-		'Administration' => 'Administrati', 
+		'Administration' => 'Administration', 
 		'Super Administrateur' => 'Super Administrateur')));
 	echo $this->Form->input('groupes_metier_id', array('label' => 'Groupe métier'));
 	echo $this->Form->end(__d('cake', 'Valider'));

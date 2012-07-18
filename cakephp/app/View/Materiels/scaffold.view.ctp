@@ -44,14 +44,14 @@
 			array('title' => 'Demander la sortie de l\'inventaire', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
 	
-	if ($statut == 'VALIDATED') {
+	if (($statut == 'VALIDATED') || ($statut == 'CREATED')) {
+		echo $this->Html->link('<i class="icon-file"></i> Document d\'admission', 
+			array('controller' => 'Documents', 'action' => 'admission', ${$singularVar}[$modelClass]['numero_irap']),
+			array('title' => 'Voir le document d\'admission', 'style' => 'margin-right: 15px', 'escape' => false));		
+	} else {
 		echo $this->Html->link('<i class="icon-file"></i> Document de sortie', 
 			array('controller' => 'Documents', 'action' => 'sortie', ${$singularVar}[$modelClass]['numero_irap']),
 			array('title' => 'Voir le document de sortie', 'style' => 'margin-right: 15px', 'escape' => false));
-	} else {
-		echo $this->Html->link('<i class="icon-file"></i> Document d\'admission', 
-			array('controller' => 'Documents', 'action' => 'admission', ${$singularVar}[$modelClass]['numero_irap']),
-			array('title' => 'Voir le document d\'admission', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
 	
 	echo $this->Html->link('<i class="icon-plus"></i> Nouveau suivi', 

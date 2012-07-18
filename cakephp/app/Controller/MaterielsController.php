@@ -130,7 +130,7 @@ class MaterielsController extends AppController {
 		}
 	}
 
-	public function statusToBeArchived($id = null, $from = 'view') {
+	public function statusToBeArchived($id = null, $from = 'index') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') < 1)
 			$this->notAuthorized($id, $from);
 			
@@ -141,7 +141,7 @@ class MaterielsController extends AppController {
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
-	public function statusValidated($id = null, $from = 'view') {
+	public function statusValidated($id = null, $from = 'index') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') < 2)
 			$this->notAuthorized($id, $from);
 	
@@ -152,7 +152,7 @@ class MaterielsController extends AppController {
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
-	public function statusArchived($id = null, $from = 'view') {
+	public function statusArchived($id = null, $from = 'index') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
 			$this->notAuthorized($id, $from);
 			

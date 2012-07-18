@@ -35,7 +35,7 @@
 		echo $this->Form->postLink('<i class="icon-inbox"></i> Sortir de l\'inventaire',
 			array('action' => 'statusArchived', $id, 'view'), 
 			array('title' => 'Sortir de l\'inventaire', 'style' => 'margin-right: 15px', 'escape' => false),
-			'Êtes-vous sur d\'archiver '.$id.' ?');
+			'Êtes-vous sur d\'archiver ' . ${$singularVar}[$modelClass]['designation'] . ' ?');
 	}
 	else if ($statut == 'VALIDATED') {
 		//Les autres ne peuvent que demander la demande d'archivage

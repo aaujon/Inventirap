@@ -57,6 +57,16 @@
 		echo $this->Form->input('code_comptable', array('label' => 'Code comptable'));
 		echo $this->Form->input('numero_inventaire_organisme', array('label' => 'N° inventaire organisme'));
 		echo '</div>';
+	} else {
+		// If there is no values into the fields, there is 'NULL' value into bdd and the 'NULL' value make a bug with the find function
+		echo $this->Form->hidden('organisme', array(
+			'options' => array('UPS'=> 'UPS', 'CNRS' => 'CNRS'), 'style' => 'width: 100px'));
+		echo $this->Form->hidden('fournisseur');
+		echo $this->Form->hidden('prix_ht', array('label' => 'Prix HT (€)'));
+		echo $this->Form->hidden('eotp', array('label' => 'EOTP (Centre de crédit)'));
+		echo $this->Form->hidden('numero_commande', array('label' => 'Numéro de commande'));
+		echo $this->Form->hidden('code_comptable', array('label' => 'Code comptable'));
+		echo $this->Form->hidden('numero_inventaire_organisme', array('label' => 'N° inventaire organisme'));
 	}
 		
 	echo $this->Form->hidden('numero_irap');

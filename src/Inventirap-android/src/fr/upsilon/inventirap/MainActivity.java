@@ -37,11 +37,12 @@ public class MainActivity extends Activity {
         /* first time */
         String name = getResources().getString(R.string.app_name);
         SharedPreferences prefs = context.getSharedPreferences(name, MODE_PRIVATE);
-        String server_ip = prefs.getString(getResources().getString(R.string.SERVER_IP), null);
+        String server_ip = prefs.getString("SERVERIP", null);
         if (server_ip == null) {
+        	Log.d("", "first time");
         	Editor editor = prefs.edit();
         	//editor.putString(getResources().getString(R.string.SERVER_IP), "http://inventirap.irap.omp.eu/");
-        	editor.putString(getResources().getString(R.string.SERVER_IP), "http://192.168.1.14:8080/Inventirap/cakephp");
+        	editor.putString("SERVERIP", "http://192.168.1.50:8080/Inventirap/cakephp");
         	editor.commit();
     	}
         
@@ -98,11 +99,11 @@ public class MainActivity extends Activity {
                 startActivityForResult(requestIntent, REQUEST_RESULT);
                 
             } else if (resultCode == RESULT_CANCELED) {
-            	/*Intent requestIntent = new Intent(context, RequestActivity.class);
+            	Intent requestIntent = new Intent(context, RequestActivity.class);
                 requestIntent.putExtra(getString(R.string.DECODED_VALUE), "IRAP-12-0001");
-                startActivityForResult(requestIntent, REQUEST_RESULT);*/
-                Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
-                toast.show();
+                startActivityForResult(requestIntent, REQUEST_RESULT);
+                /*Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
+                toast.show();*/
                 
             }
         } else if (requestCode == REQUEST_RESULT) {

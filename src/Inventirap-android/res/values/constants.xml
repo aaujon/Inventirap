@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="SERVER_IP">SERVER_IP</string>
+    <string name="SERVER_IP">SERVERIP</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="PASS">PASSWORD</string>
     <string name="DECODED_VALUE">DECODEDVALUE</string>
 
 </resources>

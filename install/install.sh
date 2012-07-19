@@ -38,7 +38,7 @@ sed -i "s/mydb/$bddName/" ./database/BDD_IRAP.sql
 mysql -u $bddUserName --password=$bddPassword -h $bddIp $bddName < ./database/BDD_IRAP.sql
 
 #Ajouter Super Administrateur
-echo "Quel est le nom du super administrateur de l'inventaire"
+echo "Quel est le nom du super administrateur de l'inventaire ?"
 read superAdminName
 mysql -u $bddUserName --password=$bddPassword -h $bddIp -D $bddName -e "INSERT INTO utilisateurs (nom, role) VALUES ('$superAdminName', 'Super Administrateur');"
 
@@ -51,6 +51,11 @@ sed -i "s/192.168.1.65/$ldapIp/" ./cakephp/app/Config/database.php
 echo "Entrez le numéro de port du serveur ldap"
 read ldapPort
 sed -i "s/389/$ldapPort/" ./cakephp/app/Config/database.php
+
+# Set web service authentication
+echo "Quelle est la clé à utiliser pour les authentifications des services Web ?"
+read -s webServiceKey
+sed -i "s/private $key = 'mykeyislongenoug';/private $key = '$webServiceKey';/" ./cakephp/app/Controller/ServicesWebController.php
 
 # Ajouter les droits en ecriture pour la creation des qrcodes
 

@@ -58,8 +58,9 @@ class MaterielsController extends AppController {
 	}
 	
 	function export() {
-		ini_set('max_execution_time', 600);	
+		$this->layout = 'ajax';
 		
+		ini_set('max_execution_time', 600);	
 		
 		$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
 		$filename = $cakephpPath . 'tmp/documents/generator/export_'.date("Y.m.d") . '.csv';
@@ -155,7 +156,7 @@ class MaterielsController extends AppController {
 	public function statusArchived($id = null, $from = 'index') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
 			$this->notAuthorized($id, $from);
-			
+		
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
 		$this->logInventirap($id);

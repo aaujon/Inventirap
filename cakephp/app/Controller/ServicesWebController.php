@@ -10,6 +10,10 @@ class ServicesWebController extends AppController {
 	}
 
 	public function materiel($irapNum = '', $login = '', $passwordAES128 = '') {
+
+	  $this->set('login', $this->decryptPassword($this->encryptPassword('ldap')));
+
+	  /*
 		if(ClassRegistry::init('LdapConnection')->ldapAuthentication($login, decryptPassword($passwordAES128))) {
 
 			if(preg_match('~IRAP-..-[0-9]*~', $irapNum)) {
@@ -21,22 +25,49 @@ class ServicesWebController extends AppController {
 				$this->set('materials', $materiel);
 			}
 		}
+	  */
 	}
 
-	private function decryptPassword($pass)
+	private function encryptPassword($clearPass) {
+		# open cipher module (do not change cipher/mode)
+		
+		if ( ! $td = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_ECB, '') )
+            return false;
+
+            
+        $msg = serialize($clearPass);                         # serialize
+ 
+        if ( mcrypt_generic_init($td, $this->key, '') !== 0 )  # initialize buffers
+            return false;
+ 
+        $msg = mcrypt_generic($td, $msg);               # encrypt
+ 
+        mcrypt_generic_deinit($td);                     # clear buffers
+        mcrypt_module_close($td);                       # close cipher module
+ 
+        $msg = base64_encode($msg);      # base64 encode?
+ 
+        return $msg;    
+	}
+	
+	private function decryptPassword($cryptPass)
 	{
-
-		$base64encoded_ciphertext = $pass;
-
-		$res_non = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $this->key, base64_decode($base64encoded_ciphertext), ‘ecb’);
-
-		$decrypted = $res_non;
-		$dec_s2 = strlen($decrypted);
-
-		$padding = ord($decrypted[$dec_s2-1]);
-		$decrypted = substr($decrypted, 0, -$padding);
-
-		return  $decrypted;
+		$msg = base64_decode($cryptPass);          # base64 decode?
+ 
+        # open cipher module (do not change cipher/mode)
+        if ( ! $td = mcrypt_module_open(MCRYPT_RIJNDAEL_128, '', MCRYPT_MODE_ECB, '') )
+            return false;
+ 
+        if ( mcrypt_generic_init($td, $this->key, '') !== 0 )      # initialize buffers
+            return false;
+ 
+        $msg = mdecrypt_generic($td, $msg);                 # decrypt
+        $msg = unserialize($msg);                           # unserialize
+ 
+        mcrypt_generic_deinit($td);                         # clear buffers
+        mcrypt_module_close($td);                           # close cipher module
+ 
+        return $msg;       
 	}
 }
 

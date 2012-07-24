@@ -5,8 +5,6 @@
 	$statut = ${$singularVar}[$modelClass]['status'];
 	$administratif = ${$singularVar}[$modelClass]['materiel_administratif'];
 	$technique = ${$singularVar}[$modelClass]['materiel_technique'];
-	$them_groupe = ${$singularVar}['GroupesThematique']['nom'];
-	$trav_groupe = ${$singularVar}['GroupesTravail']['nom'];
 	$userAuth = $this->Session->read('LdapUserAuthenticationLevel');
 ?>
 <div class="<?php echo $pluralVar;?> view">
@@ -32,28 +30,28 @@
 			array('action' => 'statusValidated', $id, 'view'), 
 			array('title' => 'Valider', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
-    else if (($statut == 'VALIDATED' || $statut == 'TOBEARCHIVED') && $userAuth >= 3) {
-    	//Admin/Super admin peuvent archiver matériel
-		echo $this->Form->postLink('<i class="icon-inbox"></i> Archiver le matériel',
+    else if (($statut == 'VALIDATED' || $statut == 'TOBEARCHIVED') && $userAuth == 3) {
+    	//Admin peut archiver matériel
+		echo $this->Form->postLink('<i class="icon-inbox"></i> Sortir de l\'inventaire',
 			array('action' => 'statusArchived', $id, 'view'), 
-			array('title' => 'Archiver', 'style' => 'margin-right: 15px', 'escape' => false),
-			'Êtes-vous sur d\'archiver '.$id.' ?');
+			array('title' => 'Sortir de l\'inventaire', 'style' => 'margin-right: 15px', 'escape' => false),
+			'Êtes-vous sur d\'archiver ' . ${$singularVar}[$modelClass]['designation'] . ' ?');
 	}
 	else if ($statut == 'VALIDATED') {
 		//Les autres ne peuvent que demander la demande d'archivage
-		echo $this->Html->link('<i class="icon-inbox"></i> Demander l\'archivage du matériel', 
+		echo $this->Html->link('<i class="icon-inbox"></i> Demander la sortie de l\'inventaire', 
 			array('action' => 'statusToBeArchived', $id, 'view'), 
-			array('title' => 'Demander l\'archivage', 'style' => 'margin-right: 15px', 'escape' => false));
+			array('title' => 'Demander la sortie de l\'inventaire', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
 	
-	if ($statut == 'VALIDATED') {
+	if (($statut == 'VALIDATED') || ($statut == 'CREATED')) {
+		echo $this->Html->link('<i class="icon-file"></i> Document d\'admission', 
+			array('controller' => 'Documents', 'action' => 'admission', ${$singularVar}[$modelClass]['numero_irap']),
+			array('title' => 'Voir le document d\'admission', 'style' => 'margin-right: 15px', 'escape' => false));		
+	} else {
 		echo $this->Html->link('<i class="icon-file"></i> Document de sortie', 
 			array('controller' => 'Documents', 'action' => 'sortie', ${$singularVar}[$modelClass]['numero_irap']),
 			array('title' => 'Voir le document de sortie', 'style' => 'margin-right: 15px', 'escape' => false));
-	} else {
-		echo $this->Html->link('<i class="icon-file"></i> Document d\'admission', 
-			array('controller' => 'Documents', 'action' => 'admission', ${$singularVar}[$modelClass]['numero_irap']),
-			array('title' => 'Voir le document d\'admission', 'style' => 'margin-right: 15px', 'escape' => false));
 	}
 	
 	echo $this->Html->link('<i class="icon-plus"></i> Nouveau suivi', 
@@ -79,37 +77,13 @@
 	else
 		$type = 'Aucun'; 
 
-	//Catégorie/Sous catégorie
-	$categorie = $this->Html->link(${$singularVar}['Categorie']['nom'], array(
-				'controller' => 'categories',
-				'action' => 'view',
-				${$singularVar}['Categorie']['id']));
-	$sousCategorie = $this->Html->link(${$singularVar}['SousCategorie']['nom'], array(
-				'controller' => 'sous_categories',
-				'action' => 'view',
-				${$singularVar}['SousCategorie']['id']));
 				
-	//Gestion groupe thématique/travail
-	$groupeThematique = '';
-	$groupeTravail = '';
-	if ($them_groupe != 'N/A')
-		$groupeThematique = $this->Html->link($them_groupe, array(
-				'controller' => 'groupes_thematiques',
-				'action' => 'view',
-				${$singularVar}['GroupesThematique']['id']));
-	if ($trav_groupe != 'N/A')
-		$groupeTravail = $this->Html->link($trav_groupe, array(
-				'controller' => 'groupes_travails',
-				'action' => 'view',
-				${$singularVar}['GroupesTravail']['id']));
-
-
 	displayElement('Description', ${$singularVar}[$modelClass]['description']);
 	displayElement('Type du matériel', $type);
-	displayElement('Catégorie', $categorie);
-	displayElement('Sous catégorie', $sousCategorie);
-	displayElement('Groupe thématique', $groupeThematique);
-	displayElement('Groupe de travail', $groupeTravail);
+	displayElement('Catégorie', ${$singularVar}['Categorie']['nom']);
+	displayElement('Sous catégorie', ${$singularVar}['SousCategorie']['nom']);
+	displayElement('Groupe thématique', ${$singularVar}['GroupesThematique']['nom']);
+	displayElement('Groupe métier', ${$singularVar}['GroupesMetier']['nom']);
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Statut', $statut);
 	if ($userAuth >= 3) {
@@ -130,10 +104,10 @@
 
 
 <h3 id="t_suivis" style="cursor: pointer;">
-	<i class="icon-chevron-up" style="font-size: 14px;" id="i_suivis"></i> 
+	<i class="icon-chevron-down" style="font-size: 14px;" id="i_suivis"></i> 
 	<span style="text-decoration: underline;">Suivi(s) du matériel (<?php echo sizeof(${$singularVar}['Suivi']); ?>)</span>
 </h3>
-<div id="suivis" style="margin-bottom: 20px; display: none;">
+<div id="suivis" style="margin-bottom: 20px;">
 	<?php if (sizeof(${$singularVar}['Suivi']) == 0) { echo 'Aucun suivi pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 
@@ -163,16 +137,10 @@
 
 
 <h3 id="t_emprunts" style="cursor: pointer;">
-	<i class="icon-chevron-up" style="font-size: 14px;" id="i_emprunts"></i> 
+	<i class="icon-chevron-down" style="font-size: 14px;" id="i_emprunts"></i> 
 	<span style="text-decoration: underline;">Emprunt(s) du matériel (<?php echo sizeof(${$singularVar}['Emprunt']); ?>)</span>
 </h3>
-<div id="emprunts" style="display: none;">
-	<?php
-	echo $this->Html->link('Nouvel emprunt', array(
-				'controller' => 'emprunts',
-				'action' => 'add',
-				${$singularVar}[$modelClass][$primaryKey]), array('class' => 'actions'));
-				?>
+<div id="emprunts">
 	<?php if (sizeof(${$singularVar}['Emprunt']) == 0) { echo 'Aucun emprunt pour ce matériel.'; } else { ?>
 	<table> 
 		<tr> 

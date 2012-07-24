@@ -2,9 +2,11 @@
 
 class Utilisateur extends AppModel {
 	var $name = 'Utilisateur';
-	var $displayField = 'ldap';
+	var $displayField = 'nom';
 	
-	private $acceptedRoles = array ('Apprenti', 'Responsable', 'Administrateur', 'Super Administrateur');
+	public $belongsTo = array('GroupesMetier');
+	
+	private $acceptedRoles = array ('Utilisateur', 'Responsable', 'Administration', 'Super Administrateur');
 	
 	public function customValidation($data) {
 		return in_array(current($data), $this->acceptedRoles);
@@ -15,13 +17,13 @@ class Utilisateur extends AppModel {
 	}
 	
 	public function getAuthenticationLevelFromRole($role) {
-		if(strcmp($role, 'Apprenti') == 0)
+		if ($role == 'Utilisateur')
 			return 1;
-		elseif (strcmp($role, 'Responsable') == 0)
+		elseif ($role == 'Responsable')
 			return 2;
-		elseif (strcmp($role, 'Administrateur') == 0)
+		elseif ($role == 'Administration')
 			return 3;
-		elseif (strcmp($role, 'Super Administrateur') == 0)
+		elseif ($role == 'Super Administrateur')
 			return 4;
 		return 0;
 	}
@@ -41,6 +43,28 @@ class Utilisateur extends AppModel {
 		}
 	}
 	
+	public function getNewLdapUsers() {
+		$allUsers = ClassRegistry::init('LdapConnection')->getAllLdapUsers();
+		
+		$ldapUsers = array();
+		$returnLdapName = array();
+		
+		foreach($allUsers as $user)
+			if(!empty($user['sn'][0]) && !empty($user['givenname'][0]))
+				array_push($ldapUsers, $user['sn'][0] . ' ' . $user['givenname'][0]);
+		sort($ldapUsers);
+				
+		$usersName = $this->find('list', array('fields' => array('nom'),));
+				
+		$ldapNewUserName = array_diff($ldapUsers, $usersName);
+		
+		foreach ($ldapNewUserName as $user) {
+			$returnLdapName[$user] = $user;
+		}
+		
+		return $returnLdapName;
+	}
+	
 	public function getLdapUsers() {
 		$allUsers = ClassRegistry::init('LdapConnection')->getAllLdapUsers();
 		$ldapUsers = array();
@@ -57,16 +81,13 @@ class Utilisateur extends AppModel {
 	}
 	
 	var $validate = array(
-        'ldap' => array(
+        'nom' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'Le champ ldap doit être rempli.'
-                )
-                ),
+                'message' => 'Le nom d\'utilisateur doit être rempli.')),
        	'role' => array(
                 'rule' => array('customValidation'),
-                'message' => 'Le champ role doit être valide.'
-                )
+                'message' => 'Le champ role doit être valide.')
 	);
 }
 ?>

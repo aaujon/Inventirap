@@ -1,5 +1,7 @@
 <div class="<?php echo $pluralVar;?> form">
 <?php
+	$utilisateur = ClassRegistry::init('Utilisateur');
+	
 	echo $this->Html->script('script');
 
 	if ($this->params['action'] == 'add')
@@ -24,6 +26,15 @@
 	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
 	echo $this->Form->input('date_emprunt', array('label' => 'Date de l\'emprunt'));
 	echo $this->Form->input('date_retour_emprunt', array('label' => 'Date de retour'));
+	echo $this->Form->input('nom_responsable', array(
+		'options' => $utilisateur->getLdapUsers(), 
+		'empty' => 'Choisir un utilisateur', 
+		'selected' => $this->Session->read('UserName'),
+		'label' => 'Nom du responsable'));
+	echo $this->Form->input('email_responsable', array(
+		'label' => 'Email du responsable', 
+		'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 
+		'readonly' => true));
 	echo $this->Form->input('emprunt_interne', array('label' => 'Emprunt interne', 'onchange' => 'emprunt_interne_externe();'));
 	echo '<div id="interne" style="margin: 0; padding: 0; '.$disp_interne.';">';
 	echo $this->Form->input('e_lieu_stockage', array('label' => 'Lieu de stockage', 
@@ -35,9 +46,6 @@
 	echo '<div id="externe" style="margin: 0; padding: 0; '.$disp_externe.';">';
 	echo $this->Form->input('laboratoire');
 	echo '</div>';
-	
-	
-	echo $this->Form->input('responsable');	
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>
@@ -47,3 +55,12 @@
 		echo $this->element('tools_form');
 	?>
 </div>
+<?php
+$this->Js->get('#EmpruntNomResponsable')->event('change', 
+	'$.ajax({
+		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#EmpruntNomResponsable").val()
+	}).done(function(data) { 
+		$("#EmpruntEmailResponsable").val(data)
+	})');
+echo $this->Js->writeBuffer();
+?>

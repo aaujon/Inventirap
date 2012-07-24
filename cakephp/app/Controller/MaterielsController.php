@@ -37,6 +37,7 @@ class MaterielsController extends AppController {
 					'Materiel.categorie_id LIKE' => '%'.$this->data['Materiel']['s_categorie_id'].'%',
 					'Materiel.sous_categorie_id LIKE' => '%'.$this->data['Materiel']['s_sous_categorie_id'].'%',
 					'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
+					'Materiel.numero_inventaire_organisme LIKE' => '%'.$this->data['Materiel']['s_numero_inventaire_organisme'].'%',
 					'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
 					//Pour tous les champs:
 					array('OR' => array (
@@ -49,11 +50,74 @@ class MaterielsController extends AppController {
 						'Materiel.nom_responsable LIKE' => '%'.$all.'%',
 						'Materiel.email_responsable LIKE' => '%'.$all.'%',
 						'Materiel.code_comptable LIKE' => '%'.$all.'%',
+						'Materiel.numero_inventaire_organisme LIKE' => '%'.$all.'%',
 						'Materiel.numero_serie LIKE' => '%'.$all.'%',
 						'Materiel.lieu_detail LIKE' => '%'.$all.'%'))
 			))));
 		}
 	}
+	
+	function export() {
+		$this->layout = 'ajax';
+		
+		ini_set('max_execution_time', 600);	
+		
+		$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
+		$filename = $cakephpPath . 'tmp/documents/generator/export_'.date("Y.m.d") . '.csv';
+		
+		$csv_file = fopen($filename, 'w');
+	
+		$header_row = array(
+			"id", "Désignation", "Catégorie", "Sous catégorie", "Numéro IRAP", "Description", "Organisme", 
+			"Mat. administratif", "Mat. technique", "Statut", "Date d'acquisition", "Fournisseur", "Prix HT", 
+			"EOTP", "Numéro de commande", "Code comptable", "Numéro de série", "Grp. thématique", "Grp. métier", 
+			"Numero inventaire organisme", "Lieu de stockage", "Nom responsable", "Email responsable");
+		fputcsv($csv_file,$header_row,';');
+		
+		$results = $this->Materiel->find('all');
+		foreach($results as $result) {
+			$row = array(
+				utf8_encode($result['Materiel']['id']),
+				$result['Materiel']['designation'],
+				$result['Categorie']['nom'],
+				$result['SousCategorie']['nom'],
+				$result['Materiel']['numero_irap'],
+				$result['Materiel']['description'],
+				$result['Materiel']['organisme'],
+				$result['Materiel']['materiel_administratif'],
+				$result['Materiel']['materiel_technique'],
+				$result['Materiel']['status'],
+				$result['Materiel']['date_acquisition'],
+				$result['Materiel']['fournisseur'],
+				$result['Materiel']['prix_ht'],
+				$result['Materiel']['eotp'],
+				$result['Materiel']['numero_commande'],
+				$result['Materiel']['code_comptable'],
+				$result['Materiel']['numero_serie'],
+				$result['GroupesThematique']['nom'],
+				$result['GroupesMetier']['nom'],
+				$result['Materiel']['numero_inventaire_organisme'],
+				$result['Materiel']['lieu_stockage'].'-'.$result['Materiel']['lieu_detail'],
+				$result['Materiel']['nom_responsable'],
+				$result['Materiel']['email_responsable'],
+			);
+			fputcsv($csv_file,$row,';','"');
+		}
+		fclose($csv_file);
+		
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename=' . $filename);
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($filename));
+		ob_clean();
+		flush();
+		readfile($filename);
+	}
+	
 	public function delete($id) {
 		$this->Materiel->id = $id;
 		if ($this->Materiel->field('status') != 'CREATED') {
@@ -74,7 +138,7 @@ class MaterielsController extends AppController {
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
 		$this->logInventirap($id);
-		$this->Session->setFlash('La demande d\'archivage du matériel a bien été demandé.');
+		$this->Session->setFlash('La demande de sortie d\'inventaire a bien été demandé.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 
@@ -90,14 +154,43 @@ class MaterielsController extends AppController {
 	}
 
 	public function statusArchived($id = null, $from = 'index') {
-		if ($this->Session->read('LdapUserAuthenticationLevel') == 3)
+		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
 			$this->notAuthorized($id, $from);
-			
+		
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
 		$this->logInventirap($id);
-		$this->Session->setFlash('Le matériel a bien été archivé.');
+		$this->Session->setFlash('Le matériel a bien été sorti de l\'inventaire.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
+	}
+	
+	public function jackpot() {
+		//Vérification administration
+		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
+			$this->notAuthorized(NULL, 'index');
+		
+		//Traitement des update si besoin
+		if (isset($this->data['materiels'])) {
+			$what = $this->data['materiels']['what'];
+			$nb = 0;
+			if ($what == 'toValidate' || $what == 'toBeArchived') {
+				foreach ($this->data['materiels'] as $id => $value) : if ($value == 1) {
+					$this->Materiel->id = $id;
+					$new = '"ARCHIVED"';
+					if ($what == 'toValidate')
+						$new = '"VALIDATED"';
+					$this->Materiel->updateAll(array('Materiel.status' => $new), array('Materiel.id' => $id));
+					$nb++;
+				} endforeach;
+				if ($nb != 0)
+					if ($this->data['materiels']['what'] == 'toValidate')
+						$this->Session->setFlash($nb.' matériel(s) mis à jour (validation).');
+					else
+						$this->Session->setFlash($nb.' matériel(s) mis à jour (sortie d\'inventaire).');
+				$this->redirect(array('action' => 'index', 'what' => $what));
+			}
+		}
+		$this->redirect(array('action' => 'index'));
 	}
 
 	public function getIrapNumber($year = 2012) {

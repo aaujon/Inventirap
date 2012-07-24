@@ -16,9 +16,10 @@
 			$selected = array('selected' => '');
 			
 	    echo $this->Form->create('Materiel', array('action' => 'find')); 
-	    echo $this->Form->input('s_designation', array('label' => 'Designation'));
+	    echo $this->Form->input('s_designation', array('label' => 'Désignation'));
 	    echo $this->Form->input('s_numero_irap', array('label' => 'N° IRAP')); 
 	    echo $this->Form->input('s_responsable', array('label' => 'Responsable')); 
+	    echo $this->Form->input('s_numero_inventaire_organisme', array('label' => 'N° inventaire organisme')); 
 	    echo $this->Form->input('s_categorie_id', 
 	    	array('label' => 'Catégorie', 'empty' => 'Toutes', $selected, 'options' => $s_categories, 'style' => 'width: 200px')); 
 	    echo $this->Form->input('s_sous_categorie_id', 
@@ -29,15 +30,6 @@
 	    	'style' => 'width: 200px')); 
 	    echo $this->Form->input('s_all', array('label' => 'Tous les champs'));
 	    echo $this->Form->end('Rechercher'); 
-	
-		$this->Js->get('#MaterielSCategorieId')->event('change', 
-			$this->Js->request(array('controller' => 'sousCategories', 'action'=>'getByCategorie'), 
-				array(
-					'update' => '#MaterielSSousCategorieId',
-					'async' => true, 'method' => 'post', 'dataExpression' => true,
-					'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
-			)));
-		echo $this->Js->writeBuffer();
 	?></div>
 		
 	<h3 id="t_result" style="cursor: pointer;">
@@ -79,7 +71,8 @@
 				echo $material['Materiel']['status']; 
 			echo '</td>';
 			echo $this->element('materiel_actions', array(
-				'id' => $material['Materiel']['id'], 
+				'id' => $material['Materiel']['id'],
+				'nom' => $material['Materiel']['designation'], 
 				'statut' => $material['Materiel']['status'], 
 				'delete' => ($material['Materiel']['status'] == 'CREATED')));	
 			echo '<tr>';
@@ -93,3 +86,14 @@
 <div class="actions">
 	<?php echo $this->element('menu') ?>
 </div>
+
+<?php
+	$this->Js->get('#MaterielSCategorieId')->event('change', 
+		$this->Js->request(array('controller' => 'sousCategories', 'action'=>'getByCategorie'), 
+			array(
+				'update' => '#MaterielSSousCategorieId',
+				'async' => true, 'method' => 'post', 'dataExpression' => true,
+				'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
+		)));
+	echo $this->Js->writeBuffer();
+?>

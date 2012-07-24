@@ -45,18 +45,20 @@ DROP TABLE IF EXISTS `mydb`.`groupes_thematiques` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`groupes_thematiques` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
+  `description` VARCHAR(100) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`groupes_travails`
+-- Table `mydb`.`groupes_metiers`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`groupes_travails` ;
+DROP TABLE IF EXISTS `mydb`.`groupes_metiers` ;
 
-CREATE  TABLE IF NOT EXISTS `mydb`.`groupes_travails` (
+CREATE  TABLE IF NOT EXISTS `mydb`.`groupes_metiers` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
+  `description` VARCHAR(100) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
@@ -85,8 +87,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   `code_comptable` VARCHAR(45) NULL ,
   `numero_serie` VARCHAR(45) NULL ,
   `groupes_thematique_id` INT NULL ,
-  `groupes_travail_id` INT NULL ,
-  `ref_existante` VARCHAR(45) NULL ,
+  `groupes_metier_id` INT NULL ,
+  `numero_inventaire_organisme` VARCHAR(45) NULL ,
   `lieu_stockage` VARCHAR(45) NULL ,
   `lieu_detail` VARCHAR(45) NULL ,
   `nom_responsable` VARCHAR(45) NULL ,
@@ -94,7 +96,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
   PRIMARY KEY (`id`) ,
   INDEX `fk_administrative_materials_sub_categories1` (`sous_categorie_id` ASC) ,
   INDEX `fk_materials_thematic_group1` (`groupes_thematique_id` ASC) ,
-  INDEX `fk_materials_work_group1` (`groupes_travail_id` ASC) ,
+  INDEX `fk_materials_work_group1` (`groupes_metier_id` ASC) ,
   INDEX `fk_materiels_categories1` (`categorie_id` ASC) ,
   CONSTRAINT `fk_administrative_materials_sub_categories1`
     FOREIGN KEY (`sous_categorie_id` )
@@ -107,8 +109,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`materiels` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_materials_work_group1`
-    FOREIGN KEY (`groupes_travail_id` )
-    REFERENCES `mydb`.`groupes_travails` (`id` )
+    FOREIGN KEY (`groupes_metier_id` )
+    REFERENCES `mydb`.`groupes_metiers` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_materiels_categories1`
@@ -127,8 +129,18 @@ DROP TABLE IF EXISTS `mydb`.`utilisateurs` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`utilisateurs` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
+  `login` VARCHAR(45) NULL ,
+  `email` VARCHAR(45) NULL ,
   `role` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) )
+  `groupes_metier_id` INT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_utilisateurs_groupes_travails1` (`groupes_metier_id` ASC) ,
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) ,
+  CONSTRAINT `fk_utilisateurs_groupes_travails1`
+    FOREIGN KEY (`groupes_metier_id` )
+    REFERENCES `mydb`.`groupes_metiers` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -170,7 +182,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`emprunts` (
   `laboratoire` VARCHAR(45) NULL ,
   `e_lieu_stockage` VARCHAR(45) NULL ,
   `e_lieu_detail` VARCHAR(45) NULL ,
-  `responsable` VARCHAR(45) NULL ,
+  `nom_responsable` VARCHAR(45) NULL ,
+  `email_responsable` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_technical_materials_internal_loans_copy1_admi_materials1` (`materiel_id` ASC) ,
   CONSTRAINT `fk_technical_materials_internal_loans_copy1_admi_materials1`
@@ -358,28 +371,28 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (1, 'N/A');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (2, 'PSE');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (3, 'MICMAC');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (4, 'GAHEC');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (5, 'SISU');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (6, 'SG');
-INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`) VALUES (7, 'GPPS');
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (1, 'N/A', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (2, 'PSE', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (3, 'MICMAC', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (4, 'GAHEC', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (5, 'SISU', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (6, 'SG', NULL);
+INSERT INTO `mydb`.`groupes_thematiques` (`id`, `nom`, `description`) VALUES (7, 'GPPS', NULL);
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `mydb`.`groupes_travails`
+-- Data for table `mydb`.`groupes_metiers`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (1, 'N/A');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (2, 'GEDI');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (3, 'GT2I');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (4, 'GI');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (5, 'GACL');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (6, 'GGPAQ');
-INSERT INTO `mydb`.`groupes_travails` (`id`, `nom`) VALUES (7, 'GM');
+INSERT INTO `mydb`.`groupes_metiers` (`id`, `nom`, `description`) VALUES (1, 'N/A', NULL);
+INSERT INTO `mydb`.`groupes_metiers` (`id`, `nom`, `description`) VALUES (2, 'GEDI', NULL);
+INSERT INTO `mydb`.`groupes_metiers` (`id`, `nom`, `description`) VALUES (3, 'GT2I', NULL);
+INSERT INTO `mydb`.`groupes_metiers` (`id`, `nom`, `description`) VALUES (4, 'GI', NULL);
+INSERT INTO `mydb`.`groupes_metiers` (`id`, `nom`, `description`) VALUES (5, 'GACL', NULL);
+INSERT INTO `mydb`.`groupes_metiers` (`id`, `nom`, `description`) VALUES (6, 'GGPAQ', NULL);
+INSERT INTO `mydb`.`groupes_metiers` (`id`, `nom`, `description`) VALUES (7, 'GM', NULL);
 
 COMMIT;
 
@@ -388,9 +401,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Hillembrand Cedric', 'Super Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Turner Daniel', 'Administrateur');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Sky Gin', 'Responsable');
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `role`) VALUES (NULL, 'Robert Henri', 'Apprenti');
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Hillembrand Cedric', 'Cedric', 'Cedric.Hillembrand@irap.omp.eu', 'Super Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Turner Daniel', 'Daniel', 'Daniel.Toto@irap.omp.eu', 'Administration', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Sky Gin', 'Gin', 'Gin.Toto@irap.omp.eu', 'Responsable', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Robert Henri', 'Henri', 'Henri.Robert@irap.omp.eu', 'Utilisateur', 1);
 
 COMMIT;

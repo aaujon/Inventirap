@@ -10,19 +10,28 @@
 	echo $this->Form->create();
 	if ($this->params['action'] == 'add')
 		echo $this->Form->input('nom', array(
-			'options' => $utilisateur->getLdapUsers(), 
+			'options' => $utilisateur->getNewLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
-			'selected' => ''));
+			'selected' => '',
+			'div' => 'input required'));
 	else 
 		echo $this->Form->input('nom', array(
 			'options' => $utilisateur->getLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
-			'disabled' => true));
-	echo $this->Form->input('role', array('options' => array(
-		'Apprenti' => 'Apprenti', 
+			'disabled' => true,
+			'div' => 'input required'));
+	echo $this->Form->input('login', array( 
+			'label' => 'Login', 
+			'readonly' => true));
+	echo $this->Form->input('email', array( 
+			'label' => 'E-mail', 
+			'readonly' => true));
+	echo $this->Form->input('role', array('label' => 'Rôle', 'options' => array(
+		'Utilisateur' => 'Utilisateur', 
 		'Responsable' => 'Responsable', 
-		'Administrateur' => 'Administrateur', 
+		'Administration' => 'Administration', 
 		'Super Administrateur' => 'Super Administrateur')));
+	echo $this->Form->input('groupes_metier_id', array('label' => 'Groupe métier'));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>
@@ -32,3 +41,17 @@
 		echo $this->element('menu_form');
 	?>
 </div>
+<?php
+$this->Js->get('#UtilisateurNom')->event('change', 
+	'$.ajax({
+		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#UtilisateurNom").val()
+	}).done(function(data) { 
+		$("#UtilisateurEmail").val(data)
+	});
+	$.ajax({
+		url: "/Inventirap/cakephp/utilisateurs/getLdapLogin/" + $("#UtilisateurNom").val()
+	}).done(function(data) { 
+		$("#UtilisateurLogin").val(data)
+	});');
+echo $this->Js->writeBuffer();
+?>

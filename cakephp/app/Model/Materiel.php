@@ -1,11 +1,10 @@
 <?php
 class Materiel extends AppModel {
 	public $name = 'Materiel';
-	
-	var $virtualFields = array('full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
+	public $virtualFields = array('full_storage' => 'CONCAT(lieu_stockage, "-", lieu_detail)');
 	public $displayField = 'designation';
 	
-	public $belongsTo = array('Categorie', 'SousCategorie', 'GroupesThematique', 'GroupesTravail');
+	public $belongsTo = array('Categorie', 'SousCategorie', 'GroupesThematique', 'GroupesMetier');
 	public $hasMany = array('Suivi', 'Emprunt');
 			
 	var $validate = array(
@@ -92,7 +91,7 @@ class Materiel extends AppModel {
 			),      
 		),
 
-		'ref_existante' => array(    
+		'numero_inventaire_organisme' => array(    
 			'valid' => array(            
 				'rule' => 'check_string',
 				'allowEmpty' => true,              

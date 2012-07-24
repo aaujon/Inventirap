@@ -5,6 +5,7 @@
 		
 		$t = str_replace('groupes', 'groupe', $t);
 		$t = str_replace('thematique', 'thématique', $t);
+		$t = str_replace('metier', 'métier', $t);
 		$t = str_replace('categorie', 'catégorie', $t);
 		
 		if(strlen($t) > 12) {
@@ -13,7 +14,7 @@
 		else {
 			if(strstr($t, 'catégorie')) {
 				$t = 'Nouvelle ' . $t;
-			} elseif(strstr($t, 'utilisateur')) {
+			} elseif(strstr($t, 'utilisateur') || strstr($t, 'emprunt')) {
 				$t = 'Nouvel ' . $t;
 			} else {
 				$t = 'Nouveau ' . $t;

@@ -24,7 +24,7 @@
 @implementation InformationViewController
 
 @synthesize simpleProduct, detailedProduct, selectedProduct;
-@synthesize isSimpleProductDisplayed;
+@synthesize isSimpleProductDisplayed, navigationBarButtonMore, navigationBarButtonLess;
 
 #pragma mark -
 #pragma mark Initialization

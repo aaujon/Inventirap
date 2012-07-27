@@ -16,8 +16,8 @@
 @interface InformationViewController ()
 
 @property (nonatomic) Boolean isSimpleProductDisplayed;
-@property (nonatomic, retain) UIImage *navigationBarButtonMore;
-@property (nonatomic, retain) UIImage *navigationBarButtonLess;
+@property (nonatomic, strong) UIImage *navigationBarButtonMore;
+@property (nonatomic, strong) UIImage *navigationBarButtonLess;
 
 @end
 

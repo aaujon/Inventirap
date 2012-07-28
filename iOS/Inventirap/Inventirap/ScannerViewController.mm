@@ -12,6 +12,7 @@
 #import "InformationViewController.h"
 #import "Settings.h"
 #import "Product.h"
+#import "KeychainItemWrapper.h"
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define kMainQueue dispatch_get_main_queue()
@@ -43,6 +44,7 @@
 @synthesize lastProductLabel;
 @synthesize lastProductButton;
 
+@synthesize passwordItem;
 @synthesize informationViewController;
 @synthesize scanResults, jsonData, connection;
 @synthesize applicationActivity, scanButton, informationLabel;
@@ -254,10 +256,13 @@
 
 - (void)sendWebServiceRequest:(NSString*)ident
 {
-    NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
-    
-#warning Change URL
-    completeURL = @"http://api.kivaws.org/v1/loans/search.json?status=fundraising";
+    NSString *completeURL = [NSString stringWithFormat:@"%@%@/%@/%@",[[Settings sharedSettings] webServiceUrl], ident,
+							 [[self passwordItem] objectForKey:(__bridge id)(kSecAttrAccount)],
+							 [[self passwordItem] objectForKey:(__bridge id)(kSecValueData)]];
+	
+#warning Change URL and remove NSLog
+    completeURL = @"https://inventirap.pierrickmarie.info/ServicesWeb/materiel/IRAP-12-0001";
+	NSLog(@"URL complète : %@",completeURL);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
@@ -348,8 +353,6 @@
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
     [self dismissModalViewControllerAnimated:NO];
-#warning Remove test code
-    [self setScanResults:@"IRAP-12-0001"];
     [self processResults];
 }
 
@@ -368,6 +371,8 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+	NSLog(@"%@", [error localizedDescription]);
+	
     [[self informationLabel] setTextColor: [UIColor redColor]];
     [[self informationLabel] setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
     [[self applicationActivity] stopAnimating];
@@ -387,4 +392,13 @@
 {
     return nil;
 }
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+
 @end

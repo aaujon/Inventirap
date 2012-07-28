@@ -62,6 +62,8 @@
 		AFE5E82715A0755A00E32EE8 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E82115A0755A00E32EE8 /* libiconv.dylib */; };
 		AFE5E84015A0A43700E32EE8 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE5E83E15A0A43700E32EE8 /* InformationViewController.m */; };
 		AFE5E84115A0A43700E32EE8 /* InformationViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFE5E83F15A0A43700E32EE8 /* InformationViewController_iPhone.xib */; };
+		AFEF1E0A15C4582200DF5233 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEF1E0915C4582200DF5233 /* Security.framework */; };
+		AFEF1E1715C4652B00DF5233 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEF1E1615C4652B00DF5233 /* KeychainItemWrapper.m */; };
 		AFF5B5CE15AE257B00B91DE0 /* ViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF5B5CD15AE257B00B91DE0 /* ViewBackground.png */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +159,9 @@
 		AFE5E83D15A0A43700E32EE8 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
 		AFE5E83E15A0A43700E32EE8 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		AFE5E83F15A0A43700E32EE8 /* InformationViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationViewController_iPhone.xib; sourceTree = "<group>"; };
+		AFEF1E0915C4582200DF5233 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AFEF1E1515C4652B00DF5233 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		AFEF1E1615C4652B00DF5233 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		AFF5B5CD15AE257B00B91DE0 /* ViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewBackground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFEF1E0A15C4582200DF5233 /* Security.framework in Frameworks */,
 				6E34CC4F15AEDB5800A535D6 /* QuartzCore.framework in Frameworks */,
 				AFE5E82215A0755A00E32EE8 /* AddressBook.framework in Frameworks */,
 				AFE5E82315A0755A00E32EE8 /* AudioToolbox.framework in Frameworks */,
@@ -325,6 +331,7 @@
 				AFE5E7EC15A073B100E32EE8 /* CoreGraphics.framework */,
 				AFE5E7EA15A073B100E32EE8 /* Foundation.framework */,
 				6E34CC4E15AEDB5800A535D6 /* QuartzCore.framework */,
+				AFEF1E0915C4582200DF5233 /* Security.framework */,
 				AFE5E7E815A073B100E32EE8 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -338,6 +345,7 @@
 				AFE5E83C15A09B6A00E32EE8 /* Controllers */,
 				AFD1682D15A3678D0017418B /* Views */,
 				AF9BE9E815A22D5000F6F024 /* Model */,
+				AFEF1E1215C45B3000DF5233 /* Utilities */,
 				AFE5CEB015A77FC5000CEAB7 /* Resources */,
 				AFE5E7EF15A073B200E32EE8 /* Supporting Files */,
 			);
@@ -391,6 +399,15 @@
 				AFE5E83E15A0A43700E32EE8 /* InformationViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		AFEF1E1215C45B3000DF5233 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AFEF1E1515C4652B00DF5233 /* KeychainItemWrapper.h */,
+				AFEF1E1615C4652B00DF5233 /* KeychainItemWrapper.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -523,6 +540,7 @@
 				AFD1683015A389CA0017418B /* CustomCell.m in Sources */,
 				AFE5CEB615A7804C000CEAB7 /* SettingsViewController.m in Sources */,
 				AF0B5B3315A796C200263815 /* Settings.m in Sources */,
+				AFEF1E1715C4652B00DF5233 /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

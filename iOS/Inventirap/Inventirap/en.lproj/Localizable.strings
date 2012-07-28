@@ -17,6 +17,8 @@
 "RESETDEFAULT" = "Reset to default";
 "LASTPRODUCT" = "Return to the last product";
 "WEBSERVURL" = "Web service URL";
+"LOGIN" = "Login";
+"PASSWORD" = "Password";
 
 "CONTACTWEBSERV" = "Contacting WebService ...";
 "INVALIDQRCODE" = "Invalid QRCode";

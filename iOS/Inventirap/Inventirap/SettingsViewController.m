@@ -6,18 +6,21 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SettingsViewController.h"
-#import "Settings.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface SettingsViewController ()
+#import "SettingsViewController.h"
+#import "Settings.h"
+#import "KeychainItemWrapper.h"
 
+@interface SettingsViewController ()
 @end
 
 @implementation SettingsViewController
-@synthesize webServiceUrlTextField;
+
+@synthesize webServiceUrlLabel, webServiceUrlTextField;
+@synthesize loginLabel, loginTextField;
+@synthesize passwordLabel, passwordTextField;
 @synthesize resetButton;
-@synthesize webServiceUrlLabel;
 
 #pragma mark -
 #pragma mark Initialization
@@ -50,8 +53,14 @@
     [[self resetButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
     [[[self resetButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
     
+	[[self loginLabel] setText:NSLocalizedString(@"LOGIN", nil)];
+    [[self loginTextField] setText:[[self passwordItem] objectForKey:(__bridge id)(kSecAttrAccount)]];
+	
+	[[self passwordLabel] setText:NSLocalizedString(@"PASSWORD", nil)];
+    [[self passwordTextField] setText:[[self passwordItem] objectForKey:(__bridge id)(kSecValueData)]];
+	
     [[self webServiceUrlLabel] setText:NSLocalizedString(@"WEBSERVURL", nil)];
-    [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
+    [[self webServiceUrlTextField ] setText:[[Settings sharedSettings] webServiceUrl]];
 }
 
 - (void)viewDidUnload
@@ -60,6 +69,10 @@
     [self setResetButton:nil];
     [self setWebServiceUrlLabel:nil];
     [self setWebServiceUrlLabel:nil];
+    [self setLoginLabel:nil];
+    [self setLoginTextField:nil];
+    [self setPasswordLabel:nil];
+    [self setPasswordTextField:nil];
     [super viewDidUnload];
 }
 
@@ -73,12 +86,18 @@
 
 - (IBAction)resetButtonAction:(id)sender
 {
+	[[self passwordItem] resetKeychainItem];
     [[Settings sharedSettings] resetSettings];
-    [webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
+	
+	[self.loginTextField setText:[[self passwordItem] objectForKey:(__bridge id)(kSecAttrAccount)]];
+	[self.passwordTextField setText:[[self passwordItem] objectForKey:(__bridge id)(kSecValueData)]];
+    [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
 }
 
 - (IBAction)backgroundTouch:(id)sender {
-    [webServiceUrlTextField resignFirstResponder];
+    [[self loginTextField] resignFirstResponder];
+	[[self passwordTextField] resignFirstResponder];
+	[[self webServiceUrlTextField] resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -89,6 +108,12 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [[Settings sharedSettings] changeWebServiceUrl:textField.text];
+	if ([textField isEqual:[self webServiceUrlTextField]]) {
+		[[Settings sharedSettings] changeWebServiceUrl:textField.text];
+	} else if ([textField isEqual:[self loginTextField]]) {
+		[[self passwordItem] setObject:[[self loginTextField] text] forKey:(__bridge id)(kSecAttrAccount)];
+	} else if ([textField isEqual:[self passwordTextField]]) {
+		[[self passwordItem] setObject:[[self passwordTextField] text] forKey:(__bridge id)(kSecValueData)];
+	}
 }
 @end

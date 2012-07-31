@@ -14,7 +14,8 @@ DROP TABLE IF EXISTS `mydb`.`categories` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`categories` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nom` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id`) )
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `nom_UNIQUE` (`nom` ASC) )
 ENGINE = InnoDB;
 
 
@@ -401,9 +402,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Hillembrand Cedric', 'Cedric', 'Cedric.Hillembrand@irap.omp.eu', 'Super Administrateur', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Turner Daniel', 'Daniel', 'Daniel.Toto@irap.omp.eu', 'Administration', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Sky Gin', 'Gin', 'Gin.Toto@irap.omp.eu', 'Responsable', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Robert Henri', 'Henri', 'Henri.Robert@irap.omp.eu', 'Utilisateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Hillembrand Cedric', NULL, NULL, 'Super Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Turner Daniel', NULL, NULL, 'Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Sky Gin', NULL, NULL, 'Responsable', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Robert Henri', NULL, NULL, 'Apprenti', 1);
 
 COMMIT;

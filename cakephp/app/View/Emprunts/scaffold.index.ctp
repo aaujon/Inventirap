@@ -31,7 +31,12 @@ foreach (${$pluralVar} as ${$singularVar}):
 				}
 			}
 			if ($isKey !== true) {
-				echo "<td class='smallText'>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+				if($_field == 'date_emprunt' || $_field == 'date_retour_emprunt') {
+					$date = new DateTime(${$singularVar}[$modelClass][$_field]);
+					echo '<td class=\'smallText\'>' . $date->format('d M Y') . '</td>';
+				} else {
+					echo '<td class=\'smallText\'>' . h(${$singularVar}[$modelClass][$_field]) . '</td>';
+				}
 			}	
 		}
 		

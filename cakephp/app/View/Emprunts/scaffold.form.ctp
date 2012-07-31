@@ -21,11 +21,25 @@
 		$disp_interne = 'display:block';
 		$disp_externe = 'display:none';
 	}
+
+	$months = array('01' => 'Janvier', 
+					'02' => 'Février',
+					'03' => 'Mars',
+					'04' => 'Avril',
+					'05' => 'Mai',
+					'06' => 'Juin',
+					'07' => 'Juillet',
+					'08' => 'Aout',
+					'09' => 'Septembre',
+					'10' => 'Octobre',
+					'11' => 'Novembre',
+					'12' => 'Décembre',
+					);
 	
 	echo $this->Form->create();
 	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
-	echo $this->Form->input('date_emprunt', array('label' => 'Date de l\'emprunt'));
-	echo $this->Form->input('date_retour_emprunt', array('label' => 'Date de retour'));
+	echo $this->Form->input('date_emprunt', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date de l\'emprunt'));
+	echo $this->Form->input('date_retour_emprunt', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date de retour'));
 	echo $this->Form->input('nom_emprunteur', array(
 		'options' => $utilisateur->getLdapUsers(), 
 		'empty' => 'Choisir un utilisateur', 

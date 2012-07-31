@@ -121,8 +121,15 @@
 		<?php foreach (${$singularVar}['Suivi'] as $suivi): ?> 
 		<tr>
 			<td><?php echo $suivi['organisme']; ?></td>
-			<td><?php echo $suivi['date_controle']; ?></td> 
-			<td><?php echo $suivi['date_prochain_controle']; ?></td>
+			
+			<?php
+				$date = new DateTime($suivi['date_controle']);
+				echo '<td>' . $date->format('d M Y') . '</td>';
+				
+				$date = new DateTime($suivi['date_prochain_controle']); 
+				echo '<td>' . $date->format('d M Y') . '</td>';
+			?>
+			
 			<td><?php echo $suivi['type_intervention']; ?></td>
 			<td class="actions"><?php echo $this->Html->link('<i class="icon-search"></i>', 
 				array('controller' => 'suivis', 'action' => 'view', $suivi['id']), 
@@ -149,9 +156,16 @@
 		
 		<?php foreach (${$singularVar}['Emprunt'] as $emprunt): ?> 
 		<tr>
-			<td><?php echo $emprunt['responsable']; ?></td> 
-			<td><?php echo $emprunt['date_emprunt']; ?></td>
-			<td><?php echo $emprunt['date_retour_emprunt']; ?></td>
+			<td><?php echo $emprunt['responsable']; ?></td>
+			
+			<?php
+				$date = new DateTime($suivi['date_emprunt']);
+				echo '<td>' . $date->format('d M Y') . '</td>';
+				
+				$date = new DateTime($suivi['date_retour_emprunt']); 
+				echo '<td>' . $date->format('d M Y') . '</td>';
+			?>
+			
 			<td class="actions"><?php echo $this->Html->link('<i class="icon-search"></i>', 
 				array('controller' => 'emprunts', 'action' => 'view', $emprunt['id']), 
 				array('escape' => false, 'style' => 'margin:0')); ?></td> 

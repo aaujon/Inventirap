@@ -13,8 +13,11 @@
 		}
 			
 		displayElement('Matériel concerné', $materiel);
-		displayElement('Date de l\'emprunt', ${$singularVar}[$modelClass]['date_emprunt']);
-		displayElement('Date de retour', ${$singularVar}[$modelClass]['date_retour_emprunt']);
+		
+		$date = new DateTime(${$singularVar}[$modelClass]['date_emprunt']);
+		displayElement('Date de l\'emprunt', $date->format('d M Y'));
+		$date = new DateTime(${$singularVar}[$modelClass]['date_retour_emprunt']);
+		displayElement('Date de retour', $date->format('d M Y'));
 		displayElement('Type d\'emprunt', $interneExterne);
 		displayElement('Lieu de stockage', $lieuStockage);
 		displayElement('Responsable', ${$singularVar}[$modelClass]['nom_emprunteur']);

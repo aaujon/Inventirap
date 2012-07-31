@@ -18,7 +18,13 @@
 			}
 			if ($isKey !== true) {
 				echo "\t\t<tr><td><strong>" . Inflector::humanize($_field) . "</strong></td>\n";
-				echo "\t\t<td>" . h(${$singularVar}[$modelClass][$_field]) . "&nbsp;</td></tr>\n";
+				
+				if($_field == 'date_controle' || $_field == 'date_prochain_controle') {
+					$date = new DateTime(${$singularVar}[$modelClass][$_field]);
+					echo "\t\t<td>" . $date->format('d M Y') . "&nbsp;</td></tr>\n";
+				} else {
+					echo "\t\t<td>" . h(${$singularVar}[$modelClass][$_field]) . "&nbsp;</td></tr>\n";
+				}
 			}
 		}}
 		?>

@@ -30,10 +30,10 @@
 	echo $this->Form->create();
 	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
 	echo $this->Form->input('date_controle', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date du contrôle'));
-	echo $this->Form->input('date_prochain_controle', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date du prochain contrôle'));
 	echo $this->Form->input('type_intervention', array('label' => 'Type d\'intervention'));
 	echo $this->Form->input('organisme', array('label' => 'Organisme'));
 	echo $this->Form->input('commentaire', array('label' => 'Commentaire'));	
+	echo $this->Form->input('date_prochain_controle', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date du prochain contrôle'));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>

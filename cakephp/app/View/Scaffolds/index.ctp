@@ -16,7 +16,7 @@ function filter($field) {
 	if($_field == 'categorie_id') {
 		echo '<th>' . $this->Paginator->sort('Categorie.nom', 'Nom categorie') . '</th>';
 	} else {
-		echo '<th>' . $this->Paginator->sort($_field, 'Nom') . '</th>';
+		echo '<th>' . $this->Paginator->sort($_field) . '</th>';
 	}
 } endforeach;?>
 	<th style="width:90px;"></th>

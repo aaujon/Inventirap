@@ -25,7 +25,7 @@ foreach (${$pluralVar} as ${$singularVar}):
 				foreach ($associations['belongsTo'] as $_alias => $_details) {
 					if ($_field === $_details['foreignKey']) {
 						$isKey = true;
-						echo "<td class='smallText'>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
+						echo "<td class='smallText'>" . ${$singularVar}[$_alias][$_details['displayField']] . "</td>";
 						break;
 					}
 				}

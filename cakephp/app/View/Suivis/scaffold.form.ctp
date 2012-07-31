@@ -9,10 +9,6 @@
 	if ($this->params['action'] == 'add' && isset($this->passedArgs['mat']))
 		$materiel_id = $this->passedArgs['mat'];
 
-    // Configure::write('Config.language','fr-fr'); // set the current language
-	// $monthNames = __c('mon',LC_TIME,true); // returns an array with the month names in French
-	// $dateFormat = __c('d_fmt',LC_TIME,true); // return the preferred dates format for France
-
 	$months = array('01' => 'Janvier', 
 					'02' => 'Février',
 					'03' => 'Mars',

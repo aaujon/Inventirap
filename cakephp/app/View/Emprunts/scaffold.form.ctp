@@ -26,13 +26,13 @@
 	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
 	echo $this->Form->input('date_emprunt', array('label' => 'Date de l\'emprunt'));
 	echo $this->Form->input('date_retour_emprunt', array('label' => 'Date de retour'));
-	echo $this->Form->input('nom_responsable', array(
+	echo $this->Form->input('nom_emprunteur', array(
 		'options' => $utilisateur->getLdapUsers(), 
 		'empty' => 'Choisir un utilisateur', 
 		'selected' => $this->Session->read('UserName'),
-		'label' => 'Nom du responsable'));
-	echo $this->Form->input('email_responsable', array(
-		'label' => 'Email du responsable', 
+		'label' => 'Nom de l\'emprunteur'));
+	echo $this->Form->input('email_emprunteur', array(
+		'label' => 'Email de l\'emprunteur', 
 		'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 
 		'readonly' => true));
 	echo $this->Form->input('emprunt_interne', array('label' => 'Emprunt interne', 'onchange' => 'emprunt_interne_externe();'));

@@ -3,7 +3,7 @@ $toShow = array(
 	'materiel_id' => 'Matériel',
 	'date_emprunt' => 'Date de l\'emprunt',
 	'date_retour_emprunt' => 'Date de retour',
-	'responsable' => 'Responsable'
+	'nom_emprunteur' => 'Emprunteur'
 );
 ?>
 <div class="<?php echo $pluralVar;?> index">

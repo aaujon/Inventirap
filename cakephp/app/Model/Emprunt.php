@@ -28,16 +28,6 @@ class Emprunt extends AppModel {
 				'message' => 'Le champ doit être rempli pour un emprunt interne.'
 			)
 		),
-		'responsable' => array(    
-			'valid' => array(            
-				'rule' => 'check_string',            
-				'message' => 'Le champ doit être valide.'        
-			),      
-			'nonVide' => array(
-				'rule' => 'notEmpty',              
-				'message' => 'Le champ doit être rempli.'
-			)
-		),
 		'date_retour_emprunt' => array(
 			'returnDateAfterLoanDate' => array(
 				'rule' => 'returnDateAfterLoanDate',

@@ -17,7 +17,7 @@
 		displayElement('Date de retour', ${$singularVar}[$modelClass]['date_retour_emprunt']);
 		displayElement('Type d\'emprunt', $interneExterne);
 		displayElement('Lieu de stockage', $lieuStockage);
-		displayElement('Responsable', ${$singularVar}[$modelClass]['responsable']);
+		displayElement('Responsable', ${$singularVar}[$modelClass]['nom_emprunteur']);
 		?>
 	</table>
 </div>

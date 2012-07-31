@@ -183,8 +183,8 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`emprunts` (
   `laboratoire` VARCHAR(45) NULL ,
   `e_lieu_stockage` VARCHAR(45) NULL ,
   `e_lieu_detail` VARCHAR(45) NULL ,
-  `nom_responsable` VARCHAR(45) NULL ,
-  `email_responsable` VARCHAR(45) NULL ,
+  `nom_emprunteur` VARCHAR(45) NULL ,
+  `email_emprunteur` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_technical_materials_internal_loans_copy1_admi_materials1` (`materiel_id` ASC) ,
   CONSTRAINT `fk_technical_materials_internal_loans_copy1_admi_materials1`
@@ -402,9 +402,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Hillembrand Cedric', NULL, NULL, 'Super Administrateur', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Turner Daniel', NULL, NULL, 'Administrateur', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Sky Gin', NULL, NULL, 'Responsable', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Robert Henri', NULL, NULL, 'Apprenti', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Hillembrand Cedric', 'Cedric', NULL, 'Super Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Turner Daniel', 'Daniel', NULL, 'Administration', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Sky Gin', 'Gin', NULL, 'Responsable', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Robert Henri', 'Henri', NULL, 'Utilisateur', 1);
 
 COMMIT;

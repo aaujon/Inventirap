@@ -16,8 +16,8 @@
 @interface InformationViewController ()
 
 @property (nonatomic) Boolean isSimpleProductDisplayed;
-@property (nonatomic, retain) UIImage *navigationBarButtonMore;
-@property (nonatomic, retain) UIImage *navigationBarButtonLess;
+@property (nonatomic, strong) UIImage *navigationBarButtonMore;
+@property (nonatomic, strong) UIImage *navigationBarButtonLess;
 
 @end
 
@@ -52,12 +52,7 @@
 	[self setNavigationBarButtonMore:[UIImage imageNamed:@"navigationBarButtonMore"]];
 	[self setNavigationBarButtonLess:[UIImage imageNamed:@"navigationBarButtonLess"]];
     
-    UIBarButtonItem *detailsButton ;/* = [[UIBarButtonItem alloc]
-                                   initWithTitle:NSLocalizedString(@"MORE", nil)
-                                   style:UIBarButtonItemStyleBordered 
-                                   target:self 
-                                   action:@selector(detailsButtonAction)];*/
-	
+    UIBarButtonItem *detailsButton ;	
 	detailsButton = [[UIBarButtonItem alloc] initWithImage:[self navigationBarButtonMore]
 													style:UIBarButtonItemStyleBordered
 													target:self

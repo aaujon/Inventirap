@@ -12,15 +12,16 @@
 #import "InformationViewController.h"
 #import "Settings.h"
 #import "Product.h"
+#import "KeychainItemWrapper.h"
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define kMainQueue dispatch_get_main_queue()
 
 @interface ScannerViewController ()
 
-@property (nonatomic, retain) InformationViewController *informationViewController;
-@property (nonatomic, retain) NSMutableData *jsonData;
-@property (nonatomic, retain) NSURLConnection *connection;
+@property (nonatomic, strong) InformationViewController *informationViewController;
+@property (nonatomic, strong) NSMutableData *jsonData;
+@property (nonatomic, strong) NSURLConnection *connection;
 
 @property (nonatomic, copy) NSString *scanResults;
 
@@ -43,6 +44,7 @@
 @synthesize lastProductLabel;
 @synthesize lastProductButton;
 
+@synthesize passwordItem;
 @synthesize informationViewController;
 @synthesize scanResults, jsonData, connection;
 @synthesize applicationActivity, scanButton, informationLabel;
@@ -171,7 +173,7 @@
         [self sendWebServiceRequest:[self scanResults]];
     } else {
         [[self informationLabel] setTextColor: [UIColor redColor]];
-        [[self informationLabel] setText:NSLocalizedString(@"INVALIDEQRCODE", nil)];
+        [[self informationLabel] setText:NSLocalizedString(@"INVALIDQRCODE", nil)];
     }
     [[self informationLabel] setHidden:NO];
     
@@ -249,7 +251,10 @@
 
 - (void)sendWebServiceRequest:(NSString*)ident
 {
-    NSString *completeURL = [NSString stringWithFormat:@"%@%@",[[Settings sharedSettings] webServiceUrl], ident];
+    NSString *completeURL = [NSString stringWithFormat:@"%@%@/%@/%@",[[Settings sharedSettings] webServiceUrl], ident,
+							 [[self passwordItem] objectForKey:(__bridge id)(kSecAttrAccount)],
+							 [[self passwordItem] objectForKey:(__bridge id)(kSecValueData)]];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:completeURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
     [self setConnection:[[NSURLConnection alloc] initWithRequest:request delegate:self]];
@@ -356,6 +361,8 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+	NSLog(@"%@", [error localizedDescription]);
+	
     [[self informationLabel] setTextColor: [UIColor redColor]];
     [[self informationLabel] setText:NSLocalizedString(@"ERRORCONNECTWEBSERV", nil)];
     [[self applicationActivity] stopAnimating];
@@ -375,4 +382,13 @@
 {
     return nil;
 }
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+
 @end

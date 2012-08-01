@@ -164,7 +164,7 @@ class MaterielsController extends AppController {
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
 	
-	public function jackpot() {
+	public function execActions() {
 		//Vérification administration
 		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
 			$this->notAuthorized(NULL, 'index');

@@ -47,7 +47,7 @@
 	}
 	
 	if (sizeof($data) != 0) {
-		echo $this->Form->create('materiels', array('action' => 'jackpot'));
+		echo $this->Form->create('materiels', array('action' => 'execActions'));
 		if (isset($what) && $userAuth == 3)
 			echo $this->Form->hidden('what', array('value' => $what));
 		echo '<table cellpadding="0" cellspacing="0">';

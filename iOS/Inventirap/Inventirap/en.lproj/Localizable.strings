@@ -13,12 +13,16 @@
 "NO" = "No";
 "MORE" = "More";
 "LESS" = "Less";
+"CANCEL" = "Cancel";
+"SAVE" = "Save";
+"RESET" = "Reset";
+"RESETCONF" = "Reset";
 
-"RESETDEFAULT" = "Reset to default";
 "LASTPRODUCT" = "Return to the last product";
 "WEBSERVURL" = "Web service URL";
 "LOGIN" = "Login";
 "PASSWORD" = "Password";
+"CONFIRMRESET" = "Do you really want to reset your settings ?";
 
 "CONTACTWEBSERV" = "Contacting WebService ...";
 "INVALIDQRCODE" = "Invalid QRCode";

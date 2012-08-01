@@ -12,6 +12,10 @@
 		6E34CC4F15AEDB5800A535D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E34CC4E15AEDB5800A535D6 /* QuartzCore.framework */; };
 		AF0B5B3015A78FFA00263815 /* DefaultSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */; };
 		AF0B5B3315A796C200263815 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0B5B3215A796C200263815 /* Settings.m */; };
+		AF3FB8EC15C983DA00D9006C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3FB8EA15C983DA00D9006C /* SettingsViewController.m */; };
+		AF3FB8ED15C983DA00D9006C /* SettingsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF3FB8EB15C983DA00D9006C /* SettingsViewController_iPhone.xib */; };
+		AF3FB8F115C9842A00D9006C /* SettingsEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF3FB8EF15C9842A00D9006C /* SettingsEditorViewController.m */; };
+		AF3FB8F215C9842A00D9006C /* SettingsEditorViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF3FB8F015C9842A00D9006C /* SettingsEditorViewController_iPhone.xib */; };
 		AF9BE9EB15A22DC200F6F024 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9EA15A22DC200F6F024 /* Product.m */; };
 		AF9BE9F215A22E0800F6F024 /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = AF9BE9F115A22E0800F6F024 /* Property.m */; };
 		AF9EBFF015ACBC690050DA24 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AF9EBFF215ACBC690050DA24 /* Localizable.strings */; };
@@ -43,8 +47,6 @@
 		AFE31B0C15AF902D00A7A8A0 /* buttonReturn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE31B0A15AF902D00A7A8A0 /* buttonReturn@2x.png */; };
 		AFE31B0F15AF91ED00A7A8A0 /* buttonReturn@Selecte.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE31B0D15AF91ED00A7A8A0 /* buttonReturn@Selecte.png */; };
 		AFE31B1015AF91ED00A7A8A0 /* buttonReturn@Selected2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE31B0E15AF91ED00A7A8A0 /* buttonReturn@Selected2x.png */; };
-		AFE5CEB615A7804C000CEAB7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE5CEB415A7804C000CEAB7 /* SettingsViewController.m */; };
-		AFE5CEB715A7804C000CEAB7 /* SettingsViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFE5CEB515A7804C000CEAB7 /* SettingsViewController_iPhone.xib */; };
 		AFE5E7E915A073B100E32EE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E7E815A073B100E32EE8 /* UIKit.framework */; };
 		AFE5E7EB15A073B100E32EE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E7EA15A073B100E32EE8 /* Foundation.framework */; };
 		AFE5E7ED15A073B100E32EE8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE5E7EC15A073B100E32EE8 /* CoreGraphics.framework */; };
@@ -98,6 +100,12 @@
 		AF0B5B2F15A78FFA00263815 /* DefaultSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultSettings.plist; sourceTree = "<group>"; };
 		AF0B5B3115A796C200263815 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		AF0B5B3215A796C200263815 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		AF3FB8E915C983DA00D9006C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AF3FB8EA15C983DA00D9006C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AF3FB8EB15C983DA00D9006C /* SettingsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController_iPhone.xib; sourceTree = "<group>"; };
+		AF3FB8EE15C9842A00D9006C /* SettingsEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsEditorViewController.h; sourceTree = "<group>"; };
+		AF3FB8EF15C9842A00D9006C /* SettingsEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsEditorViewController.m; sourceTree = "<group>"; };
+		AF3FB8F015C9842A00D9006C /* SettingsEditorViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsEditorViewController_iPhone.xib; sourceTree = "<group>"; };
 		AF9BE9E915A22DC200F6F024 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		AF9BE9EA15A22DC200F6F024 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		AF9BE9F015A22E0800F6F024 /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
@@ -133,9 +141,6 @@
 		AFE31B0A15AF902D00A7A8A0 /* buttonReturn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonReturn@2x.png"; sourceTree = "<group>"; };
 		AFE31B0D15AF91ED00A7A8A0 /* buttonReturn@Selecte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonReturn@Selecte.png"; sourceTree = "<group>"; };
 		AFE31B0E15AF91ED00A7A8A0 /* buttonReturn@Selected2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonReturn@Selected2x.png"; sourceTree = "<group>"; };
-		AFE5CEB315A7804C000CEAB7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		AFE5CEB415A7804C000CEAB7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		AFE5CEB515A7804C000CEAB7 /* SettingsViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController_iPhone.xib; sourceTree = "<group>"; };
 		AFE5E7E415A073B100E32EE8 /* Inventirap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inventirap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE5E7E815A073B100E32EE8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AFE5E7EA15A073B100E32EE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -300,7 +305,8 @@
 			children = (
 				AFE5E7FD15A073B200E32EE8 /* ScannerViewController_iPhone.xib */,
 				AFE5E83F15A0A43700E32EE8 /* InformationViewController_iPhone.xib */,
-				AFE5CEB515A7804C000CEAB7 /* SettingsViewController_iPhone.xib */,
+				AF3FB8EB15C983DA00D9006C /* SettingsViewController_iPhone.xib */,
+				AF3FB8F015C9842A00D9006C /* SettingsEditorViewController_iPhone.xib */,
 				AFD1683115A389E50017418B /* CustomCell.xib */,
 				AFD1684715A39BB90017418B /* Images */,
 			);
@@ -393,10 +399,12 @@
 			children = (
 				AFE5E7FA15A073B200E32EE8 /* ScannerViewController.h */,
 				AFE5E7FB15A073B200E32EE8 /* ScannerViewController.mm */,
-				AFE5CEB315A7804C000CEAB7 /* SettingsViewController.h */,
-				AFE5CEB415A7804C000CEAB7 /* SettingsViewController.m */,
 				AFE5E83D15A0A43700E32EE8 /* InformationViewController.h */,
 				AFE5E83E15A0A43700E32EE8 /* InformationViewController.m */,
+				AF3FB8E915C983DA00D9006C /* SettingsViewController.h */,
+				AF3FB8EA15C983DA00D9006C /* SettingsViewController.m */,
+				AF3FB8EE15C9842A00D9006C /* SettingsEditorViewController.h */,
+				AF3FB8EF15C9842A00D9006C /* SettingsEditorViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -489,7 +497,6 @@
 				AFE5E7FF15A073B200E32EE8 /* ScannerViewController_iPhone.xib in Resources */,
 				AFE5E84115A0A43700E32EE8 /* InformationViewController_iPhone.xib in Resources */,
 				AFD1683215A389E50017418B /* CustomCell.xib in Resources */,
-				AFE5CEB715A7804C000CEAB7 /* SettingsViewController_iPhone.xib in Resources */,
 				AF0B5B3015A78FFA00263815 /* DefaultSettings.plist in Resources */,
 				AF9EBFF015ACBC690050DA24 /* Localizable.strings in Resources */,
 				AF9EBFF915ACD1450050DA24 /* navigationBar@2x.png in Resources */,
@@ -521,6 +528,8 @@
 				AFB775C115B32E6C00850D5E /* Icon-small.png in Resources */,
 				AFB775C215B32E6C00850D5E /* Icon.png in Resources */,
 				AFB775C315B32E6C00850D5E /* IconGiant.png in Resources */,
+				AF3FB8ED15C983DA00D9006C /* SettingsViewController_iPhone.xib in Resources */,
+				AF3FB8F215C9842A00D9006C /* SettingsEditorViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,9 +547,10 @@
 				AF9BE9EB15A22DC200F6F024 /* Product.m in Sources */,
 				AF9BE9F215A22E0800F6F024 /* Property.m in Sources */,
 				AFD1683015A389CA0017418B /* CustomCell.m in Sources */,
-				AFE5CEB615A7804C000CEAB7 /* SettingsViewController.m in Sources */,
 				AF0B5B3315A796C200263815 /* Settings.m in Sources */,
 				AFEF1E1715C4652B00DF5233 /* KeychainItemWrapper.m in Sources */,
+				AF3FB8EC15C983DA00D9006C /* SettingsViewController.m in Sources */,
+				AF3FB8F115C9842A00D9006C /* SettingsEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

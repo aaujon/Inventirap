@@ -13,12 +13,16 @@
 "NO" = "Non";
 "MORE" = "Plus";
 "LESS" = "Moins";
+"CANCEL" = "Annuler";
+"SAVE" = "Valider";
+"RESET" = "Reset";
+"RESETCONF" = "Réinitialiser";
 
-"RESETDEFAULT" = "Réinitialiser";
 "LASTPRODUCT" = "Retour au dernier produit";
 "WEBSERVURL" = "URL du service web";
-"LOGIN" = "Login";
-"PASSWORD" = "Password";
+"LOGIN" = "Identifiant";
+"PASSWORD" = "Mot de passe";
+"CONFIRMRESET" = "Voulez-vous vraiment réinitialiser vos réglages ?";
 
 "CONTACTWEBSERV" = "Connexion au service web ...";
 "INVALIDQRCODE" = "QRCode invalide";

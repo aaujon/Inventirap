@@ -82,8 +82,8 @@
 	displayElement('Type du matériel', $type);
 	displayElement('Catégorie', ${$singularVar}['Categorie']['nom']);
 	displayElement('Sous catégorie', ${$singularVar}['SousCategorie']['nom']);
-	displayElement('Groupe thématique', ${$singularVar}['GroupesThematique']['nom']);
-	displayElement('Groupe métier', ${$singularVar}['GroupesMetier']['nom']);
+	displayElement('Groupe thématique', $this->Html->link(${$singularVar}['GroupesThematique']['nom'], array('controller' => 'groupes_thematiques', 'action' => 'view', ${$singularVar}['GroupesThematique']['id'])));
+	displayElement('Groupe thématique', $this->Html->link(${$singularVar}['GroupesMetier']['nom'], array('controller' => 'groupes_metiers', 'action' => 'view', ${$singularVar}['GroupesMetier']['id'])));
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Statut', $statut);
 	if ($userAuth >= 3) {

@@ -123,11 +123,10 @@
 			<td><?php echo $suivi['organisme']; ?></td>
 			
 			<?php
-				$date = new DateTime($suivi['date_controle']);
-				echo '<td>' . $date->format('d M Y') . '</td>';
-				
-				$date = new DateTime($suivi['date_prochain_controle']); 
-				echo '<td>' . $date->format('d M Y') . '</td>';
+				setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+			
+				echo '<td>' . strftime("%e %B %Y", strtotime($suivi['date_controle'])) . '</td>';
+				echo '<td>' . strftime("%e %B %Y", strtotime($suivi['date_prochain_controle'])) . '</td>';
 			?>
 			
 			<td><?php echo $suivi['type_intervention']; ?></td>
@@ -159,11 +158,10 @@
 			<td><?php echo $emprunt['responsable']; ?></td>
 			
 			<?php
-				$date = new DateTime($suivi['date_emprunt']);
-				echo '<td>' . $date->format('d M Y') . '</td>';
-				
-				$date = new DateTime($suivi['date_retour_emprunt']); 
-				echo '<td>' . $date->format('d M Y') . '</td>';
+				setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+			
+				echo '<td>' . strftime("%e %B %Y", strtotime($emprunt['date_emprunt'])) . '</td>';
+				echo '<td>' . strftime("%e %B %Y", strtotime($emprunt['date_retour_emprunt'])) . '</td>';
 			?>
 			
 			<td class="actions"><?php echo $this->Html->link('<i class="icon-search"></i>', 

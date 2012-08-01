@@ -32,8 +32,9 @@ foreach (${$pluralVar} as ${$singularVar}):
 			}
 			if ($isKey !== true) {
 				if($_field == 'date_controle' || $_field == 'date_prochain_controle') {
-					$date = new DateTime(${$singularVar}[$modelClass][$_field]);
-					echo '<td class=\'smallText\'>' . $date->format('d M Y') . '</td>';
+				
+					setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+					echo '<td class=\'smallText\'>' . strftime("%e %B %Y", strtotime(${$singularVar}[$modelClass][$_field])) . '</td>';
 				} else {
 					echo '<td class=\'smallText\'>' . h(${$singularVar}[$modelClass][$_field]) . '</td>';
 				}

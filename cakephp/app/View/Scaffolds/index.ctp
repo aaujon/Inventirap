@@ -12,9 +12,13 @@ function filter($field) {
 <h2><i class="icon-list"></i> Liste des <?php echo strtolower($pluralHumanName);?></h2>
 <table cellpadding="0" cellspacing="0">
 <tr>
-<?php foreach ($scaffoldFields as $_field): if (filter($_field)) { ?>
-	<th><?php echo $this->Paginator->sort($_field);?></th>
-<?php } endforeach;?>
+<?php foreach ($scaffoldFields as $_field): if (filter($_field)) {
+	if($_field == 'categorie_id') {
+		echo '<th>' . $this->Paginator->sort('Categorie.nom', 'Nom categorie') . '</th>';
+	} else {
+		echo '<th>' . $this->Paginator->sort($_field) . '</th>';
+	}
+} endforeach;?>
 	<th style="width:90px;"></th>
 </tr>
 <?php

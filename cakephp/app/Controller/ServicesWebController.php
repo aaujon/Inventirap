@@ -7,34 +7,18 @@ class ServicesWebController extends AppController {
 		$this->LdapAuth->allow('*');
 	}
 
-	public function materiel($irapNum = '', $login = '', $passwordAES128 = '') {
-		if(ClassRegistry::init('LdapConnection')->ldapAuthentication($login, $passwordAES128)) {
+	public function materiel($irapNum = '', $login = '', $password = '') {
+
+		if(ClassRegistry::init('LdapConnection')->ldapAuthentication($login, $password)) {
 
 			if(preg_match('~IRAP-..-[0-9]*~', $irapNum)) {
 				$materiel = ClassRegistry::init('Materiel')->
 				find('all', array('conditions' => array('numero_irap' => $irapNum)));
 
-				$this->set('login', $login);
 				$this->set('id', $irapNum);
 				$this->set('materials', $materiel);
 			}
 		}
-	}
-
-	private function decrypt_password($pass,$key)
-	{
-
-		$base64encoded_ciphertext = $pass;
-
-		$res_non = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, base64_decode($base64encoded_ciphertext), ‘ecb’);
-
-		$decrypted = $res_non;
-		$dec_s2 = strlen($decrypted);
-
-		$padding = ord($decrypted[$dec_s2-1]);
-		$decrypted = substr($decrypted, 0, -$padding);
-
-		return  $decrypted;
 	}
 }
 

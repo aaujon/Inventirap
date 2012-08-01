@@ -30,22 +30,15 @@ class DocumentsController extends AppController {
 
 				date_default_timezone_set('UTC');
 
-				exec ('sed -i \'s/\$1\$/ /\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$2\$/ /\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$3\$/' . $materiel[0]['Materiel']['numero_serie'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$4\$/' . $materiel[0]['Materiel']['numero_IRAP'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$5\$/' . $materiel[0]['Materiel']['designation'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$6\$/ /\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$7\$/' . $materiel[0]['Materiel']['date_acquisition'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$8\$/ /\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$9\$/' . $materiel[0]['Materiel']['lieu_stockage']
-				. ', ' . $materiel[0]['Materiel']['lieu_detail']
-				. ', ' . $materiel[0]['Materiel']['nom_responsable']
-				. ', ' . $materiel[0]['Materiel']['email_responsable']
-				. '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$10\$/' . date('d F Y') . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$11\$/' . date('d F Y') . '/\' ' . $documentFolderPath . '/generator/content.xml');
-
+				exec ('sed -i \'s/\$1\$/' . $materiel[0]['Materiel']['organisme'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$2\$/' . $materiel[0]['Materiel']['numero_irap'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$3\$/' . $materiel[0]['Materiel']['numero_inventaire_organisme'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$4\$/' . $materiel[0]['Materiel']['description'] . ', ' . $materiel[0]['Categorie']['nom'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				var_dump(setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8'));
+				exec ('sed -i \'s/\$5\$/' . strftime("%e %B %Y", strtotime($materiel[0]['Materiel']['date_acquisition'])) . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$6\$/' . strftime("%e %B %Y") . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$7\$/' . strftime("%e %B %Y") . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				
 				exec ('sh ' . $documentFolderPath . '/zip.sh ' . $documentFolderPath . ' ' . $sessionFolder . ' sortie.zip');
 				exec ('mv ' . $documentFolderPath . '/' . $sessionFolder . '/sortie.zip ' . $documentFolderPath . '/' . $sessionFolder . '/sortie.odt');
 				exec ('rm -rf ' . $documentFolderPath . '/generator/*');
@@ -72,15 +65,14 @@ class DocumentsController extends AppController {
 
 				date_default_timezone_set('UTC');
 
-				exec ('sed -i \'s/\$1\$/' . $materiel[0]['Materiel']['nom_responsable'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$2\$/ /\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$3\$/' . $materiel[0]['Materiel']['designation'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$4\$/' . $materiel[0]['Materiel']['date_acquisition'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$5\$/' . $materiel[0]['Materiel']['fournisseur'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$6\$/ /\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$7\$/' . $materiel[0]['Materiel']['numero_commande'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
-				exec ('sed -i \'s/\$8\$/' . date('d F Y') . '/\' ' . $documentFolderPath . '/generator/content.xml');
-
+				exec ('sed -i \'s/\$1\$/' . $materiel[0]['Materiel']['designation'] . ', ' . $materiel[0]['Categorie']['nom'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$2\$/' . $materiel[0]['Materiel']['numero_serie'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$3\$/' . $materiel[0]['Materiel']['fournisseur'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$4\$/' . $materiel[0]['Materiel']['numero_commande'] . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				var_dump(setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8'));
+				exec ('sed -i \'s/\$5\$/' . strftime("%e %B %Y", strtotime($materiel[0]['Materiel']['date_acquisition'])) . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				exec ('sed -i \'s/\$6\$/' . strftime("%e %B %Y") . '/\' ' . $documentFolderPath . '/generator/content.xml');
+				
 				exec ('sh ' . $documentFolderPath . '/zip.sh ' . $documentFolderPath . ' ' . $sessionFolder . ' admission.zip');
 				exec ('mv ' . $documentFolderPath . '/' . $sessionFolder . '/admission.zip ' . $documentFolderPath . '/' . $sessionFolder . '/admission.odt');
 				exec ('rm -rf ' . $documentFolderPath . '/generator/*');

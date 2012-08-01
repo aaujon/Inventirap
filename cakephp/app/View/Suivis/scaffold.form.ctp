@@ -9,13 +9,27 @@
 	if ($this->params['action'] == 'add' && isset($this->passedArgs['mat']))
 		$materiel_id = $this->passedArgs['mat'];
 
+	$months = array('01' => 'Janvier', 
+					'02' => 'Février',
+					'03' => 'Mars',
+					'04' => 'Avril',
+					'05' => 'Mai',
+					'06' => 'Juin',
+					'07' => 'Juillet',
+					'08' => 'Aout',
+					'09' => 'Septembre',
+					'10' => 'Octobre',
+					'11' => 'Novembre',
+					'12' => 'Décembre',
+					);
+
 	echo $this->Form->create();
 	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
-	echo $this->Form->input('date_controle', array('label' => 'Date du contrôle'));
-	echo $this->Form->input('date_prochain_controle', array('label' => 'Date du prochain contrôle'));
+	echo $this->Form->input('date_controle', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date du contrôle'));
 	echo $this->Form->input('type_intervention', array('label' => 'Type d\'intervention'));
 	echo $this->Form->input('organisme', array('label' => 'Organisme'));
 	echo $this->Form->input('commentaire', array('label' => 'Commentaire'));	
+	echo $this->Form->input('date_prochain_controle', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date du prochain contrôle'));
 	echo $this->Form->end(__d('cake', 'Valider'));
 ?>
 </div>

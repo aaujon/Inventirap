@@ -13,11 +13,14 @@
 		}
 			
 		displayElement('Matériel concerné', $materiel);
-		displayElement('Date de l\'emprunt', ${$singularVar}[$modelClass]['date_emprunt']);
-		displayElement('Date de retour', ${$singularVar}[$modelClass]['date_retour_emprunt']);
+		
+		setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+		
+		displayElement('Date de l\'emprunt', strftime("%e %B %Y", strtotime(${$singularVar}[$modelClass]['date_emprunt'])));
+		displayElement('Date de retour', strftime("%e %B %Y", strtotime(${$singularVar}[$modelClass]['date_retour_emprunt'])));
 		displayElement('Type d\'emprunt', $interneExterne);
 		displayElement('Lieu de stockage', $lieuStockage);
-		displayElement('Responsable', ${$singularVar}[$modelClass]['responsable']);
+		displayElement('Responsable', ${$singularVar}[$modelClass]['nom_emprunteur']);
 		?>
 	</table>
 </div>

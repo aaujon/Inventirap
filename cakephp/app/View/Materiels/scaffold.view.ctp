@@ -82,8 +82,8 @@
 	displayElement('Type du matériel', $type);
 	displayElement('Catégorie', ${$singularVar}['Categorie']['nom']);
 	displayElement('Sous catégorie', ${$singularVar}['SousCategorie']['nom']);
-	displayElement('Groupe thématique', ${$singularVar}['GroupesThematique']['nom']);
-	displayElement('Groupe métier', ${$singularVar}['GroupesMetier']['nom']);
+	displayElement('Groupe thématique', $this->Html->link(${$singularVar}['GroupesThematique']['nom'], array('controller' => 'groupes_thematiques', 'action' => 'view', ${$singularVar}['GroupesThematique']['id'])));
+	displayElement('Groupe thématique', $this->Html->link(${$singularVar}['GroupesMetier']['nom'], array('controller' => 'groupes_metiers', 'action' => 'view', ${$singularVar}['GroupesMetier']['id'])));
 	displayElement('Date d\'aquisition', ${$singularVar}[$modelClass]['date_acquisition']);
 	displayElement('Statut', $statut);
 	if ($userAuth >= 3) {
@@ -121,8 +121,14 @@
 		<?php foreach (${$singularVar}['Suivi'] as $suivi): ?> 
 		<tr>
 			<td><?php echo $suivi['organisme']; ?></td>
-			<td><?php echo $suivi['date_controle']; ?></td> 
-			<td><?php echo $suivi['date_prochain_controle']; ?></td>
+			
+			<?php
+				setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+			
+				echo '<td>' . strftime("%e %B %Y", strtotime($suivi['date_controle'])) . '</td>';
+				echo '<td>' . strftime("%e %B %Y", strtotime($suivi['date_prochain_controle'])) . '</td>';
+			?>
+			
 			<td><?php echo $suivi['type_intervention']; ?></td>
 			<td class="actions"><?php echo $this->Html->link('<i class="icon-search"></i>', 
 				array('controller' => 'suivis', 'action' => 'view', $suivi['id']), 
@@ -149,9 +155,15 @@
 		
 		<?php foreach (${$singularVar}['Emprunt'] as $emprunt): ?> 
 		<tr>
-			<td><?php echo $emprunt['responsable']; ?></td> 
-			<td><?php echo $emprunt['date_emprunt']; ?></td>
-			<td><?php echo $emprunt['date_retour_emprunt']; ?></td>
+			<td><?php echo $emprunt['responsable']; ?></td>
+			
+			<?php
+				setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+			
+				echo '<td>' . strftime("%e %B %Y", strtotime($emprunt['date_emprunt'])) . '</td>';
+				echo '<td>' . strftime("%e %B %Y", strtotime($emprunt['date_retour_emprunt'])) . '</td>';
+			?>
+			
 			<td class="actions"><?php echo $this->Html->link('<i class="icon-search"></i>', 
 				array('controller' => 'emprunts', 'action' => 'view', $emprunt['id']), 
 				array('escape' => false, 'style' => 'margin:0')); ?></td> 

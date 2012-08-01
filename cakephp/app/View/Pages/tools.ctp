@@ -13,7 +13,7 @@
 			'controller' => 'groupes_thematiques', 'sort' => 'nom')); ?></td></tr>
 		<tr><td><?php echo $this->Html->link('Gérer les groupes métiers', array(
 			'controller' => 'groupes_metiers', 'sort' => 'nom')); ?></td></tr>
-		<tr><td><?php echo $this->Html->link('Exporter la base de donnée (.csv)', array(
+		<tr><td><?php echo $this->Html->link('Export de la liste des materiels de la base des materiels (.csv)', array(
 			'controller' => 'materiels', 'action' => 'export')); ?></td></tr>
 	</table>	
 </div>

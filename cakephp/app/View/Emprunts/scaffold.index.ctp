@@ -3,7 +3,7 @@ $toShow = array(
 	'materiel_id' => 'Matériel',
 	'date_emprunt' => 'Date de l\'emprunt',
 	'date_retour_emprunt' => 'Date de retour',
-	'responsable' => 'Responsable'
+	'nom_emprunteur' => 'Emprunteur'
 );
 ?>
 <div class="<?php echo $pluralVar;?> index">
@@ -25,13 +25,18 @@ foreach (${$pluralVar} as ${$singularVar}):
 				foreach ($associations['belongsTo'] as $_alias => $_details) {
 					if ($_field === $_details['foreignKey']) {
 						$isKey = true;
-						echo "<td class='smallText'>" . $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']])) . "</td>";
+						echo "<td class='smallText'>" . ${$singularVar}[$_alias][$_details['displayField']] . "</td>";
 						break;
 					}
 				}
 			}
 			if ($isKey !== true) {
-				echo "<td class='smallText'>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+				if($_field == 'date_emprunt' || $_field == 'date_retour_emprunt') {
+					setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+					echo '<td class=\'smallText\'>' . strftime("%e %B %Y", strtotime(${$singularVar}[$modelClass][$_field])) . '</td>';
+				} else {
+					echo '<td class=\'smallText\'>' . h(${$singularVar}[$modelClass][$_field]) . '</td>';
+				}
 			}	
 		}
 		

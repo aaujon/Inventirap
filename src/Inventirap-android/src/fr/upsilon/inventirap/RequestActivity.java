@@ -1,7 +1,5 @@
 package fr.upsilon.inventirap;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,7 +27,7 @@ public class RequestActivity extends Activity {
         SharedPreferences prefs = context.getSharedPreferences(name, MODE_PRIVATE);
         final String server_ip = prefs.getString("SERVERIP", "");
         final String login = prefs.getString("LOGIN", "");
-        final String pass = prefs.getString("ENCODEDPASS", "");
+        final String pass = prefs.getString("PASSWORD", "");
 
         
         runnable = new Runnable(){

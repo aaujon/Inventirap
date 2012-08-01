@@ -1,24 +1,13 @@
 package fr.upsilon.inventirap;
 
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.SecretKeySpec;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class ParametersActivity extends Activity {
 	
@@ -55,6 +44,8 @@ public class ParametersActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+        	//String keyString = "mykeyislongenoug";
+
         	// get server ip
         	String server_ip = serverEditText.getText().toString();
         	
@@ -64,17 +55,19 @@ public class ParametersActivity extends Activity {
         	
         	String login = loginEditText.getText().toString();
         	String pass = passEditText.getText().toString();
-        	String encodedPass = null;
+        	//String encodedPass = null;
 
-        	try {
-        		byte[] mykey = "mykeyislongenoug".getBytes();
+        	/*try {
+        		byte[] mykey = keyString.getBytes();
+        		
         		Log.d("", "key length : " + mykey.length);
         		SecretKey key = new SecretKeySpec(mykey, "AES");
-				Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
+				Cipher c = Cipher.getInstance("AES/ECB/ZeroBytePadding");
 				c.init(Cipher.ENCRYPT_MODE, key);
 				
 				// Encode the string into bytes using utf-8
-	            byte[] utf8 = pass.getBytes("UTF8");
+				pass = new String("s:"+pass.length()+":").concat(pass).concat(";");
+	            byte[] utf8 = pass.getBytes("UTF8");//getBytes("UTF8");
 
 	            // Encrypt
 	            byte[] enc = c.doFinal(utf8);
@@ -85,14 +78,14 @@ public class ParametersActivity extends Activity {
 				Log.d("", e.getMessage());
 				Toast.makeText(context, "Erreur de cryptage", Toast.LENGTH_SHORT).show();
 				finish();
-			}
+			}*/
  
         	// save in preferences
             Log.d(this.getClass().getName(), "back button pressed, save prefs.");
             Log.d(this.getClass().getName(), "server ip : "+server_ip);
             Log.d(this.getClass().getName(), "login : "+login);
             Log.d(this.getClass().getName(), "pass : "+pass);
-            Log.d(this.getClass().getName(), "encoded pass : "+encodedPass);
+            //Log.d(this.getClass().getName(), "encoded pass : "+encodedPass);
 
 
             
@@ -101,7 +94,7 @@ public class ParametersActivity extends Activity {
             editor.putString("SERVERIP", server_ip);
             editor.putString("LOGIN", login);
             editor.putString("PASSWORD", pass);
-            editor.putString("ENCODEDPASS", encodedPass);
+           // editor.putString("ENCODEDPASS", encodedPass);
             editor.commit();
             
             finish();

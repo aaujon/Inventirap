@@ -99,11 +99,11 @@ public class MainActivity extends Activity {
                 startActivityForResult(requestIntent, REQUEST_RESULT);
                 
             } else if (resultCode == RESULT_CANCELED) {
-            	Intent requestIntent = new Intent(context, RequestActivity.class);
+            	/*Intent requestIntent = new Intent(context, RequestActivity.class);
                 requestIntent.putExtra(getString(R.string.DECODED_VALUE), "IRAP-12-0001");
-                startActivityForResult(requestIntent, REQUEST_RESULT);
-                /*Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
-                toast.show();*/
+                startActivityForResult(requestIntent, REQUEST_RESULT);*/
+                Toast toast = Toast.makeText(context, R.string.qr_code_not_found, Toast.LENGTH_LONG);
+                toast.show();
                 
             }
         } else if (requestCode == REQUEST_RESULT) {

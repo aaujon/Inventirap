@@ -1,34 +1,23 @@
 package fr.upsilon.inventirap;
 
-import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
-import java.net.URLEncoder;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Scanner;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.scheme.PlainSocketFactory;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.Parcelable.Creator;
 import android.util.Log;
 
 public class WebServicesTools {
@@ -36,26 +25,40 @@ public class WebServicesTools {
 	private static String WEBSERVICE_ADDRESS = "/ServicesWeb/materiel/";
 
 	public static String getXML(Context context, String url, String content, String login, String pass) throws Exception {
-		String line = null;
-		
-		
-		HttpClient httpClient = createHttpClient();
+		//String line = null;
+		  
 		URL realUrl = new URL(url+WEBSERVICE_ADDRESS+content+"/"+login+"/"+pass);
-		//URL realUrl = new URL("https://pierrickmarie.info/");
 
 		Log.d("", "WebService call : " + url+WEBSERVICE_ADDRESS+content+"/"+login+"/"+pass);
-		//String urlEncoded = url.replace("==", "%3D%3D");
 		Log.d("", "WebService call encoded: " + realUrl);
-		//URI uri = new URI(url);
-		//URLEncoder.encode(url+WEBSERVICE_ADDRESS+content+"/"+login+"/"+pass);
-		HttpPost httpPost = new HttpPost(realUrl.toURI());
-		HttpResponse httpResponse;
-
-		httpResponse = httpClient.execute(httpPost);
-		HttpEntity httpEntity = httpResponse.getEntity();
-		line = EntityUtils.toString(httpEntity);
 		
-		return line;
+		HttpURLConnection conn;
+		if (realUrl.getProtocol().toLowerCase().equals("https")) {
+	        trustAllHosts();
+	        HttpsURLConnection https = (HttpsURLConnection) realUrl.openConnection();
+	        https.setHostnameVerifier(DO_NOT_VERIFY);
+	        conn = https;
+	    } else {
+	        conn = (HttpURLConnection) realUrl.openConnection();
+	    }
+
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+		
+		PrintWriter out = new PrintWriter(conn.getOutputStream());
+		out.print("");
+		out.close();
+		
+		String response= "";
+
+		//start listening to the stream
+		Scanner inStream = new Scanner(conn.getInputStream());
+
+		//process the stream and store it in StringBuilder
+		while(inStream.hasNextLine())
+		response+=(inStream.nextLine());
+		
+		return response;
 	}
 	
 	public static boolean JSONFromString(String json) {
@@ -67,19 +70,44 @@ public class WebServicesTools {
 		}
 		return true;
 	}
-	
-	private static HttpClient createHttpClient() {
-	    HttpParams params = new BasicHttpParams();
-	    HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
-	    HttpProtocolParams.setContentCharset(params, HTTP.DEFAULT_CONTENT_CHARSET);
-	    HttpProtocolParams.setUseExpectContinue(params, true);
 
-	    SchemeRegistry schReg = new SchemeRegistry();
-	    schReg.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-	    schReg.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
-	    ClientConnectionManager conMgr = new ThreadSafeClientConnManager(params, schReg);
+	// always verify the host - dont check for certificate
+    final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
+          public boolean verify(String hostname, SSLSession session) {
+              return true;
+          }
+   };
 
-	    return new DefaultHttpClient(conMgr, params);
-	}
+    /**
+     * Trust every server - dont check for any certificate
+     */
+    private static void trustAllHosts() {
+              // Create a trust manager that does not validate certificate chains
+              TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+                      public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                              return new java.security.cert.X509Certificate[] {};
+                      }
+
+                      public void checkClientTrusted(X509Certificate[] chain,
+                                      String authType) throws CertificateException {
+                      }
+
+                      public void checkServerTrusted(X509Certificate[] chain,
+                                      String authType) throws CertificateException {
+                      }
+              } };
+
+              // Install the all-trusting trust manager
+              try {
+                      SSLContext sc = SSLContext.getInstance("TLS");
+                      sc.init(null, trustAllCerts, new java.security.SecureRandom());
+                      HttpsURLConnection
+                                      .setDefaultSSLSocketFactory(sc.getSocketFactory());
+              } catch (Exception e) {
+                      e.printStackTrace();
+              }
+      }
+
+
 
 }

@@ -18,6 +18,8 @@ class ServicesWebController extends AppController {
 				$this->set('id', $irapNum);
 				$this->set('materials', $materiel);
 			}
+		} else { 
+			$this->set('message', 'Erreur d\'authentification');
 		}
 	}
 }

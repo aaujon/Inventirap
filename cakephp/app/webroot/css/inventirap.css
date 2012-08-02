@@ -306,9 +306,11 @@ form .checkbox {
 	height: 25px;
 }
 form div.submit {
+	display: inline;
 	border: 0;
 	clear: both;
 	margin-top: 10px;
+	font-size: 12px;
 }
 label {
 	float: left;

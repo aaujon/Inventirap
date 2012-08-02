@@ -10,10 +10,10 @@ class MaterielsController extends AppController {
 	public function index() {
 		$statut = array('CREATED', 'VALIDATED', 'TOBEARCHIVED');
 		if (isset($this->params['named']['what']))
-			if ($this->params['named']['what'] == 'toValidate')
-				$statut = array('CREATED');
-			else if ($this->params['named']['what'] == 'toBeArchived')
-				$statut = array('TOBEARCHIVED');
+		if ($this->params['named']['what'] == 'toValidate')
+		$statut = array('CREATED');
+		else if ($this->params['named']['what'] == 'toBeArchived')
+		$statut = array('TOBEARCHIVED');
 			
 		//Requête SQL
 		$data = $this->paginate('Materiel', array('Materiel.status' => $statut));
@@ -28,10 +28,10 @@ class MaterielsController extends AppController {
 		if (isset($this->data['Materiel'])) {
 			$all = $this->data['Materiel']['s_all'];
 			$this->set('results', $this->Materiel->find('all', array(
-				//Limitation au vue de la taille de la base de donnée
+			//Limitation au vue de la taille de la base de donnée
 				'limit' => '0, 100', 
 				'conditions' => array(
-					//Champs spéficiques:
+			//Champs spéficiques:
 					'Materiel.designation LIKE' => '%'.$this->data['Materiel']['s_designation'].'%',
 					'Materiel.numero_irap LIKE' => '%'.$this->data['Materiel']['s_numero_irap'].'%',
 					'Materiel.categorie_id LIKE' => '%'.$this->data['Materiel']['s_categorie_id'].'%',
@@ -39,8 +39,8 @@ class MaterielsController extends AppController {
 					'Materiel.nom_responsable LIKE' => '%'.$this->data['Materiel']['s_responsable'].'%',
 					'Materiel.numero_inventaire_organisme LIKE' => '%'.$this->data['Materiel']['s_numero_inventaire_organisme'].'%',
 					'Materiel.status LIKE' => '%'.$this->data['Materiel']['s_status'].'%',
-					//Pour tous les champs:
-					array('OR' => array (
+			//Pour tous les champs:
+			array('OR' => array (
 						'Materiel.designation LIKE' => '%'.$all.'%',
 						'Materiel.numero_irap LIKE' => '%'.$all.'%',
 						'Materiel.description LIKE' => '%'.$all.'%',
@@ -56,55 +56,69 @@ class MaterielsController extends AppController {
 			))));
 		}
 	}
-	
+
+	function saveMaterielIdToExport() {
+		$this->layout = 'ajax';
+		if(!empty($this->data)) {
+			$this->Session->write('materiels_id', $this->data['materials_id']);
+		}
+	}
+
 	function export() {
 		$this->layout = 'ajax';
-		
-		ini_set('max_execution_time', 600);	
-		
+
+		$materielsId = $this->Session->read('materiels_id');
+		if(!empty($materielsId)) {
+			$materiels = $this->Materiel->find('all', array('conditions' => array('Materiel.id' => $materielsId)));
+		} else {
+			$materiels = $this->Materiel->find('all');
+		}
+		$this->Session->delete('materiels_id');
+
+		ini_set('max_execution_time', 600);
+
 		$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
 		$filename = $cakephpPath . 'tmp/documents/generator/export_'.date("Y.m.d") . '.csv';
-		
+
 		$csv_file = fopen($filename, 'w');
-	
+
 		$header_row = array(
 			"id", "Désignation", "Catégorie", "Sous catégorie", "Numéro IRAP", "Description", "Organisme", 
 			"Mat. administratif", "Mat. technique", "Statut", "Date d'acquisition", "Fournisseur", "Prix HT", 
 			"EOTP", "Numéro de commande", "Code comptable", "Numéro de série", "Grp. thématique", "Grp. métier", 
 			"Numero inventaire organisme", "Lieu de stockage", "Nom responsable", "Email responsable");
 		fputcsv($csv_file,$header_row,';');
-		
-		$results = $this->Materiel->find('all');
-		foreach($results as $result) {
+
+		foreach($materiels as $result) {
 			$row = array(
-				utf8_encode($result['Materiel']['id']),
-				$result['Materiel']['designation'],
-				$result['Categorie']['nom'],
-				$result['SousCategorie']['nom'],
-				$result['Materiel']['numero_irap'],
-				$result['Materiel']['description'],
-				$result['Materiel']['organisme'],
-				$result['Materiel']['materiel_administratif'],
-				$result['Materiel']['materiel_technique'],
-				$result['Materiel']['status'],
-				$result['Materiel']['date_acquisition'],
-				$result['Materiel']['fournisseur'],
-				$result['Materiel']['prix_ht'],
-				$result['Materiel']['eotp'],
-				$result['Materiel']['numero_commande'],
-				$result['Materiel']['code_comptable'],
-				$result['Materiel']['numero_serie'],
-				$result['GroupesThematique']['nom'],
-				$result['GroupesMetier']['nom'],
-				$result['Materiel']['numero_inventaire_organisme'],
-				$result['Materiel']['lieu_stockage'].'-'.$result['Materiel']['lieu_detail'],
-				$result['Materiel']['nom_responsable'],
-				$result['Materiel']['email_responsable'],
+			utf8_encode($result['Materiel']['id']),
+			$result['Materiel']['designation'],
+			$result['Categorie']['nom'],
+			$result['SousCategorie']['nom'],
+			$result['Materiel']['numero_irap'],
+			$result['Materiel']['description'],
+			$result['Materiel']['organisme'],
+			$result['Materiel']['materiel_administratif'],
+			$result['Materiel']['materiel_technique'],
+			$result['Materiel']['status'],
+			$result['Materiel']['date_acquisition'],
+			$result['Materiel']['fournisseur'],
+			$result['Materiel']['prix_ht'],
+			$result['Materiel']['eotp'],
+			$result['Materiel']['numero_commande'],
+			$result['Materiel']['code_comptable'],
+			$result['Materiel']['numero_serie'],
+			$result['GroupesThematique']['nom'],
+			$result['GroupesMetier']['nom'],
+			$result['Materiel']['numero_inventaire_organisme'],
+			$result['Materiel']['lieu_stockage'].'-'.$result['Materiel']['lieu_detail'],
+			$result['Materiel']['nom_responsable'],
+			$result['Materiel']['email_responsable'],
 			);
 			fputcsv($csv_file,$row,';','"');
 		}
 		fclose($csv_file);
-		
+
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
 		header('Content-Disposition: attachment; filename=' . $filename);
@@ -113,11 +127,12 @@ class MaterielsController extends AppController {
 		header('Cache-Control: must-revalidate');
 		header('Pragma: public');
 		header('Content-Length: ' . filesize($filename));
+		header('meta http-equiv="refresh" content="1; url=http://www.google.fr/"');
 		ob_clean();
 		flush();
 		readfile($filename);
 	}
-	
+
 	public function delete($id) {
 		$this->Materiel->id = $id;
 		if ($this->Materiel->field('status') != 'CREATED') {
@@ -133,7 +148,7 @@ class MaterielsController extends AppController {
 
 	public function statusToBeArchived($id = null, $from = 'index') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') < 1)
-			$this->notAuthorized($id, $from);
+		$this->notAuthorized($id, $from);
 			
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'TOBEARCHIVED');
@@ -144,8 +159,8 @@ class MaterielsController extends AppController {
 
 	public function statusValidated($id = null, $from = 'index') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') < 2)
-			$this->notAuthorized($id, $from);
-	
+		$this->notAuthorized($id, $from);
+
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'VALIDATED');
 		$this->logInventirap($id);
@@ -155,20 +170,20 @@ class MaterielsController extends AppController {
 
 	public function statusArchived($id = null, $from = 'index') {
 		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
-			$this->notAuthorized($id, $from);
-		
+		$this->notAuthorized($id, $from);
+
 		$this->Materiel->id = $id;
 		$this->Materiel->saveField('status', 'ARCHIVED');
 		$this->logInventirap($id);
 		$this->Session->setFlash('Le matériel a bien été sorti de l\'inventaire.');
 		$this->redirect(array('controller' => 'materiels', 'action'=> $from, $id));
 	}
-	
+
 	public function execActions() {
 		//Vérification administration
 		if ($this->Session->read('LdapUserAuthenticationLevel') != 3)
-			$this->notAuthorized(NULL, 'index');
-		
+		$this->notAuthorized(NULL, 'index');
+
 		//Traitement des update si besoin
 		if (isset($this->data['materiels'])) {
 			$what = $this->data['materiels']['what'];
@@ -178,22 +193,23 @@ class MaterielsController extends AppController {
 					$this->Materiel->id = $id;
 					$new = '"ARCHIVED"';
 					if ($what == 'toValidate')
-						$new = '"VALIDATED"';
+					$new = '"VALIDATED"';
 					$this->Materiel->updateAll(array('Materiel.status' => $new), array('Materiel.id' => $id));
 					$nb++;
 				} endforeach;
 				if ($nb != 0)
-					if ($this->data['materiels']['what'] == 'toValidate')
-						$this->Session->setFlash($nb.' matériel(s) mis à jour (validation).');
-					else
-						$this->Session->setFlash($nb.' matériel(s) mis à jour (sortie d\'inventaire).');
+				if ($this->data['materiels']['what'] == 'toValidate')
+				$this->Session->setFlash($nb.' matériel(s) mis à jour (validation).');
+				else
+				$this->Session->setFlash($nb.' matériel(s) mis à jour (sortie d\'inventaire).');
 				$this->redirect(array('action' => 'index', 'what' => $what));
 			}
 		}
 		$this->redirect(array('action' => 'index'));
+		$this->export();
 	}
 
-	public function getIrapNumber($year = 2012) {
+	public function getIrapNumber($year) {
 		$shortYear = substr($year, -2);
 		$sql = $this->Materiel->find('first', array(
 				'fields' => array('numero_irap'),

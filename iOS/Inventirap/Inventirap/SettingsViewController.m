@@ -2,32 +2,57 @@
 //  SettingsViewController.m
 //  Inventirap
 //
-//  Created by Thomas Zilio on 6/07/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Thomas Zilio on 01/08/12.
+//
 //
 
 #import "SettingsViewController.h"
+#import "KeychainItemWrapper.h"
+#import "SettingsEditorViewController.h"
 #import "Settings.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface SettingsViewController ()
 
+- (NSString *) sectionTitle:(NSInteger)section;
+- (NSString *) sectionContent:(NSInteger)section;
+
 @end
 
+enum {
+	kLoginSection = 0,
+	kPasswordSection,
+	kServerUrlSection
+};
+
+static NSInteger kPasswordTag = 2;
+
 @implementation SettingsViewController
-@synthesize webServiceUrlTextField;
-@synthesize resetButton;
-@synthesize webServiceUrlLabel;
+
+@synthesize passwordItem;
+@synthesize textFieldController;
 
 #pragma mark -
 #pragma mark Initialization
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            [self setTextFieldController:[[SettingsEditorViewController alloc] initWithNibName:@"SettingsEditorViewController_iPhone" bundle:nil]];
+        } else {
+            [self setTextFieldController:[[SettingsEditorViewController alloc] initWithNibName:@"SettingsEditorViewController_iPad" bundle:nil]];
+        }
         self.title = NSLocalizedString(@"SETTINGS", nil);
         [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"settingsTabBarIcon"] withFinishedUnselectedImage:[UIImage imageNamed:@"settingsTabBarIcon"]];
+    }
+    return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
     }
     return self;
 }
@@ -38,57 +63,174 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    CALayer *layer = [[self resetButton] layer];
-    [layer setMasksToBounds:YES];
-    [layer setCornerRadius:10.0];
-    [layer setBorderWidth:1.0];
-    [layer setBorderColor:[[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] CGColor]];
-    
-    [[self resetButton] setTitle:NSLocalizedString(@"RESETDEFAULT", nil) forState:UIControlStateNormal];
-    [[self resetButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [[self resetButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
-    [[[self resetButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
-    
-    [[self webServiceUrlLabel] setText:NSLocalizedString(@"WEBSERVURL", nil)];
-    [self.webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
+	
+	UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ViewBackground"]];
+	[tempImageView setFrame:self.tableView.frame];
+	
+	self.tableView.backgroundView = tempImageView;
+	
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	
+	UIBarButtonItem *resetButton ;
+	resetButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"RESET", nil)
+												   style:UIBarButtonItemStyleBordered
+												  target:self
+												  action:@selector(resetSettings)];
+	
+    self.navigationItem.leftBarButtonItem = resetButton;
 }
 
 - (void)viewDidUnload
 {
-    [self setWebServiceUrlTextField:nil];
-    [self setResetButton:nil];
-    [self setWebServiceUrlLabel:nil];
-    [self setWebServiceUrlLabel:nil];
     [super viewDidUnload];
+	[self setTextFieldController:nil];
 }
-
-#pragma mark -
-#pragma mark Interface interactions
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)resetButtonAction:(id)sender
+#pragma mark -
+#pragma mark Reset actions and utilities functions
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [[Settings sharedSettings] resetSettings];
-    [webServiceUrlTextField setText:[[Settings sharedSettings] webServiceUrl]];
+    if (buttonIndex == 0) {
+        [[self passwordItem] resetKeychainItem];
+		[[Settings sharedSettings] resetSettings];
+		
+        [[self tableView] reloadData];
+    }
 }
 
-- (IBAction)backgroundTouch:(id)sender {
-    [webServiceUrlTextField resignFirstResponder];
+- (void)resetSettings
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"CONFIRMRESET", nil)
+															 delegate:self
+													cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+											   destructiveButtonTitle:NSLocalizedString(@"RESETCONF", nil)
+													otherButtonTitles:nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (void)viewWillAppear:(BOOL)animated
 {
-    [textField resignFirstResponder];
-    return YES;
+    [super viewWillAppear:animated];
+    [[self tableView] reloadData];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (NSString *)sectionTitle:(NSInteger)section
 {
-    [[Settings sharedSettings] changeWebServiceUrl:textField.text];
+    switch (section) {
+        case kLoginSection: return NSLocalizedString(@"LOGIN", nil);
+        case kPasswordSection: return NSLocalizedString(@"PASSWORD", nil);
+        case kServerUrlSection: return NSLocalizedString(@"WEBSERVURL", nil);
+    }
+    return nil;
 }
+
+- (NSString *)sectionContent:(NSInteger)section
+{
+    switch (section) {
+        case kLoginSection:
+			return [[self passwordItem] objectForKey:(__bridge id)(kSecAttrAccount)];
+        case kPasswordSection:
+			return [[self passwordItem] objectForKey:(__bridge id)(kSecValueData)];
+        case kServerUrlSection:
+			return [[Settings sharedSettings] webServiceUrl];
+    }
+    return nil;
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self sectionTitle:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *kNormalCellIdentifier =	@"NormalCell";
+	static NSString *kPasswordCellIdentifier =	@"PasswordCell";
+	
+	UITableViewCell *cell = nil;
+	
+	switch (indexPath.section) {
+		case kLoginSection:
+		case kServerUrlSection:
+		{
+			cell = [tableView dequeueReusableCellWithIdentifier:kNormalCellIdentifier];
+			if (cell == nil) {
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kNormalCellIdentifier];
+			}
+			
+			cell.textLabel.text = [self sectionContent:indexPath.section];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			
+			break;
+		}
+			
+		case kPasswordSection:
+		{
+			UITextField *textField = nil;
+			
+			cell = [tableView dequeueReusableCellWithIdentifier:kPasswordCellIdentifier];
+			if (cell == nil) {
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kPasswordCellIdentifier];
+				
+				textField = [[UITextField alloc] initWithFrame:CGRectInset(cell.contentView.bounds, 10, 10)];
+				textField.tag = kPasswordTag;
+				textField.font = [UIFont systemFontOfSize:17.0];
+				
+				textField.enabled = NO;
+				textField.secureTextEntry = YES;
+				
+				[cell.contentView addSubview:textField];
+			}
+			else {
+				textField = (UITextField *) [cell.contentView viewWithTag:kPasswordTag];
+			}
+			
+			textField.text = [self sectionContent:indexPath.section];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			
+			break;
+		}
+			
+	}
+    
+	return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[[self tableView] deselectRowAtIndexPath:indexPath animated:YES];
+	
+	[self.textFieldController.editionField setPlaceholder:[self sectionTitle:indexPath.section]];
+	
+	[self.textFieldController.editionField setSecureTextEntry:(indexPath.section == kPasswordSection)];
+	self.textFieldController.passwordItem = [self passwordItem];
+	
+	self.textFieldController.editionFieldValue = [self sectionContent:indexPath.section];
+	self.textFieldController.editionFieldKey = indexPath.section;
+	self.textFieldController.title = [self sectionTitle:indexPath.section];
+	
+	[self.navigationController pushViewController:textFieldController animated:YES];
+}
+
 @end

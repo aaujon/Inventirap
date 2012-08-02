@@ -12,7 +12,7 @@
 
 @interface Product : NSObject
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, copy) NSString *name;
 
 - (void)setSectionWithName:(NSString*)sectionName;
 - (NSUInteger)sectionsCount;

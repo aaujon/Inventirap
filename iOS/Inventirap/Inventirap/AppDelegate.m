@@ -11,6 +11,7 @@
 #import "ScannerViewController.h"
 #import "SettingsViewController.h"
 #import "Settings.h"
+#import "KeychainItemWrapper.h"
 
 @implementation AppDelegate
 
@@ -41,6 +42,10 @@
     self.scannerNavController = [[UINavigationController alloc] initWithRootViewController:self.scannerViewController];
     self.settingsNavController = [[UINavigationController alloc] initWithRootViewController:self.settingsViewController];
     
+	KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"InventirapPassword" accessGroup:nil];
+	[[self scannerViewController] setPasswordItem:wrapper];
+	[[self settingsViewController] setPasswordItem:wrapper];
+	
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.scannerNavController, self.settingsNavController, nil];
     

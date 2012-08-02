@@ -37,11 +37,12 @@ public class MainActivity extends Activity {
         /* first time */
         String name = getResources().getString(R.string.app_name);
         SharedPreferences prefs = context.getSharedPreferences(name, MODE_PRIVATE);
-        String server_ip = prefs.getString(getResources().getString(R.string.SERVER_IP), null);
+        String server_ip = prefs.getString("SERVERIP", null);
         if (server_ip == null) {
+        	Log.d("", "first time");
         	Editor editor = prefs.edit();
         	//editor.putString(getResources().getString(R.string.SERVER_IP), "http://inventirap.irap.omp.eu/");
-        	editor.putString(getResources().getString(R.string.SERVER_IP), "http://192.168.1.14:8080/Inventirap/cakephp");
+        	editor.putString("SERVERIP", "http://192.168.1.50:8080/Inventirap/cakephp");
         	editor.commit();
     	}
         

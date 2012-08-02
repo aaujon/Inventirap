@@ -1,7 +1,5 @@
 package fr.upsilon.inventirap;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,21 +25,25 @@ public class RequestActivity extends Activity {
         // get server ip
         String name = getResources().getString(R.string.app_name);
         SharedPreferences prefs = context.getSharedPreferences(name, MODE_PRIVATE);
-        final String server_ip = prefs.getString(getString(R.string.SERVER_IP), "");
+        final String server_ip = prefs.getString("SERVERIP", "");
+        final String login = prefs.getString("LOGIN", "");
+        final String pass = prefs.getString("PASSWORD", "");
+
         
         runnable = new Runnable(){
             public void run() {
                 Log.d(context.getClass().getName(), "requesting to "+server_ip);
                 String result = "";
 				try {
-					result = WebServicesTools.getXML(context, server_ip, decoded_value);
+					result = WebServicesTools.getXML(context, server_ip, decoded_value, login, pass);
 					Log.d("", "get " + result);
 				} catch (Exception e) {
+					Log.d("", e.getMessage());
 					setResult(MainActivity.REQUEST_BAD_ADDRESS);
                 	finish();
 				}
 				
-				if (result.startsWith("{\"materials\":[]}")) {
+				if (result.startsWith("{\"materials\":[]")) {
 					setResult(MainActivity.REQUEST_NO_MATERIAL);
 				} else {         
 	                if (!WebServicesTools.JSONFromString(result)) {

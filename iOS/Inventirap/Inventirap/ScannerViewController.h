@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ZXingWidgetController.h"
 
-@class InformationViewController;
+@class InformationViewController, KeychainItemWrapper;
 
 @interface ScannerViewController : UIViewController <ZXingDelegate, NSURLConnectionDelegate>
 
+@property (nonatomic, strong) KeychainItemWrapper *passwordItem;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *applicationActivity;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UIButton *lastProductButton;

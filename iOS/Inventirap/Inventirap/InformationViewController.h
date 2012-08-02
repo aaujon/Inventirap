@@ -12,9 +12,9 @@
 
 @interface InformationViewController : UITableViewController
 
-@property (nonatomic, retain) Product *selectedProduct;
-@property (nonatomic, retain) Product *simpleProduct;
-@property (nonatomic, retain) Product *detailedProduct;
+@property (nonatomic, strong) Product *selectedProduct;
+@property (nonatomic, strong) Product *simpleProduct;
+@property (nonatomic, strong) Product *detailedProduct;
 
 - (void)displaySimpleProduct;
 - (void)displayDetailedProduct;

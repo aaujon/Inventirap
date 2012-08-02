@@ -10,7 +10,7 @@
 
 @interface Settings : NSObject
 
-@property (strong, nonatomic) NSString *webServiceUrl;
+@property (nonatomic, copy) NSString *webServiceUrl;
 
 + (Settings*)sharedSettings;
 - (void)changeWebServiceUrl:(NSString*)newUrl;

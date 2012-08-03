@@ -85,11 +85,7 @@
     [[self scanButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [[self scanButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
     [[[self scanButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
-    
-    [[self lastProductButton] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [[self lastProductButton] setTitleShadowColor:[UIColor colorWithRed:4.0f/255 green:37.0f/255 blue:62.0f/255 alpha:1.0] forState:UIControlStateNormal];
-    [[[self lastProductButton] titleLabel] setShadowOffset:CGSizeMake(1.0f, 1.0f)];
-    
+
     [[self applicationActivity] setHidesWhenStopped:YES];
     [[self informationLabel] setHidden:YES];
 }

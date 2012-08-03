@@ -18,7 +18,7 @@
 "RESET" = "Reset";
 "RESETCONF" = "Reset";
 
-"LASTPRODUCT" = "Return to the last product";
+"LASTPRODUCT" = "Display last product";
 "WEBSERVURL" = "Web service URL";
 "LOGIN" = "Login";
 "PASSWORD" = "Password";

@@ -19,7 +19,7 @@
 			echo 'et avec le niveau d\'autentification <b>';
 			echo ClassRegistry::init('Utilisateur')->getRoleFromAuthenticationLevel($userAuth);	
 			echo '</b>.</p>';
-			if ($userAuth >= 3) {
+			if ($userAuth == 3) {
 				//Utilisateur admin/super admin
 				?>
 				<table cellpadding="0" cellspacing="0" style="width: 800px;">

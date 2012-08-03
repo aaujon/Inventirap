@@ -67,7 +67,7 @@
 			$statut = 	$result['Materiel']['status'];
 			echo '<tr>';
 			if (isset($what) && $userAuth == 3)
-				echo '<td class="smallText">'.$this->Form->checkbox($id, array('style' => 'margin: 3px')).'</td>';
+				echo '<td class="smallText">'.$this->Form->checkbox($id, array('style' => 'margin: 3px', 'id' => $id)).'</td>';
 			echo '<td class="smallText">'.$this->Html->link($result['Materiel']['designation'], 
 				array('action' => 'view', $id)).'</td>';
 			echo '<td class="smallText">'.$result['Materiel']['numero_irap'].'</td>';
@@ -85,10 +85,12 @@
 		
 		//Validation/Archivage par groupe
 		if (isset($what) && $userAuth == 3) {
-			if ($this->params['named']['what'] == 'toValidate')
+			if ($this->params['named']['what'] == 'toValidate') {
 				echo $this->Form->submit('Valider les matériels cochés', array('style' => 'margin: 0px'));
-			else 
+			} else { 
 				echo $this->Form->submit('Sortir les matériels cochés', array('style' => 'margin: 0px'));
+			}
+			echo $this->Form->submit('Exporter les matériels cochés', array('style' => 'margin: 0px; float: right', 'id' => 'export'));
 		}
 		
 		//Gestion des pages
@@ -114,3 +116,15 @@
 			'pluralHumanName' => 'Matériels', 'singularHumanName' => 'matériel'));
 	?>
 </div>
+
+<?php
+$this->Js->get('#export')->event('click', 
+	'var allVals = [];
+	$("input:checked").each(function(){
+		allVals.push($(this).attr("id"));
+	});
+	$.post("/Inventirap/cakephp/materiels/saveMaterielIdToExport/", {materials_id: allVals}, function(data) {});
+	window.location.href = "/Inventirap/cakephp/materiels/export/";
+	');
+echo $this->Js->writeBuffer();
+?>

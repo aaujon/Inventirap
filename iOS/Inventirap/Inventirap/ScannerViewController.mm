@@ -235,7 +235,14 @@
         NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
         dispatch_sync(kMainQueue, ^{
             [[self informationLabel] setTextColor: [UIColor redColor]];
-            [[self informationLabel] setText:NSLocalizedString(@"ERRORPARSINGRES", nil)];
+			
+			NSString *stringRes = [[NSString alloc] initWithData:[self jsonData] encoding:NSASCIIStringEncoding];
+			
+			if ([stringRes isEqualToString:@"Erreur d'authentification"]) {
+				[[self informationLabel] setText:NSLocalizedString(@"ERRORLOGIN", nil)];
+			} else {
+				[[self informationLabel] setText:NSLocalizedString(@"ERRORPARSINGRES", nil)];
+			}
         });
     }
     @finally {

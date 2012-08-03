@@ -18,15 +18,11 @@
 				<string>Default@2x.png</string>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
-				<string>Default-Portrait@2x~ipad.png</string>
-				<string>Default-Portrait~ipad.png</string>
-				<string>Icon-72.png</string>
-				<string>Icon-72@2x.png</string>
 			</array>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>eu.omp.irap.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.upsilon.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

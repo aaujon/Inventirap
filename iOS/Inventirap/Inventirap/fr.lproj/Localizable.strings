@@ -28,6 +28,7 @@
 "INVALIDQRCODE" = "QRCode invalide";
 "ERRORCONNECTWEBSERV" = "Erreur pendant la connexion au service web";
 "ERRORPARSINGRES" = "Erreur pendant l'analyse des résultats json";
+"ERRORLOGIN" = "Erreur d'identification, vérifiez vos identifiant et mot de passe";
 "PARSINGRES" = "Analyse des résultats ...";
 
 "DESIGNATION" = "Désignation";

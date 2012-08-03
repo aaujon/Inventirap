@@ -28,6 +28,7 @@
 "INVALIDQRCODE" = "Invalid QRCode";
 "ERRORCONNECTWEBSERV" = "Error while connecting to the WebService";
 "ERRORPARSINGRES" = "Error while parsing the json result.";
+"ERRORLOGIN" = "Identification error, please check your login and password";
 "PARSINGRES" = "Parsing results ...";
 
 "DESIGNATION" = "Designation";

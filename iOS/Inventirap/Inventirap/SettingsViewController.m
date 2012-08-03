@@ -219,16 +219,15 @@ static NSInteger kPasswordTag = 2;
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[[self tableView] deselectRowAtIndexPath:indexPath animated:YES];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	[self.textFieldController.editionField setPlaceholder:[self sectionTitle:indexPath.section]];
-	
 	[self.textFieldController.editionField setSecureTextEntry:(indexPath.section == kPasswordSection)];
-	self.textFieldController.passwordItem = [self passwordItem];
+	[self.textFieldController setPasswordItem:[self passwordItem]];
 	
-	self.textFieldController.editionFieldValue = [self sectionContent:indexPath.section];
-	self.textFieldController.editionFieldKey = indexPath.section;
-	self.textFieldController.title = [self sectionTitle:indexPath.section];
+	[self.textFieldController setEditionFieldValue:[self sectionContent:indexPath.section]];
+	[self.textFieldController setEditionFieldKey:indexPath.section];
+	[self.textFieldController setTitle:[self sectionTitle:indexPath.section]];
 	
 	[self.navigationController pushViewController:textFieldController animated:YES];
 }

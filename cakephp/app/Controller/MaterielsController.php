@@ -68,19 +68,18 @@ class MaterielsController extends AppController {
 		$this->layout = 'ajax';
 
 		$materielsId = $this->Session->read('materiels_id');
-		if(!empty($materielsId)) {
+		if(!empty($materielsId)) 
 			$materiels = $this->Materiel->find('all', array('conditions' => array('Materiel.id' => $materielsId)));
-		} else {
+		else
 			$materiels = $this->Materiel->find('all');
-		}
 		$this->Session->delete('materiels_id');
 
 		ini_set('max_execution_time', 600);
 
-		$cakephpPath = str_replace('webroot/index.php', '', $_SERVER['SCRIPT_FILENAME']);
-		$filename = $cakephpPath . 'tmp/documents/generator/export_'.date("Y.m.d") . '.csv';
-
-		$csv_file = fopen($filename, 'w');
+		$filename = 'export_'.date("Y.m.d") . '.csv';
+		$csv_file = fopen('php://output', 'w');
+		header('Content-type: application/csv');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
 
 		$header_row = array(
 			"id", "Désignation", "Catégorie", "Sous catégorie", "Numéro IRAP", "Description", "Organisme", 
@@ -118,19 +117,6 @@ class MaterielsController extends AppController {
 			fputcsv($csv_file,$row,';','"');
 		}
 		fclose($csv_file);
-
-		header('Content-Description: File Transfer');
-		header('Content-Type: application/octet-stream');
-		header('Content-Disposition: attachment; filename=' . $filename);
-		header('Content-Transfer-Encoding: binary');
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate');
-		header('Pragma: public');
-		header('Content-Length: ' . filesize($filename));
-		header('meta http-equiv="refresh" content="1; url=http://www.google.fr/"');
-		ob_clean();
-		flush();
-		readfile($filename);
 	}
 
 	public function delete($id) {

@@ -60,7 +60,7 @@
 	echo '<div id="externe" style="margin: 0; padding: 0; '.$disp_externe.';">';
 	echo $this->Form->input('laboratoire');
 	echo '</div>';
-	echo $this->Form->end(__d('cake', 'Valider'));
+	echo $this->Form->end('Valider');
 ?>
 </div>
 <div class="actions">
@@ -71,11 +71,11 @@
 	?>
 </div>
 <?php
-$this->Js->get('#EmpruntNomResponsable')->event('change', 
+$this->Js->get('#EmpruntNomEmprunteur')->event('change', 
 	'$.ajax({
-		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#EmpruntNomResponsable").val()
+		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#EmpruntNomEmprunteur").val()
 	}).done(function(data) { 
-		$("#EmpruntEmailResponsable").val(data)
+		$("#EmpruntEmailEmprunteur").val(data)
 	})');
-echo $this->Js->writeBuffer();
+	echo $this->Js->writeBuffer();
 ?>

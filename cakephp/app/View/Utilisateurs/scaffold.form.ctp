@@ -8,23 +8,29 @@
 	$utilisateur = ClassRegistry::init('Utilisateur');
 		
 	echo $this->Form->create();
-	if ($this->params['action'] == 'add')
+	if ($this->params['action'] == 'add') {
 		echo $this->Form->input('nom', array(
 			'options' => $utilisateur->getNewLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
 			'selected' => '',
-			'div' => 'input required'));
-	else 
+			'label' => 'Nom (LDAP)',
+		'div' => 'input required'));
+		echo '<div style="color: grey; font-size: 10px;">Note: un utilisateur ne peut pas être présent deux fois dans l\'inventaire.</div>';
+	}
+	else {
 		echo $this->Form->input('nom', array(
 			'options' => $utilisateur->getLdapUsers(), 
 			'empty' => 'Choisir un utilisateur', 
 			'disabled' => true,
 			'div' => 'input required'));
+	}
 	echo $this->Form->input('login', array( 
-			'label' => 'Login', 
+			'label' => 'Login',
+			'div' => 'input required', 
 			'readonly' => true));
 	echo $this->Form->input('email', array( 
-			'label' => 'E-mail', 
+			'label' => 'E-mail',
+			'div' => 'input required', 
 			'readonly' => true));
 	echo $this->Form->input('role', array('label' => 'Rôle', 'options' => array(
 		'Utilisateur' => 'Utilisateur', 
@@ -32,7 +38,7 @@
 		'Administration' => 'Administration', 
 		'Super Administrateur' => 'Super Administrateur')));
 	echo $this->Form->input('groupes_metier_id', array('label' => 'Groupe métier'));
-	echo $this->Form->end(__d('cake', 'Valider'));
+	echo $this->Form->end('Valider');
 ?>
 </div>
 <div class="actions">

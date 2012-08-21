@@ -402,9 +402,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mydb`;
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Hillembrand Cedric', 'Cedric', NULL, 'Super Administrateur', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Turner Daniel', 'Daniel', NULL, 'Administration', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Sky Gin', 'Gin', NULL, 'Responsable', 1);
-INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Robert Henri', 'Henri', NULL, 'Utilisateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Hillembrand Cedric', 'Cedric', 'Cedric.Hillembrand@irap.omp.eu', 'Super Administrateur', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Turner Daniel', 'Daniel', 'Daniel.Turner@irap.omp.eu', 'Administration', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Sky Gin', 'Gin', 'Gin.Sky@irap.omp.eu', 'Responsable', 1);
+INSERT INTO `mydb`.`utilisateurs` (`id`, `nom`, `login`, `email`, `role`, `groupes_metier_id`) VALUES (NULL, 'Robert Henri', 'Henri', 'Henri.Robert', 'Utilisateur', 1);
 
 COMMIT;

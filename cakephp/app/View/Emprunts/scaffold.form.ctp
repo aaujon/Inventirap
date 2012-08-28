@@ -71,9 +71,11 @@
 	?>
 </div>
 <?php
+
+$url = str_replace('emprunts/add', 'utilisateurs/getLdapEmail/', $_SERVER['SCRIPT_URI']);
 $this->Js->get('#EmpruntNomEmprunteur')->event('change', 
 	'$.ajax({
-		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#EmpruntNomEmprunteur").val()
+		url: "' . $url . '" + $("#EmpruntNomEmprunteur").val()
 	}).done(function(data) { 
 		$("#EmpruntEmailEmprunteur").val(data)
 	})');

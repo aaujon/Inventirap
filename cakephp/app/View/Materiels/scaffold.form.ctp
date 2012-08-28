@@ -88,9 +88,11 @@ $this->Js->get('#MaterielCategorieId')->event('change',
 			'async' => true, 'method' => 'post', 'dataExpression' => true,
 			'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
 	)));
+
+$url = str_replace('materiels/add', 'utilisateurs/getLdapEmail/', $_SERVER['SCRIPT_URI']);
 $this->Js->get('#MaterielNomResponsable')->event('change', 
 	'$.ajax({
-		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#MaterielNomResponsable").val()
+		url: "' . $url . '" + $("#MaterielNomResponsable").val()
 	}).done(function(data) { 
 		$("#MaterielEmailResponsable").val(data)
 	})');

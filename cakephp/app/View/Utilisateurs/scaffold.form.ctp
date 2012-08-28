@@ -48,15 +48,17 @@
 	?>
 </div>
 <?php
+
+$url = str_replace('add', 'getLdapEmail/', $_SERVER['SCRIPT_URI']);
 $this->Js->get('#UtilisateurNom')->event('change', 
 	'$.ajax({
-		url: "/Inventirap/cakephp/utilisateurs/getLdapEmail/" + $("#UtilisateurNom").val()
+		url: "' . $url . '" + $("#UtilisateurNom").val()
 	}).done(function(data) { 
 		$("#UtilisateurEmail").val(data)
 	});
 	$.ajax({
-		url: "/Inventirap/cakephp/utilisateurs/getLdapLogin/" + $("#UtilisateurNom").val()
-	}).done(function(data) { 
+		url: "' . $url . '" + $("#UtilisateurNom").val()
+	}).done(function(data) {
 		$("#UtilisateurLogin").val(data)
 	});');
 echo $this->Js->writeBuffer();

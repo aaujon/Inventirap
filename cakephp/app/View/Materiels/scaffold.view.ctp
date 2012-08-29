@@ -155,7 +155,7 @@
 		
 		<?php foreach (${$singularVar}['Emprunt'] as $emprunt): ?> 
 		<tr>
-			<td><?php echo $emprunt['responsable']; ?></td>
+			<td><?php echo $emprunt['nom_emprunteur']; ?></td>
 			
 			<?php
 				setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');

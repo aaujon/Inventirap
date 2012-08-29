@@ -29,7 +29,7 @@
 	echo '</td>';
 	echo '<td class="actions" style="padding: 6px 0;">';
 	if ($delete)
-		echo $this->Form->postLink('<i class="icon-trash"></i>',
+		echo $this->Html->link('<i class="icon-trash"></i>',
 			array('action' => 'delete', $id),
 			array('title' => 'Supprimer', 'style' => 'margin: 0 2px', 'escape' => false),
 			'Êtes-vous sur de supprimer '.$nom.' ?');

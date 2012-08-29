@@ -44,11 +44,11 @@
 		'label' => 'Email du responsable', 
 		'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 
 		'readonly' => true));
+	echo $this->Form->input('fournisseur');
+	echo $this->Form->input('organisme', array(
+		'options' => array('UPS'=> 'UPS', 'CNRS' => 'CNRS'), 'style' => 'width: 100px'));
 	if ($userAuth >= 3) {
 		echo '<div style="border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; margin-bottom: 0; background: #EEE;"><span style="font-size: 9px; color: red;">Partie administrative</span>';
-		echo $this->Form->input('organisme', array(
-			'options' => array('UPS'=> 'UPS', 'CNRS' => 'CNRS'), 'style' => 'width: 100px'));
-		echo $this->Form->input('fournisseur');
 		if ($this->Session->read('LdapUserAuthenticationLevel') >= 3) {
 			echo $this->Form->input('prix_ht', array('label' => 'Prix HT (€)'));
 			echo $this->Form->input('eotp', array('label' => 'EOTP (Centre de crédit)'));

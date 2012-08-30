@@ -89,10 +89,11 @@ $this->Js->get('#MaterielCategorieId')->event('change',
 			'data' => $this->Js->serializeForm(array('isForm' => true, 'inline' => true))
 	)));
 
-$url = str_replace('materiels/add', 'utilisateurs/getLdapEmail/', $_SERVER['SCRIPT_URI']);
 $this->Js->get('#MaterielNomResponsable')->event('change', 
-	'$.ajax({
-		url: "' . $url . '" + $("#MaterielNomResponsable").val()
+	'var url = document.URL;
+	var emailUrl = url.replace("materiels/add", "utilisateurs/getLdapEmail/");
+	$.ajax({
+		url: emailUrl + $("#MaterielNomResponsable").val()
 	}).done(function(data) { 
 		$("#MaterielEmailResponsable").val(data)
 	})');

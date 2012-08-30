@@ -49,15 +49,16 @@
 </div>
 <?php
 
-$url = str_replace('add', 'getLdapEmail/', $_SERVER['SCRIPT_URI']);
+$urlEmail = str_replace('add', 'getLdapEmail/', $_SERVER['SCRIPT_URI']);
+$urlLogin = str_replace('add', 'getLdapLogin/', $_SERVER['SCRIPT_URI']);
 $this->Js->get('#UtilisateurNom')->event('change', 
 	'$.ajax({
-		url: "' . $url . '" + $("#UtilisateurNom").val()
+		url: "' . $urlEmail . '" + $("#UtilisateurNom").val()
 	}).done(function(data) { 
 		$("#UtilisateurEmail").val(data)
 	});
 	$.ajax({
-		url: "' . $url . '" + $("#UtilisateurNom").val()
+		url: "' . $urlLogin . '" + $("#UtilisateurNom").val()
 	}).done(function(data) {
 		$("#UtilisateurLogin").val(data)
 	});');

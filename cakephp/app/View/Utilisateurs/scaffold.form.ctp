@@ -47,17 +47,19 @@
 		echo $this->element('menu_form');
 	?>
 </div>
-<?php
 
-$url = str_replace('add', 'getLdapEmail/', $_SERVER['SCRIPT_URI']);
+<?php
 $this->Js->get('#UtilisateurNom')->event('change', 
-	'$.ajax({
-		url: "' . $url . '" + $("#UtilisateurNom").val()
+	'var url = document.URL;
+	var emailUrl = url.replace("add", "getLdapEmail/");
+	$.ajax({
+		url: emailUrl + $("#UtilisateurNom").val()
 	}).done(function(data) { 
 		$("#UtilisateurEmail").val(data)
 	});
+	var loginUrl = url.replace("add", "getLdapLogin/");
 	$.ajax({
-		url: "' . $url . '" + $("#UtilisateurNom").val()
+		url: loginUrl + $("#UtilisateurNom").val()
 	}).done(function(data) {
 		$("#UtilisateurLogin").val(data)
 	});');

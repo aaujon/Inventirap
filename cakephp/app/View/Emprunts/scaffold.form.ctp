@@ -36,20 +36,27 @@
 					'12' => 'Décembre',
 					);
 	
-	echo $this->Form->create();
+	echo $this->Form->create('Emprunt', array('action' => 'addEmprunt')); 
+	// echo $this->Form->create();
 	echo $this->Form->input('materiel_id', array('label' => 'Matériel concerné', 'value' => $materiel_id));
 	echo $this->Form->input('date_emprunt', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date de l\'emprunt'));
 	echo $this->Form->input('date_retour_emprunt', array('monthNames' => $months, 'dateFormat' => 'DMY', 'label' => 'Date de retour'));
-	echo $this->Form->input('nom_emprunteur', array(
+	echo $this->Form->input('emprunt_interne', array('label' => 'Emprunt interne', 'onchange' => 'emprunt_interne_externe();'));
+	echo '<span id="span_emprunteur_combo" hidden=true>';
+	echo $this->Form->input('nom_emprunteur_combo', array(
 		'options' => $utilisateur->getLdapUsers(), 
 		'empty' => 'Choisir un utilisateur', 
-		'selected' => $this->Session->read('UserName'),
+		'selected' => '',
 		'label' => 'Nom de l\'emprunteur'));
+	echo '</span><span id="span_emprunteur_text">';
+	echo $this->Form->input('nom_emprunteur_text', array(
+		'label' => 'Nom de l\'emprunteur',  
+		'readonly' => false));
+	echo '</span>';
 	echo $this->Form->input('email_emprunteur', array(
 		'label' => 'Email de l\'emprunteur', 
-		'value' => $utilisateur->getEmailFromLdapName($this->Session->read('LdapUserName')), 
-		'readonly' => true));
-	echo $this->Form->input('emprunt_interne', array('label' => 'Emprunt interne', 'onchange' => 'emprunt_interne_externe();'));
+		'value' => '', 
+		'readonly' => false));
 	echo '<div id="interne" style="margin: 0; padding: 0; '.$disp_interne.';">';
 	echo $this->Form->input('e_lieu_stockage', array('label' => 'Lieu de stockage', 
 		'options' => array('B'=>'Belin', 'R'=>'Roche', 'T'=>'Tarbes', 'C'=>'CNES', 'A'=>'Autre'), 
@@ -72,11 +79,33 @@
 </div>
 <?php
 
-$this->Js->get('#EmpruntNomEmprunteur')->event('change', 
+$this->Js->get('#EmpruntEmpruntInterne')->event('change', 
+	'
+		if($("#EmpruntEmpruntInterne").is(":checked")) {
+		 	$("#span_emprunteur_combo").show();
+		 	$("#span_emprunteur_text").hide();
+			$("#EmpruntNomEmprunteurText").val("");
+		 	var url = document.URL;
+			var emailUrl = url.replace("emprunts/add", "utilisateurs/getLdapEmail/");
+			$.ajax({
+				url: emailUrl + $("#EmpruntNomEmprunteurCombo").val()
+			}).done(function(data) { 
+				$("#EmpruntEmailEmprunteur").val(data)
+			});
+		 } else {
+			$("#span_emprunteur_combo").hide();
+		 	$("#span_emprunteur_text").show();
+			$("#EmpruntEmailEmprunteur").val("");
+			$("#EmpruntNomEmprunteurCombo").val("");
+		 }
+	');
+
+		
+$this->Js->get('#EmpruntNomEmprunteurCombo')->event('change', 
 	'var url = document.URL;
 	var emailUrl = url.replace("emprunts/add", "utilisateurs/getLdapEmail/");
 	$.ajax({
-		url: emailUrl + $("#EmpruntNomEmprunteur").val()
+		url: emailUrl + $("#EmpruntNomEmprunteurCombo").val()
 	}).done(function(data) { 
 		$("#EmpruntEmailEmprunteur").val(data)
 	})');
